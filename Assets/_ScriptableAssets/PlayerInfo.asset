@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
   playerName: "\u3055\u3093\u305F\u308D\u3046"
-  freeze: 0
+  freeze: 1
   startConversation: 0
-  startBattle: 0
+  startBattle: 1
   currentScene: SampleScene
   currentQuest: FirstLand
-  lastPosition: {x: -6.2088914, y: -5.247499}
-  lastMove: {x: 0, y: -1}
+  lastPosition: {x: -5.4888783, y: -5.4724784}
+  lastMove: {x: 1, y: 0}
   status:
     lv: 1
     maxHP: 25
@@ -28,8 +28,8 @@ MonoBehaviour:
     mp: 23
     attack: 20
     defence: 7
-    exp: 21
-    gold: 32
+    exp: 23
+    gold: 29
   battleCommands:
   - {fileID: 11400000, guid: c63c3c6699a3040d78fe4ed8ac269aa7, type: 2}
   magicAttackCommands:
