@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2223c11b9bd46269c9ba539da45a5d, type: 3}
+  m_Name: yakusou
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: yakusou
+  nameKana: "\u85AC\u8349"
+  point: 5
+  price: 5
+  sellPrice: 3
+  player_possession_count: 5
+  player_possession_limit: 0
+  audioClip: {fileID: 8300000, guid: b23171d89f77b4d2e9f3bfe21c8cdd05, type: 3}
+  description: "\u4F7F\u3046\u3068\uFF15HP\u56DE\u5FA9\u3057\u307E\u3059\u3002"
+  reseultMessage: "5HP\u56DE\u5FA9\u3057\u305F\uFF01"
