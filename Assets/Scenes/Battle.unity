@@ -5060,10 +5060,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6439363271061613188, guid: b3ebdaff799f14ea991b10a52efd5c1c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6439363272096601700, guid: b3ebdaff799f14ea991b10a52efd5c1c,
         type: 3}
       propertyPath: m_Name
       value: CutOffCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6439363272096601700, guid: b3ebdaff799f14ea991b10a52efd5c1c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6439363272096601704, guid: b3ebdaff799f14ea991b10a52efd5c1c,
         type: 3}
