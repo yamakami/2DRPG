@@ -18,7 +18,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e3fe423c75eb4d4893a2cd7ec72dac8, type: 2}
   - {fileID: 11400000, guid: 5932df776db2548c8acf82e32bda6d0c, type: 2}
   - {fileID: 11400000, guid: c816ac0e545ea4cdca86b726df2f3dec, type: 2}
-  itemWeights: 1e00000064000000
+  healCommands: []
+  itemWeights: 5a00000064000000
   items:
   - {fileID: 0}
   - {fileID: 11400000, guid: 9df451a10b524431183ccc24b5787c80, type: 2}

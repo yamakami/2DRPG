@@ -16,7 +16,8 @@ MonoBehaviour:
   monsterSprite: {fileID: 21300000, guid: 7bf04ea1960764ac9bc7823410bec249, type: 3}
   commands:
   - {fileID: 11400000, guid: 7e3fe423c75eb4d4893a2cd7ec72dac8, type: 2}
-  itemWeights: 1400000064000000
+  healCommands: []
+  itemWeights: 5a00000064000000
   items:
   - {fileID: 0}
   - {fileID: 11400000, guid: 9df451a10b524431183ccc24b5787c80, type: 2}

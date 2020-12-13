@@ -22,15 +22,15 @@ MonoBehaviour:
   lastPosition: {x: -7.648819, y: -4.7762485}
   lastMove: {x: 0, y: -1}
   status:
-    lv: 4
-    maxHP: 163
+    lv: 3
+    maxHP: 124
     maxMP: 8
     hp: 71
     mp: 2
-    attack: 202
-    defence: 186
-    exp: 65
-    gold: 554
+    attack: 325
+    defence: 301
+    exp: 34
+    gold: 650
   battleCommands:
   - {fileID: 11400000, guid: c63c3c6699a3040d78fe4ed8ac269aa7, type: 2}
   magicAttackCommands:
