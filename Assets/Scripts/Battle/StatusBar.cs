@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatusBar : MonoBehaviour
 {
-    [SerializeField] Transform statusBar;
+    [SerializeField] Transform statusBar = default;
 
     float maxValue;
 

@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New PlayerInfo", menuName = "PlayerInfo")]
 public class PlayerInfo : ScriptableObject
 {
+    public bool levelUpGenerated;
     public string playerName;
     public bool freeze;
     public bool startConversation;

@@ -12,24 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf008e57bcd544eb90cc3d585c0a1fe, type: 3}
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
+  levelUpGenerated: 1
   playerName: "\u3055\u3093\u305F\u308D\u3046"
-  freeze: 1
+  freeze: 0
   startConversation: 0
-  startBattle: 1
+  startBattle: 0
   currentScene: SampleScene
   currentQuest: FirstLand
   lastPosition: {x: -7.648819, y: -4.7762485}
   lastMove: {x: 0, y: -1}
   status:
-    lv: 1
-    maxHP: 25
-    maxMP: 23
-    hp: 25
-    mp: 23
-    attack: 20
-    defence: 7
-    exp: 15
-    gold: 10
+    lv: 4
+    maxHP: 163
+    maxMP: 8
+    hp: 71
+    mp: 2
+    attack: 202
+    defence: 186
+    exp: 65
+    gold: 554
   battleCommands:
   - {fileID: 11400000, guid: c63c3c6699a3040d78fe4ed8ac269aa7, type: 2}
   magicAttackCommands:

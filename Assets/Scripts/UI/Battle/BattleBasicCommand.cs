@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BattleBasicCommand : MonoBehaviour
 {
+    [SerializeField] CanvasGroup canvasGroup = default;
+
+    BattleCanvas battleCanvas;
+    public BattleCanvas BattleCanvas { set => battleCanvas = value; }
+    public CanvasGroup CanvasGroup { get => canvasGroup; }
+
     public void Open()
     {
         gameObject.SetActive(true);

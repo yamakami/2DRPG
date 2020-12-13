@@ -5,26 +5,29 @@ using UnityEngine;
 public class PlayerAction : CharacterAction
 {
     public PlayerInfo playerInfo = default;
+    public LevelUpTable levelUpTable;
+    public int lv;
     float luck;
+
 
     void Start()
     {
         characterName = playerInfo.playerName;
+        lv = playerInfo.status.lv;
         maxHP = playerInfo.status.maxHP;
         maxMP = playerInfo.status.maxMP;
-
         hp = playerInfo.status.hp;
-        attack  = playerInfo.status.attack;
+        attack = playerInfo.status.attack;
         defence = playerInfo.status.defence;
-        mp   = playerInfo.status.mp;
-        exp  = playerInfo.status.exp;
+        mp = playerInfo.status.mp;
+        exp = playerInfo.status.exp;
         gold = playerInfo.status.gold;
 
         calculateLuck();
         speed = attack + defence + luck;
 
-        StatusBar.SetInitialValues(maxHP);
-        StatusBar.SubtructValue(hp);
+        //StatusBar.SetInitialValues(maxHP);
+        //StatusBar.SubtructValue(hp);
     }
 
     public void calculateLuck()
@@ -34,10 +37,13 @@ public class PlayerAction : CharacterAction
 
     void OnDestroy()
     {
+        playerInfo.status.lv = lv;
+        playerInfo.status.maxHP = maxHP;
+        playerInfo.status.maxMP = maxMP;
         playerInfo.status.hp = hp;
+        playerInfo.status.mp = mp;
         playerInfo.status.attack = attack;
         playerInfo.status.defence = defence;
-        playerInfo.status.mp = mp;
         playerInfo.status.exp = exp;
         playerInfo.status.gold = gold;
         AddItemToPlayerInfo();
@@ -78,6 +84,8 @@ public class PlayerAction : CharacterAction
                 MagicAttack(monster);
                 break;
         }
+
+        bm.PlayableDirector.Resume();
     }
 
     void PhysicalAttack(CharacterAction monster)
@@ -97,8 +105,6 @@ public class PlayerAction : CharacterAction
 
         str = "{0}に{1}HPのダメージをあたえた！";
         BattleManager.ResultMessage.AppendFormat(str, monster.characterName, damage);
-
-        BattleManager.BattleMain.State = BattleMain.STATE.ATTACK_MESSAGE;
     }
 
     void MagicAttack(CharacterAction monster)
@@ -122,8 +128,6 @@ public class PlayerAction : CharacterAction
 
         str = "{0}に{1}HPのダメージをあたえた！";
         BattleManager.ResultMessage.AppendFormat(str, monster.characterName, damage);
-
-        BattleManager.BattleMain.State = BattleMain.STATE.ATTACK_MESSAGE;
     }
 
     public void MagicHeal(Command command)
@@ -132,6 +136,7 @@ public class PlayerAction : CharacterAction
 
         var recoveredHp = command.magicInfo.Heal(hp, maxHP);
         this.mp -= command.magicInfo.consumptionMp;
+
         BattleManager.Damage = -recoveredHp;
 
         BattleManager.Defender = this;
@@ -148,6 +153,6 @@ public class PlayerAction : CharacterAction
         str = "{0}は{1}HP回復した。";
         BattleManager.ResultMessage.AppendFormat(str, characterName, recoveredHp);
 
-        BattleManager.BattleMain.State = BattleMain.STATE.ATTACK_MESSAGE;
+        BattleManager.PlayableDirector.Resume();
     }
 }

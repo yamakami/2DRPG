@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CharacterAction : MonoBehaviour
 {
-    [SerializeField] Animator animator;
-    [SerializeField] StatusBar statusBar;
+    [SerializeField] Animator animator = default;
+    [SerializeField] StatusBar statusBar = default;
 
-    public string characterName;
+    public string characterName;    
     public int maxHP;
     public int maxMP;
     public int hp;

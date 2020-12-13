@@ -12,65 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b59d791ff7c49cba5e0cb1fb292cdd, type: 3}
   m_Name: LevelUpTable
   m_EditorClassIdentifier: 
-  reCalculate: 0
+  playerInfo: {fileID: 11400000, guid: 498346bfb29ea44249cf470983a2838f, type: 2}
   levels:
   - nextLevelUpAmount: 10
     goalExp: 0
     hp: 11
-    attack: 12
-    defence: 3
-    magicName: 
-  - nextLevelUpAmount: 11
-    goalExp: 10
-    hp: 3
-    attack: 12
-    defence: 11
-    magicName: 
-  - nextLevelUpAmount: 12
-    goalExp: 21
-    hp: 7
-    attack: 5
-    defence: 3
-    magicName: 
-  - nextLevelUpAmount: 13
-    goalExp: 33
-    hp: 9
-    attack: 6
-    defence: 4
-    magicName: 
-  - nextLevelUpAmount: 14
-    goalExp: 46
-    hp: 6
-    attack: 13
-    defence: 11
-    magicName: 
-  - nextLevelUpAmount: 15
-    goalExp: 60
-    hp: 4
-    attack: 5
-    defence: 10
-    magicName: 
-  - nextLevelUpAmount: 17
-    goalExp: 75
-    hp: 13
-    attack: 8
-    defence: 4
-    magicName: 
-  - nextLevelUpAmount: 19
-    goalExp: 92
-    hp: 6
     attack: 10
     defence: 5
     magicName: 
-  - nextLevelUpAmount: 21
-    goalExp: 111
-    hp: 13
-    attack: 3
+  - nextLevelUpAmount: 18
+    goalExp: 10
+    hp: 7
+    attack: 7
+    defence: 11
+    magicName: 
+  - nextLevelUpAmount: 32
+    goalExp: 28
+    hp: 6
+    attack: 10
     defence: 4
     magicName: 
-  - nextLevelUpAmount: 23
-    goalExp: 132
-    hp: 4
-    attack: 7
-    defence: 3
+  - nextLevelUpAmount: 58
+    goalExp: 60
+    hp: 6
+    attack: 6
+    defence: 11
+    magicName: 
+  - nextLevelUpAmount: 104
+    goalExp: 118
+    hp: 11
+    attack: 11
+    defence: 10
+    magicName: 
+  - nextLevelUpAmount: 187
+    goalExp: 222
+    hp: 9
+    attack: 6
+    defence: 5
+    magicName: 
+  - nextLevelUpAmount: 337
+    goalExp: 409
+    hp: 11
+    attack: 8
+    defence: 11
+    magicName: 
+  - nextLevelUpAmount: 607
+    goalExp: 746
+    hp: 10
+    attack: 8
+    defence: 8
+    magicName: 
+  - nextLevelUpAmount: 1093
+    goalExp: 1353
+    hp: 3
+    attack: 3
+    defence: 9
+    magicName: 
+  - nextLevelUpAmount: 1967
+    goalExp: 2446
+    hp: 9
+    attack: 4
+    defence: 11
     magicName: 

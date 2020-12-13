@@ -6,7 +6,6 @@ using System.Text;
 
 public class MessageBox : MonoBehaviour
 {
-    [SerializeField] Canvas cutoffCanvas = default;
     [SerializeField] Text textField = default;
     [SerializeField] Button nextButton = default;
 
@@ -57,21 +56,14 @@ public class MessageBox : MonoBehaviour
         processing = false;
     }
 
-    public bool Open()
+    public void Open()
     {
-        if (cutoffCanvas)
-            return false;
-
-        if (isActiveAndEnabled)
-            return false;
-
         gameObject.SetActive(true);
-        return true;
     }
 
     public void Close()
     {
-        NextButton.gameObject.SetActive(false);
+        //NextButton.gameObject.SetActive(false);
         gameObject.SetActive(false);
 
         TextField.text = "";

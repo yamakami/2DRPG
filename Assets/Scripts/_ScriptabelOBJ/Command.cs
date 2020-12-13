@@ -49,9 +49,9 @@ public class MagicInfo
         int healValue = Random.Range(attackPoint[0], attackPoint[1] + 1);
 
         int total = hp + healValue;
-        if (maxHP < total)
+        if (maxHP <= total)
         {            
-            return healValue - (total - maxHP);
+            return healValue - (total % maxHP);
         }
         return healValue;
     }

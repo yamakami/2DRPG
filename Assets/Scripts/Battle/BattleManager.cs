@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using System.Text;
 
 
@@ -13,55 +14,100 @@ public class BattleReward
 }
 
 public class BattleManager : MonoBehaviour
-{
+{    
     [SerializeField] BattleInfo battleInfo = default;
-    [SerializeField] BattleCanvas battleCanvas = default;
-    [SerializeField] BattleMain battleMain = default;
     [SerializeField] PlayerAction playerAction = default;
+    [SerializeField] BattleCanvas battleCanvas = default;
+    [SerializeField] BattleStart battleStart = default;
     [SerializeField] GameObject[] monsterUnit = default;
-    [SerializeField] Animator bmAnimator = default;
     [SerializeField] AudioSource bmAudio = default;
     [SerializeField] LevelUpTable levelUpTable = default;
 
-    [HideInInspector] List<MonsterAction> monsterActions;
-    [HideInInspector] List<CharacterAction> attackOrder;
-    [HideInInspector] CharacterAction attacker;
-    [HideInInspector] CharacterAction defender;
-    [HideInInspector] int damage;
-    [HideInInspector] Command command;
-    [HideInInspector] List<BattleReward> rewards = new List<BattleReward>();
-
+    List<MonsterAction> monsterActions;
+    List<CharacterAction> attackOrder;
+    CharacterAction attacker;
+    CharacterAction defender;
+    int damage;
+    Command command;
+    PlayableDirector playableDirector;
     StringBuilder battleMessage;
     StringBuilder resultMessage;
+    public bool busy;
+    List<BattleReward> rewards = new List<BattleReward>();
 
     public BattleInfo BattleInfo { get => battleInfo; }
-    public BattleCanvas BattleCanvas { get => battleCanvas; }
-    public BattleMain BattleMain { get => battleMain; }
     public PlayerAction PlayerAction { get => playerAction; }
+    public BattleCanvas BattleCanvas { get => battleCanvas; }
+    public PlayableDirector PlayableDirector { get => playableDirector; set => playableDirector = value; }
+    public BattleStart BattleStart { get => battleStart; }
     public GameObject[] MonsterUnit { get => monsterUnit; }
     public List<MonsterAction> MonsterActions { get => monsterActions; set => monsterActions = value; }
     public List<CharacterAction> AttackOrder { get => attackOrder; set => attackOrder = value; }
     public CharacterAction Attacker { get => attacker; set => attacker = value; }
     public CharacterAction Defender { get => defender; set => defender = value; }
     public int Damage { get => damage; set => damage = value; }
-    public Command Command { get => command; set => command = value; }
     public StringBuilder BattleMessage { get => battleMessage; set => battleMessage = value; }
     public StringBuilder ResultMessage { get => resultMessage; set => resultMessage = value; }
-    public Animator Animator { get => bmAnimator; }
+    public Command Command { get => command; set => command = value; }
     public AudioSource Audio { get => bmAudio; }
     public List<BattleReward> Rewards { get => rewards; }
+    public LevelUpTable LevelUpTable { get => levelUpTable; }
 
     void Awake()
     {
         BattleCanvas.BattleManager = this;
+        BattleStart.BattleManager  = this;
+
         PlayerAction.BattleManager = this;
 
         AttackOrder = new List<CharacterAction>();
         BattleMessage = new StringBuilder();
         ResultMessage = new StringBuilder();
 
-        //levelUpTable.Calculate();
+        LevelUpTable.Calculate();
     }
+
+    void Update()
+    {
+        ReleaseBusy();
+    }
+
+    public void PlayableStop()
+    {
+        PlayableDirector.Pause();
+        busy = true;
+    }
+
+    void ReleaseBusy()
+    {
+        if (!busy)
+            return;
+
+        var anim = (defender) ? defender.Animator : null;
+        if (!battleCanvas.MessageBox.MessageAcceptable() || !AnimationNotPlaying(anim) || !FaderIsStopped())
+            return;
+
+        busy = false;
+        PlayableDirector.Resume();
+    }
+
+    bool FaderIsStopped()
+    {
+        return !battleCanvas.FaderBlack.Fading;
+    }
+
+    bool AnimationNotPlaying(Animator anim = null)
+    {
+        if (anim == null)
+            return true;
+
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Base Layer.NotPlaying"))
+            return true;
+
+        return false;
+    }
+
 
     public void KeepReward(MonsterAction monsterAction)
     {
@@ -91,25 +137,17 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        playerAction.exp = exp;
-        playerAction.gold = gold;
+        playerAction.exp += exp;
+        playerAction.gold += gold;
 
         str = "{0}は経験値{1}EXと{2}ゴールドを得た。";
         battleMessage.AppendFormat(str, playerAction.characterName, exp, gold);
     }
 
-    public void PlayPause(string stateName = null)
+    public bool IsLevelUp()
     {
-        if (stateName == null)
-            stateName = "pause_short";
-
-        Animator.Play(stateName);
-    }
-
-    public bool AnimationNotPlaying(Animator anim)
-    {
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Base Layer.NotPlaying"))
+        LevelUpTable.Level currentLevel = LevelUpTable.levels[PlayerAction.lv];
+        if (currentLevel.goalExp <= playerAction.exp)
             return true;
 
         return false;

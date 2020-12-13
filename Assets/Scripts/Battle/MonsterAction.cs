@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MonsterAction : CharacterAction
 {
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer = default;
 
     [HideInInspector] public Monster monster;
-    [HideInInspector] public int index;
+    [HideInInspector] public int monsterIndex;
 
     Command command;
     int damage;
@@ -30,7 +30,7 @@ public class MonsterAction : CharacterAction
         gold = Random.Range(status.gold[0], status.gold[1] + 1);
         speed = attack + defence;
 
-        StatusBar.SetInitialValues(maxHP);
+        //StatusBar.SetInitialValues(maxHP);
     }
 
     public void Attack(PlayerAction player)
@@ -57,13 +57,13 @@ public class MonsterAction : CharacterAction
 
                 var recoveredHp = command.magicInfo.Heal(hp, maxHP);
                 this.mp -= command.magicInfo.consumptionMp;
-                
+
                 damage = -recoveredHp;
 
                 BattleManager.Defender = target;
 
                 MonsterAction ma = (MonsterAction)target;
-                if(this.index == ma.index)
+                if (this.monsterIndex == ma.monsterIndex)
                 {
                     str = "{0}は{1}を唱えた！";
                     BattleManager.BattleMessage.AppendFormat(str, characterName, command.nameKana);
@@ -89,8 +89,8 @@ public class MonsterAction : CharacterAction
         }
 
         BattleManager.Defender = target;
-        BattleManager.Damage   = damage;
-        BattleManager.Command  = command;
+        BattleManager.Damage = damage;
+        BattleManager.Command = command;
     }
 
     bool IsCommandHeal()
@@ -103,8 +103,8 @@ public class MonsterAction : CharacterAction
 
         for (var i = 0; i < BattleManager.MonsterActions.Count; i++)
         {
-            float healPoint = maxHP / 4f;
             MonsterAction ma = BattleManager.MonsterActions[i];
+            float healPoint = ma.maxHP / 4f;
 
             if (ma.hp <= healPoint)
             {

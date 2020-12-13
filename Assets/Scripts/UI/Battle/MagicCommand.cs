@@ -10,7 +10,7 @@ public class MagicCommand : MonoBehaviour
     [SerializeField] Button magicButton = default;
     [SerializeField] Button backButton = default;
     [SerializeField] MonsterSelect monsterSelect = default;
-
+    [SerializeField] CanvasGroup canvasGroup = default;
     BattleCanvas battleCanvas;
     BattleManager battleManager;
     PlayerInfo playerInfo;
@@ -18,6 +18,7 @@ public class MagicCommand : MonoBehaviour
     string magicType;
 
     public BattleCanvas BattleCanvas { set => battleCanvas = value; }
+    public CanvasGroup CanvasGroup { get => canvasGroup; }
 
     public void Open(string magicType)
     {
@@ -26,7 +27,9 @@ public class MagicCommand : MonoBehaviour
 
         MagickCommand(magicType);
 
-        OpenCloseParent(true);
+        gameObject.SetActive(true);
+        battleCanvas.MagicBasicCommand.CanvasGroup.interactable = false;
+
         StartCoroutine(RefreshLayout());
     }
 
@@ -35,16 +38,13 @@ public class MagicCommand : MonoBehaviour
         yield return new WaitForFixedUpdate();
         gridLayoutGroup.enabled = false;
         gridLayoutGroup.enabled = true;
+
     }
 
     public void Close()
     {
-        OpenCloseParent(false);
-    }
-
-    void OpenCloseParent(bool b)
-    {
-        gameObject.transform.parent.gameObject.SetActive(b);
+        gameObject.SetActive(false);
+        battleCanvas.MagicBasicCommand.CanvasGroup.interactable = true;
     }
 
     string MagicTargetKana(Command co)
@@ -83,7 +83,7 @@ public class MagicCommand : MonoBehaviour
             }
 
             if (co.magicInfo.magicTarget == MagicInfo.MAGIC_TARGET.ONE)
-                bt.onClick.AddListener( () => monsterSelect.Open(co) );
+                bt.onClick.AddListener(() => monsterSelect.Open(co));
 
         }
         mp = null;

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New LevelUpTable", menuName = "LevelUpTable")]
 public class LevelUpTable : ScriptableObject
 {
-    public bool reCalculate;
+    public PlayerInfo playerInfo;
     public Level[] levels;
 
     [System.Serializable]
@@ -14,19 +14,21 @@ public class LevelUpTable : ScriptableObject
         public int nextLevelUpAmount;
         public int goalExp;
         public int hp;
+        public int mp;
         public int attack;
         public int defence;
-        public string magicName;
+        public Command magicCommand;
     }
 
     public void Calculate()
     {
-        if (!reCalculate)
+        if (playerInfo.levelUpGenerated)
             return;
         
         for (var i = 0; i < levels.Length; i++)
         {
             levels[i].hp      = Random.Range(3, 14);
+            levels[i].mp      = Random.Range(3, 14);
             levels[i].attack  = Random.Range(3, 14);
             levels[i].defence = Random.Range(3, 14);
 
@@ -36,11 +38,11 @@ public class LevelUpTable : ScriptableObject
             var ex = levels[i - 1].nextLevelUpAmount;
             var cur = levels[i - 1].goalExp;
 
-            var nextEx = (int) System.Math.Round(ex * 1.1f, System.MidpointRounding.AwayFromZero);
+            var nextEx = (int) System.Math.Round(ex * 1.8f, System.MidpointRounding.AwayFromZero);
 
             levels[i].nextLevelUpAmount = nextEx;
             levels[i].goalExp = ex + cur;
-
         }
+        playerInfo.levelUpGenerated = true;
     }
 }

@@ -8,12 +8,14 @@ public class MagicBasicCommand : MonoBehaviour
     [SerializeField] MagicCommand magicCommand = default;
     [SerializeField] Button attackButton = default;
     [SerializeField] Button healButton = default;
+    [SerializeField] CanvasGroup canvasGroup = default;
 
     BattleCanvas battleCanvas;
     BattleManager battleManager;
     PlayerInfo playerInfo;
 
     public BattleCanvas BattleCanvas { set => battleCanvas = value; }
+    public CanvasGroup CanvasGroup { get => canvasGroup; }
 
     void OnEnable()
     {
