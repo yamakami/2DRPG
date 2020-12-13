@@ -39,6 +39,3 @@ public class PlayerInfo : ScriptableObject
         [SerializeField] public int gold;
     }
 }
-
-
-
