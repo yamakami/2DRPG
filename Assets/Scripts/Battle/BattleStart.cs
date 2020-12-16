@@ -31,7 +31,7 @@ public class BattleStart : BattleTimeline
 
     public void DisplayMessageBox()
     {
-        battleManager.PlayableStop();
+        PlayableStop();
         battleCanvas.MessageBox.Open();
         messageBox.DisplayMessage(battleManager.BattleMessage);
     }

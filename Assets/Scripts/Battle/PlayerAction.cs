@@ -23,16 +23,15 @@ public class PlayerAction : CharacterAction
         exp = playerInfo.status.exp;
         gold = playerInfo.status.gold;
 
-        calculateLuck();
-        speed = attack + defence + luck;
+        speed = attack + defence + CalculateLuck();
 
         //StatusBar.SetInitialValues(maxHP);
         //StatusBar.SubtructValue(hp);
     }
 
-    public void calculateLuck()
+    public float CalculateLuck()
     {
-        luck = 1 + Random.Range(0.0f, 0.5f);
+        return 1 + Random.Range(0.0f, 0.5f);
     }
 
     void OnDestroy()
@@ -90,69 +89,75 @@ public class PlayerAction : CharacterAction
 
     void PhysicalAttack(CharacterAction monster)
     {
-        BattleManager.Defender = monster;
+        var bm = BattleManager;
 
-        int damage = Mathf.Abs(monster.defence - attack);
-        BattleManager.Damage = damage;
+        bm.Defender = monster;
 
-        var c = BattleManager.BattleCanvas;
+        int damage = bm.DamageCalculation(attack, monster.defence);
+        bm.Damage = damage;
+
+        var c = bm.BattleCanvas;
 
         c.MonsterSelect.Close();
         c.BattleBasicCommand.Close();
 
         string str = "{0}の攻撃！\n{1}を攻撃した！!";
-        BattleManager.BattleMessage.AppendFormat(str, characterName, monster.characterName);
+        bm.BattleMessage.AppendFormat(str, characterName, monster.characterName);
 
         str = "{0}に{1}HPのダメージをあたえた！";
-        BattleManager.ResultMessage.AppendFormat(str, monster.characterName, damage);
+        bm.ResultMessage.AppendFormat(str, monster.characterName, damage);
     }
 
     void MagicAttack(CharacterAction monster)
     {
+        var bm = BattleManager;
         var command = BattleManager.Command;
-        BattleManager.Defender = monster;
 
-        int damage = Mathf.Abs(monster.defence - command.magicInfo.MagicAttack());
-        BattleManager.Damage = damage;
+        bm.Defender = monster;
+
+        int damage = bm.DamageCalculation(command.magicInfo.MagicAttack(), monster.defence);
+        bm.Damage = damage;
 
         this.mp -= command.magicInfo.consumptionMp;
 
-        var c = BattleManager.BattleCanvas;
+        var c = bm.BattleCanvas;
 
         c.MonsterSelect.Close();
         c.MagicCommand.Close();
         c.MagicBasicCommand.CloseWithOutBasicCommand();
 
         string str = "{0}の攻撃！\n{1}に{2}を唱えた！";
-        BattleManager.BattleMessage.AppendFormat(str, characterName, monster.characterName, command.nameKana);
+        bm.BattleMessage.AppendFormat(str, characterName, monster.characterName, command.nameKana);
 
         str = "{0}に{1}HPのダメージをあたえた！";
-        BattleManager.ResultMessage.AppendFormat(str, monster.characterName, damage);
+        bm.ResultMessage.AppendFormat(str, monster.characterName, damage);
     }
 
     public void MagicHeal(Command command)
     {
-        BattleManager.Command = command;
+        var bm = BattleManager;
+
+        bm.Command = command;
 
         var recoveredHp = command.magicInfo.Heal(hp, maxHP);
         this.mp -= command.magicInfo.consumptionMp;
 
-        BattleManager.Damage = -recoveredHp;
+        bm.Damage = -recoveredHp;
 
-        BattleManager.Defender = this;
+        bm.Defender = this;
 
-        var c = BattleManager.BattleCanvas;
+        var c = bm.BattleCanvas;
 
         c.MonsterSelect.Close();
         c.MagicCommand.Close();
         c.MagicBasicCommand.CloseWithOutBasicCommand();
 
         string str = "{0}は{1}を唱えた！";
-        BattleManager.BattleMessage.AppendFormat(str, characterName, command.nameKana);
+        bm.BattleMessage.AppendFormat(str, characterName, command.nameKana);
 
         str = "{0}は{1}HP回復した。";
-        BattleManager.ResultMessage.AppendFormat(str, characterName, recoveredHp);
+        bm.ResultMessage.AppendFormat(str, characterName, recoveredHp);
 
-        BattleManager.PlayableDirector.Resume();
+        bm.PlayableDirector.Resume();
     }
 }

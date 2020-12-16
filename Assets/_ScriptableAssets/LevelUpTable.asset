@@ -16,61 +16,71 @@ MonoBehaviour:
   levels:
   - nextLevelUpAmount: 10
     goalExp: 0
-    hp: 11
-    attack: 10
-    defence: 5
-    magicName: 
+    hp: 12
+    mp: 9
+    attack: 4
+    defence: 8
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 18
     goalExp: 10
-    hp: 7
+    hp: 10
+    mp: 9
     attack: 7
-    defence: 11
-    magicName: 
+    defence: 10
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 32
     goalExp: 28
-    hp: 6
-    attack: 10
-    defence: 4
-    magicName: 
+    hp: 9
+    mp: 12
+    attack: 11
+    defence: 8
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 58
     goalExp: 60
-    hp: 6
-    attack: 6
-    defence: 11
-    magicName: 
+    hp: 3
+    mp: 3
+    attack: 13
+    defence: 8
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 104
     goalExp: 118
-    hp: 11
-    attack: 11
-    defence: 10
-    magicName: 
+    hp: 12
+    mp: 7
+    attack: 9
+    defence: 8
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 187
     goalExp: 222
-    hp: 9
-    attack: 6
-    defence: 5
-    magicName: 
+    hp: 7
+    mp: 11
+    attack: 3
+    defence: 8
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 337
     goalExp: 409
-    hp: 11
-    attack: 8
-    defence: 11
-    magicName: 
+    hp: 4
+    mp: 6
+    attack: 10
+    defence: 6
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 607
     goalExp: 746
-    hp: 10
+    hp: 11
+    mp: 12
     attack: 8
-    defence: 8
-    magicName: 
+    defence: 11
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 1093
     goalExp: 1353
-    hp: 3
-    attack: 3
-    defence: 9
-    magicName: 
+    hp: 10
+    mp: 5
+    attack: 9
+    defence: 12
+    magicCommand: {fileID: 0}
   - nextLevelUpAmount: 1967
     goalExp: 2446
-    hp: 9
-    attack: 4
-    defence: 11
-    magicName: 
+    hp: 12
+    mp: 13
+    attack: 7
+    defence: 7
+    magicCommand: {fileID: 0}

@@ -38,7 +38,7 @@ public class LevelUpTable : ScriptableObject
             var ex = levels[i - 1].nextLevelUpAmount;
             var cur = levels[i - 1].goalExp;
 
-            var nextEx = (int) System.Math.Round(ex * 1.8f, System.MidpointRounding.AwayFromZero);
+            var nextEx = (int) System.Math.Round(ex * 1.3f, System.MidpointRounding.AwayFromZero);
 
             levels[i].nextLevelUpAmount = nextEx;
             levels[i].goalExp = ex + cur;

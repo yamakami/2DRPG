@@ -6,7 +6,7 @@ public class BattleEnd : BattleTimeline
     {
         battleCanvas.MessageBox.Close();
 
-        battleManager.PlayableStop();
+        PlayableStop();
         battleCanvas.SceneFadeOut();
     }
 

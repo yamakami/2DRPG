@@ -38,59 +38,62 @@ public class MonsterAction : CharacterAction
         if (!IsCommandHeal())
             command = monster.commands[Random.Range(0, monster.commands.Length)];
 
+        var bm = BattleManager;
         int damage = 0;
         string str = "";
         switch (command.commandType)
         {
             case Command.COMMAND_TYPE.MAGIC_ATTACK:
                 target = player;
-                damage = Mathf.Abs(player.defence - command.magicInfo.MagicAttack());
+                damage = bm.DamageCalculation(command.magicInfo.MagicAttack(), player.defence);
                 this.mp -= command.magicInfo.consumptionMp;
 
                 str = "{0}は{1}の呪文を唱えた！\n";
-                BattleManager.BattleMessage.AppendFormat(str, monster.monsterName, command.nameKana);
+                bm.BattleMessage.AppendFormat(str, monster.monsterName, command.nameKana);
+
                 str = "{0}は{1}HPのダメージをうけた！";
-                BattleManager.ResultMessage.AppendFormat(str, player.characterName, damage);
+                bm.ResultMessage.AppendFormat(str, player.characterName, damage);
                 break;
 
             case Command.COMMAND_TYPE.MAGIC_HEAL:
 
-                var recoveredHp = command.magicInfo.Heal(hp, maxHP);
+                var recoveredHp = command.magicInfo.Heal(target.hp, target.maxHP);
                 this.mp -= command.magicInfo.consumptionMp;
 
                 damage = -recoveredHp;
 
-                BattleManager.Defender = target;
+                bm.Defender = target;
 
                 MonsterAction ma = (MonsterAction)target;
                 if (this.monsterIndex == ma.monsterIndex)
                 {
                     str = "{0}は{1}を唱えた！";
-                    BattleManager.BattleMessage.AppendFormat(str, characterName, command.nameKana);
+                    bm.BattleMessage.AppendFormat(str, characterName, command.nameKana);
                 }
                 else
                 {
                     str = "{0}は{1}に{2}を唱えた！";
-                    BattleManager.BattleMessage.AppendFormat(str, characterName, target.characterName, command.nameKana);
+                    bm.BattleMessage.AppendFormat(str, characterName, target.characterName, command.nameKana);
                 }
 
                 str = "{0}は{1}HP回復した。";
-                BattleManager.ResultMessage.AppendFormat(str, target.characterName, recoveredHp);
+                bm.ResultMessage.AppendFormat(str, target.characterName, recoveredHp);
                 break;
 
             default:
                 target = player;
-                damage = Mathf.Abs(player.defence - attack);
+                damage = bm.DamageCalculation(attack, player.defence);
                 str = "{0}の攻撃！\n";
-                BattleManager.BattleMessage.AppendFormat(str, monster.monsterName);
+                bm.BattleMessage.AppendFormat(str, monster.monsterName);
+
                 str = "{0}は{1}HPのダメージをうけた！";
-                BattleManager.ResultMessage.AppendFormat(str, player.characterName, damage);
+                bm.ResultMessage.AppendFormat(str, player.characterName, damage);
                 break;
         }
 
-        BattleManager.Defender = target;
-        BattleManager.Damage = damage;
-        BattleManager.Command = command;
+        bm.Defender = target;
+        bm.Damage = damage;
+        bm.Command = command;
     }
 
     bool IsCommandHeal()

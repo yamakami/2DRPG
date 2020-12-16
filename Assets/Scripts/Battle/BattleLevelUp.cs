@@ -7,7 +7,6 @@ public class BattleLevelUp : BattleTimeline
     {
         var bm = battleManager;
 
-        string playerName = bm.PlayerAction.characterName;
         int playerExp = bm.PlayerAction.exp;
         LevelUpTable.Level currentLevel = bm.LevelUpTable.levels[bm.PlayerAction.lv];
 
@@ -15,9 +14,9 @@ public class BattleLevelUp : BattleTimeline
         if (currentLevel.goalExp <= playerExp)
         {
             bm.PlayerAction.lv++;
-            currentLevel = bm.LevelUpTable.levels[bm.PlayerAction.lv];
 
             str = "{0}はレベルが{1}になった\n";
+            string playerName = bm.PlayerAction.characterName;
             bm.BattleMessage.AppendFormat(str, playerName, bm.PlayerAction.lv);
 
             if (0 < currentLevel.hp)
@@ -52,7 +51,7 @@ public class BattleLevelUp : BattleTimeline
 
     public void ShowMessage()
     {
-        battleManager.PlayableStop();
+        PlayableStop();
         messageBox.DisplayMessage(battleManager.BattleMessage);
     }
 

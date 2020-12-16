@@ -19,18 +19,18 @@ MonoBehaviour:
   startBattle: 0
   currentScene: SampleScene
   currentQuest: FirstLand
-  lastPosition: {x: -7.648819, y: -4.7762485}
-  lastMove: {x: 0, y: -1}
+  lastPosition: {x: -6.5431905, y: 2.618183}
+  lastMove: {x: 0, y: 1}
   status:
-    lv: 3
-    maxHP: 124
-    maxMP: 8
-    hp: 71
-    mp: 2
-    attack: 325
-    defence: 301
-    exp: 34
-    gold: 650
+    lv: 2
+    maxHP: 24
+    maxMP: 18
+    hp: 11
+    mp: 0
+    attack: 15
+    defence: 18
+    exp: 19
+    gold: 22
   battleCommands:
   - {fileID: 11400000, guid: c63c3c6699a3040d78fe4ed8ac269aa7, type: 2}
   magicAttackCommands:

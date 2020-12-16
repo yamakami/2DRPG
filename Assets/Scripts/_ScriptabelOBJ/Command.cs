@@ -50,9 +50,8 @@ public class MagicInfo
 
         int total = hp + healValue;
         if (maxHP <= total)
-        {            
             return healValue - (total % maxHP);
-        }
+
         return healValue;
     }
 }

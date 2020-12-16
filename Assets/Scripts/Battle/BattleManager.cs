@@ -32,7 +32,7 @@ public class BattleManager : MonoBehaviour
     PlayableDirector playableDirector;
     StringBuilder battleMessage;
     StringBuilder resultMessage;
-    public bool busy;
+
     List<BattleReward> rewards = new List<BattleReward>();
 
     public BattleInfo BattleInfo { get => battleInfo; }
@@ -57,7 +57,6 @@ public class BattleManager : MonoBehaviour
     {
         BattleCanvas.BattleManager = this;
         BattleStart.BattleManager  = this;
-
         PlayerAction.BattleManager = this;
 
         AttackOrder = new List<CharacterAction>();
@@ -67,47 +66,17 @@ public class BattleManager : MonoBehaviour
         LevelUpTable.Calculate();
     }
 
-    void Update()
+    public int DamageCalculation(int attack, int defence)
     {
-        ReleaseBusy();
+        float damage = (attack * 1.3f * playerAction.CalculateLuck()) - defence;
+        if (0 < damage)
+            return (int)System.Math.Round(damage, System.MidpointRounding.AwayFromZero);
+
+        int[] zeroValue = { 1, 2, 3 };
+        int index = Random.Range(0, zeroValue.Length);
+
+        return zeroValue[index];
     }
-
-    public void PlayableStop()
-    {
-        PlayableDirector.Pause();
-        busy = true;
-    }
-
-    void ReleaseBusy()
-    {
-        if (!busy)
-            return;
-
-        var anim = (defender) ? defender.Animator : null;
-        if (!battleCanvas.MessageBox.MessageAcceptable() || !AnimationNotPlaying(anim) || !FaderIsStopped())
-            return;
-
-        busy = false;
-        PlayableDirector.Resume();
-    }
-
-    bool FaderIsStopped()
-    {
-        return !battleCanvas.FaderBlack.Fading;
-    }
-
-    bool AnimationNotPlaying(Animator anim = null)
-    {
-        if (anim == null)
-            return true;
-
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Base Layer.NotPlaying"))
-            return true;
-
-        return false;
-    }
-
 
     public void KeepReward(MonsterAction monsterAction)
     {

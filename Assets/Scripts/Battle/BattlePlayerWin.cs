@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BattlePlayerWin : BattleTimeline
 {
@@ -12,7 +10,7 @@ public class BattlePlayerWin : BattleTimeline
         var playerName = bm.PlayerAction.characterName;
         var str = "{0}はモンスター討伐に成功した。";
 
-        bm.PlayableStop();
+        PlayableStop();
         messageBox.DisplayMessage(bm.BattleMessage.AppendFormat(str, playerName));
     }
 
@@ -21,7 +19,7 @@ public class BattlePlayerWin : BattleTimeline
         var bm = battleManager;
         bm.ReflectRwardToPlayer();
 
-        bm.PlayableStop();
+        PlayableStop();
         messageBox.DisplayMessage(bm.BattleMessage);
     }
 

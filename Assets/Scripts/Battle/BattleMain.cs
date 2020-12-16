@@ -2,6 +2,7 @@
 
 public class BattleMain : BattleTimeline
 {
+    [SerializeField] BattleTimeline playerDied = default;
 
     TURN turn;
     enum TURN { PLAYER, MONSTER }
@@ -14,7 +15,7 @@ public class BattleMain : BattleTimeline
 
     public void AttackMessage()
     {
-        battleManager.PlayableStop();
+        PlayableStop();
         messageBox.DisplayMessage(battleManager.BattleMessage);
     }
 
@@ -30,15 +31,14 @@ public class BattleMain : BattleTimeline
         AudioSource audio = bm.Audio;
         Command command = bm.Command;
 
-        battleManager.PlayableStop();
+        PlayableStop();
         animator.Play(command.commandName, 0, 0);
         audio.PlayOneShot(command.audioClip);
     }
 
     public void AttackResultMessage()
     {
-        battleManager.PlayableStop();
-
+        PlayableStop();
         messageBox.Open();
         messageBox.DisplayMessage(battleManager.ResultMessage);
     }
@@ -53,10 +53,7 @@ public class BattleMain : BattleTimeline
         if (turn == TURN.MONSTER)
         {
             if (bm.Defender.hp <= 0)
-            {
-                //battleEnd.State = BattleEnd.STATE.PLAYER_DEAD;
-                //state = STATE.DONE;
-            }
+                ChangeToDied();
         }
         else
         {
@@ -75,11 +72,18 @@ public class BattleMain : BattleTimeline
 
                 Destroy(bm.Defender.gameObject);
 
-                battleManager.PlayableStop();
+                PlayableStop();
 
                 messageBox.DisplayMessage(bm.BattleMessage);
             }
         }
+    }
+
+    void ChangeToDied()
+    {
+        playerDied.gameObject.SetActive(true);
+        playerDied.BattleManager = battleManager;
+        Destroy(gameObject);
     }
 
     public void BattleResult()
@@ -112,7 +116,7 @@ public class BattleMain : BattleTimeline
     {
         if (turn == TURN.PLAYER)
         {
-            bm.PlayableDirector.Pause();
+            playableDirector.Pause();
             bm.BattleCanvas.BattleBasicCommand.Open();
         }
         else
