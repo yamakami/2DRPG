@@ -9,11 +9,13 @@ public class ConversationData : ScriptableObject
     public SubConverSation[] subConverSations;
 }
 
+
 [System.Serializable]
 public struct ConversationLine
 {
     [TextArea(2, 5)]
     public string text;
+    public GameObject callBack;
 }
 
 [System.Serializable]
@@ -21,5 +23,6 @@ public struct SubConverSation
 {
     [TextArea(2, 5)]
     public string text;
+    public GameObject callBack;
     public ConversationData conversationData;
 }

@@ -14,23 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelUpGenerated: 1
   playerName: "\u3055\u3093\u305F\u308D\u3046"
-  freeze: 0
-  startConversation: 0
+  freeze: 1
+  startConversation: 1
   startBattle: 0
+  dead: 0
   currentScene: SampleScene
-  currentQuest: FirstLand
-  lastPosition: {x: -6.5431905, y: 2.618183}
-  lastMove: {x: 0, y: 1}
+  currentQuest: HajimarinoMachi
+  lastPosition: {x: -6.6219625, y: 3.6235707}
+  lastMove: {x: -1, y: 0}
   status:
     lv: 2
-    maxHP: 24
-    maxMP: 18
-    hp: 11
-    mp: 0
-    attack: 15
-    defence: 18
-    exp: 19
-    gold: 22
+    maxHP: 22
+    maxMP: 21
+    hp: 22
+    mp: 21
+    attack: 1
+    defence: 1
+    exp: 16
+    gold: 0
   battleCommands:
   - {fileID: 11400000, guid: c63c3c6699a3040d78fe4ed8ac269aa7, type: 2}
   magicAttackCommands:
@@ -42,3 +43,9 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 9df451a10b524431183ccc24b5787c80, type: 2}
   - {fileID: 11400000, guid: 2f16b53986c024b9db02f15f1bb6ecc7, type: 2}
+  savePoint:
+    savedScene: SampleScene
+    savedLocation: HajimarinoMachi
+    savedPoint: InsideChurch
+    startPosition: {x: 22.46, y: 23.84}
+    facingTo: {x: 0, y: 1}

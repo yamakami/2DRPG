@@ -11,6 +11,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] FaderBlack faderBlack = default;
     [SerializeField] Quest quest = default;
     [SerializeField] BattleInfo battleInfo = default;
+    [SerializeField] GameObject[] questLocations = default;
 
     float encounteringRestTimer = 0f;
     float encounteringRestInterval = 2f;
@@ -24,29 +25,57 @@ public class QuestManager : MonoBehaviour
         ChangeQuest(playerMove.playerInfo.currentQuest);
     }
 
+    void Update()
+    {
+        MonsterEncounteringCalc();
+    }
+
     IEnumerator RestoreFromBattle()
     {
         faderBlack.SkipFadeOut = true;
         faderBlack.Alpha = 1;
         faderBlack.gameObject.SetActive(true);
-        playerMove.ResetPosition(playerMove.playerInfo.lastMove, playerMove.playerInfo.lastPosition);
+
+        if (!playerMove.playerInfo.dead)
+        {
+            BattleSuccessRestore();
+        }
+        else
+        {
+            BattleFailedRestore();
+        }
+
+        foreach (var g in questLocations)
+        {
+            if (g.name == playerMove.playerInfo.currentQuest)
+                g.SetActive(true);
+            else
+                g.SetActive(false);
+        }
+
         playerMove.playerInfo.startBattle = false;
 
         yield return new WaitForSeconds(1f);
 
         faderBlack.FaderIn();
 
-        Invoke("ReleasePlayerFreeze", 1f);
+        if (!playerMove.playerInfo.dead)
+            Invoke("ReleasePlayerFreeze", 1f);
+    }
+
+    void BattleSuccessRestore()
+    {
+        playerMove.ResetPosition(playerMove.playerInfo.lastMove, playerMove.playerInfo.lastPosition);
+    }
+
+    void BattleFailedRestore()
+    {
+        playerMove.ResetPosition(playerMove.playerInfo.savePoint.facingTo, playerMove.playerInfo.savePoint.startPosition);
     }
 
     void ReleasePlayerFreeze()
     {
         playerMove.playerInfo.freeze = false;
-    }
-
-    void Update()
-    {
-        MonsterEncounteringCalc();
     }
 
     public void ChangeQuest(string questName)
@@ -56,7 +85,7 @@ public class QuestManager : MonoBehaviour
         battleInfo.areas = null;
 
         location = quest.questLocations.Find(l => (l.questName == questName));
-        if (location.areas != null)
+        if (0 < location.areas.Length)
         {
             battleInfo.areaIndex = 0;
             battleInfo.areas = location.areas;
@@ -70,7 +99,7 @@ public class QuestManager : MonoBehaviour
 
     void MonsterEncounteringCalc()
     {
-        if (location.areas == null)
+        if (battleInfo.areas == null)
             return;
 
         if (playerMove.playerInfo.startBattle)
@@ -101,13 +130,6 @@ public class QuestManager : MonoBehaviour
 
     public void LoadBattleScene()
     {
-        // debug button用 
-        //var index = battleInfo.areaIndex;
-        //var area = battleInfo.areas[index];
-        //playerMove.RunIntoMonster();
-        //PickupMonster(area);
-        // debug button用 
-
         StartCoroutine(LoadScene());
     }
 

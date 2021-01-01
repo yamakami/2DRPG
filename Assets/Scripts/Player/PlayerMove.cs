@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+
 public class PlayerMove : MonoBehaviour
 {
     public float speed;
     public PlayerInfo playerInfo;
-    [SerializeField] string initialScene = "SampleScene";
-    [SerializeField] string initialQuest = "FirstLand";
     [HideInInspector] public bool talking;
     [HideInInspector] public CharacterMove characterMove;
 
-    Rigidbody2D rb2d;
-    Animator anim;
+    [SerializeField] Rigidbody2D rb2d = null;
+    [SerializeField] Animator anim = null;
+
     Vector2 move;
     Vector2 lastMove;
     bool npcTouching;
@@ -21,20 +23,15 @@ public class PlayerMove : MonoBehaviour
     void initPlayerInfo()
     {
         playerInfo.freeze = false;
-        playerInfo.currentScene = initialScene;
-        playerInfo.currentQuest = initialQuest;
+        playerInfo.dead = false;
     }
 
-    void Start()
+    void Awake()
     {
-
         if(!playerInfo.startBattle)
             initPlayerInfo();
 
         playerInfo.startConversation = false;
-
-        rb2d = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         lastMove = Vector2.down;
     }
 

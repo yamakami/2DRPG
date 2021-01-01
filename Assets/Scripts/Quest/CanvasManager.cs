@@ -7,8 +7,13 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] PlayerMove playerMove = default;
     [SerializeField] ConversationPanel conversationPanel = default;
     [SerializeField] BattleFlash battleFlash = default;
+    [SerializeField] FaderBlack faderBlack = default;
+    [SerializeField] GameObject pristFlash = default;
 
     public PlayerMove PlayerMove { get => playerMove; set => playerMove = value; }
+    public ConversationPanel ConversationPanel { get => conversationPanel; }
+    public GameObject PristFlash { get => pristFlash; }
+    public FaderBlack FaderBlack { get => faderBlack; }
 
     void Update()
     {
@@ -17,12 +22,12 @@ public class CanvasManager : MonoBehaviour
         ActivateConversationPanel();
     }
 
-    void ActivateConversationPanel()
+    public void ActivateConversationPanel()
     {
         if (!playerMove.playerInfo.startConversation)
             return;
 
-        conversationPanel.gameObject.SetActive(true);
+        ConversationPanel.gameObject.SetActive(true);
     }
 
     void ActivateBattleFlashWhite()

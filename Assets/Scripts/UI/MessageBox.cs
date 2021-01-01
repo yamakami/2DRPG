@@ -63,7 +63,6 @@ public class MessageBox : MonoBehaviour
 
     public void Close()
     {
-        //NextButton.gameObject.SetActive(false);
         gameObject.SetActive(false);
 
         TextField.text = "";

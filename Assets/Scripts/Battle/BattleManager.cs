@@ -63,7 +63,7 @@ public class BattleManager : MonoBehaviour
         BattleMessage = new StringBuilder();
         ResultMessage = new StringBuilder();
 
-        LevelUpTable.Calculate();
+        //LevelUpTable.Calculate();
     }
 
     public int DamageCalculation(int attack, int defence)

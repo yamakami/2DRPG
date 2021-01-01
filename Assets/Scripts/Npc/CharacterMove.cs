@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(NpcTouching))]
+
 public class CharacterMove : MonoBehaviour
 {
     [SerializeField] float speed = 0;
@@ -10,12 +14,13 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] float randomInterval = 3f;
     public ConversationData conversationData;
 
+    [SerializeField] Rigidbody2D rb2d = null;
+    [SerializeField] Animator anim = null;
+    [SerializeField] NpcTouching npcTouching = null;
+
     [HideInInspector] public bool freeze;
     [HideInInspector] public Vector2 move;
 
-    Rigidbody2D rb2d;
-    Animator anim;
-    NpcTouching npcTouching;
     Vector2 lastMove;
     float currentTime;
     int xCurrentStep;
@@ -30,11 +35,8 @@ public class CharacterMove : MonoBehaviour
     const int MOVE_LEFT = 3;
     const int MOVE_RIGHT = 4;
 
-    void Start()
+    protected virtual void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        npcTouching = GetComponent<NpcTouching>();
         lastMove = Vector2.down;
     }
 
@@ -107,7 +109,6 @@ public class CharacterMove : MonoBehaviour
         {
             move = move * -1;
         }
-
 
         rb2d.MovePosition(rb2d.position + new Vector2(move.x, move.y).normalized * speed * Time.fixedDeltaTime);
     }

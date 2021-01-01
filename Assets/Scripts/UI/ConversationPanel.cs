@@ -9,22 +9,30 @@ public class ConversationPanel : MonoBehaviour
     [SerializeField] MessageBox messageBox = default;
     [SerializeField] SelectPanel selectPanel = default;
 
+    public MessageBox MessageBox { get => messageBox; }
+
     void OnEnable()
     {
-        messageBox.PrepareConversation(canvasManager.PlayerMove.characterMove.conversationData);
-        messageBox.ForwardConversation(messageBox.Conversations.Dequeue());
+        MessageBox.TextField.text = null;
+        Invoke("DelayStart", 0.2f);
+    }
+
+    void DelayStart()
+    {
+        MessageBox.PrepareConversation(canvasManager.PlayerMove.characterMove.conversationData);
+        MessageBox.ForwardConversation(MessageBox.Conversations.Dequeue());
     }
 
     public void NextMessage()
     {
-        if (messageBox.Processing)
+        if (MessageBox.Processing)
             return;
 
-        if (messageBox.Conversations.Count == 0)
+        if (MessageBox.Conversations.Count == 0)
         {
-            if (0 < messageBox.ConversationData.subConverSations.Length)
+            if (0 < MessageBox.ConversationData.subConverSations.Length)
             {
-                selectPanel.MessageBox = messageBox;
+                selectPanel.MessageBox = MessageBox;
                 selectPanel.gameObject.SetActive(true);
                 return;
             }
@@ -33,7 +41,7 @@ public class ConversationPanel : MonoBehaviour
             return;
         }
 
-        messageBox.ForwardConversation(messageBox.Conversations.Dequeue());
+        MessageBox.ForwardConversation(MessageBox.Conversations.Dequeue());
     }
 
     void ClosePanel()
