@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Events;
 
 public class PristMove : CharacterMove
 {
@@ -43,4 +44,28 @@ public class PristMove : CharacterMove
         questCanvas.ConversationPanel.MessageBox.NextButton.gameObject.SetActive(true);
         conversationData = regularConversation;
     }
+
+    public void TestEvent1()
+    {
+        Debug.Log("test1");
+    }
+
+    public void TestEvent2()
+    {
+        Debug.Log("test2");
+    }
+
+
+    //void OnEnable()
+    //{
+    //    conversatinEvents[0].AddListener(TestEvent1);
+    //    conversatinEvents[1].AddListener(TestEvent2);
+    //    //regularConversation.conversationEvents = conversatinEvents;
+    //}
+
+    //void OnDisable()
+    //{
+    //    conversatinEvents[0].RemoveAllListeners();
+    //    conversatinEvents[1].RemoveAllListeners();
+    //}
 }

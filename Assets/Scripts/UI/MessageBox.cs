@@ -11,14 +11,14 @@ public class MessageBox : MonoBehaviour
 
     float letterDisplaySpeed = 0.02f;
     ConversationData conversationData;
-    Queue<string> conversations = new Queue<string>();
+    Queue<ConversationLine> conversations = new Queue<ConversationLine>();
     bool processing;
 
     public Text TextField { get => textField; set => textField = value; }
     public Button NextButton { get => nextButton; }
     public float LetterDisplaySpeed { get => letterDisplaySpeed; set => letterDisplaySpeed = value; }
     public ConversationData ConversationData { get => conversationData; set => conversationData = value; }
-    public Queue<string> Conversations { get => conversations; set => conversations = value; }
+    public Queue<ConversationLine> Conversations { get => conversations; set => conversations = value; }
     public bool Processing { get => processing; set => processing = value; }
 
     public void PrepareConversation(ConversationData conversationData)
@@ -26,9 +26,9 @@ public class MessageBox : MonoBehaviour
         this.conversationData = conversationData;
         conversations.Clear();
 
-        foreach (ConversationLine conversation in conversationData.conversationLines)
+        foreach (ConversationLine conversationLine in conversationData.conversationLines)
         {
-            this.conversations.Enqueue(conversation.text);
+            this.conversations.Enqueue(conversationLine);
         }
 
         textField.text = null;

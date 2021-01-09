@@ -28,14 +28,25 @@ public class SelectPanel : MonoBehaviour
             selectButton.transform.localScale = Vector3.one;
             Text textfield = selectButton.GetComponentInChildren<Text>();
             textfield.text = conversation.text;
-            selectButton.onClick.AddListener(() => OnClickSelection(conversation.conversationData));
+
+            selectButton.onClick.AddListener(() => OnClickSelection(conversation));
         }
     }
 
-    void OnClickSelection(ConversationData conversationData)
+    void OnClickSelection(SubConverSation conversation)
     {
-        messageBox.PrepareConversation(conversationData);
-        messageBox.ForwardConversation(messageBox.Conversations.Dequeue());
+
+        //if (messageBox.ConversationData.conversatinEvents[conversation.eventNum] != null)
+        //{
+        //    Debug.Log("-------select: " + conversation.eventNum);
+        //    messageBox.ConversationData.conversatinEvents[conversation.eventNum].Invoke();
+        //    return;
+        //}
+
+        messageBox.PrepareConversation(conversation.conversationData);
+
+        ConversationLine line = MessageBox.Conversations.Dequeue();
+        messageBox.ForwardConversation(line.text);
         gameObject.SetActive(false);
 
         foreach (Transform child in selectBox.gameObject.transform)

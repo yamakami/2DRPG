@@ -30,6 +30,7 @@ public class CanvasManager : MonoBehaviour
         ConversationPanel.gameObject.SetActive(true);
     }
 
+    //move to questManager
     void ActivateBattleFlashWhite()
     {
         if (!playerMove.playerInfo.startBattle)

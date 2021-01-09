@@ -20,7 +20,9 @@ public class ConversationPanel : MonoBehaviour
     void DelayStart()
     {
         MessageBox.PrepareConversation(canvasManager.PlayerMove.characterMove.conversationData);
-        MessageBox.ForwardConversation(MessageBox.Conversations.Dequeue());
+
+        ConversationLine line = MessageBox.Conversations.Dequeue();
+        MessageBox.ForwardConversation(line.text);
     }
 
     public void NextMessage()
@@ -41,7 +43,19 @@ public class ConversationPanel : MonoBehaviour
             return;
         }
 
-        MessageBox.ForwardConversation(MessageBox.Conversations.Dequeue());
+        ConversationLine line = MessageBox.Conversations.Dequeue();
+
+
+        //Debug.Log("-------hello: " + MessageBox.ConversationData.conversatinEvents.Length);
+
+        //if (MessageBox.ConversationData.conversatinEvents[line.eventNum] != null)
+        //{
+        //    Debug.Log("-------main: " + line.eventNum);
+        //    MessageBox.ConversationData.conversatinEvents[line.eventNum].Invoke();
+        //    return;
+        //}
+
+        MessageBox.ForwardConversation(line.text);
     }
 
     void ClosePanel()
