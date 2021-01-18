@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     {
         playerInfo.freeze = false;
         playerInfo.dead = false;
+        playerInfo.startConversation = false;
     }
 
     void Awake()
@@ -53,7 +54,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
         float moveMagnitude = move.sqrMagnitude;
         anim.SetFloat("move_speed", moveMagnitude);
 

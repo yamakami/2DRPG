@@ -5,55 +5,55 @@ using UnityEngine.UI;
 
 public class SelectPanel : MonoBehaviour
 {
-    [SerializeField] Button forwardButton = default;
-    [SerializeField] Button selectionButton = default;
-    [SerializeField] Image selectBox = default;
+    //[SerializeField] Button forwardButton = default;
+    //[SerializeField] Button selectionButton = default;
+    //[SerializeField] Image selectBox = default;
 
-    MessageBox messageBox;
+    //MessageBox messageBox;
 
-    public MessageBox MessageBox { get => messageBox; set => messageBox = value; }
+    //public MessageBox MessageBox { get => messageBox; set => messageBox = value; }
 
-    private void OnEnable()
-    {
-        forwardButton.interactable = false;
-        CreateSelection();
-    }
+    //private void OnEnable()
+    //{
+    //    //forwardButton.interactable = false;
+    //    //CreateSelection();
+    //}
 
-    void CreateSelection()
-    {
-        foreach (SubConverSation conversation in messageBox.ConversationData.subConverSations)
-        {
-            Button selectButton = Instantiate(selectionButton);
-            selectButton.transform.SetParent(selectBox.transform);
-            selectButton.transform.localScale = Vector3.one;
-            Text textfield = selectButton.GetComponentInChildren<Text>();
-            textfield.text = conversation.text;
+    //void CreateSelection()
+    //{
+    //    foreach (SubConverSation conversation in messageBox.ConversationData.subConverSations)
+    //    {
+    //        Button selectButton = Instantiate(selectionButton);
+    //        selectButton.transform.SetParent(selectBox.transform);
+    //        selectButton.transform.localScale = Vector3.one;
+    //        Text textfield = selectButton.GetComponentInChildren<Text>();
+    //        textfield.text = conversation.text;
 
-            selectButton.onClick.AddListener(() => OnClickSelection(conversation));
-        }
-    }
+    //        selectButton.onClick.AddListener(() => OnClickSelection(conversation));
+    //    }
+    //}
 
-    void OnClickSelection(SubConverSation conversation)
-    {
+    //void OnClickSelection(SubConverSation conversation)
+    //{
 
-        //if (messageBox.ConversationData.conversatinEvents[conversation.eventNum] != null)
-        //{
-        //    Debug.Log("-------select: " + conversation.eventNum);
-        //    messageBox.ConversationData.conversatinEvents[conversation.eventNum].Invoke();
-        //    return;
-        //}
+    //    //if (messageBox.ConversationData.conversatinEvents[conversation.eventNum] != null)
+    //    //{
+    //    //    Debug.Log("-------select: " + conversation.eventNum);
+    //    //    messageBox.ConversationData.conversatinEvents[conversation.eventNum].Invoke();
+    //    //    return;
+    //    //}
 
-        messageBox.PrepareConversation(conversation.conversationData);
+    //    messageBox.PrepareConversation(conversation.conversationData);
 
-        ConversationLine line = MessageBox.Conversations.Dequeue();
-        messageBox.ForwardConversation(line.text);
-        gameObject.SetActive(false);
+    //    ConversationLine line = MessageBox.Conversations.Dequeue();
+    //    messageBox.ForwardConversation(line.text);
+    //    gameObject.SetActive(false);
 
-        foreach (Transform child in selectBox.gameObject.transform)
-        {
-            Destroy(child.gameObject);
-        }
+    //    foreach (Transform child in selectBox.gameObject.transform)
+    //    {
+    //        Destroy(child.gameObject);
+    //    }
 
-        forwardButton.interactable = true;
-    }
+    //    forwardButton.interactable = true;
+    //}
 }

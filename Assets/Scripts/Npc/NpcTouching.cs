@@ -7,13 +7,16 @@ public class NpcTouching : MonoBehaviour
     [SerializeField] Rigidbody2D rb2 = default;
     [HideInInspector] public bool otherNpcTouching;
 
+    PlayerMove playerMove = null;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            if (playerMove == null) playerMove = collision.GetComponent<PlayerMove>();
+
             rb2.constraints = RigidbodyConstraints2D.FreezeAll;
-            collision.GetComponent<PlayerMove>().TouchingToNpc(GetComponent<CharacterMove>());
+            playerMove.TouchingToNpc(GetComponent<CharacterMove>());
         }
 
         if (collision.CompareTag("Npc"))
@@ -25,7 +28,7 @@ public class NpcTouching : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             rb2.constraints = RigidbodyConstraints2D.FreezeRotation;
-            collision.GetComponent<PlayerMove>().TouchingToNpc(null);
+            playerMove.TouchingToNpc(null);
         }
 
         if (collision.CompareTag("Npc"))

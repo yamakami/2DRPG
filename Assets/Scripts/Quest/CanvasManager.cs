@@ -24,18 +24,18 @@ public class CanvasManager : MonoBehaviour
 
     public void ActivateConversationPanel()
     {
-        if (!playerMove.playerInfo.startConversation)
-            return;
+        //if (!playerMove.playerInfo.startConversation)
+        //    return;
 
-        ConversationPanel.gameObject.SetActive(true);
+        //ConversationPanel.gameObject.SetActive(true);
     }
 
     //move to questManager
     void ActivateBattleFlashWhite()
     {
-        if (!playerMove.playerInfo.startBattle)
-            return;
+        //if (!playerMove.playerInfo.startBattle)
+        //    return;
 
-        battleFlash.gameObject.SetActive(true);
+        //battleFlash.gameObject.SetActive(true);
     }
 }

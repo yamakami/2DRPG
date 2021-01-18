@@ -6,82 +6,119 @@ using System.Text;
 
 public class MessageBox : MonoBehaviour
 {
-    [SerializeField] Text textField = default;
+    [SerializeField] PlayerMove playerMove;
+    [SerializeField] MessageText messageText = default;
     [SerializeField] Button nextButton = default;
 
-    float letterDisplaySpeed = 0.02f;
     ConversationData conversationData;
-    Queue<ConversationLine> conversations = new Queue<ConversationLine>();
-    bool processing;
+    Queue<Conversation> conversations = new Queue<Conversation>();
 
-    public Text TextField { get => textField; set => textField = value; }
-    public Button NextButton { get => nextButton; }
-    public float LetterDisplaySpeed { get => letterDisplaySpeed; set => letterDisplaySpeed = value; }
-    public ConversationData ConversationData { get => conversationData; set => conversationData = value; }
-    public Queue<ConversationLine> Conversations { get => conversations; set => conversations = value; }
-    public bool Processing { get => processing; set => processing = value; }
+    public MessageText MessageText { get => messageText; set => messageText = value; }
 
-    public void PrepareConversation(ConversationData conversationData)
+    void Update()
+    {
+        if (!playerMove.playerInfo.startConversation) return;
+        if (isActiveAndEnabled) return;
+
+        gameObject.SetActive(true);
+        PrepareConversation(playerMove.characterMove.conversationData);
+    }
+
+
+    void PrepareConversation(ConversationData conversationData)
     {
         this.conversationData = conversationData;
         conversations.Clear();
 
-        foreach (ConversationLine conversationLine in conversationData.conversationLines)
+        foreach (Conversation conversation in conversationData.conversationLines)
         {
-            this.conversations.Enqueue(conversationLine);
+            this.conversations.Enqueue(conversation);
         }
 
-        textField.text = null;
+        //textField.text = null;
     }
-    
+
+
     public void ForwardConversation(string line)
     {
-        StartCoroutine(LetterDisplay(line));
+        //messageText.DisplayMessage();
     }
 
-    IEnumerator LetterDisplay(string line)
-    {
-        processing = true;
-        var builder = new StringBuilder();
 
-        foreach (char c in line.ToCharArray())
-        {
-            yield return new WaitForSeconds(letterDisplaySpeed);
 
-            builder.Append(c);
-            textField.text = builder.ToString();
+    //float letterDisplaySpeed = 0.02f;
+    //ConversationData conversationData;
+    //Queue<ConversationLine> conversations = new Queue<ConversationLine>();
+    //bool processing;
 
-        }
+    //public Text TextField { get => textField; set => textField = value; }
+    //public Button NextButton { get => nextButton; }
+    //public float LetterDisplaySpeed { get => letterDisplaySpeed; set => letterDisplaySpeed = value; }
+    //public ConversationData ConversationData { get => conversationData; set => conversationData = value; }
+    //public Queue<ConversationLine> Conversations { get => conversations; set => conversations = value; }
+    //public bool Processing { get => processing; set => processing = value; }
 
-        processing = false;
-    }
+    //public void PrepareConversation(ConversationData conversationData)
+    //{
+    //    this.conversationData = conversationData;
+    //    conversations.Clear();
 
-    public void Open()
-    {
-        gameObject.SetActive(true);
-    }
+    //    foreach (ConversationLine conversationLine in conversationData.conversationLines)
+    //    {
+    //        this.conversations.Enqueue(conversationLine);
+    //    }
 
-    public void Close()
-    {
-        gameObject.SetActive(false);
+    //    textField.text = null;
+    //}
 
-        TextField.text = "";
-    }
+    //public void ForwardConversation(string line)
+    //{
+    //    StartCoroutine(LetterDisplay(line));
+    //}
 
-    public void DisplayMessage(StringBuilder str)
-    {
-        if (!isActiveAndEnabled)
-            return;
+    //IEnumerator LetterDisplay(string line)
+    //{
+    //    processing = true;
+    //    var builder = new StringBuilder();
 
-        ForwardConversation(str.ToString());
-        str.Clear();
-    }
+    //    foreach (char c in line.ToCharArray())
+    //    {
+    //        yield return new WaitForSeconds(letterDisplaySpeed);
 
-    public bool MessageAcceptable()
-    {
-        if (Processing)
-            return false;
+    //        builder.Append(c);
+    //        textField.text = builder.ToString();
 
-        return true;
-    }
+    //    }
+
+    //    processing = false;
+    //}
+
+    //public void Open()
+    //{
+    //    gameObject.SetActive(true);
+    //}
+
+    //public void Close()
+    //{
+    //    gameObject.SetActive(false);
+
+    //    TextField.text = "";
+    //}
+
+    //public void DisplayMessage(StringBuilder str)
+    //{
+    //    if (!isActiveAndEnabled)
+    //        return;
+
+    //    ForwardConversation(str.ToString());
+    //    str.Clear();
+    //}
+
+    //public bool MessageAcceptable()
+    //{
+    //    if (Processing)
+    //        return false;
+
+    //    return true;
+    //}
 }
