@@ -19,15 +19,15 @@ public class QuestManager : MonoBehaviour
 
     void Start()
     {
-        if (playerMove.playerInfo.startBattle)
-            StartCoroutine(RestoreFromBattle());
+        //if (playerMove.playerInfo.startBattle)
+        //    StartCoroutine(RestoreFromBattle());
 
         ChangeQuest(playerMove.playerInfo.currentQuest);
     }
 
     void Update()
     {
-        MonsterEncounteringCalc();
+        //MonsterEncounteringCalc();
     }
 
     IEnumerator RestoreFromBattle()
@@ -56,7 +56,7 @@ public class QuestManager : MonoBehaviour
         playerMove.playerInfo.startBattle = false;
 
         yield return new WaitForSeconds(1f);
-
+        Debug.Log("restore from battle");
         faderBlack.FaderIn();
 
         if (!playerMove.playerInfo.dead)

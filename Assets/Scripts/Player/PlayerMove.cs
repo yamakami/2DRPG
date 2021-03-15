@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -10,21 +7,22 @@ public class PlayerMove : MonoBehaviour
 {
     public float speed;
     public PlayerInfo playerInfo;
-    [HideInInspector] public bool talking;
-    [HideInInspector] public CharacterMove characterMove;
 
     [SerializeField] Rigidbody2D rb2d = null;
     [SerializeField] Animator anim = null;
 
     Vector2 move;
     Vector2 lastMove;
-    bool npcTouching;
+    CharacterMove contactWith;
+    QuestUIManager questUIManager;
+
+    public CharacterMove ContactWith { get => contactWith; }
+    public QuestUIManager QuestUIManager { get => questUIManager; set => questUIManager = value; }
 
     void initPlayerInfo()
     {
         playerInfo.freeze = false;
         playerInfo.dead = false;
-        playerInfo.startConversation = false;
     }
 
     void Awake()
@@ -32,7 +30,6 @@ public class PlayerMove : MonoBehaviour
         if(!playerInfo.startBattle)
             initPlayerInfo();
 
-        playerInfo.startConversation = false;
         lastMove = Vector2.down;
     }
 
@@ -42,9 +39,9 @@ public class PlayerMove : MonoBehaviour
             return;
 
         move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        talking = Input.GetKeyDown(KeyCode.Space);
+        bool talking = Input.GetKeyDown(KeyCode.Space);
 
-        if (npcTouching && talking)
+        if (contactWith && talking)
         {
             StartConversation();
             return;
@@ -71,17 +68,25 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void StartConversation()
-    {
-        characterMove.FacingTo(lastMove);
-        playerInfo.startConversation = true;
-        StopPlayer();
-    }
-
     void StopPlayer()
     {
         move = Vector2.zero;
         playerInfo.freeze = true;
+    }
+
+    void StartConversation()
+    {
+        ContactWith.FacingTo(lastMove);
+        StopPlayer();
+        questUIManager.InTalk = true;
+        contactWith.freeze = true;
+    }
+
+    public void StopConversation()
+    {
+        questUIManager.InTalk = false;
+        contactWith.freeze = false;
+        playerInfo.freeze = false;
     }
 
     public void ResetPosition(Vector2 direction, Vector2 position)
@@ -94,15 +99,9 @@ public class PlayerMove : MonoBehaviour
     public void TouchingToNpc(CharacterMove chrMove)
     {
         if(chrMove != null)
-        {
-            characterMove = chrMove;
-            npcTouching = true;
-        }
+            contactWith = chrMove;
         else
-        {
-            characterMove = null;
-            npcTouching = false;
-        }
+            contactWith = null;
     }
 
     public void RunIntoMonster()

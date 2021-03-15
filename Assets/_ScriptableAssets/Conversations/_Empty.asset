@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e4d4f70dc0447358c672aee9644a75, type: 3}
+  m_Name: _Empty
+  m_EditorClassIdentifier: 
+  conversationLines:
+  - text: "\u9752\u9285\u306E\u5263\u3060\u306D\n30G\u306B\u306A\u308B\u3051\u3069\u3044\u3044\u304B\u3044\uFF1F"
+    conversationData: {fileID: 0}
+    eventExec: 0
+    eventNum: 0
+  subConverSationLines:
+  - text: "\u306F\u3044"
+    conversationData: {fileID: 0}
+    eventExec: 1
+    eventNum: 1
+  - text: "\u3044\u3044\u3048"
+    conversationData: {fileID: 0}
+    eventExec: 1
+    eventNum: 2
+  conversatinEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []

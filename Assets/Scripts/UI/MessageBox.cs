@@ -1,50 +1,100 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Text;
 
-public class MessageBox : MonoBehaviour
+public class MessageBox : UIBase
 {
     [SerializeField] PlayerMove playerMove;
+    [SerializeField] Canvas canvas;
     [SerializeField] MessageText messageText = default;
     [SerializeField] Button nextButton = default;
+    [SerializeField] MessageSelect messageSelect = default;
 
     ConversationData conversationData;
     Queue<Conversation> conversations = new Queue<Conversation>();
 
-    public MessageText MessageText { get => messageText; set => messageText = value; }
+    public ConversationData ConversationData { get => conversationData; set => conversationData = value; }
+    public Queue<Conversation> Conversations { get => conversations; }
+    public Button NextButton { get => nextButton; }
+    public MessageSelect MessageSelect { get => messageSelect; }
+    public Canvas Canvas { get => canvas; }
 
-    void Update()
+    void Start()
     {
-        if (!playerMove.playerInfo.startConversation) return;
-        if (isActiveAndEnabled) return;
-
-        gameObject.SetActive(true);
-        PrepareConversation(playerMove.characterMove.conversationData);
+        MessageSelect.MessageBox = this;
     }
 
-
-    void PrepareConversation(ConversationData conversationData)
+    public void PrepareConversation(ConversationData conversationData)
     {
+        Activate();
         this.conversationData = conversationData;
+        
         conversations.Clear();
 
         foreach (Conversation conversation in conversationData.conversationLines)
         {
-            this.conversations.Enqueue(conversation);
+            conversations.Enqueue(conversation);
         }
 
-        //textField.text = null;
+        ForwardConversation(conversations.Dequeue());
     }
 
-
-    public void ForwardConversation(string line)
+    public void NextMessage()
     {
-        //messageText.DisplayMessage();
+        if (!messageText.Available)
+            return;
+
+        if (conversations.Count == 0)
+        {
+            if (0 < conversationData.subConverSationLines.Length)
+            {
+                MessageSelect.Activate();
+                return;
+            }
+
+            var lastIndex = conversationData.conversationLines.Length - 1;
+            if (conversationData.conversationLines[lastIndex].eventExec)
+            {
+                var eventNum = conversationData.conversationLines[lastIndex].eventNum;
+                conversationData.conversatinEvents[eventNum].Invoke();
+                base.Deactivate();
+                return;
+            } 
+
+            Deactivate();
+            return;
+        }
+
+        ForwardConversation(conversations.Dequeue());
     }
 
+    public void ForwardConversation(Conversation conversation)
+    {
+        messageText.DisplayMessage(conversation);
+    }
 
+    public void SortOrderFront()
+    {
+        canvas.sortingOrder = 3;
+        messageSelect.Canvas.sortingOrder = 3;
+    }
+
+    public void SortOrderBack()
+    {
+        canvas.sortingOrder = 0;
+        messageSelect.Canvas.sortingOrder = 0;
+    }
+
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        playerMove.StopConversation();
+    }
+
+    void OnDisable()
+    {
+        SortOrderBack();
+    }
 
     //float letterDisplaySpeed = 0.02f;
     //ConversationData conversationData;

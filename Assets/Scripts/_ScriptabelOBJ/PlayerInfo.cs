@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New PlayerInfo", menuName = "PlayerInfo")]
@@ -8,7 +7,6 @@ public class PlayerInfo : ScriptableObject
     public bool levelUpGenerated;
     public string playerName;
     public bool freeze;
-    public bool startConversation;
     public bool startBattle;
     public bool dead;
 
@@ -25,6 +23,9 @@ public class PlayerInfo : ScriptableObject
     public List<Command> magicHealCommands = new List<Command>();
     public List<Item> items = new List<Item>();
     public SavePoint savePoint;
+
+    ShopManager shopManager;
+    public ShopManager ShopManager { get => shopManager; set => shopManager = value; }
 
     [System.Serializable]
     public struct Status

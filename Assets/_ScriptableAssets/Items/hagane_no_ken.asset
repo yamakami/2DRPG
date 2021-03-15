@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2223c11b9bd46269c9ba539da45a5d, type: 3}
+  m_Name: hagane_no_ken
+  m_EditorClassIdentifier: 
+  itemType: 2
+  itemName: hagane_no_ken
+  nameKana: "\u92FC\u306E\u5263"
+  point: 30
+  price: 35
+  sellPrice: 15
+  player_possession_count: 0
+  player_possession_limit: 0
+  audioClip: {fileID: 8300000, guid: db5479192c7ce459893d6bcb817b9a6b, type: 3}
+  description: "\u653B\u6483\u529B\u304C%s\u30DD\u30A4\u30F3\u30C8\u4E0A\u304C\u308A\u307E\u3059\u3002"
+  reseultMessage: 

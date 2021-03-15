@@ -25,9 +25,9 @@ public class BattleCanvas : MonoBehaviour
 
     //private void Start()
     //{
-    //    MonsterSelect.BattleCanvas = this;
-    //    BattleBasicCommand.BattleCanvas = this;
-    //    MagicBasicCommand.BattleCanvas = this;
+        //MonsterSelect.BattleCanvas = this;
+        //BattleBasicCommand.BattleCanvas = this;
+        //MagicBasicCommand.BattleCanvas = this;
     //}
 
     //public void SceneFadeOut()

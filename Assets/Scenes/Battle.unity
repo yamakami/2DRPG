@@ -513,13 +513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0609a2b29c941c39d61892705d13e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridLayoutGroup: {fileID: 181043597}
-  magicButton: {fileID: 3126317936298679641, guid: d028ba175f4b7494d87faaab3588a930,
-    type: 3}
-  backButton: {fileID: 6826478015943794753, guid: 07c96e9590c0a4774b0e3c0de869fa3b,
-    type: 3}
-  monsterSelect: {fileID: 1804305615}
-  canvasGroup: {fileID: 181043602}
 --- !u!225 &181043602
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -706,6 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1111,8 +1105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc94dce76998401f84e599d6a201227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textField: {fileID: 21738979}
+  playerMove: {fileID: 0}
+  canvas: {fileID: 0}
+  messageText: {fileID: 0}
   nextButton: {fileID: 0}
+  messageSelect: {fileID: 0}
 --- !u!1 &404822845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1169,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &404822848
 Canvas:
   m_ObjectHideFlags: 0
@@ -1227,13 +1225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a1b9a0e1e1b49728b0f5ec94a98a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutOffCanvas: {fileID: 1095647499}
-  battleBasicCommand: {fileID: 29020789}
-  magicBasicCommand: {fileID: 1728143122}
-  magicCommand: {fileID: 181043601}
-  messageBox: {fileID: 339660093}
-  monsterSelect: {fileID: 1804305615}
-  faderBlack: {fileID: 1088960024}
 --- !u!1 &410001297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,9 +1424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91635f918f9f34d1da3f37f97931826f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 457697001}
-  nextTimeline: {fileID: 2036891188}
-  levelUpTimeline: {fileID: 779356239}
 --- !u!4 &457697003
 Transform:
   m_ObjectHideFlags: 0
@@ -1657,9 +1645,6 @@ MonoBehaviour:
   exp: 0
   gold: 0
   speed: 0
-  spriteRenderer: {fileID: 497410271}
-  monster: {fileID: 0}
-  monsterIndex: 0
 --- !u!1 &506767243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,9 +1823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21be6a69322cc470cae70b7a404d4e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 506767246}
-  nextTimeline: {fileID: 457697002}
-  playerDied: {fileID: 2074416570}
 --- !u!4 &506767248
 Transform:
   m_ObjectHideFlags: 0
@@ -1950,6 +1932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2142,16 +2125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebfecb33fdaf4631a7d68ed272a70f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleInfo: {fileID: 11400000, guid: ba0393738620c414c9b7f5f2bc9e9b2b, type: 2}
-  playerAction: {fileID: 1976613033}
-  battleCanvas: {fileID: 404822850}
-  battleStart: {fileID: 860082720}
-  monsterUnit:
-  - {fileID: 902845662}
-  - {fileID: 2120540166}
-  - {fileID: 1898079302}
-  bmAudio: {fileID: 529847932}
-  levelUpTable: {fileID: 11400000, guid: 42d7cc00691934ab2b0cc471aca4435a, type: 2}
 --- !u!4 &529847931
 Transform:
   m_ObjectHideFlags: 0
@@ -2390,9 +2363,6 @@ MonoBehaviour:
   exp: 0
   gold: 0
   speed: 0
-  spriteRenderer: {fileID: 564363553}
-  monster: {fileID: 0}
-  monsterIndex: 0
 --- !u!1 &706152246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,6 +2441,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &706152250
 Canvas:
   m_ObjectHideFlags: 0
@@ -2614,8 +2585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fe2799c92354f70838fdbdabd41e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 779356238}
-  nextTimeline: {fileID: 2036891188}
 --- !u!4 &779356240
 Transform:
   m_ObjectHideFlags: 0
@@ -2745,8 +2714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49060c72c644848e7835501d3f30368b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 860082719}
-  nextTimeline: {fileID: 506767247}
 --- !u!1 &880916463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,6 +2809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3189,6 +3157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3447,6 +3416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3573,6 +3543,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1095647497
 Canvas:
   m_ObjectHideFlags: 0
@@ -3987,9 +3958,6 @@ MonoBehaviour:
   exp: 0
   gold: 0
   speed: 0
-  spriteRenderer: {fileID: 1147027690}
-  monster: {fileID: 0}
-  monsterIndex: 0
 --- !u!1 &1156209150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4068,6 +4036,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1156209154
 Canvas:
   m_ObjectHideFlags: 0
@@ -4129,6 +4098,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1208053076
 Canvas:
   m_ObjectHideFlags: 0
@@ -4265,6 +4235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4457,6 +4428,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -4745,9 +4717,6 @@ MonoBehaviour:
   exp: 0
   gold: 0
   speed: 0
-  spriteRenderer: {fileID: 1596471484}
-  monster: {fileID: 0}
-  monsterIndex: 0
 --- !u!1 &1600841913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4955,9 +4924,6 @@ MonoBehaviour:
   exp: 0
   gold: 0
   speed: 0
-  spriteRenderer: {fileID: 1619846619}
-  monster: {fileID: 0}
-  monsterIndex: 0
 --- !u!1 &1633583949
 GameObject:
   m_ObjectHideFlags: 0
@@ -5226,6 +5192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5397,10 +5364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab143e501aeb42db8ced68807fe0041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicCommand: {fileID: 181043601}
-  attackButton: {fileID: 223684193}
-  healButton: {fileID: 1255283846}
-  canvasGroup: {fileID: 1728143123}
 --- !u!225 &1728143123
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5491,6 +5454,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1741350943
 Canvas:
   m_ObjectHideFlags: 0
@@ -5635,9 +5599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d99317d18a7e411ab0a8aedd6bdd93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPanel: {fileID: 259552921}
-  monsterButton: {fileID: 6826478015943794753, guid: 07c96e9590c0a4774b0e3c0de869fa3b,
-    type: 3}
 --- !u!222 &1804305616
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5806,6 +5767,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1839050988
 Canvas:
   m_ObjectHideFlags: 0
@@ -5907,6 +5869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -6202,9 +6165,6 @@ MonoBehaviour:
   exp: 0
   gold: 0
   speed: 0
-  playerInfo: {fileID: 11400000, guid: 498346bfb29ea44249cf470983a2838f, type: 2}
-  levelUpTable: {fileID: 11400000, guid: 42d7cc00691934ab2b0cc471aca4435a, type: 2}
-  lv: 0
 --- !u!4 &1976613034
 Transform:
   m_ObjectHideFlags: 0
@@ -6409,8 +6369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7b886d24dc44f2fb7613efd2daa672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 2036891187}
-  nextTimeline: {fileID: 0}
 --- !u!4 &2036891189
 Transform:
   m_ObjectHideFlags: 0
@@ -6535,9 +6493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca20ab79e84f428fb116e79090d1257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 2074416571}
-  nextTimeline: {fileID: 2036891188}
-  playerDeadCanvas: {fileID: 1839050988}
 --- !u!320 &2074416571
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -6876,6 +6831,3 @@ MonoBehaviour:
   exp: 0
   gold: 0
   speed: 0
-  spriteRenderer: {fileID: 1921618189074440462}
-  monster: {fileID: 0}
-  monsterIndex: 0

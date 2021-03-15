@@ -13,11 +13,21 @@ MonoBehaviour:
   m_Name: HajimarinoMachi_woman01_2_yes_0
   m_EditorClassIdentifier: 
   conversationLines:
-  - text: "\u305D\u3046\u3067\u3059\u304B\u3002\u3002\u3002"
-  - text: "\u3053\u306E\u6751\u306B\u306F\u3001\u3082\u3046\u3001\u7269\u304C\u7121\u304F\u3066\u3002\u3002\u3002\n\u3080\u304B\u3057\u306F\u6CA2\u5C71\u7269\u304C\u3042\u3063\u305F\u306E\u3067\u3059\u304C\u3002\u3002\u3002"
-  - text: "\u5357\u306B\u306F\u884C\u304D\u307E\u3057\u305F\u304B\uFF1F"
-  subConverSations:
-  - text: "\u307E\u3060\u3001\u884C\u3063\u3066\u306A\u3044"
-    conversationData: {fileID: 11400000, guid: a9b12c7c9d70a4fd0affb055d7f169b1, type: 2}
-  - text: "\u3082\u3046\u884C\u3063\u305F"
-    conversationData: {fileID: 11400000, guid: 4127128a86a89420db6415d20728dffe, type: 2}
+  - text: "\u3044\u3064\u304B\u79C1\u3082\u65C5\u3057\u3066\u307F\u305F\u3044\u3067\u3059"
+    conversationData: {fileID: 0}
+    eventExec: 0
+    eventNum: 0
+  - text: "\u79C1\u3067\u3082\u3067\u304D\u307E\u3059\u304B\uFF1F"
+    conversationData: {fileID: 0}
+    eventExec: 0
+    eventNum: 0
+  subConverSationLines:
+  - text: "\u5927\u4E08\u592B\u3067\u3059\u3088\uFF01"
+    conversationData: {fileID: 11400000, guid: b695e8b5777d94106be0b283a75ca81c, type: 2}
+    eventExec: 0
+    eventNum: 0
+  - text: "\u305F\u3076\u3093\u7121\u7406"
+    conversationData: {fileID: 11400000, guid: 43e5418b64b194eca8d2637d05012e05, type: 2}
+    eventExec: 0
+    eventNum: 0
+  conversatinEvents: []

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NpcTouching : MonoBehaviour
 {
+    [SerializeField] CharacterMove characterMove = default;
     [SerializeField] Rigidbody2D rb2 = default;
     [HideInInspector] public bool otherNpcTouching;
 
@@ -16,7 +17,7 @@ public class NpcTouching : MonoBehaviour
             if (playerMove == null) playerMove = collision.GetComponent<PlayerMove>();
 
             rb2.constraints = RigidbodyConstraints2D.FreezeAll;
-            playerMove.TouchingToNpc(GetComponent<CharacterMove>());
+            playerMove.TouchingToNpc(characterMove);
         }
 
         if (collision.CompareTag("Npc"))

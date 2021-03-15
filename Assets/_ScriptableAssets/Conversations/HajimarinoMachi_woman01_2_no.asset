@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: HajimarinoMachi_woman01_2_no
   m_EditorClassIdentifier: 
   conversationLines:
-  - text: "\u3042\u306A\u305F\u898B\u306A\u3044\u9854\u3060\u3051\u3069\u3002\u3002\u3002"
-  subConverSations: []
+  - text: "\u305D\u3063\u305D\u3046\u306A\u3093\u3067\u3059\u306D\u3002\u3002\u3002"
+    conversationData: {fileID: 0}
+    eventExec: 0
+    eventNum: 0
+  subConverSationLines: []
+  conversatinEvents: []

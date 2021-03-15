@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class SpotEnter : MonoBehaviour
 {
-    [SerializeField] FaderBlack faderBlack = default;
+    [SerializeField] Fader fader = default;
     [SerializeField] GameObject locationFrom = default;
     [SerializeField] GameObject locationTo = default;
     [SerializeField] Vector2 facingTo = default;
@@ -12,7 +12,7 @@ public class SpotEnter : MonoBehaviour
 
     PlayerMove playerMove;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    async void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player"))
         {
@@ -21,35 +21,23 @@ public class SpotEnter : MonoBehaviour
             qm.ChangeQuest(locationTo.name);
 
             playerMove.playerInfo.freeze = true;
-            faderBlack.gameObject.SetActive(true);
-            StartCoroutine(LocationChange());
+
+            fader.FadeIn();
+            var tokenSource = new CancellationTokenSource();
+            await UniTask.WaitUntil(() => fader.FadeAvairable, cancellationToken: tokenSource.Token);
+
+            locationTo.SetActive(true);
+            playerMove.ResetPosition(facingTo, startPosition.transform.position);
+            locationFrom.SetActive(false);
+
+            await UniTask.Delay(500, cancellationToken: tokenSource.Token);
+
+            fader.FadeOut();
+            await UniTask.WaitUntil(() => fader.FadeAvairable, cancellationToken: tokenSource.Token);
+
+            await UniTask.Delay(500, cancellationToken: tokenSource.Token);
+
+            playerMove.playerInfo.freeze = false;
         }
-    }
-
-    IEnumerator LocationChange()
-    {
-        while(faderBlack.gameObject.activeSelf == true)
-        {
-            if (faderBlack.Alpha == 1f && faderBlack.Fading == false)
-            {
-                locationTo.SetActive(true);
-                playerMove.ResetPosition(facingTo, startPosition.transform.position);
-
-                yield return new WaitForSeconds(1f);
-
-                locationFrom.SetActive(false);
-
-                faderBlack.FaderIn();
-
-                Invoke("ReleaseFreeze", 1f);
-                yield break;
-            }
-            yield return null;
-        }
-    }
-
-    void ReleaseFreeze()
-    {
-        playerMove.playerInfo.freeze = false;
     }
 }

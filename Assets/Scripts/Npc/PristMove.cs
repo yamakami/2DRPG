@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class PristMove : CharacterMove
 {
+
     //[SerializeField] CanvasManager questCanvas = default;
     //[SerializeField] PlayableDirector playableDirector = default;
     //[SerializeField] ConversationData regularConversation = default;
