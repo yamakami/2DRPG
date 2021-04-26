@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1137289906386790548}
   - component: {fileID: 1137289906386790551}
-  - component: {fileID: 1137289906386790549}
+  - component: {fileID: 6801386266495639775}
   - component: {fileID: 1137289906386790544}
   - component: {fileID: 1137289906386790546}
   - component: {fileID: 1137289906386790547}
@@ -46,6 +46,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -87,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1137289906386790549
+--- !u!114 &6801386266495639775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,14 +97,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1137289906386790550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b8d3e5e8e4843f38b37792c9e73818, type: 3}
+  m_Script: {fileID: 11500000, guid: cf6cc0bdd133f4d85b7401abe51d5677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  playerInfo: {fileID: 11400000, guid: 498346bfb29ea44249cf470983a2838f, type: 2}
-  shopManager: {fileID: 0}
-  talking: 0
-  characterMove: {fileID: 0}
+  speed: 3.5
   rb2d: {fileID: 1137289906386790546}
   anim: {fileID: 1137289906386790544}
 --- !u!95 &1137289906386790544
