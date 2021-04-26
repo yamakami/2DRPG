@@ -1,24 +1,27 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleEnd : BattleTimeline
 {
-    //public void FadeOut()
-    //{
-    //    battleCanvas.MessageBox.Close();
+    public void FadeOut()
+    {
+        battleCanvas.MessageText.Deactivate();
 
-    //    PlayableStop();
-    //    battleCanvas.SceneFadeOut();
-    //}
+        PlayableStop();
+        battleCanvas.SceneFadeOut();
+    }
 
-    //public void UnloadScene()
-    //{
-    //    PlayerInfo.SavePoint savePoint = battleManager.PlayerAction.playerInfo.savePoint;
-    //    if (battleManager.PlayerAction.playerInfo.dead)
-    //    {
-    //        battleManager.PlayerAction.playerInfo.currentScene = savePoint.savedScene;
-    //        battleManager.PlayerAction.playerInfo.currentQuest = savePoint.savedLocation;
-    //    }
+    public void UnloadScene()
+    {
+        Debug.Log("-----------------battle end scene unload");
 
-    //    SceneManager.LoadSceneAsync(battleManager.PlayerAction.playerInfo.currentScene);
-    //}
+        //PlayerInfo.SavePoint savePoint = battleManager.PlayerAction.playerInfo.savePoint;
+        //if (battleManager.PlayerAction.playerInfo.dead)
+        //{
+        //    battleManager.PlayerAction.playerInfo.currentScene = savePoint.savedScene;
+        //    battleManager.PlayerAction.playerInfo.currentQuest = savePoint.savedLocation;
+        //}
+
+        //SceneManager.LoadSceneAsync(battleManager.PlayerAction.playerInfo.currentScene);
+    }
 }

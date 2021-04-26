@@ -17,8 +17,9 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] Rigidbody2D rb2d = null;
     [SerializeField] Animator anim = null;
     [SerializeField] NpcTouching npcTouching = null;
+    [SerializeField] MovePoint shopInnMovePoint = default;
 
-    [HideInInspector] public bool freeze;
+    public bool freeze;
     [HideInInspector] public Vector2 move;
 
     Vector2 lastMove;
@@ -34,6 +35,8 @@ public class CharacterMove : MonoBehaviour
     const int MOVE_DOWN = 2;
     const int MOVE_LEFT = 3;
     const int MOVE_RIGHT = 4;
+
+    public MovePoint ShopInnMovePoint { get => shopInnMovePoint; }
 
     protected virtual void Start()
     {

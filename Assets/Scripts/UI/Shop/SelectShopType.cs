@@ -12,7 +12,7 @@ public class SelectShopType : UIBase
 
     void OnEnable()
     {
-        if (shopManager.SkipSelectShopType)
+        if (IsTypeSell() || shopManager.SelectShopTypeSkipable())
         {
             shopManager.ItemSelect.Activate();
             Deactivate();
@@ -20,6 +20,12 @@ public class SelectShopType : UIBase
         }
 
         ButtonsActivationChange(true);
+    }
+
+    bool IsTypeSell()
+    {
+        if (shopManager.ShopType == ShopManager.SHOP_TYPE.Sell) return true;
+        return false;
     }
 
     void ButtonsActivationChange(bool onOff)
@@ -52,7 +58,7 @@ public class SelectShopType : UIBase
 
     public void OnClickBackFromItemSeelect()
     {
-        if (shopManager.SkipSelectShopType)
+        if (IsTypeSell() || shopManager.SelectShopTypeSkipable())
         {
             shopManager.SelectBuyOrSell.Activate();
             return;

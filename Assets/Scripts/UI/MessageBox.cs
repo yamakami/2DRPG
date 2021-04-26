@@ -18,10 +18,12 @@ public class MessageBox : UIBase
     public Button NextButton { get => nextButton; }
     public MessageSelect MessageSelect { get => messageSelect; }
     public Canvas Canvas { get => canvas; }
+    public MessageText MessageText { get => messageText; }
 
     void Start()
     {
-        MessageSelect.MessageBox = this;
+        if (MessageSelect)
+            MessageSelect.MessageBox = this;
     }
 
     public void PrepareConversation(ConversationData conversationData)
@@ -31,7 +33,7 @@ public class MessageBox : UIBase
         
         conversations.Clear();
 
-        foreach (Conversation conversation in conversationData.conversationLines)
+        foreach (var conversation in conversationData.conversationLines)
         {
             conversations.Enqueue(conversation);
         }
@@ -41,7 +43,7 @@ public class MessageBox : UIBase
 
     public void NextMessage()
     {
-        if (!messageText.Available)
+        if (!MessageText.Available)
             return;
 
         if (conversations.Count == 0)
@@ -70,7 +72,7 @@ public class MessageBox : UIBase
 
     public void ForwardConversation(Conversation conversation)
     {
-        messageText.DisplayMessage(conversation);
+        MessageText.DisplayMessage(conversation);
     }
 
     public void SortOrderFront()
@@ -89,6 +91,12 @@ public class MessageBox : UIBase
     {
         base.Deactivate();
         playerMove.StopConversation();
+    }
+
+    public void DeactivateInTalk()
+    {
+        base.Deactivate();
+        playerMove.QuestUIManager.InTalk = false;
     }
 
     void OnDisable()

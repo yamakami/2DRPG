@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f04b27d2661e477b9b671ecb15e44f6, type: 3}
+  m_Name: WomanInnShopInfo
+  m_EditorClassIdentifier: 
+  dealTypeItem: 0
+  dealTypeWeapon: 0
+  dealTypeArmor: 0
+  dealTypeInn: 1
+  buyConfirm: {fileID: 0}
+  buyComplete: {fileID: 0}
+  buyNGShort: {fileID: 0}
+  buyNGLimit: {fileID: 0}
+  sellConfirm: {fileID: 0}
+  sellComplete: {fileID: 0}
+  sellNGItemNotEnough: {fileID: 0}
+  sellNGNoItem: {fileID: 0}
+  inn: {fileID: 11400000, guid: 320ae1438b9434771903130ff799566a, type: 2}
+  innNGShort: {fileID: 11400000, guid: 54df9251fd42d4937ba19127b49920d4, type: 2}
+  itemList: []
+  weaponList: []
+  armorList: []
+  innPrice: 5

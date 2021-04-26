@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f04b27d2661e477b9b671ecb15e44f6, type: 3}
-  m_Name: HjimarinoMachi_Item_Shop
+  m_Name: ManItemShopInfo
   m_EditorClassIdentifier: 
   dealTypeItem: 1
   dealTypeWeapon: 1
   dealTypeArmor: 0
   dealTypeInn: 0
   buyConfirm: {fileID: 11400000, guid: 4618480e779e24ccda98eb3c141972b9, type: 2}
-  buyNG: {fileID: 11400000, guid: ae6b053e2b1a148a1888df239e6303fd, type: 2}
-  buyOK: {fileID: 11400000, guid: 817865d71e4374bd98ae0d80851ad285, type: 2}
+  buyComplete: {fileID: 11400000, guid: 817865d71e4374bd98ae0d80851ad285, type: 2}
+  buyNGShort: {fileID: 11400000, guid: ae6b053e2b1a148a1888df239e6303fd, type: 2}
+  buyNGLimit: {fileID: 11400000, guid: 2294f1457770e475c8f9a6e4db6b1c09, type: 2}
+  sellConfirm: {fileID: 11400000, guid: 43ee3357b727846c3a6b23fb30195b45, type: 2}
+  sellComplete: {fileID: 11400000, guid: e5d940f7bc0354e159c4369d9248e709, type: 2}
+  sellNGItemNotEnough: {fileID: 11400000, guid: 272d2c3848afa4bebb85d80c1158b08a,
+    type: 2}
+  sellNGNoItem: {fileID: 11400000, guid: 272d2c3848afa4bebb85d80c1158b08a, type: 2}
   inn: {fileID: 0}
   itemList:
   - {fileID: 11400000, guid: 9df451a10b524431183ccc24b5787c80, type: 2}

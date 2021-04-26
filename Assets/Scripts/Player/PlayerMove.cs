@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {        
-        float moveMagnitude = move.sqrMagnitude;
+        var moveMagnitude = move.sqrMagnitude;
         anim.SetFloat("move_speed", moveMagnitude);
 
         if(0.5 < moveMagnitude)

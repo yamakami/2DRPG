@@ -21,12 +21,12 @@ public class MessageSelect : UIBase
 
     void CreateSelection()
     {
-        foreach (Conversation conversation in messageBox.ConversationData.subConverSationLines)
+        foreach (var conversation in messageBox.ConversationData.subConverSationLines)
         {
-            Button selectButton = Instantiate(selectionButtonPrefab);
+            var selectButton = Instantiate(selectionButtonPrefab);
             selectButton.transform.SetParent(selectPanel.transform);
             selectButton.transform.localScale = Vector3.one;
-            Text textfield = selectButton.GetComponentInChildren<Text>();
+            var textfield = selectButton.GetComponentInChildren<Text>();
             textfield.text = conversation.text;
 
             selectButton.onClick.AddListener(() => OnClickSelection(conversation));
@@ -38,7 +38,12 @@ public class MessageSelect : UIBase
         if (conversation.conversationData != null)
             messageBox.PrepareConversation(conversation.conversationData);
         else
-            messageBox.Deactivate();
+        {
+            if (conversation.eventExec)
+                messageBox.DeactivateInTalk();
+            else
+                messageBox.Deactivate();
+        }
 
         Deactivate();
 

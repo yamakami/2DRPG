@@ -12,8 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabbed56f6c4f441aaa2ce86073647e0, type: 3}
   m_Name: BattleInfo
   m_EditorClassIdentifier: 
-  questName: HajimarinoMachi
+  questName: FirstLand
   areaIndex: 0
-  areas: []
+  areas:
+  - areaName: base
+    monsterDensity: 80
+    maxUnit: 3
+    monsters:
+    - {fileID: 11400000, guid: c4c51a27edfe34cc8951f5e2aacfb715, type: 2}
+    - {fileID: 11400000, guid: 696c249684a374b7cba78b733466ef6c, type: 2}
+  - areaName: Area1
+    monsterDensity: 50
+    maxUnit: 3
+    monsters:
+    - {fileID: 11400000, guid: c4c51a27edfe34cc8951f5e2aacfb715, type: 2}
+    - {fileID: 11400000, guid: 696c249684a374b7cba78b733466ef6c, type: 2}
+    - {fileID: 11400000, guid: d6f1f9263b69b49f9b18ad4a7a291500, type: 2}
   monsters:
   - {fileID: 11400000, guid: 696c249684a374b7cba78b733466ef6c, type: 2}
+  - {fileID: 11400000, guid: d6f1f9263b69b49f9b18ad4a7a291500, type: 2}
+  - {fileID: 11400000, guid: c4c51a27edfe34cc8951f5e2aacfb715, type: 2}

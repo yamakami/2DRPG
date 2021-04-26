@@ -6,6 +6,7 @@ using DG.Tweening;
 public class ItemSelect : UIBase
 {
     [SerializeField] GraphicRaycaster graphicRaycaster;
+    [SerializeField] Text golds;
     [SerializeField] Text pageText;
     [SerializeField] Image pagePanel;
     [SerializeField] int perPage = 5;
@@ -17,6 +18,7 @@ public class ItemSelect : UIBase
     ShopManager shopManager;
     public ShopManager ShopManager { set => shopManager = value; }
     public GraphicRaycaster GraphicRaycaster { get => graphicRaycaster; set => graphicRaycaster = value; }
+    public Text Golds { get => golds; }
 
     int maxPageNum;
     int currentPage = 1;
@@ -30,7 +32,7 @@ public class ItemSelect : UIBase
         CreateMenu(shopManager.ShopItemList());
     }
 
-    void CreateMenu(List<Item> shopItems)
+    public void CreateMenu(List<Item> shopItems)
     {
         int itemIndex = 0;
 
@@ -39,6 +41,12 @@ public class ItemSelect : UIBase
         float pageHeight = pagePanel.rectTransform.rect.height;
 
         pageText.text = PageDisplay();
+
+        var stBuilder  = shopManager.QuestUIManager.StringBuilder;
+        var playerInfo = shopManager.PlayerMove.playerInfo;
+
+        stBuilder.Clear();
+        Golds.text = stBuilder.AppendFormat("{0} G", playerInfo.status.gold).ToString();
 
         for (var i = 1; i <= maxPageNum; i++)
         {
@@ -53,8 +61,16 @@ public class ItemSelect : UIBase
             {
                 ItemPanel panel = Instantiate(itemPanelPref);
                 Item item = shopItems[itemIndex];
+
                 panel.ButtonText.text = item.nameKana;
-                panel.LeftText.text = item.price + "G";
+
+                stBuilder.Clear();
+                if(shopManager.ShopType == ShopManager.SHOP_TYPE.Buy)
+                    panel.LeftText.text = stBuilder.AppendFormat("{0} G", item.price).ToString();
+                else
+                    panel.LeftText.text = stBuilder.AppendFormat("{0} 個", item.player_possession_count).ToString();
+
+
                 panel.ItemButton.onClick.AddListener(() => OnClickItem(panel, item));
 
                 panel.transform.SetParent(page.transform);
@@ -75,10 +91,10 @@ public class ItemSelect : UIBase
     {
         graphicRaycaster.enabled = false;
 
-        int dropdownIndex = itemPanel.Dropdown.value;
-        int amount = int.Parse(itemPanel.Dropdown.options[dropdownIndex].text);
-
-        shopManager.BuyConfirm(item, amount, item.price);
+        //int dropdownIndex = itemPanel.Dropdown.value;
+        //int amount = int.Parse(itemPanel.Dropdown.options[dropdownIndex].text);
+        var amount = int.Parse(itemPanel.AmountInput.text);
+        shopManager.ShopConfirm(item, amount);
     }
 
     string PageDisplay()

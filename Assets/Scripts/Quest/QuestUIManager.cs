@@ -5,6 +5,7 @@ public class QuestUIManager : MonoBehaviour
 {
     [SerializeField] PlayerMove playerMove = default;
     [SerializeField] MessageBox messageBox;
+    [SerializeField] Fader fader;
     [SerializeField] ShopManager shopManager;
 
     StringBuilder stringBuilder = new StringBuilder();
@@ -13,10 +14,12 @@ public class QuestUIManager : MonoBehaviour
     public bool InTalk { get => inTalk; set => inTalk = value; }
     public StringBuilder StringBuilder { get => stringBuilder; set => stringBuilder = value; }
     public MessageBox MessageBox { get => messageBox; }
+    public Fader Fader { get => fader; }
 
     void Start()
     {
         playerMove.QuestUIManager = this;
+        shopManager.PlayerMove = playerMove;
         playerMove.playerInfo.ShopManager = shopManager;
     }
 

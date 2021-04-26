@@ -10,20 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2e4d4f70dc0447358c672aee9644a75, type: 3}
-  m_Name: HjimarinoMachi_Item_Shop_ConverSation02
+  m_Name: ShopNoThanks
   m_EditorClassIdentifier: 
+  dynamicText: 
   conversationLines:
-  - text: "\u307E\u3060\u307F\u3066\u3044\u304F\u304B\u3044\uFF1F"
+  - text: "\u305D\u3046\u3067\u3059\u304B\u3001\u307E\u305F\u306E\u304A\u3053\u3057\u3092\u304A\u5F85\u3061\u3057\u3066\u304A\u308A\u307E\u3059"
     conversationData: {fileID: 0}
     eventExec: 0
     eventNum: 0
-  subConverSationLines:
-  - text: "\u306F\u3044"
-    conversationData: {fileID: 0}
-    eventExec: 0
-    eventNum: 0
-  - text: "\u3044\u3044\u3048"
-    conversationData: {fileID: 0}
-    eventExec: 0
-    eventNum: 0
+  subConverSationLines: []
   conversatinEvents: []

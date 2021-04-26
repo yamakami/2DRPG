@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e4d4f70dc0447358c672aee9644a75, type: 3}
+  m_Name: ShopStart
+  m_EditorClassIdentifier: 
+  dynamicText: 
+  conversationLines:
+  - text: "\u3088\u3046\u3053\u305D\uFF01\n\u3046\u3061\u306F\u9053\u5177\u5C4B\u3060\u3088\n\u307F\u3066\u3044\u3063\u3066\u304F\u308C\u3088"
+    conversationData: {fileID: 0}
+    eventExec: 0
+    eventNum: 0
+  subConverSationLines:
+  - text: "\u306F\u3044"
+    conversationData: {fileID: 0}
+    eventExec: 1
+    eventNum: 0
+  - text: "\u3044\u3044\u3048"
+    conversationData: {fileID: 11400000, guid: 01c030bbee1574f0fabc6694300578a5, type: 2}
+    eventExec: 0
+    eventNum: 0
+  conversatinEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 15a593afefc514f44948c9bd12d88549, type: 2}
+        m_TargetAssemblyTypeName: ShopInfo, Assembly-CSharp
+        m_MethodName: ShopStart
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 498346bfb29ea44249cf470983a2838f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: PlayerInfo, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

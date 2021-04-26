@@ -73,6 +73,7 @@ MonoBehaviour:
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 1
+    m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 3445279650991706841}
 --- !u!114 &1579782131387546058

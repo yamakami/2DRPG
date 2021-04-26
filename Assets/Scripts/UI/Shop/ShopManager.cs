@@ -4,27 +4,34 @@ using UnityEngine.UI;
 
 public class ShopManager : UIBase
 {
-    [SerializeField] PlayerMove playerMove;
     [SerializeField] SelectBuyOrSell selectBuyOrSell;
     [SerializeField] SelectShopType selectShopType;
     [SerializeField] ItemSelect itemSelect;
+    [SerializeField] ShopBuy shopBuy;
+    [SerializeField] ShopSell shopSell;
 
     QuestUIManager questUIManager;
-    PlayerInfo playerInfo;
+    PlayerMove playerMove;
     ShopInfo shopInfo;
     bool inShopping;
-    bool skipSelectShopType;
     int itemTotalPrice;
+    Item selectedItem;
+    int selectedItemNum;
 
     public ShopInfo ShopInfo { get => shopInfo; set => shopInfo = value; }
     public bool InShopping { get => inShopping; set => inShopping = value; }
-    public bool SkipSelectShopType { get => skipSelectShopType; }
     public SHOP_TYPE ShopType { get => shopType; set => shopType = value; }
     public DEAL_TYPE DealType { get => dealType; set => dealType = value; }
     public QuestUIManager QuestUIManager { get => questUIManager; }
     public SelectShopType SelectShopType { get => selectShopType; }
     public ItemSelect ItemSelect { get => itemSelect; }
     public SelectBuyOrSell SelectBuyOrSell { get => selectBuyOrSell; }
+    public PlayerMove PlayerMove { get => playerMove; set => playerMove = value; }
+    public ShopBuy ShopBuy { get => shopBuy; }
+    public ShopSell ShopSell { get => shopSell; }
+    public Item SelectedItem { get => selectedItem; }
+    public int SelectedItemNum { get => selectedItemNum; }
+    public int ItemTotalPrice { get => itemTotalPrice; }
 
     SHOP_TYPE shopType;
     public enum SHOP_TYPE
@@ -42,13 +49,48 @@ public class ShopManager : UIBase
         Item
     }
 
+    void LateUpdate()
+    {
+        if (InShopping && !playerMove.playerInfo.freeze) PlayerAndTargetCharFreeze();
+    }
+
     void OnEnable()
     {
-        questUIManager = playerMove.QuestUIManager;
-        playerInfo = playerMove.playerInfo;
+        questUIManager = PlayerMove.QuestUIManager;
         SelectBuyOrSell.ShopManager = this;
         SelectShopType.ShopManager = this;
         ItemSelect.ShopManager = this;
+
+        selectBuyOrSell.Activate();
+    }
+
+    public void PlayerAndTargetCharFreeze()
+    {
+        var playerInfo = playerMove.playerInfo;
+        playerInfo.freeze = true;
+        PlayerMove.ContactWith.freeze = true;
+    }
+
+    public void ShopInnStart(MovePoint movePoint, ShopInfo shopInfo)
+    {
+        movePoint.PlayerMove = PlayerMove;
+
+        var questUIManager = PlayerMove.QuestUIManager;
+        var messgeBox = questUIManager.MessageBox;
+        var playerInfo = PlayerMove.playerInfo;
+        var price = shopInfo.innPrice;
+
+        if(playerInfo.status.gold < price)
+        {
+            messgeBox.PrepareConversation(shopInfo.innNGShort);
+            return;
+        }
+
+        playerInfo.status.gold -= price;
+        playerInfo.status.hp = playerInfo.status.maxHP;
+        playerInfo.status.mp = playerInfo.status.maxMP;
+
+        questUIManager.Fader.FadeOutFadeIn(movePoint);
     }
 
     public void ShopStart(ShopInfo shopInfo)
@@ -58,25 +100,22 @@ public class ShopManager : UIBase
         InShopping = true;
         this.shopInfo = shopInfo;
 
-        playerInfo.freeze = true;
-        playerMove.ContactWith.freeze = true;
+        PlayerAndTargetCharFreeze();
 
-        if(shopInfo.dealTypeInn)
-            Debug.Log("shop inn");
-        else
-            SelectBuyOrSell.Activate();
-
-        skipSelectShopType = SelectShopTypeSkipable();
+        SelectBuyOrSell.Activate();
     }
 
     public List<Item> ShopItemList()
     {
+        var playerInfo = playerMove.playerInfo;
+        if (shopType == SHOP_TYPE.Sell) return playerInfo.items;
+
         if (dealType == DEAL_TYPE.Weapon) return shopInfo.weaponList;
         if (dealType == DEAL_TYPE.Armor) return shopInfo.armorList;
         return shopInfo.itemList;
     }
 
-    bool SelectShopTypeSkipable()
+    public bool SelectShopTypeSkipable()
     {
         if (shopInfo.dealTypeInn) return true;
 
@@ -93,7 +132,6 @@ public class ShopManager : UIBase
 
     int DealTypeChecked(bool dealTypeItem, DEAL_TYPE dealType)
     {
-
         if (dealTypeItem)
         {
             this.dealType = dealType;
@@ -103,64 +141,44 @@ public class ShopManager : UIBase
         return 0;
     }
 
-    public void BuyConfirm(Item item, int amount, int price)
+    public void ShopConfirm(Item item, int amount)
     {
+        selectedItem = item;
+        selectedItemNum = amount;
+
         var messgeBox = questUIManager.MessageBox;
         messgeBox.SortOrderFront();
 
-        var conversation = shopInfo.buyConfirm;
-        itemTotalPrice = BuyCalculation(amount, price);
+        var conversation = ConfirmMessage();        
 
-        questUIManager.StringBuilder.Clear();
-        conversation.conversationLines[0].text = questUIManager.StringBuilder.AppendFormat(
-                                                    shopInfo.buyConfirm.dynamicText,
-                                                    item.nameKana, amount, itemTotalPrice
-                                                 ).ToString();
+        var price = (ShopType == SHOP_TYPE.Sell) ? item.sellPrice : item.price;
+        itemTotalPrice = Calculation(amount, price);
 
-        messgeBox.PrepareConversation(shopInfo.buyConfirm);
+        var stBuilder = questUIManager.StringBuilder;
+        stBuilder.Clear();
+        conversation.conversationLines[0].text = stBuilder.AppendFormat(
+            conversation.dynamicText, item.nameKana, amount, itemTotalPrice).ToString();
+
+        messgeBox.PrepareConversation(conversation);
     }
 
-    int BuyCalculation( int amount, int price)
+   ConversationData ConfirmMessage()
+   {
+        if (shopType == SHOP_TYPE.Buy) return shopInfo.buyConfirm;
+        return shopInfo.sellConfirm;
+   }
+
+    int Calculation( int amount, int price)
     {
         return amount * price;
     }
 
-    void BuyNG()
+    public void ItemSelectCancel()
     {
-        var messgeBox = questUIManager.MessageBox;
-        messgeBox.SortOrderFront();
-        messgeBox.PrepareConversation(shopInfo.buyNG);
-    }
-
-    public void BuyOK()
-    {
-        Debug.Log("----------buy ok");
-
-        var messgeBox = questUIManager.MessageBox;
-        if (itemTotalPrice < playerInfo.status.gold)
-        {
-            Debug.Log("----------buy ok price ok");
-            AddItemToPlayer();
-            messgeBox.PrepareConversation(shopInfo.buyComplete);
-        }
-        else
-        {
-            Debug.Log("----------buy ok price short");
-            messgeBox.PrepareConversation(shopInfo.buyNG);
-        }
-    }
-
-    public void OnBuyCancel()
-    {
-        questUIManager.MessageBox.gameObject.SetActive(false);
+        PlayerAndTargetCharFreeze();
+        questUIManager.MessageBox.Deactivate();
         ItemSelect.GraphicRaycaster.enabled = true;
     }
-
-    void AddItemToPlayer()
-    {
-        Debug.Log("----------item added to player");
-    }
-
 
     public void OnQuitClick()
     {
@@ -172,102 +190,11 @@ public class ShopManager : UIBase
 
     void OnDisable()
     {
+        var playerInfo = playerMove.playerInfo;
         ShopType = SHOP_TYPE.None;
         inShopping = false;
         shopInfo = null;
         playerInfo.freeze = false;
-        playerMove.ContactWith.freeze = false;
+        PlayerMove.ContactWith.freeze = false;
     }
-
-
-    //[SerializeField] Canvas canvas;
-    //[SerializeField] ShopStartSelect shopStartSelect;
-    //[SerializeField] ShopDealSelect shopDealSelect;
-    //[SerializeField] ItemSelect itemSelect;
-    //[SerializeField] ShopConversation shopConversation;
-    //[SerializeField] MessageBox messageBox;
-
-    //PlayerInfo playerInfo;
-    //ShopInfo shopInfo;
-    //bool skipDealSelect;
-
-    //public ShopInfo ShopInfo { get => shopInfo; set => shopInfo = value; }
-    //public SHOP_TYPE ShopType { get => shopType; set => shopType = value; }
-    //public ShopStartSelect ShopStartSelect { get => shopStartSelect; }
-    //public ShopDealSelect ShopDealSelect { get => shopDealSelect; }
-    //public bool SkipDealSelect { get => skipDealSelect; }
-    //public ItemSelect ItemSelect { get => itemSelect; }
-    //public PlayerMove PlayerMove { get => playerMove; }
-    //public ShopConversation ShopConversation { get => shopConversation; }
-    //public MessageBox MessageBox { get => messageBox; }
-
-    //SHOP_TYPE shopType;
-    //public enum SHOP_TYPE
-    //{
-    //    None,
-    //    Buy,
-    //    Sell
-    //}
-
-    //void Start()
-    //{
-    //    playerInfo = PlayerMove.playerInfo;
-    //    playerInfo.ShopManager = this;
-    //    ShopStartSelect.ShopManager = this;
-    //    ShopDealSelect.ShopManager = this;
-    //    ItemSelect.ShopManager = this;
-    //    shopConversation.ShopManager = this;
-    //}
-
-    //void Update()
-    //{
-    //    if (!playerInfo.startShopping) return;
-    //    if (canvas.isActiveAndEnabled) return;
-    //    EnableCanvas();
-    //}
-
-    //void EnableCanvas()
-    //{
-    //    canvas.enabled = true;
-    //    ShopStartSelect.Open();
-    //    skipDealSelect = DealSelectSkipable();
-    //}
-
-    //bool DealSelectSkipable()
-    //{
-    //    if (shopInfo.shopInn) return true;
-
-    //    var typeCount = 0;
-    //    if (shopInfo.shopInn) typeCount++;
-    //    if (shopInfo.shopWeapon) typeCount++;
-    //    if (shopInfo.shopArmor) typeCount++;
-
-    //    if (1 < typeCount) return false;
-
-    //    return true;
-    //}
-
-    //void DisableCanvas()
-    //{
-    //    canvas.enabled = false;
-    //    ShopStartSelect.Open();
-    //    ShopDealSelect.Close();
-    //}
-
-    //public void OnQuitClick()
-    //{
-    //    ShopType = SHOP_TYPE.None;
-
-    //    DisableCanvas();
-    //    playerInfo.startShopping = false;
-    //    shopInfo = null;
-    //    playerInfo.freeze = false;
-    //    playerInfo.ShopManager.PlayerMove.characterMove.freeze = false;
-    //}
-
-    //public void ItemSelectClickable()
-    //{    
-    //    MessageBox.SortOrderBack();
-    //    ItemSelect.ItemSelectClickable();
-    //}
 }

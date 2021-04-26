@@ -14,23 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelUpGenerated: 1
   playerName: "\u3055\u3093\u305F\u308D\u3046"
-  freeze: 0
-  startBattle: 0
-  dead: 0
+  freeze: 1
+  startBattle: 1
+  dead: 1
   currentScene: SampleScene
-  currentQuest: HajimarinoMachi
-  lastPosition: {x: -7.485704, y: 4.2106433}
+  currentQuest: FirstLand
+  lastPosition: {x: -4.4085875, y: 3.4400012}
   lastMove: {x: 1, y: 0}
   status:
     lv: 2
-    maxHP: 22
+    maxHP: 60
     maxMP: 21
-    hp: 22
+    hp: 60
     mp: 21
     attack: 1
     defence: 1
     exp: 16
-    gold: 10000
+    gold: 3
   battleCommands:
   - {fileID: 11400000, guid: c63c3c6699a3040d78fe4ed8ac269aa7, type: 2}
   magicAttackCommands:
@@ -40,7 +40,6 @@ MonoBehaviour:
   magicHealCommands:
   - {fileID: 11400000, guid: d12e5e019dfdc494aa518417afbbc7b3, type: 2}
   items:
-  - {fileID: 11400000, guid: 9df451a10b524431183ccc24b5787c80, type: 2}
   - {fileID: 11400000, guid: 2f16b53986c024b9db02f15f1bb6ecc7, type: 2}
   savePoint:
     savedScene: SampleScene

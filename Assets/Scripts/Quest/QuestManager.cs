@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class QuestManager : MonoBehaviour
 {
@@ -19,15 +20,15 @@ public class QuestManager : MonoBehaviour
 
     void Start()
     {
-        //if (playerMove.playerInfo.startBattle)
-        //    StartCoroutine(RestoreFromBattle());
+        if (playerMove.playerInfo.startBattle)
+            StartCoroutine(RestoreFromBattle());
 
         ChangeQuest(playerMove.playerInfo.currentQuest);
     }
 
     void Update()
     {
-        //MonsterEncounteringCalc();
+        MonsterEncounteringCalc();
     }
 
     IEnumerator RestoreFromBattle()
@@ -57,7 +58,7 @@ public class QuestManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         Debug.Log("restore from battle");
-        faderBlack.FaderIn();
+        //faderBlack.FaderIn();
 
         if (!playerMove.playerInfo.dead)
             Invoke("ReleasePlayerFreeze", 1f);
@@ -128,17 +129,16 @@ public class QuestManager : MonoBehaviour
         encounteringRestTimer += Time.deltaTime;
     }
 
-    public void LoadBattleScene()
+    public async void LoadBattleScene()
     {
-        StartCoroutine(LoadScene());
-    }
+        battleFlash.enabled = true;
 
-    IEnumerator LoadScene()
-    {
-        while (battleFlash.Playing)
-            yield return null;
+        var tokenSource = new CancellationTokenSource();
+        await UniTask.WaitUntil(() => battleFlash.BlinkAvairable, cancellationToken: tokenSource.Token);
 
-        SceneManager.LoadSceneAsync("Battle");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Battle");
+
+        await UniTask.WaitUntil(() => asyncLoad.isDone, cancellationToken: tokenSource.Token);
     }
 
     void PickupMonster(Quest.Area area)

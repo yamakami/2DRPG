@@ -12,21 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e4d4f70dc0447358c672aee9644a75, type: 3}
   m_Name: HajimarinoMachi_prist 1
   m_EditorClassIdentifier: 
+  dynamicText: 
   conversationLines:
   - text: "\u65C5\u306E\u8A18\u9332\u3092\u4FDD\u5B58\u3059\u308B\u304B\uFF1F"
+    conversationData: {fileID: 0}
     eventExec: 0
     eventNum: 0
-  subConverSations:
+  subConverSationLines:
   - text: "\u306F\u3044"
     conversationData: {fileID: 11400000, guid: 30fe11ad51361400fb662965618182a7, type: 2}
-    eventExec: 1
+    eventExec: 0
     eventNum: 0
   - text: "\u3044\u3044\u3048"
     conversationData: {fileID: 11400000, guid: 7d9f2e929497a4a5799358c3932c5390, type: 2}
-    eventExec: 1
-    eventNum: 1
-  conversatinEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-  - m_PersistentCalls:
-      m_Calls: []
+    eventExec: 0
+    eventNum: 0
+  conversatinEvents: []

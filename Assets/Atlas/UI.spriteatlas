@@ -17,10 +17,22 @@ SpriteAtlas:
       textureCompression: 0
       filterMode: 1
       generateMipMaps: 0
-      readable: 0
+      readable: 1
       crunchedCompression: 0
       sRGB: 1
-    platformSettings: []
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -28,13 +40,14 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 5aa1f9cf374c648dda167cf36056173d, type: 3}
     - {fileID: 102900000, guid: 4304143897859469a8e00cc260720e65, type: 3}
     - {fileID: 102900000, guid: da50022a74ce74904815db9a4551bc3a, type: 3}
     - {fileID: 102900000, guid: dd17fa795b9f5453b9543b768ce42bbf, type: 3}
-    totalSpriteSurfaceArea: 14112760
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -55,6 +68,7 @@ SpriteAtlas:
   - {fileID: -563290948664668849, guid: 86d5fa737a6dd4e92930466b87bd4d5b, type: 3}
   - {fileID: 4670481946490333352, guid: 86d5fa737a6dd4e92930466b87bd4d5b, type: 3}
   - {fileID: -1191330414338910985, guid: 86d5fa737a6dd4e92930466b87bd4d5b, type: 3}
+  - {fileID: 21300000, guid: 603819d3af4584ecdb23d4f9cd6a61f4, type: 3}
   - {fileID: -5679005837793796318, guid: 8d2f5fb4a90a44dcf950304ea41e22c4, type: 3}
   - {fileID: 6655876435703727693, guid: 8d2f5fb4a90a44dcf950304ea41e22c4, type: 3}
   - {fileID: -8207533070043343097, guid: 8d2f5fb4a90a44dcf950304ea41e22c4, type: 3}
@@ -156,6 +170,7 @@ SpriteAtlas:
   - pipo-btleffect028_7
   - pipo-btleffect028_4
   - pipo-btleffect028_5
+  - white1pxPivoLeft
   - ice_5
   - ice_4
   - ice_7
@@ -241,5 +256,6 @@ SpriteAtlas:
   - wind_7
   - _ogre
   - _yadokari
+  m_RenderDataMap: {}
   m_Tag: UI
   m_IsVariant: 0
