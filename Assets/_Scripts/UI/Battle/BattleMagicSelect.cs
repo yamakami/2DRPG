@@ -48,6 +48,6 @@ public class BattleMagicSelect: ScrollItem
             return;
         }
 
-        selector.MonsterSelect.OpenSelectMenu(selector, command);
+        selector.MonsterSelect.OpenSelectMenu(selector, BattleSelector.SelectBack.MAGIC_SELECT, command);
     }
 }

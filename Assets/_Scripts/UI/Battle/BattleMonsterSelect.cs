@@ -6,7 +6,7 @@ public class BattleMonsterSelect : UIBase
     [SerializeField] Image uiFrame;
     [SerializeField] Button prefTextButton;
 
-    public void OpenSelectMenu(BattleSelector selector, Command command = null)
+    public void OpenSelectMenu(BattleSelector selector, BattleSelector.SelectBack selectBack,  Command command = null)
     {
         Activate();
         selector.ActivateRayBlock(true);
@@ -17,12 +17,12 @@ public class BattleMonsterSelect : UIBase
 
         foreach (var monster in monsterActions)
         {
-            var button = CreateButtonUnderPanel();
-            var textfield = button.GetComponentInChildren<Text>();
-            textfield.text = monster.characterName;
-            button.gameObject.SetActive(true);
+            var button = CreateButtonUnderPanel(monster.characterName);
             button.onClick.AddListener(() => ClickButtonAction(selector, selector.FlowMain, monster, command));
         }
+
+        var backButton = CreateButtonUnderPanel("もどる");
+        backButton.onClick.AddListener(() => ClickBackBottonAction(selector, selectBack));
     }
 
     void ClickButtonAction(BattleSelector selector, FlowMain flowMain, MonsterAction monsterAction, Command command)
@@ -41,11 +41,22 @@ public class BattleMonsterSelect : UIBase
         selector.ActivateBasicCommands(false);
     }
 
-    Button CreateButtonUnderPanel()
+    void ClickBackBottonAction(BattleSelector selector, BattleSelector.SelectBack backIndex)
+    {
+        Deactivate();
+        selector.ActivateRayBlock(false);
+        selector.ClickGoBack(backIndex);
+    }
+
+    Button CreateButtonUnderPanel(string text)
     {
         var button = Instantiate(prefTextButton);
         button.transform.SetParent(uiFrame.transform);
         button.transform.localScale = Vector3.one;
+
+        var textfield = button.GetComponentInChildren<Text>();
+        textfield.text = text;
+        button.gameObject.SetActive(true);
 
         return button;
     }

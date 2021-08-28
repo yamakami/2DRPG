@@ -14,6 +14,12 @@ public class BattleSelector : UIBase
     public FlowMain FlowMain { get => flowMain; set => flowMain = value; }
     public BattleMonsterSelect MonsterSelect { get => monsterSelect; set => monsterSelect = value; }
 
+    public enum SelectBack
+    {
+        BASE_COMMAND,
+        MAGIC_SELECT
+    }
+
     public void ActivateBasicCommands(bool activation)
     {
         basicCommands.gameObject.SetActive(activation);
@@ -26,7 +32,7 @@ public class BattleSelector : UIBase
 
     public void ClickBasicCommandFight()
     {　
-        monsterSelect.OpenSelectMenu(this);
+        monsterSelect.OpenSelectMenu(this, SelectBack.BASE_COMMAND);
     }
 
     public void ClickBasicCommandMagicSpell()
@@ -39,5 +45,18 @@ public class BattleSelector : UIBase
     {　
         ActivateRayBlock(false);
         magicSelect.Deactivate();
+    }
+
+    public void ClickGoBack(SelectBack backindex)
+    {
+        switch(backindex)
+        {
+            case SelectBack.MAGIC_SELECT:
+                ClickBasicCommandMagicSpell();
+                break;
+            default:
+                ActivateBasicCommands(true);
+                break;
+        }
     }
 }
