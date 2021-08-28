@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470bc6c93efba4ecd9c5946d503318c4, type: 3}
+  m_Name: LevelUpTable
+  m_EditorClassIdentifier: 
+  reCalculate: 0
+  magiclevels:
+  - magicCommand: {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
+    levelRangeBegin: 2
+    levelRangeEnd: 3
+  - magicCommand: {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
+    levelRangeBegin: 3
+    levelRangeEnd: 5
+  - magicCommand: {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
+    levelRangeBegin: 4
+    levelRangeEnd: 5
+  levels:
+  - nextLevelUpAmount: 18
+    goalExp: 0
+    hp: 5
+    mp: 1
+    attack: 0
+    defence: 7
+    magicCommands: []
+  - nextLevelUpAmount: 28
+    goalExp: 18
+    hp: 4
+    mp: 0
+    attack: 1
+    defence: 3
+    magicCommands: []
+  - nextLevelUpAmount: 50
+    goalExp: 46
+    hp: 3
+    mp: 2
+    attack: 12
+    defence: 10
+    magicCommands: []
+  - nextLevelUpAmount: 87
+    goalExp: 96
+    hp: 5
+    mp: 5
+    attack: 4
+    defence: 9
+    magicCommands:
+    - {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
+  - nextLevelUpAmount: 129
+    goalExp: 183
+    hp: 12
+    mp: 8
+    attack: 4
+    defence: 0
+    magicCommands:
+    - {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
+    - {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
+  - nextLevelUpAmount: 213
+    goalExp: 312
+    hp: 1
+    mp: 4
+    attack: 5
+    defence: 3
+    magicCommands: []
+  - nextLevelUpAmount: 346
+    goalExp: 525
+    hp: 11
+    mp: 3
+    attack: 12
+    defence: 3
+    magicCommands: []
+  - nextLevelUpAmount: 459
+    goalExp: 871
+    hp: 12
+    mp: 7
+    attack: 9
+    defence: 1
+    magicCommands: []
+  - nextLevelUpAmount: 746
+    goalExp: 1330
+    hp: 11
+    mp: 3
+    attack: 3
+    defence: 2
+    magicCommands: []
+  - nextLevelUpAmount: 1245
+    goalExp: 2076
+    hp: 4
+    mp: 9
+    attack: 1
+    defence: 8
+    magicCommands: []

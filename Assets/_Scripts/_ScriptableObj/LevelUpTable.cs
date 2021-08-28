@@ -1,0 +1,68 @@
+using UnityEngine;
+
+
+[CreateAssetMenu(fileName = "New LevelUpTable", menuName = "LevelUpTable")]
+public class LevelUpTable : ScriptableObject
+{
+    public bool reCalculate;
+    public MagicLevel[] magiclevels;
+    public Level[] levels;
+
+    [System.Serializable]
+    public class Level
+    {
+        public int nextLevelUpAmount;
+        public int goalExp;
+        public int hp;
+        public int mp;
+        public int attack;
+        public int defence;
+        public Command[] magicCommands;
+    }
+
+    [System.Serializable]
+    public class MagicLevel
+    {
+        public Command magicCommand;
+        public int levelRangeBegin;
+        public int levelRangeEnd;
+    }
+
+    public void Calculate()
+    {
+        if (!reCalculate)
+            return;
+
+        for (var i = 0; i < levels.Length; i++)
+        {
+            levels[i].hp      = Random.Range(0, 13);
+            levels[i].mp      = Random.Range(0, 13);
+            levels[i].attack  = Random.Range(0, 13);
+            levels[i].defence = Random.Range(0, 13);
+
+            System.Array.Resize(ref levels[i].magicCommands, 0);
+
+            if (i == 0)
+                continue;
+
+            var ex = levels[i - 1].nextLevelUpAmount;
+            var cur = levels[i - 1].goalExp;
+            var seed = Random.Range(1.3f, 1.8f);
+
+            var nextEx = (int) System.Math.Round(ex * seed, System.MidpointRounding.AwayFromZero);
+
+            levels[i].nextLevelUpAmount = nextEx;
+            levels[i].goalExp = ex + cur;
+        }
+
+        foreach(var ml in magiclevels)
+        {
+            var index = Random.Range(ml.levelRangeBegin, ml.levelRangeEnd + 1);
+            var magicCommands = levels[index].magicCommands;
+
+            System.Array.Resize(ref levels[index].magicCommands, levels[index].magicCommands.Length + 1);
+
+            levels[index].magicCommands[ levels[index].magicCommands.Length -1 ] = ml.magicCommand;
+        }
+    }
+}

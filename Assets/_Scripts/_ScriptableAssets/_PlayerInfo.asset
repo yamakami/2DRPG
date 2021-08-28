@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d914263e44144a79a046aedf07ab24, type: 3}
+  m_Name: _PlayerInfo
+  m_EditorClassIdentifier: 
+  playerName: "\u3074\u3053\u3061\u3085\u3046"
+  currentScene: FirstLand
+  currentQuestLocation: MainField
+  currentMonsterAreaIndex: 0
+  playerLastPosition: {x: 6.449717, y: 3.2303724}
+  playerLastFacing: {x: 0, y: -1}
+  battleCommands:
+  - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
+  magicCommands:
+  - {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
+  - {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
+  - {fileID: 11400000, guid: 3218df6324483473e84b129f2db6b9ab, type: 2}
+  - {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
+  items:
+  - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
+  - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
+  - {fileID: 11400000, guid: f800a5106e922412b9e838d373acb298, type: 2}
+  status:
+    lv: 2
+    maxHP: 104
+    maxMP: 100
+    hp: 85
+    mp: 100
+    attack: 5
+    defence: 103
+    exp: 42
+    gold: 32
