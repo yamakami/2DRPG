@@ -212,10 +212,12 @@ public class FlowMain : FlowBase
     List<BaseAction> MonsterHealTarget(List<MonsterAction> monsterActions)
     {
         var healTargets = new List<BaseAction>(3);
+        var ratios = new float[] {2f, 3f, 4f};
+        var ratio = ratios[Random.Range(0, ratios.Length)];
 
         foreach (var monster in monsterActions)
         {
-            var healPoint = monster.maxHP / 4f;
+            var healPoint = monster.maxHP / ratio;
             if (monster.hp <= healPoint)
             {
                 healTargets.Add(monster);
