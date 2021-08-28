@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80bc3d282450248b9972d7d0cb4c0115, type: 3}
+  m_Name: yadokari
+  m_EditorClassIdentifier: 
+  monsterName: "\u30E4\u30C9\u30AB\u30EA"
+  monsterSprite: {fileID: 21300000, guid: 53d7149f6fb404350acbd9ea2f0bca87, type: 3}
+  commands:
+  - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
+  healCommands: []
+  itemWeights: 50000000
+  items:
+  - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
+  status:
+    hp: 090000000b000000
+    attack: 0400000006000000
+    defence: 080000000a000000
+    mp: 0400000008000000
+    exp: 060000000a000000
+    gold: 060000000a000000

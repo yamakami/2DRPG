@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785da0b35765f44b2a1a01b9b2f3113e, type: 3}
+  m_Name: Firstland_MainField_0
+  m_EditorClassIdentifier: 
+  monsterDensity: 20
+  unitMaxNum: 2
+  duplicate: 0
+  livingMonsters:
+  - {fileID: 11400000, guid: 70dce762dc4ae4f20839b580b5a043e4, type: 2}
+  - {fileID: 11400000, guid: bc871ac8021234e7892dc0f7992631ba, type: 2}
