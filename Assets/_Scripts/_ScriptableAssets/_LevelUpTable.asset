@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 470bc6c93efba4ecd9c5946d503318c4, type: 3}
-  m_Name: LevelUpTable
+  m_Name: _LevelUpTable
   m_EditorClassIdentifier: 
   reCalculate: 0
   magiclevels:

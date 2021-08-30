@@ -45,7 +45,7 @@ public class FlowResult : FlowBase
     {
         var cancelToken = cancellationTokenSource.Token;
         var battleManager = battleUI.BattleManager;
-        var playerInfo = battleManager.PlayerInfo;
+        var playerInfo = battleManager.PlayerAction.PlayerInfo;
         var playerName = player.characterName;
 
         var audio = PlayAudio(playerWin, battleManager);

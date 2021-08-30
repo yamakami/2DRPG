@@ -3039,7 +3039,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameInfo: {fileID: 11400000, guid: 00730692a7e8645cda252bf575e6c698, type: 2}
   battleInfo: {fileID: 11400000, guid: 8cc7d14dcd4e24d4995c3b3490de477f, type: 2}
-  playerInfo: {fileID: 11400000, guid: 383ca4b9a591f462897a87d70a35baee, type: 2}
   playerAction: {fileID: 2000957266}
   monsterActions: []
   audioSource: {fileID: 1510574310}
@@ -4392,6 +4391,7 @@ MonoBehaviour:
   gold: 0
   speed: 0
   luck: 0
+  playerInfo: {fileID: 11400000, guid: 383ca4b9a591f462897a87d70a35baee, type: 2}
   battleUI: {fileID: 1267123404}
   mainCam: {fileID: 1272878920}
   playerDamageCanvas: {fileID: 1369434541}

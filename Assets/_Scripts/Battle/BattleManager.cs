@@ -13,7 +13,6 @@ public class BattleManager : MonoBehaviour
 {
     [SerializeField] GameInfo gameInfo;
     [SerializeField] BattleInfo battleInfo;
-    [SerializeField] PlayerInfo playerInfo;
     [SerializeField] PlayerAction playerAction;
     [SerializeField] List<MonsterAction> monsterActions;
     [SerializeField] AudioSource audioSource;
@@ -22,7 +21,7 @@ public class BattleManager : MonoBehaviour
 
     public GameInfo GameInfo { get => gameInfo; }
     public BattleInfo BattleInfo { get => battleInfo; }
-    public PlayerInfo PlayerInfo { get => playerInfo; }
+
     public PlayerAction PlayerAction { get => playerAction; }
     public List<MonsterAction> MonsterActions { get => monsterActions; set => monsterActions = value; }
     public AudioSource AudioSource { get => audioSource; }

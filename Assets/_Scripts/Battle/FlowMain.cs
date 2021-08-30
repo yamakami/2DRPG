@@ -32,7 +32,7 @@ public class FlowMain : FlowBase
     {
         var cancelToken    = cancellationTokenSource.Token;
         var battleManager  = battleUI.BattleManager;
-        var playerAction   =  battleManager.PlayerAction;
+        var playerAction   = battleManager.PlayerAction;
         var monsterActions = battleManager.MonsterActions;
         var messageBox     = battleUI.BattleMessageBox;
         var audioSource    = battleManager.AudioSource;
@@ -93,7 +93,7 @@ public class FlowMain : FlowBase
                         if(attacker.SelectedCommand.commandType == Command.COMMAND_TYPE.MAGIC_ATTACK)
                             damage = command.magicCommand.MagicAttack();
                         else
-                            heal = attacker.SelectedCommand.magicCommand.Heal(defender.hp, defender.maxMP);
+                            heal = attacker.SelectedCommand.magicCommand.Heal(defender.hp, defender.maxHP);
 
                         await UniTask.Delay(delaytime, cancellationToken: cancelToken);
                         attacker.mp -= command.magicCommand.consumptionMp;

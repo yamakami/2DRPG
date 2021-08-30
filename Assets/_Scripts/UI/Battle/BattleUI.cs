@@ -25,15 +25,14 @@ public class BattleUI : MonoBehaviour
     public async void BackToQuestScene()
     {
         var tokenSource = new CancellationTokenSource();
-        var playerInfo = battleManager.PlayerInfo;
-        var alphaUpTo = 1;
-
         battleManager.GameInfo.loadingSceneWithFade = true;
 
+        var alphaUpTo = 1;
         fader.Fade(alphaUpTo);
         await UniTask.WaitUntil(() => fader.Available(), cancellationToken: tokenSource.Token);
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(playerInfo.currentScene);
+        var currentScene = battleManager.PlayerAction.PlayerInfo.currentScene;
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(currentScene);
         await UniTask.WaitUntil(() => asyncLoad.isDone, cancellationToken: tokenSource.Token);
     }
 }

@@ -1,22 +1,23 @@
 
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class PlayerAction : BaseAction
 {
+    [SerializeField] PlayerInfo playerInfo;
     [SerializeField] BattleUI battleUI;
     [SerializeField] Camera mainCam;
     [SerializeField] CanvasGroup playerDamageCanvas;
 
-    private int lv;
+    int lv;
 
     public int Lv { get => lv; }
     public CanvasGroup PlayerDamageCanvas { get => playerDamageCanvas; }
+    public PlayerInfo PlayerInfo { get => playerInfo; }
 
     void Start()
     {
-        var playerInfo = battleUI.BattleManager.PlayerInfo;
-
         characterName = playerInfo.playerName;
         lv = playerInfo.status.lv;
         maxHP = playerInfo.status.maxHP;

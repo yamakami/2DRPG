@@ -10,13 +10,18 @@ public class BattleMagicSelect: ScrollItem
         Activate();
 
         var battleUI = selector.BattleUI;
-        var playerInfo = battleUI.BattleManager.PlayerInfo;
+        var playerAction = battleUI.BattleManager.PlayerAction;
+        var playerInfo = playerAction.PlayerInfo;
         var scrollContent = scrollRect.content;
 
         foreach(var command in playerInfo.magicCommands)
         {
             var button = CreateButtonUnderPanel(scrollContent.transform, command.nameKana);
-            button.onClick.AddListener(() => ClickButtonAction(selector, command));
+            if(command.magicCommand.consumptionMp <= playerAction.mp)
+
+                button.onClick.AddListener(() => ClickButtonAction(selector, command));
+            else
+                button.interactable = false;
         }
     }
 

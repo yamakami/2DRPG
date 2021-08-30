@@ -32,7 +32,7 @@ public class BattleMonsterSelect : UIBase
 
         var battleManager = selector.BattleUI.BattleManager;
 
-        if(!command) command = battleManager.PlayerInfo.battleCommands[0];
+        if(!command) command = battleManager.PlayerAction.PlayerInfo.battleCommands[0];
 
         battleManager.PlayerAction.SelectedCommand = command;
 
