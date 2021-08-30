@@ -16,8 +16,8 @@ MonoBehaviour:
   currentScene: FirstLand
   currentQuestLocation: MainField
   currentMonsterAreaIndex: 2
-  playerLastPosition: {x: -5.478854, y: -5.469346}
-  playerLastFacing: {x: 1, y: 0}
+  playerLastPosition: {x: -8.62562, y: -4.239663}
+  playerLastFacing: {x: 0, y: -1}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
   magicCommands:
@@ -25,6 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
   - {fileID: 11400000, guid: 3218df6324483473e84b129f2db6b9ab, type: 2}
   - {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
+  - {fileID: 11400000, guid: c02ff0c2da6c04b10b50f2e2cb4e65bb, type: 2}
   items:
   - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
   - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
@@ -33,9 +34,9 @@ MonoBehaviour:
     lv: 5
     maxHP: 124
     maxMP: 115
-    hp: 92
-    mp: 100
+    hp: 78
+    mp: 80
     attack: 25
     defence: 122
-    exp: 200
-    gold: 193
+    exp: 230
+    gold: 233

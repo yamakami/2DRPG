@@ -19,13 +19,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
   healCommands:
   - {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
+  - {fileID: 11400000, guid: c02ff0c2da6c04b10b50f2e2cb4e65bb, type: 2}
   itemWeights: 46000000
   items:
   - {fileID: 11400000, guid: f800a5106e922412b9e838d373acb298, type: 2}
   status:
-    hp: 0700000009000000
+    hp: 140000001e000000
     attack: 0500000007000000
     defence: 080000000a000000
-    mp: 0400000008000000
+    mp: 1e00000028000000
     exp: 060000000c000000
     gold: 090000000c000000

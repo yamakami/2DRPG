@@ -85,9 +85,10 @@ public class FlowMain : FlowBase
                             await UniTask.Delay(delaytime + 250, cancellationToken: cancelToken);   
 
                             defender.PlayEnemyAttack(audioSource, command);
-
+    
                             await UniTask.WaitUntil(() => !defender.AnimationPlaying(), cancellationToken: cancelToken);
                             await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);
+                            attacker.mp -= command.magicCommand.consumptionMp;
                         }
 
                         if(attacker.SelectedCommand.commandType == Command.COMMAND_TYPE.MAGIC_ATTACK)
@@ -96,8 +97,6 @@ public class FlowMain : FlowBase
                             heal = attacker.SelectedCommand.magicCommand.Heal(defender.hp, defender.maxHP);
 
                         await UniTask.Delay(delaytime, cancellationToken: cancelToken);
-                        attacker.mp -= command.magicCommand.consumptionMp;
-
                         break;
                 }
 
@@ -190,7 +189,11 @@ public class FlowMain : FlowBase
             case Command.COMMAND_TYPE.MAGIC_HEAL:
                 if(commandSelected.magicCommand.magicTarget == MagicCommand.MAGIC_TARGET.ALL)
                 {
-                    defenders = healTargets;
+                    defenders.Clear();
+                    foreach(var monster in monsters)
+                    {
+                        defenders.Add(monster as BaseAction);
+                    }
                 }
 
                 if(commandSelected.magicCommand.magicTarget == MagicCommand.MAGIC_TARGET.ONE)

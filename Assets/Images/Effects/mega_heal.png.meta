@@ -1,37 +1,25 @@
 fileFormatVersion: 2
-guid: 46f7f1780b93b47888ea51633110a6e0
+guid: 9284a1436d8694f01a1481b36fda437a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2944996731081825420
-    second: mega_heal_0
+      213: -1005622480575337723
+    second: pipo-btleffect021_0
   - first:
-      213: 7757391471809874135
-    second: mega_heal_1
+      213: 9011838182908765960
+    second: pipo-btleffect021_1
   - first:
-      213: -2098676147500584536
-    second: mega_heal_2
+      213: 3995121689117985844
+    second: pipo-btleffect021_2
   - first:
-      213: 4947090248114901999
-    second: mega_heal_3
+      213: 3351942815780571195
+    second: pipo-btleffect021_3
   - first:
-      213: 804349251158108964
-    second: mega_heal_4
+      213: -8704198444476774338
+    second: pipo-btleffect021_4
   - first:
-      213: 8704257167113407627
-    second: mega_heal_5
-  - first:
-      213: -9007858125278387529
-    second: mega_heal_6
-  - first:
-      213: -4653396175558319275
-    second: mega_heal_7
-  - first:
-      213: -1436554812502246709
-    second: mega_heal_8
-  - first:
-      213: -2280716398179437111
-    second: mega_heal_9
+      213: 2237973440408789480
+    second: pipo-btleffect021_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,12 +121,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mega_heal_0
+      name: pipo-btleffect021_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 240
+        y: 1440
+        width: 640
         height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -147,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8c91d47ceabed820800000000000000
-      internalID: 2944996731081825420
+      spriteID: 50be8239eaf4b02f0800000000000000
+      internalID: -1005622480575337723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mega_heal_1
+      name: pipo-btleffect021_1
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
-        width: 240
+        x: 0
+        y: 1200
+        width: 640
         height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -168,19 +156,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d84fd4717ac7ab60800000000000000
-      internalID: 7757391471809874135
+      spriteID: 8072491a41b701d70800000000000000
+      internalID: 9011838182908765960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mega_heal_2
+      name: pipo-btleffect021_2
       rect:
         serializedVersion: 2
-        x: 480
-        y: 0
-        width: 240
+        x: 0
+        y: 960
+        width: 640
         height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -189,19 +177,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a174a1c92100e2e0800000000000000
-      internalID: -2098676147500584536
+      spriteID: 43c065a5206817730800000000000000
+      internalID: 3995121689117985844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mega_heal_3
+      name: pipo-btleffect021_3
       rect:
         serializedVersion: 2
-        x: 720
-        y: 0
-        width: 240
+        x: 0
+        y: 720
+        width: 640
         height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -210,19 +198,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe310beae5897a440800000000000000
-      internalID: 4947090248114901999
+      spriteID: b38060a4b3e748e20800000000000000
+      internalID: 3351942815780571195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mega_heal_4
+      name: pipo-btleffect021_4
       rect:
         serializedVersion: 2
-        x: 960
-        y: 0
-        width: 240
+        x: 0
+        y: 480
+        width: 640
         height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -231,19 +219,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42b61aed16f992b00800000000000000
-      internalID: 804349251158108964
+      spriteID: e38447ea1a9743780800000000000000
+      internalID: -8704198444476774338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mega_heal_5
+      name: pipo-btleffect021_5
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 240
+        x: 0
+        y: 240
+        width: 640
         height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -252,92 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8c417fb6cbbbc870800000000000000
-      internalID: 8704257167113407627
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mega_heal_6
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 240
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b26aafb2c8adf280800000000000000
-      internalID: -9007858125278387529
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mega_heal_7
-      rect:
-        serializedVersion: 2
-        x: 1680
-        y: 0
-        width: 240
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5536fa445d0db6fb0800000000000000
-      internalID: -4653396175558319275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mega_heal_8
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 0
-        width: 240
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bcafc6c5205501ce0800000000000000
-      internalID: -1436554812502246709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mega_heal_9
-      rect:
-        serializedVersion: 2
-        x: 2160
-        y: 0
-        width: 240
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c53b1505844950e0800000000000000
-      internalID: -2280716398179437111
+      spriteID: 8e1235c9cf0ee0f10800000000000000
+      internalID: 2237973440408789480
       vertices: []
       indices: 
       edges: []
@@ -345,7 +249,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 574693eda2643499fa34cf90b7e72077
     internalID: 0
     vertices: []
     indices: 

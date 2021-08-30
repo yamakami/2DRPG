@@ -18,8 +18,7 @@ public class Command : ScriptableObject
     public string commandName;
     public string nameKana;
     public AudioClip audioClip;
-     public string actionMessage;
-     public string resultMessage;
+
     [TextArea(2, 5)]
     public string description;
     public MagicCommand magicCommand = default;
@@ -50,7 +49,7 @@ public class MagicCommand
         var total = hp + healValue;
 
         if (maxHP <= total)
-            return healValue - (total % maxHP);
+            return healValue - (total - maxHP);
 
         return healValue;
     }
