@@ -16,7 +16,7 @@ public class BattleUI : MonoBehaviour
     public BattleMessageBox BattleMessageBox { get => battleMessageBox; }
     public BattleSelector BattleSelector { get => battleSelector; }
 
-    void Start()
+    void Awake()       
     {
         prepare.BattleUI = this;
         battleSelector.BattleUI = this;

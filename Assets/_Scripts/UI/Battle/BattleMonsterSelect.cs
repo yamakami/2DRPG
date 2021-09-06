@@ -28,7 +28,6 @@ public class BattleMonsterSelect : UIBase
     void ClickButtonAction(BattleSelector selector, FlowMain flowMain, MonsterAction monsterAction, Command command)
     {
         flowMain.Defenders.RemoveAll(m => m.characterName !=  monsterAction.characterName);
-        flowMain.PlayerInput = true;
 
         var battleManager = selector.BattleUI.BattleManager;
 
@@ -37,8 +36,7 @@ public class BattleMonsterSelect : UIBase
         battleManager.PlayerAction.SelectedCommand = command;
 
         Deactivate();
-        selector.ActivateRayBlock(false);
-        selector.ActivateBasicCommands(false);
+        selector.PlayerSelectDone();
     }
 
     void ClickBackBottonAction(BattleSelector selector, BattleSelector.SelectBack backIndex)

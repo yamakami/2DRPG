@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddc13ad507584c29b29ef5462173800, type: 3}
   m_Name: dounoturugi
   m_EditorClassIdentifier: 
-  itemType: 2
+  useForQuest: 0
+  useForBattle: 1
+  itemType: 3
+  healingType: 0
+  equipType: 1
   itemName: dounoturugi
   nameKana: "\u9285\u306E\u5263"
   point: 10
   price: 8
   sellPrice: 4
-  player_possession_count: 0
+  player_possession_count: 2
   player_possession_limit: 10
   audioClip: {fileID: 8300000, guid: db5479192c7ce459893d6bcb817b9a6b, type: 3}
   description: "\u6575\u306B\u6253\u64B2\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B"
-  reseultMessage: 
+  resultMessage: 

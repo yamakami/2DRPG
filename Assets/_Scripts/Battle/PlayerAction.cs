@@ -56,4 +56,12 @@ public class PlayerAction : BaseAction
         mainCam.transform.DOShakePosition(duration, strength, vibrato, randomness)
                          .OnComplete(() => TweenEnd()).Play();
     }
+
+    public void PlayItemConsumption(AudioSource audio, Item item, MonsterAction defender)
+    {
+        if(item.hasAnimationClip)
+            defender.Animator().Play(item.itemName);
+
+        audio.PlayOneShot(item.audioClip);
+    }
 }

@@ -1,11 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleSelector : UIBase
 {
     [SerializeField] GameObject basicCommands;
+
+    [SerializeField] Button magicSelectButton;
+    [SerializeField] Button itemSelectButton;
     [SerializeField] GameObject rayBlockObj;
     [SerializeField] BattleMonsterSelect monsterSelect;
     [SerializeField] BattleMagicSelect magicSelect;
+    [SerializeField] BattleItemSelect itemSelect;
 
     BattleUI battleUI;
     FlowMain flowMain;
@@ -17,7 +22,25 @@ public class BattleSelector : UIBase
     public enum SelectBack
     {
         BASE_COMMAND,
-        MAGIC_SELECT
+        MAGIC_SELECT,
+        ITEM_SELECT,
+    }
+
+    void Start()
+    {
+        var playerInfo = battleUI.BattleManager.PlayerAction.PlayerInfo;
+        if(playerInfo.magicCommands.Count < 1)
+            magicSelectButton.gameObject.SetActive(false);
+
+        if(!playerInfo.items.Find(i => i.useForBattle))
+            itemSelectButton.gameObject.SetActive(false);
+    }
+
+    public void PlayerSelectDone()
+    {
+        flowMain.PlayerInput = true;
+        ActivateRayBlock(false);
+        ActivateBasicCommands(false);
     }
 
     public void ActivateBasicCommands(bool activation)
@@ -47,12 +70,27 @@ public class BattleSelector : UIBase
         magicSelect.Deactivate();
     }
 
+    public void ClickBasicCommandItems()
+    {　
+        ActivateRayBlock(true);
+        itemSelect.ActivateScrollItem(this);
+    }
+
+    public void ClickItemSelectBack()
+    {　
+        ActivateRayBlock(false);
+        itemSelect.Deactivate();
+    }
+
     public void ClickGoBack(SelectBack backindex)
     {
         switch(backindex)
         {
             case SelectBack.MAGIC_SELECT:
                 ClickBasicCommandMagicSpell();
+                break;
+            case SelectBack.ITEM_SELECT:
+                ClickBasicCommandItems();
                 break;
             default:
                 ActivateBasicCommands(true);

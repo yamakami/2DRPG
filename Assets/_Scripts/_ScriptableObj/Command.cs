@@ -12,7 +12,8 @@ public class Command : ScriptableObject
         FIST_ATTACK,
         MAGIC_ATTACK,
         MAGIC_DEFENCE,
-        MAGIC_HEAL
+        MAGIC_HEAL,
+        ITEM,
     }
     public COMMAND_TYPE commandType;
     public string commandName;
@@ -45,12 +46,8 @@ public class MagicCommand
     public int Heal(int hp, int maxHP)
     {
         var healValue = Random.Range(attackHealPoint[0], attackHealPoint[1] + 1);
+        var total = Mathf.Clamp(hp + healValue, 0, maxHP);
 
-        var total = hp + healValue;
-
-        if (maxHP <= total)
-            return healValue - (total - maxHP);
-
-        return healValue;
+        return total - hp;
     }
 }

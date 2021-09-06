@@ -51,5 +51,8 @@ public class MonsterAction : BaseAction
         anim.Play(command.commandName);
         audio.PlayOneShot(command.audioClip);
     }
-
+    public Animator Animator()
+    {
+        return enemyAttackAnim;
+    }
 }

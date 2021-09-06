@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class BattleMagicSelect: ScrollItem
 {
     public override void ActivateScrollItem(BattleSelector selector)
@@ -35,21 +30,16 @@ public class BattleMagicSelect: ScrollItem
 
         if(command.commandType == Command.COMMAND_TYPE.MAGIC_HEAL)
         {
-            selector.FlowMain.PlayerInput = true;
             flowMain.Defenders.Clear();
             flowMain.Defenders.Add(flowMain.Attacker);
 
-            selector.ActivateRayBlock(false);
-            selector.ActivateBasicCommands(false);
+            selector.PlayerSelectDone();
             return;
         }
 
         if(command.magicCommand.magicTarget == MagicCommand.MAGIC_TARGET.ALL)
         {
-            selector.FlowMain.PlayerInput = true;
-
-            selector.ActivateRayBlock(false);
-            selector.ActivateBasicCommands(false);
+            selector.PlayerSelectDone();
             return;
         }
 

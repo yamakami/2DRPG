@@ -4,6 +4,7 @@ public abstract class BaseAction : MonoBehaviour
 {
     public string characterName;
     [SerializeField] Command selectedCommand;
+    [SerializeField] Item selectedItem;
     [SerializeField] protected Animator enemyAttackAnim;
     [SerializeField] protected AudioClip damageClip;
     [SerializeField] protected AudioClip deadClip;
@@ -23,6 +24,7 @@ public abstract class BaseAction : MonoBehaviour
     bool tweenPlaying;
 
     public Command SelectedCommand { get => selectedCommand; set => selectedCommand = value; }
+    public Item SelectedItem { get => selectedItem; set => selectedItem = value; }
     public bool TweenPlaying { get => tweenPlaying; set => tweenPlaying = value; }
 
     public abstract void PlayDamage(AudioSource audio);
