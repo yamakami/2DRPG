@@ -107,6 +107,20 @@ public class FlowMain : FlowBase
                         await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);
                         break;
 
+                    case Command.COMMAND_TYPE.ESCAPE:
+                        DisplayMessage(messageBox, "{0}は逃げだした", attackerName);
+                        await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
+                        audioSource.PlayOneShot(command.audioClip);
+                        await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);   
+                        
+                        if(playerAction.Escape())
+                        {
+                            battleUI.BackToQuestScene();
+                            enabled = false;
+                            return;
+                        }
+                        break;
+
                     default:
                         if(defendersLoopCount == 0)
                         {
@@ -156,6 +170,11 @@ public class FlowMain : FlowBase
                         }
                         affectMessageParams[2] = healPoint;
                         break;
+
+                    case Command.COMMAND_TYPE.ESCAPE:
+                        affectMessage = "しかし、まわりこまれてしまった！";
+                        break;
+
                     default:
                         if(0 < damagePoint)
                         {

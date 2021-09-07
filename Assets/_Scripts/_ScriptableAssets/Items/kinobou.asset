@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: kinobou
   m_EditorClassIdentifier: 
   useForQuest: 0
-  useForBattle: 1
+  useForBattle: 0
   itemType: 2
   healingType: 0
   equipType: 0
@@ -22,8 +22,9 @@ MonoBehaviour:
   point: 5
   price: 5
   sellPrice: 2
-  player_possession_count: 2
+  player_possession_count: 3
   player_possession_limit: 10
+  hasAnimationClip: 0
   audioClip: {fileID: 8300000, guid: c9eeb924908074bbd99dfe43955c7d02, type: 3}
   description: "\u6575\u3092\u653B\u6483\u3059\u308B\u6642\u306B\u4FBF\u5229"
   resultMessage: 

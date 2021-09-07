@@ -1,7 +1,5 @@
-
 using UnityEngine;
 using DG.Tweening;
-using System.Collections.Generic;
 
 public class PlayerAction : BaseAction
 {
@@ -63,5 +61,10 @@ public class PlayerAction : BaseAction
             defender.Animator().Play(item.itemName);
 
         audio.PlayOneShot(item.audioClip);
+    }
+
+    public bool Escape()
+    {
+        return true;
     }
 }

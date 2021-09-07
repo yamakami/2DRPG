@@ -17,7 +17,7 @@ MonoBehaviour:
   commandType: 3
   commandName: mega_heal
   nameKana: "\u30E1\u30AC\u30D2\u30FC\u30EB"
-  audioClip: {fileID: 8300000, guid: 80a4e4cef1d3e49e8b35858161dd216c, type: 3}
+  audioClip: {fileID: 8300000, guid: 03885dd282f97451bb9615c92075c48c, type: 3}
   description: "\u56DE\u5FA9\u7CFB\u306E\u6700\u5927\u546A\u6587"
   magicCommand:
     magicTarget: 1

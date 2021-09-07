@@ -14,6 +14,7 @@ public class Command : ScriptableObject
         MAGIC_DEFENCE,
         MAGIC_HEAL,
         ITEM,
+        ESCAPE,
     }
     public COMMAND_TYPE commandType;
     public string commandName;

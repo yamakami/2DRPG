@@ -16,10 +16,11 @@ MonoBehaviour:
   currentScene: FirstLand
   currentQuestLocation: MainField
   currentMonsterAreaIndex: 2
-  playerLastPosition: {x: -7.6495132, y: -5.4693494}
-  playerLastFacing: {x: -1, y: 0}
+  playerLastPosition: {x: -8.368862, y: -4.472018}
+  playerLastFacing: {x: 1, y: 0}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
+  - {fileID: 11400000, guid: c67c2811769d0486c9806abaf62af8e6, type: 2}
   magicCommands:
   - {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
   - {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
@@ -27,15 +28,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
   - {fileID: 11400000, guid: c02ff0c2da6c04b10b50f2e2cb4e65bb, type: 2}
   items:
-  - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
+  - {fileID: 11400000, guid: bd10e261be40249cb8af2d1c66553de4, type: 2}
+  - {fileID: 11400000, guid: 64c560d9f6d8247c782aff0a224fd742, type: 2}
   - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
+  - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
   status:
     lv: 5
     maxHP: 124
     maxMP: 115
-    hp: 46
-    mp: 14
+    hp: 45
+    mp: 19
     attack: 25
     defence: 122
-    exp: 276
-    gold: 298
+    exp: 281
+    gold: 304

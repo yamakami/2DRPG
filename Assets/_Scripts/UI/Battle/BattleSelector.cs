@@ -7,7 +7,9 @@ public class BattleSelector : UIBase
 
     [SerializeField] Button magicSelectButton;
     [SerializeField] Button itemSelectButton;
+    [SerializeField] Button escapeButton;
     [SerializeField] GameObject rayBlockObj;
+
     [SerializeField] BattleMonsterSelect monsterSelect;
     [SerializeField] BattleMagicSelect magicSelect;
     [SerializeField] BattleItemSelect itemSelect;
@@ -80,6 +82,17 @@ public class BattleSelector : UIBase
     {　
         ActivateRayBlock(false);
         itemSelect.Deactivate();
+    }
+
+
+    public void ClickEscape()
+    {
+        flowMain.Attacker.SelectedCommand =  battleUI.BattleManager.PlayerAction.PlayerInfo.battleCommands[1];
+
+        var defender = flowMain.Defenders;
+        flowMain.Defenders.RemoveAll(d => d.characterName != defender[0].characterName);
+
+        PlayerSelectDone();
     }
 
     public void ClickGoBack(SelectBack backindex)
