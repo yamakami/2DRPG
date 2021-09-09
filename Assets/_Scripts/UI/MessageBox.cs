@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 public class MessageBox : UIBase
 {
@@ -13,6 +15,7 @@ public class MessageBox : UIBase
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>();
 
     public QuestManager QuestManager { set => questManager = value; }
+    public Button NextButton { get => nextButton; }
 
     void OnEnable()
     {
@@ -35,31 +38,28 @@ public class MessageBox : UIBase
 
     void ForwardConversation(ConversationData.Conversation conversation)
     {
+        nextButton.gameObject.SetActive(false);
+
         messageText.TweenText(conversation.text);
+        OpenSelectMenu(this.GetCancellationTokenOnDestroy()).Forget();
+    }
+
+    async UniTaskVoid OpenSelectMenu(CancellationToken token)
+    {
+        await UniTask.WaitUntil(() => messageText.Available, cancellationToken: token);
+
+        if (conversations.Count == 0 && 0 < conversationData.subConverSationLines.Length)
+        {
+            selectMenu.OpenSelectMenu(this, conversationData.subConverSationLines);
+            return;
+        }
+        nextButton.gameObject.SetActive(true);
     }
 
     public void NextMessage()
     {
-        if (!messageText.Available) return;
-
         if (conversations.Count == 0)
         {
-            if (0 < conversationData.subConverSationLines.Length)
-            {
-                selectMenu.OpenSelectMenu(this, conversationData.subConverSationLines);
-                return;
-            }
-
-            //var lastIndex = conversationData.conversationLines.Length - 1;
-            //if (conversationData.conversationLines[lastIndex].eventExec)
-            //{
-            //    var eventNum = conversationData.conversationLines[lastIndex].eventNum;
-            //    conversationData.conversatinEvents[eventNum].Invoke();
-            //    base.Deactivate();
-            //    return;
-            //}
-
-
             BoxClose();
             return;
         }

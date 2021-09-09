@@ -18,5 +18,9 @@ MonoBehaviour:
     conversationData: {fileID: 0}
     eventExec: 0
     eventNum: 0
+  - text: "\u3064\u304B\u3048\u306D\u3047\u306A\u3041\uFF01\uFF01\uFF01"
+    conversationData: {fileID: 0}
+    eventExec: 0
+    eventNum: 0
   subConverSationLines: []
   conversatinEvents: []
