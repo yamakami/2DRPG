@@ -113,7 +113,7 @@ public class FlowMain : FlowBase
                         audioSource.PlayOneShot(command.audioClip);
                         await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);   
                         
-                        if(playerAction.Escape())
+                        if(playerAction.Escape(defender))
                         {
                             battleUI.BackToQuestScene();
                             enabled = false;
@@ -128,11 +128,14 @@ public class FlowMain : FlowBase
                             await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
                             await UniTask.Delay(delaytime + 250, cancellationToken: cancelToken);   
 
+                            attacker.mp -= command.magicCommand.consumptionMp;
                             defender.PlayEnemyAttack(audioSource, command);
     
+
+                            if(typeof(PlayerAction) == attacker.GetType()) playerAction.MpBar.AffectValueToBar(attacker.mp, attacker.maxMP);
+
                             await UniTask.WaitUntil(() => !defender.AnimationPlaying(), cancellationToken: cancelToken);
                             await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);
-                            attacker.mp -= command.magicCommand.consumptionMp;
                         }
 
                         if(attacker.SelectedCommand.commandType == Command.COMMAND_TYPE.MAGIC_ATTACK)
@@ -153,6 +156,7 @@ public class FlowMain : FlowBase
                         affectMessage = "{0}はHPが{1}回復した！";
                         affectMessageParams[0] = defenderName;
                         affectMessageParams[1] = healPoint;
+                        defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
                         break;
  
                      case Command.COMMAND_TYPE.ITEM:
@@ -162,11 +166,13 @@ public class FlowMain : FlowBase
                         {
                             defender.hp += healPoint;
                             affectMessageParams[1] = "HP";
+                            defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
                         }
                         else
                         {
                             defender.mp += healPoint;
                             affectMessageParams[1] = "MP";
+                            playerAction.MpBar.AffectValueToBar(defender.mp, defender.maxMP);
                         }
                         affectMessageParams[2] = healPoint;
                         break;
@@ -185,6 +191,7 @@ public class FlowMain : FlowBase
                             affectMessage = "{0}は{1}HPのダメージを受けた！！！";
                             affectMessageParams[0] = defenderName;
                             affectMessageParams[1] = damagePoint;
+                            defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
                         }
                         else
                         {

@@ -8,7 +8,6 @@ public class ConversationData : ScriptableObject
     public string dynamicText;
     public Conversation[] conversationLines;
     public Conversation[] subConverSationLines;
-    public UnityEvent[] conversatinEvents;
 
     [System.Serializable]
     public class Conversation
@@ -16,7 +15,6 @@ public class ConversationData : ScriptableObject
         [TextArea(2, 5)]
         public string text;
         public ConversationData conversationData;
-        public bool eventExec;
-        public int eventNum;
+        public MesageEvent.MessageEventMethods messageEventMethods;
     }
 }

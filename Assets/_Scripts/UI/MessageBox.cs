@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UnityEngine.EventSystems;
 
 public class MessageBox : UIBase
 {
@@ -13,9 +14,11 @@ public class MessageBox : UIBase
     QuestManager questManager;
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>();
+    GameObject messageEventReceiver;
 
     public QuestManager QuestManager { set => questManager = value; }
     public Button NextButton { get => nextButton; }
+    public GameObject MessageEventReceiver { get => messageEventReceiver; set => messageEventReceiver = value; }
 
     void OnEnable()
     {
@@ -60,11 +63,24 @@ public class MessageBox : UIBase
     {
         if (conversations.Count == 0)
         {
+            var conversationLines = conversationData.conversationLines;
+            var arrayLast = conversationLines.Length -1;
+            if(conversationLines[arrayLast].messageEventMethods !=  MesageEvent.MessageEventMethods.None)
+                EventReceiver(conversationLines[arrayLast].messageEventMethods);
+
             BoxClose();
             return;
         }
 
         ForwardConversation(conversations.Dequeue());
+    }
+
+    public void EventReceiver(MesageEvent.MessageEventMethods messageEventMethods)
+    {
+        ExecuteEvents.Execute<IMessageEventReceiver>(
+            target: messageEventReceiver,
+            eventData: null,
+            functor: (eventObj, eventData) => eventObj.Receive(messageEventMethods));
     }
 
     void BoxClose()

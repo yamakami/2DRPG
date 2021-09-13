@@ -8,11 +8,14 @@ public class PlayerAction : BaseAction
     [SerializeField] Camera mainCam;
     [SerializeField] CanvasGroup playerDamageCanvas;
 
+    [SerializeField] LifeBar mpBar;
+
     int lv;
 
     public int Lv { get => lv; }
     public CanvasGroup PlayerDamageCanvas { get => playerDamageCanvas; }
     public PlayerInfo PlayerInfo { get => playerInfo; }
+    public LifeBar MpBar { get => mpBar; }
 
     void Start()
     {
@@ -26,6 +29,10 @@ public class PlayerAction : BaseAction
         mp = playerInfo.status.mp;
         exp = playerInfo.status.exp;
         gold = playerInfo.status.gold;
+
+        HpBar.PlayerName.text = characterName;
+        HpBar.AffectValueToBar(hp, maxHP, 0f);
+        MpBar.AffectValueToBar(mp, maxMP, 0f);
     }
 
     override public void PlayDamage(AudioSource audio)
@@ -63,8 +70,10 @@ public class PlayerAction : BaseAction
         audio.PlayOneShot(item.audioClip);
     }
 
-    public bool Escape()
+    public bool Escape(BaseAction enemy)
     {
-        return true;
+        if(enemy.speed <= speed) return true;
+
+        return false;
     }
 }

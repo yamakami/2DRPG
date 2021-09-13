@@ -32,23 +32,13 @@ public class MessageSelect : UIBase
     {
         if (conversation.conversationData)
             messageBox.PrepareConversation(conversation.conversationData);
-
-        //else
-        //{
-        //    if (conversation.eventExec)
-        //        messageBox.DeactivateInTalk();
-        //    else
-        //        messageBox.Deactivate();
-        //}
+        else
+            messageBox.Deactivate();
 
         Deactivate();
 
-        //if (conversation.eventExec)
-        //{
-        //    var tokenSource = new CancellationTokenSource();
-        //    await UniTask.Delay(300, cancellationToken: tokenSource.Token);
-        //    messageBox.ConversationData.conversatinEvents[conversation.eventNum].Invoke();
-        //}
+        if(conversation.messageEventMethods !=  MesageEvent.MessageEventMethods.None)
+            messageBox.EventReceiver(conversation.messageEventMethods);
     }
 
     void OnDisable()

@@ -9,9 +9,11 @@ public class MonsterAction : BaseAction
     public Monster Monster { get => monster; set => monster = value; }
 
     void Start()
-    {        
+    {
         spriteRenderer.sprite = monster.monsterSprite;
         Monster.Status status = monster.status;
+
+        HpBar.SetMonsterLifeBarPosition(spriteRenderer);
 
         maxHP = hp = Random.Range(status.hp[0], status.hp[1] + 1);
         maxMP = mp = Random.Range(status.mp[0], status.mp[1] + 1);
@@ -28,6 +30,8 @@ public class MonsterAction : BaseAction
 
         spriteRenderer.DOColor(new Color32(255, 255, 255, 0) , 1f)
                       .OnComplete(() => TweenEnd()).Play();
+
+        HpBar.gameObject.SetActive(false);
     }
 
     override public void PlayDamage(AudioSource audio)

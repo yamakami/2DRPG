@@ -9,6 +9,7 @@ public abstract class BaseAction : MonoBehaviour
     [SerializeField] protected AudioClip damageClip;
     [SerializeField] protected AudioClip deadClip;
     [SerializeField] protected AudioClip missAttackClip;
+    [SerializeField] LifeBar hpBar;
 
     public int maxHP;
     public int maxMP;
@@ -26,6 +27,7 @@ public abstract class BaseAction : MonoBehaviour
     public Command SelectedCommand { get => selectedCommand; set => selectedCommand = value; }
     public Item SelectedItem { get => selectedItem; set => selectedItem = value; }
     public bool TweenPlaying { get => tweenPlaying; set => tweenPlaying = value; }
+    public LifeBar HpBar { get => hpBar; set => hpBar = value; }
 
     public abstract void PlayDamage(AudioSource audio);
 
