@@ -4,7 +4,7 @@ using UnityEngine;
 public class StartPosition : ScriptableObject
 {
     public string sceneName;
-    public string locationTo;
+    public int locationTo;
     public int startPositionIndex;
     public Vector2 facingTo;
     public AudioClip audioClip;

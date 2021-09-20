@@ -7,7 +7,7 @@ public class PlayerInfo : ScriptableObject
 {
     public string playerName;
     public string currentScene;
-    public string currentQuestLocation;
+    public int currentQuestLocationIndex;
     public int currentMonsterAreaIndex;
     public Vector2 playerLastPosition;
     public Vector2 playerLastFacing;

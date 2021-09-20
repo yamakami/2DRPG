@@ -66,7 +66,7 @@ public class LocationManager : MonoBehaviour
         var player = questManager.Player;
 
         var questSceneName = playerInfo.currentScene;
-        var questLocationName = playerInfo.currentQuestLocation;
+        var questLocationNum = playerInfo.currentQuestLocationIndex;
         var questLocationAreaNum = playerInfo.currentMonsterAreaIndex;
         var initPosition =playerInfo.playerLastPosition;
         var facingTo = playerInfo.playerLastFacing;
@@ -75,20 +75,18 @@ public class LocationManager : MonoBehaviour
         {
             position = (position) ? position : gameInfo.playerStartPosition;
             questSceneName = position.sceneName;
-            questLocationName = position.locationTo;
+            questLocationNum = position.locationTo;
             questLocationAreaNum = 0;
         }
 
-        var locationTo = questManager.FindTargetLocation(questLocationName);
-        questManager.SetCurrentQuest(questSceneName, locationTo.indexNo, questLocationAreaNum);
+        var locationTo = questManager.FindTargetLocation(questLocationNum);
+        questManager.SetCurrentQuest(questSceneName, questLocationNum, questLocationAreaNum);
 
         if (!battleInfo.isBattle)
         {
             initPosition = locationTo.startPositions[position.startPositionIndex].transform.position;
             facingTo = position.facingTo;
         }
-
-        if (locationTo.noBattle) battleInfo.livingMonsterList = null;
 
         player.ResetPosition(facingTo, initPosition);
 

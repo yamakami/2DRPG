@@ -25,7 +25,8 @@ public class QuestManager : MonoBehaviour
 
     void InitializePlayerInfo()
     {
-        SetCurrentQuest(SceneManager.GetActiveScene().name, quest.defaultLocationNo, quest.defaultMonsterAreaNo);
+        var currentLocation = quest.locations[playerInfo.currentQuestLocationIndex];
+        if(currentLocation.noBattle) battleInfo.livingMonsterList = null;
     }
 
     void Update()
@@ -69,10 +70,12 @@ public class QuestManager : MonoBehaviour
     {
         playerInfo.currentScene = sceneName;
         var location = quest.locations[locationIndex];
-        playerInfo.currentQuestLocation = location.questLocation.name;
+        playerInfo.currentQuestLocationIndex = locationIndex;
         playerInfo.currentMonsterAreaIndex = areaIndex;
 
-        SetLivingMonster(location.indexNo, areaIndex);
+        if(location.noBattle) battleInfo.livingMonsterList = null;
+
+        SetLivingMonster(locationIndex, areaIndex);
     }
 
     void SetLivingMonster(int locationIndex, int areaIndex)
@@ -81,17 +84,16 @@ public class QuestManager : MonoBehaviour
         BattleInfo().livingMonsterList = quest.locations[locationIndex].monsterArea[areaIndex];
     }
 
-    public Quest.Location FindTargetLocation(string locationName)
+    public Quest.Location FindTargetLocation(int locationIndex)
     {
         var targetLocation = new Quest.Location();
         var locations = quest.locations;
 
         for (var i=0; i < quest.locations.Length; i++)
         {
-            if (locations[i].questLocation.gameObject.name == locationName)
+            if (i == locationIndex)
             {
                 targetLocation = locations[i];
-                targetLocation.indexNo = i;
                 targetLocation.questLocation.gameObject.SetActive(true);
             }
             else

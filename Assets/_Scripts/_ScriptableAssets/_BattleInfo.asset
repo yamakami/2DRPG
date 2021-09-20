@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: _BattleInfo
   m_EditorClassIdentifier: 
   isBattle: 0
-  livingMonsterList: {fileID: 11400000, guid: 359f6d4976b454d6daed9467f3ecbf13, type: 2}
+  livingMonsterList: {fileID: 0}
