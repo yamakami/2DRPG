@@ -31,7 +31,7 @@ public class LocationManager : MonoBehaviour
 
     public async void FadeAndChangeLocation(StartPosition position)
     {
-        var cancelToken =  tokenSource.Token;
+        var cancelToken = tokenSource.Token;
         var player = questManager.Player;
         var alphaUpTo = 1;
 

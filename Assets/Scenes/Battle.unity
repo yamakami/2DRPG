@@ -2645,7 +2645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19344072, g: 0.5943396, b: 0.259453, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.019607844, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5034,6 +5034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundTransform: {fileID: 1832115564}
   barTransform: {fileID: 27523104}
+  barImage: {fileID: 0}
   scoreText: {fileID: 1748222639}
   playerName: {fileID: 0}
 --- !u!1 &1475872186
@@ -8755,6 +8756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundTransform: {fileID: 1163172623}
   barTransform: {fileID: 548752768}
+  barImage: {fileID: 548752769}
   scoreText: {fileID: 487250252}
   playerName: {fileID: 2063901414}
 --- !u!224 &3095526948872017273

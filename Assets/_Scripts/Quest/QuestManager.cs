@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour
 
     void InitializePlayerInfo()
     {
-        SetCurrentQuest(SceneManager.GetActiveScene().name, quest.defaultLocationNo, 0);
+        SetCurrentQuest(SceneManager.GetActiveScene().name, quest.defaultLocationNo, quest.defaultMonsterAreaNo);
     }
 
     void Update()
@@ -83,7 +83,7 @@ public class QuestManager : MonoBehaviour
 
     public Quest.Location FindTargetLocation(string locationName)
     {
-        Quest.Location targetLocation = null;
+        var targetLocation = new Quest.Location();
         var locations = quest.locations;
 
         for (var i=0; i < quest.locations.Length; i++)

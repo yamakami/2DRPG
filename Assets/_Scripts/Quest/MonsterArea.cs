@@ -20,7 +20,8 @@ public class MonsterArea : MonoBehaviour
     {
         if (!collision.transform.CompareTag("Player")) return;
 
-        ChangeQuestArea(questLocationIndex, 0);
+        var defaultMonsterAreaIndex = 0;
+        ChangeQuestArea(questLocationIndex, defaultMonsterAreaIndex);
     }
 
     void ChangeQuestArea(int questLocationIndex, int monsterAreaIndex)

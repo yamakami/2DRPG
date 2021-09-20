@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-    public int defaultLocationNo;
+    public int defaultLocationNo = 0;
+    public int defaultMonsterAreaNo = 0;
     public Location[] locations;
 
     [System.Serializable]

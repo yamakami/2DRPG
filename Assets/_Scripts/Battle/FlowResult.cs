@@ -22,6 +22,7 @@ public class FlowResult : FlowBase
         var cancelToken = cancellationTokenSource.Token;
         var battleManager = battleUI.BattleManager;
         var audio = PlayAudio(playerDead, battleManager);
+        var playerInfo = player.PlayerInfo;
 
         var str = "{0}はモンスター討伐に失敗した、、、";
         DisplayMessage(messageBox, str, player.characterName);
@@ -31,6 +32,11 @@ public class FlowResult : FlowBase
         var to = 5;
         audio.DOFade(volume, to).Play();
         await UniTask.Delay(delaytime + 5500, cancellationToken: cancelToken);
+
+        player.gold = Mathf.FloorToInt(player.gold / 2);
+        player.hp = player.maxHP;
+        player.mp = player.maxMP;
+        ReflectToPlayerInfo(player, playerInfo);
 
         battleUI.BackToQuestScene();
     }

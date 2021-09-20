@@ -20,8 +20,6 @@ public class Fader : UIBase
                    .OnStart(() => audioSource.Play())
                    .OnComplete(() => FadeEnd())
                    .Play();
-
-
     }
 
     public void Flash(Color32 color, float alpha, float delay = 0)
