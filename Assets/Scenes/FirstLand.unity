@@ -6218,7 +6218,7 @@ Transform:
   - {fileID: 891695319}
   - {fileID: 2022627580}
   m_Father: {fileID: 762817812}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &275729551
 Grid:
@@ -31908,10 +31908,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1360945761}
   - {fileID: 1246126765}
   - {fileID: 275729550}
   - {fileID: 1885545705}
-  - {fileID: 1360945761}
   m_Father: {fileID: 2069593131}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51740,7 +51740,7 @@ Transform:
   - {fileID: 1136962681}
   - {fileID: 390791023}
   m_Father: {fileID: 762817812}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1246126766
 Grid:
@@ -52153,7 +52153,7 @@ Transform:
   - {fileID: 531179448}
   - {fileID: 716963813}
   m_Father: {fileID: 762817812}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1360945762
 Grid:
@@ -97964,7 +97964,7 @@ Transform:
   - {fileID: 1560875375}
   - {fileID: 784382473}
   m_Father: {fileID: 762817812}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1885545706
 Grid:
@@ -111526,7 +111526,7 @@ PrefabInstance:
     - target: {fileID: 1646813366665149915, guid: b3c11fe67ffba43bb8c75459ba4f52b5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1646813366665149915, guid: b3c11fe67ffba43bb8c75459ba4f52b5,
         type: 3}
@@ -111700,7 +111700,7 @@ PrefabInstance:
     - target: {fileID: 484877545842605059, guid: c6dfbb84a386e461a826e4e64a1ff136,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 484877545842605059, guid: c6dfbb84a386e461a826e4e64a1ff136,
         type: 3}
