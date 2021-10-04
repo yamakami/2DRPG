@@ -31,6 +31,16 @@ public class NPC : BaseCharacter
         lastMove = Vector2.down;
     }
 
+    void OnBecameVisible()
+    {
+        enabled = true;
+    }
+
+    void OnBecameInvisible()
+    {
+        enabled = false;
+    }
+
     void FixedUpdate()
     {
         if (Freeze)

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ public class PlayerInfo : ScriptableObject
     public Status status;
 
     [System.Serializable]
-    public struct Status
+    public class Status
     {
         [SerializeField] public int lv;
         [SerializeField] public int maxHP;

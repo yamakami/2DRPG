@@ -75,18 +75,14 @@ public class LocationManager : MonoBehaviour
         {
             position = (position) ? position : gameInfo.playerStartPosition;
             questSceneName = position.sceneName;
-            questLocationNum = position.locationTo;
+            questLocationNum = position.locationIndex;
             questLocationAreaNum = 0;
+            initPosition = position.startPosition;
+            facingTo = position.facingTo;
         }
 
         var locationTo = questManager.FindTargetLocation(questLocationNum);
         questManager.SetCurrentQuest(questSceneName, questLocationNum, questLocationAreaNum);
-
-        if (!battleInfo.isBattle)
-        {
-            initPosition = locationTo.startPositions[position.startPositionIndex].transform.position;
-            facingTo = position.facingTo;
-        }
 
         player.ResetPosition(facingTo, initPosition);
 

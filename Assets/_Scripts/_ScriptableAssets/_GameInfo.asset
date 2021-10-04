@@ -16,3 +16,7 @@ MonoBehaviour:
   loadingSceneWithFade: 0
   playerStartPosition: {fileID: 0}
   playerFreeze: 0
+  playerRestoreInfo:
+    Scene: 
+    locationIndex: 0
+    restoreLocationIndex: 0

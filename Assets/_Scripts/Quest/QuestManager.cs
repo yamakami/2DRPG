@@ -101,7 +101,6 @@ public class QuestManager : MonoBehaviour
                 locations[i].questLocation.gameObject.SetActive(false);
             }
         }
-
         return targetLocation;
     }
 
