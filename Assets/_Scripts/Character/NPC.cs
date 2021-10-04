@@ -41,7 +41,6 @@ public class NPC : BaseCharacter
         enabled = false;
     }
 
-
     void FixedUpdate()
     {
         if (Freeze)

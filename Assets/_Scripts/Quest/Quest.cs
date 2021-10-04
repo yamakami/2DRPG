@@ -9,7 +9,6 @@ public class Quest : MonoBehaviour
     {
         public GameObject questLocation;
         public bool noBattle;
-        public GameObject[] startPositions;
         public LivingMonsterList[] monsterArea;
     }
 }
