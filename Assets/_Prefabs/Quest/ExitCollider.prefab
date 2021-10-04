@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7797981179802239471}
   - component: {fileID: 7797981179802239464}
   m_Layer: 0
-  m_Name: WorkInCollider
+  m_Name: ExitCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7797981179802239466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8180366, y: 0.28356934, z: -14.632568}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
