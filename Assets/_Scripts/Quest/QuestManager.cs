@@ -9,23 +9,26 @@ public class QuestManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] QuestUI questUI;
     [SerializeField] Quest quest;
+    [SerializeField] AudioSource questAudioSource;
     [SerializeField] float monsterEncounterInterval = 1f;
 
     public Player Player { get => player; }
     public QuestUI QuestUI { get => questUI; }
     public Quest Quest { get => quest; }
+    public AudioSource QuestAudioSource { get => questAudioSource; }
+
     float monsterEncounterTimer = 0f;
 
     void Awake()
     {
         questUI.QuestManager = this;
         player.QuestManager  = this;
-        InitializePlayerInfo();
+        InitializeLocation();
     }
 
-    void InitializePlayerInfo()
+    void InitializeLocation()
     {
-        var currentLocation = quest.locations[playerInfo.currentQuestLocationIndex];
+        var currentLocation = FindTargetLocation(playerInfo.currentQuestLocationIndex);
         if(currentLocation.noBattle) battleInfo.livingMonsterList = null;
     }
 
@@ -89,12 +92,15 @@ public class QuestManager : MonoBehaviour
         var targetLocation = new Quest.Location();
         var locations = quest.locations;
 
+        questAudioSource.Stop();
         for (var i=0; i < quest.locations.Length; i++)
         {
             if (i == locationIndex)
             {
                 targetLocation = locations[i];
+                questAudioSource.clip = targetLocation.fieldSound;
                 targetLocation.questLocation.gameObject.SetActive(true);
+                questAudioSource.Play();
             }
             else
             {

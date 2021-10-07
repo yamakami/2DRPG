@@ -8,6 +8,7 @@ public class Quest : MonoBehaviour
     public class Location
     {
         public GameObject questLocation;
+        public AudioClip fieldSound;
         public bool noBattle;
         public LivingMonsterList[] monsterArea;
     }
