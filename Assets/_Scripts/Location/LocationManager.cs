@@ -81,7 +81,7 @@ public class LocationManager : MonoBehaviour
             facingTo = position.facingTo;
         }
 
-        var locationTo = questManager.FindTargetLocation(questLocationNum);
+        var locationTo = questManager.ActivateTargetLocation(questLocationNum);
         questManager.SetCurrentQuest(questSceneName, questLocationNum, questLocationAreaNum);
 
         player.ResetPosition(facingTo, initPosition);

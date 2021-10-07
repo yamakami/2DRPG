@@ -28,7 +28,7 @@ public class QuestManager : MonoBehaviour
 
     void InitializeLocation()
     {
-        var currentLocation = FindTargetLocation(playerInfo.currentQuestLocationIndex);
+        var currentLocation = ActivateTargetLocation(playerInfo.currentQuestLocationIndex);
         if(currentLocation.noBattle) battleInfo.livingMonsterList = null;
     }
 
@@ -87,7 +87,7 @@ public class QuestManager : MonoBehaviour
         BattleInfo().livingMonsterList = quest.locations[locationIndex].monsterArea[areaIndex];
     }
 
-    public Quest.Location FindTargetLocation(int locationIndex)
+    public Quest.Location ActivateTargetLocation(int locationIndex)
     {
         var targetLocation = new Quest.Location();
         var locations = quest.locations;
