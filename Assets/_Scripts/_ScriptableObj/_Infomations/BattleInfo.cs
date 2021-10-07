@@ -5,5 +5,6 @@ using System.Collections.Generic;
 public class BattleInfo : ScriptableObject
 {
     public bool isBattle;
+    public bool isQuestFail;
     public LivingMonsterList livingMonsterList;
 }

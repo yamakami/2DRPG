@@ -87,7 +87,7 @@ public class QuestManager : MonoBehaviour
         BattleInfo().livingMonsterList = quest.locations[locationIndex].monsterArea[areaIndex];
     }
 
-    public Quest.Location ActivateTargetLocation(int locationIndex)
+    public Quest.Location ActivateTargetLocation(int locationIndex, bool activate = true)
     {
         var targetLocation = new Quest.Location();
         var locations = quest.locations;
@@ -99,8 +99,7 @@ public class QuestManager : MonoBehaviour
             {
                 targetLocation = locations[i];
                 questAudioSource.clip = targetLocation.fieldSound;
-                targetLocation.questLocation.gameObject.SetActive(true);
-                questAudioSource.Play();
+                targetLocation.questLocation.gameObject.SetActive(activate);
             }
             else
             {
@@ -108,6 +107,7 @@ public class QuestManager : MonoBehaviour
             }
         }
 
+        questAudioSource.Play();
         return targetLocation;
     }
 

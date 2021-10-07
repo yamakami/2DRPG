@@ -31,7 +31,14 @@ public class BattleUI : MonoBehaviour
         fader.Fade(alphaUpTo);
         await UniTask.WaitUntil(() => fader.Available(), cancellationToken: tokenSource.Token);
 
-        var currentScene = battleManager.PlayerAction.PlayerInfo.currentScene;
+        var playerInfo = battleManager.PlayerAction.PlayerInfo;
+        var currentScene = playerInfo.currentScene;
+
+        if(battleManager.BattleInfo.isQuestFail)
+        {
+            currentScene = playerInfo.savedLocationScene;
+        }
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(currentScene);
         await UniTask.WaitUntil(() => asyncLoad.isDone, cancellationToken: tokenSource.Token);
     }

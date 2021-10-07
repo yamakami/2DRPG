@@ -17,10 +17,13 @@ public class PlayerInfo : ScriptableObject
     public List<Command> magicCommands = new List<Command>();
     public List<Item> items = new List<Item>();
 
+    public string savedLocationScene;
+    public int savedLocationIndex;
+
     public Status status;
 
     [System.Serializable]
-    public struct Status
+    public class Status
     {
         [SerializeField] public int lv;
         [SerializeField] public int maxHP;

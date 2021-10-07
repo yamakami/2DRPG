@@ -33,6 +33,8 @@ public class FlowResult : FlowBase
         audio.DOFade(volume, to).Play();
         await UniTask.Delay(delaytime + 5500, cancellationToken: cancelToken);
 
+        battleManager.BattleInfo.isQuestFail = true;
+
         player.gold = Mathf.FloorToInt(player.gold / 2);
         player.hp = player.maxHP;
         player.mp = player.maxMP;

@@ -81,9 +81,22 @@ public class LocationManager : MonoBehaviour
             facingTo = position.facingTo;
         }
 
-        var locationTo = questManager.ActivateTargetLocation(questLocationNum);
-        questManager.SetCurrentQuest(questSceneName, questLocationNum, questLocationAreaNum);
+        var targetLocationActivate = true;
+        if(battleInfo.isQuestFail)
+        {
+            battleInfo.isQuestFail = false;
+            var savedLocation = questManager.Quest.savelocations[playerInfo.savedLocationIndex];
+            questLocationNum  = savedLocation.questLocationIndex;
+            initPosition = savedLocation.startPosition;
+            facingTo     = savedLocation.facingTo;
 
+            savedLocation.activateLocation.SetActive(true);
+            targetLocationActivate = savedLocation.activateMainLocation;
+        }
+
+        var targetLocation = questManager.ActivateTargetLocation(questLocationNum, targetLocationActivate);
+
+        questManager.SetCurrentQuest(questSceneName, questLocationNum, questLocationAreaNum);
         player.ResetPosition(facingTo, initPosition);
 
         fader.SetAlpha(1);
