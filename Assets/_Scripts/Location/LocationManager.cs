@@ -84,7 +84,7 @@ public class LocationManager : MonoBehaviour
         var targetLocationActivate = true;
         if(battleInfo.isQuestFail)
         {
-            battleInfo.isQuestFail = false;
+            // battleInfo.isQuestFail = false;
             var savedLocation = questManager.Quest.savelocations[playerInfo.savedLocationIndex];
             questLocationNum  = savedLocation.questLocationIndex;
             initPosition = savedLocation.startPosition;
@@ -110,6 +110,7 @@ public class LocationManager : MonoBehaviour
         gameInfo.loadingSceneWithFade = false;
         gameInfo.playerStartPosition = null;
         battleInfo.isBattle = false;
-        player.EnableMove();
+
+        if(!battleInfo.isQuestFail) player.EnableMove();
     }
 }

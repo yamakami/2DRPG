@@ -13,6 +13,7 @@ public class Contact : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            npc.Stop();
             npcRd2.constraints = RigidbodyConstraints2D.FreezeAll;
             player.TouchingToNpc(npc);
         }
@@ -24,6 +25,7 @@ public class Contact : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            npc.Freeze = false;
             npcRd2.constraints = RigidbodyConstraints2D.FreezeRotation;
             player.TouchingToNpc();
         }

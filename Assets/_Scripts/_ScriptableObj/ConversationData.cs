@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "New Conversation", menuName = "ConversationData")]
 public class ConversationData : ScriptableObject

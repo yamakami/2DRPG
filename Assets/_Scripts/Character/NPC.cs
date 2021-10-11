@@ -116,8 +116,12 @@ public class NPC : BaseCharacter
 
     public void FacingTo(Vector2 playerLastMove)
     {
-        move = Vector2.zero;
         lastMove = playerLastMove * -1;
+    }
+
+    public void Stop()
+    {
+        move = Vector2.zero;
         Freeze = true;
     }
 }

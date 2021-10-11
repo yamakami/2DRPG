@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player : BaseCharacter
 {
     QuestManager questManager;
-    NPC contactWith;
+    [SerializeField] NPC contactWith;
 
     public QuestManager QuestManager { get => questManager; set => questManager = value; }
     public NPC ContactWith { get => contactWith; }
@@ -38,13 +38,11 @@ public class Player : BaseCharacter
     {
         contactWith.FacingTo(lastMove);
         StopPlayer();
-        contactWith.Freeze = true;
         questManager.QuestUI.PlayerSatartConversation();
     }
 
     public void StopConversation()
     {
-        contactWith.Freeze = false;
         Freeze = false;
     }
 

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: _BattleInfo
   m_EditorClassIdentifier: 
   isBattle: 0
+  isQuestFail: 0
   livingMonsterList: {fileID: 0}
