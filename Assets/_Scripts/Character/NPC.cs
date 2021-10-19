@@ -114,9 +114,9 @@ public class NPC : BaseCharacter
         MovePosition();
     }
 
-    public void FacingTo(Vector2 playerLastMove)
+    public void FacingTo(Vector2 direction)
     {
-        lastMove = playerLastMove * -1;
+         lastMove = direction;
     }
 
     public void Stop()

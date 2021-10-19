@@ -65,8 +65,11 @@ public class MessageBox : UIBase
         {
             var conversationLines = conversationData.conversationLines;
             var arrayLast = conversationLines.Length -1;
-            if(conversationLines[arrayLast].messageEventMethods !=  MesageEvent.MessageEventMethods.None)
-                EventReceiver(conversationLines[arrayLast].messageEventMethods);
+            if(conversationLines[arrayLast].eventTrigger)
+            {
+                conversationLines[arrayLast].eventTrigger.Invoke();
+                return;
+            }
 
             BoxClose();
             return;
@@ -75,17 +78,9 @@ public class MessageBox : UIBase
         ForwardConversation(conversations.Dequeue());
     }
 
-    public void EventReceiver(MesageEvent.MessageEventMethods messageEventMethods)
-    {
-        ExecuteEvents.Execute<IMessageEventReceiver>(
-            target: messageEventReceiver,
-            eventData: null,
-            functor: (eventObj, eventData) => eventObj.Receive(messageEventMethods));
-    }
-
-    void BoxClose()
+    public void BoxClose()
     {
         Deactivate();
-        questManager.Player.StopConversation();
+        questManager.Player.EnableMove();
     }
 }

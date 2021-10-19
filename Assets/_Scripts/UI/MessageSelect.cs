@@ -37,8 +37,7 @@ public class MessageSelect : UIBase
 
         Deactivate();
 
-        if(conversation.messageEventMethods !=  MesageEvent.MessageEventMethods.None)
-            messageBox.EventReceiver(conversation.messageEventMethods);
+        if(conversation.eventTrigger) conversation.eventTrigger.Invoke();
     }
 
     void OnDisable()

@@ -16,6 +16,7 @@ public class Contact : MonoBehaviour
             npc.Stop();
             npcRd2.constraints = RigidbodyConstraints2D.FreezeAll;
             player.TouchingToNpc(npc);
+            npc.FacingTo(npc.ConversationFacingDirection(player.transform));
         }
 
         if (collision.CompareTag("NPC")) otherNpcTouching = true;

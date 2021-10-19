@@ -36,14 +36,11 @@ public class Player : BaseCharacter
 
     void StartConversation()
     {
-        contactWith.FacingTo(lastMove);
+        contactWith.FacingTo(contactWith.ConversationFacingDirection(transform));
+        lastMove = ConversationFacingDirection(contactWith.transform);
+
         StopPlayer();
         questManager.QuestUI.PlayerSatartConversation();
-    }
-
-    public void StopConversation()
-    {
-        Freeze = false;
     }
 
     public void StopPlayer()

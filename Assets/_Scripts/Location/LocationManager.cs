@@ -84,7 +84,6 @@ public class LocationManager : MonoBehaviour
         var targetLocationActivate = true;
         if(battleInfo.isQuestFail)
         {
-            // battleInfo.isQuestFail = false;
             var savedLocation = questManager.Quest.savelocations[playerInfo.savedLocationIndex];
             questLocationNum  = savedLocation.questLocationIndex;
             initPosition = savedLocation.startPosition;

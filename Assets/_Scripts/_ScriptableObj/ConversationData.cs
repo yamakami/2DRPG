@@ -14,6 +14,7 @@ public class ConversationData : ScriptableObject
         [TextArea(2, 5)]
         public string text;
         public ConversationData conversationData;
-        public MesageEvent.MessageEventMethods messageEventMethods;
+
+        public CustomEventTrigger eventTrigger = default;
     }
 }

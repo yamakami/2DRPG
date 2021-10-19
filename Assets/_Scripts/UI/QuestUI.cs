@@ -10,6 +10,8 @@ public class QuestUI : MonoBehaviour
 
     public QuestManager QuestManager { get => questManager; set => questManager = value; }
     public LocationManager LocationManager { get => locationManager; }
+    public MessageBox MessageBox { get => messageBox; }
+    public Fader Fader { get => fader; }
 
     void Start()
     {

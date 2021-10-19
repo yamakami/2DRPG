@@ -38,5 +38,27 @@ public class BaseCharacter : MonoBehaviour
     {
         rb2d.MovePosition(rb2d.position + new Vector2(move.x, move.y).normalized * speed * Time.fixedDeltaTime);
     }
+
+    public Vector2 ConversationFacingDirection(Transform target)
+    {
+        var diff = target.transform.position - transform.position;
+        diff.Normalize();
+        var rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        if(rot_z < 0)  rot_z +=360;
+
+        if(35f <= rot_z && rot_z <= 125)
+        {
+            return Vector2.up;
+        }
+        else if(125f < rot_z && rot_z < 215)
+        {
+            return Vector2.left;
+        }
+        else if(215f <= rot_z && rot_z <= 305f)
+        {
+            return Vector2.down;
+        }
+        return Vector2.right;
+    }
 }
 
