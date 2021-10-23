@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "New PlayerInfo", menuName = "PlayerInfo")]
 public class PlayerInfo : ScriptableObject
 {
@@ -33,5 +34,20 @@ public class PlayerInfo : ScriptableObject
         [SerializeField] public int defence;
         [SerializeField] public int exp;
         [SerializeField] public int gold;
+    }
+
+    public void InitializePlayerInfo()
+    {
+        status.lv = 1;
+        status.maxHP = 8;
+        status.maxMP = 8;
+        status.hp = 8;
+        status.mp = 8;
+        status.attack = 10;
+        status.defence = 8;
+        status.exp = 0;
+        status.gold = 0;
+        magicCommands.Clear();
+        items.Clear();
     }
 }

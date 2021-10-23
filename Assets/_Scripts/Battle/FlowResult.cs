@@ -6,8 +6,8 @@ public class FlowResult : FlowBase
 {
     [SerializeField] AudioClip playerWin;
     [SerializeField] AudioClip playerDead;
-
     [SerializeField] AudioClip levelUpClip;
+    [SerializeField] MasterData masterData;
 
     public void BattleFail(BattleMessageBox messageBox, PlayerAction player)
     {
@@ -73,7 +73,7 @@ public class FlowResult : FlowBase
         {
             var playerStatus = playerInfo.status;
             var currentLevel = levels[ playerStatus.lv - 1 ];
-            var nextExp = currentLevel.nextLevelUpAmount + currentLevel.goalExp;
+            var nextExp = currentLevel.nextLevelUpAmount + currentLevel.minimumExp;
 
             if(playerStatus.exp < nextExp) break;
 
@@ -99,16 +99,16 @@ public class FlowResult : FlowBase
         battleUI.BackToQuestScene();
     }
 
-    void SetLevelUpMagic(BattleMessageBox messageBox, Command[] magicCommands, PlayerInfo playerInfo)
+    void SetLevelUpMagic(BattleMessageBox messageBox, string[] magicCommands, PlayerInfo playerInfo)
     {
         messageBox.StringBuilder.Clear();
         var str = "{0}の呪文を覚えた\n";
 
-        foreach(var magic in magicCommands)
+        foreach(var magicName in magicCommands)
         {
-            messageBox.StringBuilder.AppendFormat(str, magic.nameKana);    
-            playerInfo.magicCommands.Add(magic);
-
+            var command =  masterData.FindMagicCommandFromMaster(magicName);
+            messageBox.StringBuilder.AppendFormat(str, command.nameKana);
+            playerInfo.magicCommands.Add(command);
         }
         messageBox.DisplayMessage();
     }

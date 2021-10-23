@@ -13,87 +13,114 @@ MonoBehaviour:
   m_Name: _LevelUpTable
   m_EditorClassIdentifier: 
   reCalculate: 0
+  playerInfo: {fileID: 11400000, guid: 383ca4b9a591f462897a87d70a35baee, type: 2}
   magiclevels:
   - magicCommand: {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
     levelRangeBegin: 2
     levelRangeEnd: 3
   - magicCommand: {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
-    levelRangeBegin: 3
+    levelRangeBegin: 5
     levelRangeEnd: 5
   - magicCommand: {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
-    levelRangeBegin: 4
-    levelRangeEnd: 5
+    levelRangeBegin: 7
+    levelRangeEnd: 7
+  - magicCommand: {fileID: 11400000, guid: 3218df6324483473e84b129f2db6b9ab, type: 2}
+    levelRangeBegin: 8
+    levelRangeEnd: 9
+  - magicCommand: {fileID: 11400000, guid: c02ff0c2da6c04b10b50f2e2cb4e65bb, type: 2}
+    levelRangeBegin: 10
+    levelRangeEnd: 11
   levels:
-  - nextLevelUpAmount: 18
-    goalExp: 0
-    hp: 5
-    mp: 1
-    attack: 0
-    defence: 7
-    magicCommands: []
-  - nextLevelUpAmount: 28
-    goalExp: 18
-    hp: 4
-    mp: 0
-    attack: 1
+  - levelIndex: 1
+    minimumExp: 0
+    nextLevelUpAmount: 18
+    hp: 7
+    mp: 10
+    attack: 11
     defence: 3
     magicCommands: []
-  - nextLevelUpAmount: 50
-    goalExp: 46
-    hp: 3
+  - levelIndex: 2
+    minimumExp: 18
+    nextLevelUpAmount: 31
+    hp: 2
     mp: 2
-    attack: 12
-    defence: 10
-    magicCommands: []
-  - nextLevelUpAmount: 87
-    goalExp: 96
-    hp: 5
-    mp: 5
-    attack: 4
-    defence: 9
-    magicCommands:
-    - {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
-  - nextLevelUpAmount: 129
-    goalExp: 183
-    hp: 12
-    mp: 8
-    attack: 4
+    attack: 8
     defence: 0
     magicCommands:
-    - {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
-    - {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
-  - nextLevelUpAmount: 213
-    goalExp: 312
-    hp: 1
+    - fire
+  - levelIndex: 3
+    minimumExp: 49
+    nextLevelUpAmount: 53
+    hp: 7
+    mp: 0
+    attack: 1
+    defence: 9
+    magicCommands: []
+  - levelIndex: 4
+    minimumExp: 102
+    nextLevelUpAmount: 85
+    hp: 11
+    mp: 11
+    attack: 11
+    defence: 11
+    magicCommands: []
+  - levelIndex: 5
+    minimumExp: 187
+    nextLevelUpAmount: 136
+    hp: 0
     mp: 4
-    attack: 5
-    defence: 3
-    magicCommands: []
-  - nextLevelUpAmount: 346
-    goalExp: 525
-    hp: 11
-    mp: 3
-    attack: 12
-    defence: 3
-    magicCommands: []
-  - nextLevelUpAmount: 459
-    goalExp: 871
-    hp: 12
-    mp: 7
-    attack: 9
+    attack: 10
     defence: 1
-    magicCommands: []
-  - nextLevelUpAmount: 746
-    goalExp: 1330
-    hp: 11
-    mp: 3
+    magicCommands:
+    - heal
+  - levelIndex: 6
+    minimumExp: 323
+    nextLevelUpAmount: 239
+    hp: 6
+    mp: 8
     attack: 3
     defence: 2
     magicCommands: []
-  - nextLevelUpAmount: 1245
-    goalExp: 2076
-    hp: 4
-    mp: 9
-    attack: 1
-    defence: 8
+  - levelIndex: 7
+    minimumExp: 562
+    nextLevelUpAmount: 390
+    hp: 12
+    mp: 3
+    attack: 10
+    defence: 7
+    magicCommands:
+    - ice
+  - levelIndex: 8
+    minimumExp: 952
+    nextLevelUpAmount: 540
+    hp: 12
+    mp: 12
+    attack: 12
+    defence: 2
     magicCommands: []
+  - levelIndex: 9
+    minimumExp: 1492
+    nextLevelUpAmount: 852
+    hp: 7
+    mp: 9
+    attack: 3
+    defence: 11
+    magicCommands:
+    - fire_wall
+  - levelIndex: 10
+    minimumExp: 2344
+    nextLevelUpAmount: 1167
+    hp: 7
+    mp: 8
+    attack: 2
+    defence: 7
+    magicCommands: []
+  - levelIndex: 11
+    minimumExp: 3511
+    nextLevelUpAmount: 1869
+    hp: 3
+    mp: 1
+    attack: 8
+    defence: 4
+    magicCommands:
+    - mega_heal

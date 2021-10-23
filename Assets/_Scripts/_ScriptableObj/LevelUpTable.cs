@@ -1,23 +1,24 @@
 using UnityEngine;
 
-
 [CreateAssetMenu(fileName = "New LevelUpTable", menuName = "LevelUpTable")]
 public class LevelUpTable : ScriptableObject
 {
     public bool reCalculate;
+    public PlayerInfo playerInfo;
     public MagicLevel[] magiclevels;
     public Level[] levels;
 
     [System.Serializable]
     public class Level
     {
+        public int levelIndex;
+        public int minimumExp;
         public int nextLevelUpAmount;
-        public int goalExp;
         public int hp;
         public int mp;
         public int attack;
         public int defence;
-        public Command[] magicCommands;
+        public string[] magicCommands;
     }
 
     [System.Serializable]
@@ -35,6 +36,7 @@ public class LevelUpTable : ScriptableObject
 
         for (var i = 0; i < levels.Length; i++)
         {
+            levels[i].levelIndex = i + 1;
             levels[i].hp      = Random.Range(0, 13);
             levels[i].mp      = Random.Range(0, 13);
             levels[i].attack  = Random.Range(0, 13);
@@ -46,23 +48,25 @@ public class LevelUpTable : ScriptableObject
                 continue;
 
             var ex = levels[i - 1].nextLevelUpAmount;
-            var cur = levels[i - 1].goalExp;
+            var cur = levels[i - 1].minimumExp;
             var seed = Random.Range(1.3f, 1.8f);
 
             var nextEx = (int) System.Math.Round(ex * seed, System.MidpointRounding.AwayFromZero);
 
             levels[i].nextLevelUpAmount = nextEx;
-            levels[i].goalExp = ex + cur;
+            levels[i].minimumExp = ex + cur;
         }
 
         foreach(var ml in magiclevels)
         {
-            var index = Random.Range(ml.levelRangeBegin, ml.levelRangeEnd + 1);
+            var index = Random.Range(ml.levelRangeBegin, ml.levelRangeEnd + 1) -1;
             var magicCommands = levels[index].magicCommands;
 
             System.Array.Resize(ref levels[index].magicCommands, levels[index].magicCommands.Length + 1);
-
-            levels[index].magicCommands[ levels[index].magicCommands.Length -1 ] = ml.magicCommand;
+            levels[index].magicCommands[ levels[index].magicCommands.Length -1 ] = ml.magicCommand.commandName;
         }
+
+        playerInfo.InitializePlayerInfo();
+        reCalculate = false;
     }
 }

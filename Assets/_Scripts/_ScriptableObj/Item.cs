@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Item")]
+[System.Serializable]
 public class Item : ScriptableObject
 {
     public bool useForQuest;

@@ -15,6 +15,6 @@ public class ConversationData : ScriptableObject
         public string text;
         public ConversationData conversationData;
 
-        public CustomEventTrigger eventTrigger = default;
+        public CustomEventTrigger eventTrigger;
     }
 }

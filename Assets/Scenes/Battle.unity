@@ -5381,6 +5381,7 @@ MonoBehaviour:
   playerWin: {fileID: 8300000, guid: 7b39161c1c2da4841a23f4bdb10c4d06, type: 3}
   playerDead: {fileID: 8300000, guid: f30a254f4527f4af2bcca6b35c4eb18c, type: 3}
   levelUpClip: {fileID: 8300000, guid: 9545f439ff4d0412e8d6b439b2efc68d, type: 3}
+  masterData: {fileID: 11400000, guid: 3fe57364fe6c44dfd87826c055872854, type: 2}
 --- !u!82 &1510574310
 AudioSource:
   m_ObjectHideFlags: 0

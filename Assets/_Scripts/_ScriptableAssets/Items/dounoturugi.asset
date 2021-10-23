@@ -22,7 +22,7 @@ MonoBehaviour:
   point: 10
   price: 8
   sellPrice: 4
-  player_possession_count: 2
+  player_possession_count: 0
   player_possession_limit: 10
   hasAnimationClip: 0
   audioClip: {fileID: 8300000, guid: db5479192c7ce459893d6bcb817b9a6b, type: 3}
