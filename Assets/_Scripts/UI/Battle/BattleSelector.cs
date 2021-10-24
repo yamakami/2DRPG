@@ -28,16 +28,6 @@ public class BattleSelector : UIBase
         ITEM_SELECT,
     }
 
-    void Start()
-    {
-        var playerInfo = battleUI.BattleManager.PlayerAction.PlayerInfo;
-        if(playerInfo.magicCommands.Count < 1)
-            magicSelectButton.gameObject.SetActive(false);
-
-        if(!playerInfo.items.Find(i => i.useForBattle))
-            itemSelectButton.gameObject.SetActive(false);
-    }
-
     public void PlayerSelectDone()
     {
         flowMain.PlayerInput = true;
@@ -47,6 +37,16 @@ public class BattleSelector : UIBase
 
     public void ActivateBasicCommands(bool activation)
     {
+        if(activation)
+        {
+            var playerInfo = battleUI.BattleManager.PlayerAction.PlayerInfo;
+            if(playerInfo.magicCommands.Count < 1)
+                magicSelectButton.gameObject.SetActive(false);
+
+            if(!playerInfo.items.Find(i => i.useForBattle))
+                itemSelectButton.gameObject.SetActive(false);
+        }
+
         basicCommands.gameObject.SetActive(activation);
     }
 

@@ -38,7 +38,7 @@ public class FlowResult : FlowBase
         player.gold = Mathf.FloorToInt(player.gold / 2);
         player.hp = player.maxHP;
         player.mp = player.maxMP;
-        ReflectToPlayerInfo(player, playerInfo);
+        player.ReflectToPlayerInfoAll();
 
         battleUI.BackToQuestScene();
     }
@@ -63,7 +63,7 @@ public class FlowResult : FlowBase
         await UniTask.Delay(delaytime + 1000, cancellationToken: cancelToken);
 
         ReflectRewardToPlayer(battleManager, messageBox, player, playerInfo);
-        ReflectToPlayerInfo(player, playerInfo);
+        player.ReflectToPlayerInfoAll();
         await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
         await UniTask.Delay(delaytime + 2000, cancellationToken: cancelToken);
 
@@ -189,14 +189,6 @@ public class FlowResult : FlowBase
             reward.item.player_possession_count++;
             playerInfo.items.Add(reward.item);
         }
-    }
-
-    void ReflectToPlayerInfo(PlayerAction player, PlayerInfo playerInfo)
-    {
-        playerInfo.status.hp = player.hp;
-        playerInfo.status.mp = player.mp;
-        playerInfo.status.exp = player.exp;
-        playerInfo.status.gold = player.gold;
     }
 
     AudioSource PlayAudio(AudioClip clip, BattleManager battleManager)

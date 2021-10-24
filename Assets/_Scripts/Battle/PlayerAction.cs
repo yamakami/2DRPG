@@ -76,4 +76,17 @@ public class PlayerAction : BaseAction
 
         return false;
     }
+
+    public void ReflectToPlayerInfoHpMp()
+    {
+        playerInfo.status.hp = hp;
+        playerInfo.status.mp = mp;
+    }
+
+    public void ReflectToPlayerInfoAll()
+    {
+        ReflectToPlayerInfoHpMp();
+        playerInfo.status.exp = exp;
+        playerInfo.status.gold = gold;
+    }
 }

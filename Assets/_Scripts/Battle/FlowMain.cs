@@ -115,6 +115,7 @@ public class FlowMain : FlowBase
                         
                         if(playerAction.Escape(defender))
                         {
+                            playerAction.ReflectToPlayerInfoHpMp();
                             battleUI.BackToQuestScene();
                             enabled = false;
                             return;

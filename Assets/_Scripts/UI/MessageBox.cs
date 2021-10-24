@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using UnityEngine.EventSystems;
 
 public class MessageBox : UIBase
 {

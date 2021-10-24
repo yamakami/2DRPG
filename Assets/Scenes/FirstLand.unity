@@ -37706,8 +37706,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29854a1eb08b046b39eb1e0f8b862c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspectorObject:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 810458390}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: SavePlayData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  eventTrigger: {fileID: 11400000, guid: 5526f8d7937c742779626ed774a97a40, type: 2}
   playerInfo: {fileID: 11400000, guid: 383ca4b9a591f462897a87d70a35baee, type: 2}
-  masterData: {fileID: 11400000, guid: 3fe57364fe6c44dfd87826c055872854, type: 2}
 --- !u!1 &823719849
 GameObject:
   m_ObjectHideFlags: 0

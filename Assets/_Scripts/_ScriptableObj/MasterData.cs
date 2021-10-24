@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "new MasterData", menuName = "MasterData")]
-class MasterData : ScriptableObject
+public class MasterData : ScriptableObject
 {
     public LevelUpTable levelUpTable;
     public List<Command> magicCommandMaster;
@@ -18,5 +18,10 @@ class MasterData : ScriptableObject
     {
         var item = itemMaster.Find(o => o.itemName == itemName);
         return item;
+    }
+
+    public void RestItemPlayerPossession()
+    {
+        foreach(var item in itemMaster) item.player_possession_count = 0;
     }
 }

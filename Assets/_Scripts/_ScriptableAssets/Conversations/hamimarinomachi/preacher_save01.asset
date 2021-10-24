@@ -19,7 +19,7 @@ MonoBehaviour:
     eventTrigger: {fileID: 0}
   subConverSationLines:
   - text: "\u306F\u3044"
-    conversationData: {fileID: 0}
+    conversationData: {fileID: 11400000, guid: 5c227cde47e664f16b486382a4030ae8, type: 2}
     eventTrigger: {fileID: 11400000, guid: 5526f8d7937c742779626ed774a97a40, type: 2}
   - text: "\u3044\u3044\u3048"
     conversationData: {fileID: 11400000, guid: a9c198633edbf44c1800ed473193fa33, type: 2}

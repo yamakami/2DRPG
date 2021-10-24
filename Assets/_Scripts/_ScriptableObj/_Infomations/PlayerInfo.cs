@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New PlayerInfo", menuName = "PlayerInfo")]
 public class PlayerInfo : ScriptableObject
 {
+    public MasterData masterData;
     public string playerName;
     public string currentScene;
     public int currentQuestLocationIndex;
@@ -12,6 +13,7 @@ public class PlayerInfo : ScriptableObject
     public Vector2 playerLastPosition;
     public Vector2 playerLastFacing;
 
+    [SerializeField] LevelUpTable levelUpTable;
 
     public List<Command> battleCommands = new List<Command>();
     public List<Command> magicCommands = new List<Command>();
@@ -47,6 +49,8 @@ public class PlayerInfo : ScriptableObject
         status.defence = 8;
         status.exp = 0;
         status.gold = 0;
+
+        masterData.RestItemPlayerPossession();
         magicCommands.Clear();
         items.Clear();
     }

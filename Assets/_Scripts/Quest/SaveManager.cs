@@ -5,41 +5,47 @@ using System.Collections.Generic;
 public class SaveManager : CustomEventListener
 {
     [SerializeField] PlayerInfo playerInfo;
-    [SerializeField] MasterData masterData;
 
     string saveDataFile = "/playdata.json";
 
-    internal MasterData MasterData { get => masterData; }
-
     public void LoadPlayData()
     {
-        var json = System.IO.File.ReadAllText(Application.dataPath + saveDataFile);
-        var playDataFormat = JsonUtility.FromJson<PlayDataFormat>(json);
+        try
+        {
+            var json = System.IO.File.ReadAllText(Application.dataPath + saveDataFile);
+            var playDataFormat = JsonUtility.FromJson<PlayDataFormat>(json);
+            var masterData = playerInfo.masterData;
 
-        playerInfo.playerName = playDataFormat.playerName;
-        masterData.levelUpTable.reCalculate = playDataFormat.levelUpRecalculate;
+            playerInfo.playerName = playDataFormat.playerName;
+            masterData.levelUpTable.reCalculate = playDataFormat.levelUpRecalculate;
 
-        playerInfo.currentScene = playDataFormat.currentScene;
+            playerInfo.currentScene = playDataFormat.currentScene;
 
-        playerInfo.currentQuestLocationIndex = playDataFormat.currentQuestLocationIndex;
-        playerInfo.currentMonsterAreaIndex = playDataFormat.currentMonsterAreaIndex;
+            playerInfo.currentQuestLocationIndex = playDataFormat.currentQuestLocationIndex;
+            playerInfo.currentMonsterAreaIndex = playDataFormat.currentMonsterAreaIndex;
 
-        playerInfo.playerLastPosition = playDataFormat.playerLastPosition;
-        playerInfo.playerLastFacing = playDataFormat.playerLastFacing;
+            playerInfo.playerLastPosition = playDataFormat.playerLastPosition;
+            playerInfo.playerLastFacing = playDataFormat.playerLastFacing;
 
-        playerInfo.savedLocationScene = playDataFormat.savedLocationScene;
-        playerInfo.savedLocationIndex = playDataFormat.savedLocationIndex;
-        playerInfo.status = playDataFormat.status;
+            playerInfo.savedLocationScene = playDataFormat.savedLocationScene;
+            playerInfo.savedLocationIndex = playDataFormat.savedLocationIndex;
+            playerInfo.status = playDataFormat.status;
 
-        playerInfo.magicCommands.Clear();
-        playerInfo.items.Clear();
+            playerInfo.magicCommands.Clear();
+            playerInfo.items.Clear();
 
-        RestoreFromItemMaster(playDataFormat.items);
-        RestoreFromCommandMaster(playDataFormat.magicCommands);
+            RestoreFromItemMaster(playDataFormat.items);
+            RestoreFromCommandMaster(playDataFormat.magicCommands);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
     }
 
     void RestoreFromItemMaster(ItemFormat[] items)
     {
+        var masterData = playerInfo.masterData;
         var itemMaster = masterData.itemMaster;
         foreach(var item in items)
         {
@@ -51,6 +57,7 @@ public class SaveManager : CustomEventListener
 
     void RestoreFromCommandMaster(string[] commands)
     {
+        var masterData = playerInfo.masterData;
         var magicMaster = masterData.magicCommandMaster;
         foreach(var command in commands)
         {
@@ -62,7 +69,7 @@ public class SaveManager : CustomEventListener
     public void SavePlayData()
     {
         var playDataFormat = new PlayDataFormat();
-        var levelUpTable = masterData.levelUpTable;
+        var levelUpTable = playerInfo.masterData.levelUpTable;
 
         playDataFormat.playerName = playerInfo.playerName;
         playDataFormat.levelUpRecalculate = levelUpTable.reCalculate;

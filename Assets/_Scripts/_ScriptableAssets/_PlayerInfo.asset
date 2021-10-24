@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d914263e44144a79a046aedf07ab24, type: 3}
   m_Name: _PlayerInfo
   m_EditorClassIdentifier: 
+  masterData: {fileID: 11400000, guid: 3fe57364fe6c44dfd87826c055872854, type: 2}
   playerName: "\u3055\u308B"
   currentScene: FirstLand
   currentQuestLocationIndex: 1
   currentMonsterAreaIndex: 0
-  playerLastPosition: {x: 17.4, y: 11.7}
-  playerLastFacing: {x: 0, y: -1}
+  playerLastPosition: {x: 2.674314, y: -1.482503}
+  playerLastFacing: {x: -1, y: 0}
+  levelUpTable: {fileID: 11400000, guid: 3588f53d8ed034cc4b9777388f3eb494, type: 2}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
   - {fileID: 11400000, guid: c67c2811769d0486c9806abaf62af8e6, type: 2}
@@ -25,16 +27,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
   items:
   - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
-  - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
   savedLocationScene: FirstLand
   savedLocationIndex: 0
   status:
-    lv: 2
-    maxHP: 10
-    maxMP: 10
-    hp: 4
-    mp: 8
-    attack: 18
-    defence: 8
-    exp: 30
-    gold: 30
+    lv: 3
+    maxHP: 17
+    maxMP: 13
+    hp: 10
+    mp: 9
+    attack: 26
+    defence: 31
+    exp: 48
+    gold: 25
