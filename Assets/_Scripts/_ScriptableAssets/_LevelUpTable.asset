@@ -34,93 +34,93 @@ MonoBehaviour:
   - levelIndex: 1
     minimumExp: 0
     nextLevelUpAmount: 18
-    hp: 8
-    mp: 9
-    attack: 11
-    defence: 8
+    hp: 6
+    mp: 7
+    attack: 3
+    defence: 10
     magicCommands: []
   - levelIndex: 2
     minimumExp: 18
-    nextLevelUpAmount: 25
-    hp: 5
-    mp: 1
-    attack: 6
+    nextLevelUpAmount: 26
+    hp: 12
+    mp: 6
+    attack: 1
     defence: 11
     magicCommands: []
   - levelIndex: 3
-    minimumExp: 43
-    nextLevelUpAmount: 37
-    hp: 4
-    mp: 4
-    attack: 10
+    minimumExp: 44
+    nextLevelUpAmount: 38
+    hp: 8
+    mp: 7
+    attack: 2
     defence: 12
     magicCommands:
     - fire
   - levelIndex: 4
-    minimumExp: 80
-    nextLevelUpAmount: 56
-    hp: 9
-    mp: 1
-    attack: 5
-    defence: 5
+    minimumExp: 82
+    nextLevelUpAmount: 55
+    hp: 7
+    mp: 0
+    attack: 8
+    defence: 4
     magicCommands: []
   - levelIndex: 5
-    minimumExp: 136
-    nextLevelUpAmount: 77
-    hp: 2
-    mp: 5
+    minimumExp: 137
+    nextLevelUpAmount: 97
+    hp: 7
+    mp: 12
     attack: 5
-    defence: 9
+    defence: 4
     magicCommands:
     - heal
   - levelIndex: 6
-    minimumExp: 213
-    nextLevelUpAmount: 137
-    hp: 2
-    mp: 10
-    attack: 5
-    defence: 6
+    minimumExp: 234
+    nextLevelUpAmount: 142
+    hp: 8
+    mp: 4
+    attack: 1
+    defence: 10
     magicCommands: []
   - levelIndex: 7
-    minimumExp: 350
-    nextLevelUpAmount: 217
-    hp: 2
-    mp: 11
-    attack: 3
+    minimumExp: 376
+    nextLevelUpAmount: 224
+    hp: 0
+    mp: 12
+    attack: 0
     defence: 3
     magicCommands:
     - ice
   - levelIndex: 8
-    minimumExp: 567
-    nextLevelUpAmount: 292
-    hp: 0
-    mp: 4
-    attack: 4
-    defence: 11
-    magicCommands:
-    - fire_wall
-  - levelIndex: 9
-    minimumExp: 859
-    nextLevelUpAmount: 426
-    hp: 0
-    mp: 1
-    attack: 10
+    minimumExp: 600
+    nextLevelUpAmount: 393
+    hp: 2
+    mp: 3
+    attack: 1
     defence: 0
     magicCommands: []
+  - levelIndex: 9
+    minimumExp: 993
+    nextLevelUpAmount: 591
+    hp: 8
+    mp: 0
+    attack: 4
+    defence: 5
+    magicCommands:
+    - fire_wall
   - levelIndex: 10
-    minimumExp: 1285
-    nextLevelUpAmount: 563
-    hp: 0
-    mp: 2
-    attack: 5
-    defence: 12
-    magicCommands: []
-  - levelIndex: 11
-    minimumExp: 1848
-    nextLevelUpAmount: 755
-    hp: 10
+    minimumExp: 1584
+    nextLevelUpAmount: 877
+    hp: 12
     mp: 8
     attack: 3
-    defence: 11
+    defence: 10
+    magicCommands: []
+  - levelIndex: 11
+    minimumExp: 2461
+    nextLevelUpAmount: 1566
+    hp: 9
+    mp: 4
+    attack: 2
+    defence: 6
     magicCommands:
     - mega_heal

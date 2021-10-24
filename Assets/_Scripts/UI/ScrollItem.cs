@@ -6,14 +6,6 @@ public abstract class ScrollItem : UIBase
 {
     [SerializeField] protected ScrollRect scrollRect;
     [SerializeField] Button prefTextButton;
-
-    [SerializeField] Button up;
-
-    [SerializeField] Button down;
-
-    [SerializeField] Button upMax;
-
-    [SerializeField] Button downMax;
  
     Tween tween;
     float duration = 0.5f;

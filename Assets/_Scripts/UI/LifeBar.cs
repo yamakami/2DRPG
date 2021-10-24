@@ -12,7 +12,6 @@ public class LifeBar : MonoBehaviour
     [SerializeField] Text playerName;
 
     Vector2 backGroundSizeDelta;
-    Color32 barColor;
 
     public Text PlayerName { get => playerName; }
 

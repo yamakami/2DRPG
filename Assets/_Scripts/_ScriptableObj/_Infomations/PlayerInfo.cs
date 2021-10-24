@@ -13,8 +13,6 @@ public class PlayerInfo : ScriptableObject
     public Vector2 playerLastPosition;
     public Vector2 playerLastFacing;
 
-    [SerializeField] LevelUpTable levelUpTable;
-
     public List<Command> battleCommands = new List<Command>();
     public List<Command> magicCommands = new List<Command>();
     public List<Item> items = new List<Item>();

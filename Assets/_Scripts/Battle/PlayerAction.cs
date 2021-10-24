@@ -4,7 +4,6 @@ using DG.Tweening;
 public class PlayerAction : BaseAction
 {
     [SerializeField] PlayerInfo playerInfo;
-    [SerializeField] BattleUI battleUI;
     [SerializeField] Camera mainCam;
     [SerializeField] CanvasGroup playerDamageCanvas;
 

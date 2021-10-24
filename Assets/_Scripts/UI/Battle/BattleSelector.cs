@@ -7,7 +7,7 @@ public class BattleSelector : UIBase
 
     [SerializeField] Button magicSelectButton;
     [SerializeField] Button itemSelectButton;
-    [SerializeField] Button escapeButton;
+ 
     [SerializeField] GameObject rayBlockObj;
 
     [SerializeField] BattleMonsterSelect monsterSelect;

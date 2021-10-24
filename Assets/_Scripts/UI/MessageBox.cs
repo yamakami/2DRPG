@@ -13,11 +13,8 @@ public class MessageBox : UIBase
     QuestManager questManager;
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>();
-    GameObject messageEventReceiver;
 
     public QuestManager QuestManager { set => questManager = value; }
-    public Button NextButton { get => nextButton; }
-    public GameObject MessageEventReceiver { get => messageEventReceiver; set => messageEventReceiver = value; }
 
     void OnEnable()
     {
