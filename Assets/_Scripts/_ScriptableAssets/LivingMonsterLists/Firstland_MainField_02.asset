@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785da0b35765f44b2a1a01b9b2f3113e, type: 3}
   m_Name: Firstland_MainField_02
   m_EditorClassIdentifier: 
-  monsterDensity: 95
+  monsterDensity: 98
   unitMaxNum: 3
   duplicate: 1
   livingMonsters:

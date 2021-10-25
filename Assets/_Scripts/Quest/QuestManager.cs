@@ -14,7 +14,6 @@ public class QuestManager : MonoBehaviour
     public Player Player { get => player; }
     public QuestUI QuestUI { get => questUI; }
     public Quest Quest { get => quest; }
-    public AudioSource QuestAudioSource { get => questAudioSource; }
 
     float monsterEncounterTimer = 0f;
 
