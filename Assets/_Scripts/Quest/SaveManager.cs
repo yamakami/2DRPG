@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Collections.Generic;
 public class SaveManager : CustomEventListener
 {
-    [SerializeField] PlayerInfo playerInfo;
+    [SerializeField] Player player;
+    [SerializeField] int saveLocationIndex;
 
     string saveDataFile = "/playdata.json";
 
@@ -12,6 +13,7 @@ public class SaveManager : CustomEventListener
     {
         try
         {
+            var playerInfo = player.QuestManager.PlayerInfo();
             var json = System.IO.File.ReadAllText(Application.dataPath + saveDataFile);
             var playDataFormat = JsonUtility.FromJson<PlayDataFormat>(json);
             var masterData = playerInfo.masterData;
@@ -19,7 +21,7 @@ public class SaveManager : CustomEventListener
             playerInfo.playerName = playDataFormat.playerName;
             masterData.levelUpTable.reCalculate = playDataFormat.levelUpRecalculate;
 
-            playerInfo.currentScene = playDataFormat.currentScene;
+            playerInfo.currentScene = playDataFormat.savedLocationScene;
 
             playerInfo.currentQuestLocationIndex = playDataFormat.currentQuestLocationIndex;
             playerInfo.currentMonsterAreaIndex = playDataFormat.currentMonsterAreaIndex;
@@ -45,6 +47,7 @@ public class SaveManager : CustomEventListener
 
     void RestoreFromItemMaster(ItemFormat[] items)
     {
+        var playerInfo = player.QuestManager.PlayerInfo();
         var masterData = playerInfo.masterData;
         var itemMaster = masterData.itemMaster;
         foreach(var item in items)
@@ -57,6 +60,7 @@ public class SaveManager : CustomEventListener
 
     void RestoreFromCommandMaster(string[] commands)
     {
+        var playerInfo = player.QuestManager.PlayerInfo();
         var masterData = playerInfo.masterData;
         var magicMaster = masterData.magicCommandMaster;
         foreach(var command in commands)
@@ -69,11 +73,16 @@ public class SaveManager : CustomEventListener
     public void SavePlayData()
     {
         var playDataFormat = new PlayDataFormat();
+        var playerInfo = player.QuestManager.PlayerInfo();
+
+
         var levelUpTable = playerInfo.masterData.levelUpTable;
 
         playDataFormat.playerName = playerInfo.playerName;
         playDataFormat.levelUpRecalculate = levelUpTable.reCalculate;
-        playDataFormat.currentScene = playerInfo.currentScene;
+
+        playDataFormat.savedLocationScene = playerInfo.currentScene;
+        playDataFormat.savedLocationIndex = playerInfo.savedLocationIndex = saveLocationIndex;
 
         playDataFormat.currentQuestLocationIndex = playerInfo.currentQuestLocationIndex;
         playDataFormat.currentMonsterAreaIndex = playerInfo.currentMonsterAreaIndex;
@@ -81,8 +90,6 @@ public class SaveManager : CustomEventListener
         playDataFormat.playerLastPosition = playerInfo.playerLastPosition;
         playDataFormat.playerLastFacing = playerInfo.playerLastFacing;
 
-        playDataFormat.savedLocationScene = playerInfo.savedLocationScene;
-        playDataFormat.savedLocationIndex = playerInfo.savedLocationIndex;
         playDataFormat.status = playerInfo.status;
 
         playDataFormat.magicCommands = SetCommandData(playDataFormat, playerInfo.magicCommands);
@@ -139,15 +146,14 @@ public class SaveManager : CustomEventListener
     {
         public string playerName;
         public bool levelUpRecalculate;
-        public string currentScene;
         public int currentQuestLocationIndex;
         public int currentMonsterAreaIndex;
+        public string savedLocationScene;
+        public int savedLocationIndex;
         public Vector2 playerLastPosition;
         public Vector2 playerLastFacing;
         public string[] magicCommands;
         public ItemFormat[] items;
-        public string savedLocationScene;
-        public int savedLocationIndex;
         public PlayerInfo.Status status;
         public LevelUpTable.Level[] levels;
     }

@@ -16,5 +16,6 @@ public class ConversationData : ScriptableObject
         public ConversationData conversationData;
 
         public CustomEventTrigger eventTrigger;
+        public bool conversationEnd;
     }
 }

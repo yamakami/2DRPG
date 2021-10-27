@@ -18,6 +18,8 @@ public class MessageBox : UIBase
 
     void OnEnable()
     {
+        if(questManager.BattleInfo().isQuestFail) return;
+
         conversationData = questManager.Player.ContactWith.ConversationData;
         PrepareConversation(conversationData);
     }

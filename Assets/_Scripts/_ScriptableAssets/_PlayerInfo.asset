@@ -15,25 +15,26 @@ MonoBehaviour:
   masterData: {fileID: 11400000, guid: 3fe57364fe6c44dfd87826c055872854, type: 2}
   playerName: "\u3055\u308B"
   currentScene: FirstLand
-  currentQuestLocationIndex: 1
-  currentMonsterAreaIndex: 0
-  playerLastPosition: {x: -0.05328002, y: -2.155226}
-  playerLastFacing: {x: -1, y: 0}
+  currentQuestLocationIndex: 0
+  currentMonsterAreaIndex: 1
+  playerLastPosition: {x: -6, y: 4.68}
+  playerLastFacing: {x: 0, y: -1}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
   - {fileID: 11400000, guid: c67c2811769d0486c9806abaf62af8e6, type: 2}
-  magicCommands: []
+  magicCommands:
+  - {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
   items:
   - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
   savedLocationScene: FirstLand
-  savedLocationIndex: 0
+  savedLocationIndex: 1
   status:
-    lv: 2
-    maxHP: 20
-    maxMP: 14
-    hp: 6
-    mp: 8
-    attack: 11
-    defence: 19
-    exp: 24
-    gold: 29
+    lv: 3
+    maxHP: 28
+    maxMP: 21
+    hp: 28
+    mp: 21
+    attack: 13
+    defence: 31
+    exp: 51
+    gold: 0

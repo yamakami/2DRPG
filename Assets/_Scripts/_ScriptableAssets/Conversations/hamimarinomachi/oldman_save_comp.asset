@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf58d7f7dcfad400caf0a6230f21457b, type: 3}
-  m_Name: preacher_quest_fail
+  m_Name: oldman_save_comp
   m_EditorClassIdentifier: 
   dynamicText: 
   conversationLines:
-  - text: "\u3042\u304D\u3089\u3081\u305A\u306B\u65C5\u3092\u7D9A\u3051\u306A\u3055\u308C\u3088"
+  - text: "\u65C5\u306F\u8A18\u9332\u3057\u305F\u305E\u3044\u3002\n\u307E\u305F\u3001\u3044\u3064\u3067\u3082\u6765\u308B\u306E\u3058\u3083\u305E\u3002"
     conversationData: {fileID: 0}
     eventTrigger: {fileID: 0}
-    conversationEnd: 0
   subConverSationLines: []

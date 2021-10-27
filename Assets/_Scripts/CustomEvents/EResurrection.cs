@@ -28,7 +28,6 @@ public class EResurrection : MonoBehaviour
         var player = questUI.QuestManager.Player;
 
         npc.Stop();
-        player.TouchingToNpc(npc);
 
         messageBox.Activate();
         messageBox.PrepareConversation(conversationData);

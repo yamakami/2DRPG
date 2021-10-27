@@ -30,14 +30,19 @@ public class MessageSelect : UIBase
 
     void ClickButtonAction(MessageBox messageBox, ConversationData.Conversation conversation)
     {
+        Deactivate();
+        if(conversation.eventTrigger) conversation.eventTrigger.Invoke();
+
         if (conversation.conversationData)
+        {
             messageBox.PrepareConversation(conversation.conversationData);
+            return;
+        }
+
+        if(conversation.conversationEnd)
+            messageBox.BoxClose();
         else
             messageBox.Deactivate();
-
-        Deactivate();
-
-        if(conversation.eventTrigger) conversation.eventTrigger.Invoke();
     }
 
     void OnDisable()
