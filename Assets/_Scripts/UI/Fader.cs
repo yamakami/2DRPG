@@ -4,6 +4,7 @@ using DG.Tweening;
 
 public class Fader : UIBase
 {
+     [SerializeField] Canvas canvas;
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] Image image;
     [SerializeField] Material cutOffShader;
@@ -59,6 +60,7 @@ public class Fader : UIBase
     void FadeStart()
     {
         fading = true;
+        canvas.sortingOrder = 99;
     }
 
     void FadeEnd()
@@ -85,7 +87,12 @@ public class Fader : UIBase
 
     public bool Available()
     {
-        if (!fading && !audioSource.isPlaying) return true;
+        if (!fading && !audioSource.isPlaying)
+        {
+            canvas.sortingOrder = 5;
+            return true;
+        }
+
 
         return false;
     }

@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36b0eb8e976347c6906402d14a82c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 8437289320322214069}
   canvasGroup: {fileID: 8437289320322214072}
   image: {fileID: 8437289321810848225}
   cutOffShader: {fileID: 2100000, guid: a6aa3ad7d08fa45dbabc07afc14336c5, type: 2}

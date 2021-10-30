@@ -1,9 +1,20 @@
 using UnityEngine;
-
+using UnityEditor;
 public class Player : BaseCharacter
 {
     QuestManager questManager;
     [SerializeField] NPC contactWith;
+
+
+    public void Test()
+    {
+    #if UNITY_EDITOR
+      EditorApplication.isPlaying = false;
+    #elif UNITY_STANDALONE
+      Application.Quit();
+    #endif
+    }
+
 
     public QuestManager QuestManager { get => questManager; set => questManager = value; }
     public NPC ContactWith { get => contactWith; }
