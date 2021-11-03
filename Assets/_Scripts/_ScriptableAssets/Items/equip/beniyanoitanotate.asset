@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ddc13ad507584c29b29ef5462173800, type: 3}
+  m_Name: beniyanoitanotate
+  m_EditorClassIdentifier: 
+  useForQuest: 0
+  useForBattle: 0
+  isEquip: 1
+  itemType: 3
+  healingType: 0
+  equipPosition: 4
+  itemName: beniyaita
+  nameKana: "\u30D9\u30CB\u30E4\u306E\u76FE"
+  point: 5
+  price: 5
+  sellPrice: 8
+  player_possession_count: 1
+  player_possession_limit: 10
+  hasAnimationClip: 0
+  audioClip: {fileID: 0}
+  description: "\u5B50\u4F9B\u304C\u3054\u3063\u3053\u904A\u3073\u306B\u4F7F\u3046\u76FE\n\u591A\u5C11\u3001\u5148\u982D\u306B\u4F7F\u3048\u308B"
+  resultMessage: 

@@ -21,7 +21,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c02ff0c2da6c04b10b50f2e2cb4e65bb, type: 2}
   itemMaster:
   - {fileID: 11400000, guid: bd10e261be40249cb8af2d1c66553de4, type: 2}
-  - {fileID: 11400000, guid: f800a5106e922412b9e838d373acb298, type: 2}
-  - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
   - {fileID: 11400000, guid: 64c560d9f6d8247c782aff0a224fd742, type: 2}
   - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
+  - {fileID: 11400000, guid: 70589b6cefb0842dab7d5656472eb388, type: 2}
+  - {fileID: 11400000, guid: f800a5106e922412b9e838d373acb298, type: 2}
+  - {fileID: 11400000, guid: bc6e8adfeaa6b4cb7b1bd0ceaa67b859, type: 2}
+  - {fileID: 11400000, guid: 68dbbbc8d63aa49d5b14780e69534911, type: 2}
+  - {fileID: 11400000, guid: 314b89a316671429eb0226188e001610, type: 2}
+  - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
+  - {fileID: 11400000, guid: 058dcec293ac44354851ae242aa1a02c, type: 2}

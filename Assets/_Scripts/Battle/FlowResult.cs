@@ -67,26 +67,25 @@ public class FlowResult : FlowBase
         await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
         await UniTask.Delay(delaytime + 2000, cancellationToken: cancelToken);
 
-        var levels = battleManager.GameInfo.levelUpTable.levels;
+        var levelUpTable = battleManager.GameInfo.levelUpTable;
+        var levels = levelUpTable.levels;
 
         while (true)
         {
             var playerStatus = playerInfo.status;
-            var currentLevel = levels[ playerStatus.lv - 1 ];
-            var nextExp = currentLevel.nextLevelUpAmount + currentLevel.minimumExp;
+            var nextLevel = levels[ playerStatus.lv ];
 
-            if(playerStatus.exp < nextExp) break;
+            if(playerStatus.exp < nextLevel.minimumExp) break;
 
             PlayAudio(levelUpClip, battleManager);
 
             playerStatus.lv++;
-            var levelUp = levels[ playerStatus.lv - 1];
 
-            playerInfo.status = SetLevelUpValue(playerStatus, messageBox, levelUp, playerName);
+            playerInfo.status = SetLevelUpValue(playerStatus, messageBox, nextLevel, playerName);
             await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
             await UniTask.Delay(delaytime + 1000, cancellationToken: cancelToken);
 
-            var magicCommands = levelUp.magicCommands;
+            var magicCommands = nextLevel.magicCommands;
             if(0 < magicCommands.Length)
             {
                 SetLevelUpMagic(messageBox, magicCommands, playerInfo);

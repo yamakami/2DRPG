@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useForQuest: 0
   useForBattle: 1
+  isEquip: 0
   itemType: 2
   healingType: 0
-  equipType: 0
+  equipPosition: 0
   itemName: bomb
   nameKana: "\u7206\u5F3E"
   point: 10

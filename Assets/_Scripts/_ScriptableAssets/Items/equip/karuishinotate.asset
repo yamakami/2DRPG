@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ddc13ad507584c29b29ef5462173800, type: 3}
+  m_Name: karuishinotate
+  m_EditorClassIdentifier: 
+  useForQuest: 0
+  useForBattle: 0
+  isEquip: 0
+  itemType: 3
+  healingType: 0
+  equipPosition: 4
+  itemName: karuisinotate
+  nameKana: "\u8EFD\u77F3\u306E\u76FE"
+  point: 5
+  price: 5
+  sellPrice: 8
+  player_possession_count: 0
+  player_possession_limit: 10
+  hasAnimationClip: 0
+  audioClip: {fileID: 0}
+  description: "\u4F4E\u7D1A\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u653B\u6483\u306B\u305F\u3048\u3089\u308C\u308B"
+  resultMessage: 

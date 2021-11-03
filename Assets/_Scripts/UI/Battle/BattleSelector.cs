@@ -84,7 +84,6 @@ public class BattleSelector : UIBase
         itemSelect.Deactivate();
     }
 
-
     public void ClickEscape()
     {
         flowMain.Attacker.SelectedCommand =  battleUI.BattleManager.PlayerAction.PlayerInfo.battleCommands[1];

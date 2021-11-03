@@ -9,59 +9,63 @@ public class SaveManager : CustomEventListener
 
     string saveDataFile = "/playdata.json";
 
-    public void LoadPlayData()
-    {
-        try
+    public bool load;
+
+    private void Start() {
+        if(load)
         {
-            var playerInfo = player.QuestManager.PlayerInfo();
-            var json = System.IO.File.ReadAllText(Application.dataPath + saveDataFile);
-            var playDataFormat = JsonUtility.FromJson<PlayDataFormat>(json);
-            var masterData = playerInfo.masterData;
-
-            playerInfo.playerName = playDataFormat.playerName;
-            masterData.levelUpTable.reCalculate = playDataFormat.levelUpRecalculate;
-
-            playerInfo.currentScene = playDataFormat.savedLocationScene;
-
-            playerInfo.currentQuestLocationIndex = playDataFormat.currentQuestLocationIndex;
-            playerInfo.currentMonsterAreaIndex = playDataFormat.currentMonsterAreaIndex;
-
-            playerInfo.playerLastPosition = playDataFormat.playerLastPosition;
-            playerInfo.playerLastFacing = playDataFormat.playerLastFacing;
-
-            playerInfo.savedLocationScene = playDataFormat.savedLocationScene;
-            playerInfo.savedLocationIndex = playDataFormat.savedLocationIndex;
-            playerInfo.status = playDataFormat.status;
-
-            playerInfo.magicCommands.Clear();
-            playerInfo.items.Clear();
-
-            RestoreFromItemMaster(playDataFormat.items);
-            RestoreFromCommandMaster(playDataFormat.magicCommands);
-        }
-        catch (Exception e)
-        {
-            throw e;
-        }
+            LoadPlayData();
+            load =false;
+        }      
     }
 
-    void RestoreFromItemMaster(ItemFormat[] items)
+    public void LoadPlayData()
     {
         var playerInfo = player.QuestManager.PlayerInfo();
+        var json = System.IO.File.ReadAllText(Application.dataPath + saveDataFile);
+        var playDataFormat = JsonUtility.FromJson<PlayDataFormat>(json);
         var masterData = playerInfo.masterData;
+
+        playerInfo.playerName = playDataFormat.playerName;
+        masterData.levelUpTable.reCalculate = playDataFormat.levelUpRecalculate;
+
+        playerInfo.currentScene = playDataFormat.savedLocationScene;
+
+        playerInfo.currentQuestLocationIndex = playDataFormat.currentQuestLocationIndex;
+        playerInfo.currentMonsterAreaIndex = playDataFormat.currentMonsterAreaIndex;
+
+        playerInfo.playerLastPosition = playDataFormat.playerLastPosition;
+        playerInfo.playerLastFacing = playDataFormat.playerLastFacing;
+
+        playerInfo.savedLocationScene = playDataFormat.savedLocationScene;
+        playerInfo.savedLocationIndex = playDataFormat.savedLocationIndex;
+        playerInfo.status = playDataFormat.status;
+
+        playerInfo.magicCommands.Clear();
+        playerInfo.items.Clear();
+
+        RestoreFromItemMaster(playDataFormat, playerInfo, masterData);
+        RestoreFromCommandMaster(playDataFormat.magicCommands, playerInfo, masterData);
+    }
+
+    void RestoreFromItemMaster(PlayDataFormat playDataFormat, PlayerInfo playerInfo, MasterData masterData)
+    {
+        var equipmentFormat = playDataFormat.equipments;
         var itemMaster = masterData.itemMaster;
-        foreach(var item in items)
+
+        foreach(var item in playDataFormat.items)
         {
             var asset = masterData.FindItemFromMaster(item.itemName);
             asset.player_possession_count = item.itemPossessionCount;
+            asset.isEquip = item.isEquip;
             playerInfo.items.Add(asset);
+
+            if(asset.isEquip) playerInfo.SetEquipment(asset);
         }
     }
 
-    void RestoreFromCommandMaster(string[] commands)
+    void RestoreFromCommandMaster(string[] commands, PlayerInfo playerInfo, MasterData masterData)
     {
-        var playerInfo = player.QuestManager.PlayerInfo();
-        var masterData = playerInfo.masterData;
         var magicMaster = masterData.magicCommandMaster;
         foreach(var command in commands)
         {
@@ -90,7 +94,8 @@ public class SaveManager : CustomEventListener
         playDataFormat.playerLastPosition = playerInfo.playerLastPosition;
         playDataFormat.playerLastFacing = playerInfo.playerLastFacing;
 
-        playDataFormat.status = playerInfo.status;
+        playDataFormat.status    = playerInfo.status;
+        playDataFormat.equipments = SetEquipment(playerInfo);
 
         playDataFormat.magicCommands = SetCommandData(playDataFormat, playerInfo.magicCommands);
         playDataFormat.items = SetItemData(playerInfo.items);
@@ -115,6 +120,19 @@ public class SaveManager : CustomEventListener
         }
     }
 
+    string[] SetEquipment(PlayerInfo playerInfo)
+    {
+        var equippedItems = playerInfo.equipment.items;
+        var equipPositionCount = equippedItems.Length;
+        var equipments = new string[equipPositionCount];
+
+        for(var i=0; i < equipPositionCount; i++)
+        {
+            equipments[i] = equippedItems[i]?.itemName;
+        }
+        return equipments;
+    }
+
     string[] SetCommandData(PlayDataFormat dataFormat, List<Command> commands)
     {
         var length = commands.Count;
@@ -137,6 +155,7 @@ public class SaveManager : CustomEventListener
 
             itemFormat.itemName = items[i].itemName;
             itemFormat.itemPossessionCount = items[i].player_possession_count;
+            itemFormat.isEquip = items[i].isEquip;
             itemArray[i] = itemFormat;
         }
         return itemArray;
@@ -155,6 +174,7 @@ public class SaveManager : CustomEventListener
         public string[] magicCommands;
         public ItemFormat[] items;
         public PlayerInfo.Status status;
+        public string[] equipments;
         public LevelUpTable.Level[] levels;
     }
 
@@ -163,5 +183,6 @@ public class SaveManager : CustomEventListener
     {
         public string itemName;
         public int itemPossessionCount;
+        public bool isEquip;
     }
 }

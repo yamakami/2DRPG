@@ -5,12 +5,10 @@ public class QuestMenu : MonoBehaviour
 {
     [SerializeField] Image coverImage;
     [SerializeField] Image quitConfirm;
+    [SerializeField] Image menuOption;
+    [SerializeField] Image statusData;
 
-    public void GameQuitNo()
-    {
-        ConfirmGameQuit(false);
-        Time.timeScale = 1f;
-    }
+    [SerializeField] Image equipment;
 
     public void GameQuitYes()
     {
@@ -21,10 +19,37 @@ public class QuestMenu : MonoBehaviour
         #endif
     }
 
-    public void ConfirmGameQuit(bool activate)
+    public void ConfirmGameQuit(bool active)
     {
-        coverImage.gameObject.SetActive(activate);
-        quitConfirm.gameObject.SetActive(activate);
-        Time.timeScale = 0f;
+        ActivateCoverImage(active);
+        quitConfirm.gameObject.SetActive(active);
+    }
+
+    public void ShowMenuOption(bool active)
+    {
+        menuOption.gameObject.SetActive(active);
+    }
+
+    public void ShowStatusData(bool active)
+    {
+        statusData.gameObject.SetActive(active);
+    }
+
+    public void ShowEquipment(bool active)
+    {
+        equipment.gameObject.SetActive(active);
+    }
+
+    public void ActivateCoverImage(bool active)
+    {
+        coverImage.gameObject.SetActive(active);
+
+        var timeScale = (active)? 0 : 1; 
+        GamePause(timeScale);
+    }
+
+    public void GamePause(float timeScale)
+    {
+        Time.timeScale = timeScale;
     }
 }

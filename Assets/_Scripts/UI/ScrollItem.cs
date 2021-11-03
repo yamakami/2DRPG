@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public abstract class ScrollItem : UIBase
+public  class ScrollItem : UIBase
 {
     [SerializeField] protected ScrollRect scrollRect;
     [SerializeField] Button prefTextButton;
@@ -15,8 +15,6 @@ public abstract class ScrollItem : UIBase
         var top = 1f;
         scrollRect.verticalNormalizedPosition = top;
     }
-
-    abstract public void ActivateScrollItem(BattleSelector selector);
 
     protected Button CreateButtonUnderPanel(Transform parentTransform, string buttonText)
     {

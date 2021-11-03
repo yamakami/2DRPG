@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ddc13ad507584c29b29ef5462173800, type: 3}
+  m_Name: hiroshimabou
+  m_EditorClassIdentifier: 
+  useForQuest: 0
+  useForBattle: 0
+  isEquip: 1
+  itemType: 3
+  healingType: 0
+  equipPosition: 0
+  itemName: tabinofuku
+  nameKana: "\u5E83\u5CF6\u30AB\u30FC\u30D7\u30B9\u306E\u5E3D\u5B50"
+  point: 12
+  price: 30
+  sellPrice: 8
+  player_possession_count: 1
+  player_possession_limit: 10
+  hasAnimationClip: 0
+  audioClip: {fileID: 0}
+  description: "\u5E83\u5CF6\u30D5\u30A1\u30F3\u304C\u559C\u3076\u5E3D\u5B50"
+  resultMessage: 

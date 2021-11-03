@@ -1,6 +1,6 @@
 public class BattleMagicSelect: ScrollItem
 {
-    public override void ActivateScrollItem(BattleSelector selector)
+    public void ActivateScrollItem(BattleSelector selector)
     {
         Activate();
 

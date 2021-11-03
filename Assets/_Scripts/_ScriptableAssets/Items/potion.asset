@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useForQuest: 1
   useForBattle: 1
+  isEquip: 0
   itemType: 1
   healingType: 2
-  equipType: 0
+  equipPosition: 0
   itemName: potion
   nameKana: "\u30DD\u30FC\u30B7\u30E7\u30F3"
   point: 5

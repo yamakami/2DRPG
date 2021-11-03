@@ -22,18 +22,42 @@ public class PlayerInfo : ScriptableObject
 
     public Status status;
 
+    public Equipment equipment;
+
     [System.Serializable]
     public class Status
     {
-        [SerializeField] public int lv;
-        [SerializeField] public int maxHP;
-        [SerializeField] public int maxMP;
-        [SerializeField] public int hp;
-        [SerializeField] public int mp;
-        [SerializeField] public int attack;
-        [SerializeField] public int defence;
-        [SerializeField] public int exp;
-        [SerializeField] public int gold;
+        public int lv;
+        public int maxHP;
+        public int maxMP;
+        public int hp;
+        public int mp;
+        public int attack;
+        public int defence;
+        public int exp;
+        public int gold;
+    }
+
+    [System.Serializable]
+    public class Equipment
+    {
+        public Item[] items = new Item[6];
+    }
+
+    public void UnEquipped(Item item)
+    {
+        if(item != null) item.isEquip = false;
+    }
+
+    public void SetEquipment(Item item)
+    {
+        var position = (int)item.equipPosition;
+
+        var prevItem = equipment.items[position];
+         UnEquipped(prevItem);
+
+        item.isEquip = true;
+        equipment.items[position] = item;
     }
 
     public void InitializePlayerInfo()

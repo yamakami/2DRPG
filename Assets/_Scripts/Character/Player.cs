@@ -15,7 +15,6 @@ public class Player : BaseCharacter
     #endif
     }
 
-
     public QuestManager QuestManager { get => questManager; set => questManager = value; }
     public NPC ContactWith { get => contactWith; }
 

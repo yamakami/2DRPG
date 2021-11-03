@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Item")]
@@ -24,20 +23,21 @@ public class Item : ScriptableObject
         MP
     }
 
-    public enum EQUIP_TYPE
+    public enum EQUIP_POSITION
     {
-        NONE,
-        SWORD,
-        SHIELD,
-        ARMOR,
-        HELMET,
-        GLOVE,
-        BOOTS
+        NONE = -1,
+        HEAD = 0,
+        BODY = 1,
+        HAND = 2,
+        LEG = 3,
+        SHIELD = 4,
+        ARM = 5,
     }
 
+    public bool isEquip;
     public ITEM_TYPE itemType;
     public HEALING_TYPE healingType;
-    public EQUIP_TYPE equipType;
+    public EQUIP_POSITION equipPosition;
     public string itemName;
     public string nameKana;
     public int point = 0;
@@ -52,7 +52,6 @@ public class Item : ScriptableObject
     public string description;
     [TextArea(2, 5)]
     public string resultMessage;
-
 
     public int AffectValue()
     {

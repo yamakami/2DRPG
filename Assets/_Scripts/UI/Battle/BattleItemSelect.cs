@@ -2,7 +2,7 @@ using UnityEngine;
 public class BattleItemSelect: ScrollItem
 {
     [SerializeField] Command itemCommand;
-    public override void ActivateScrollItem(BattleSelector selector)
+    public void ActivateScrollItem(BattleSelector selector)
     {
         Activate();
 
