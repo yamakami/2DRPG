@@ -44,17 +44,17 @@ public class PlayerInfo : ScriptableObject
         public Item[] items = new Item[6];
     }
 
-    public void UnEquipped(Item item)
+    public void UnEquipped(int index)
     {
+        var item = equipment.items[index];
         if(item != null) item.isEquip = false;
+        equipment.items[index] = null;
     }
 
     public void SetEquipment(Item item)
     {
         var position = (int)item.equipPosition;
-
-        var prevItem = equipment.items[position];
-         UnEquipped(prevItem);
+         UnEquipped(position);
 
         item.isEquip = true;
         equipment.items[position] = item;
