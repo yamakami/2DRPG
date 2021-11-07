@@ -23,8 +23,11 @@ public class PlayerAction : BaseAction
         maxHP = playerInfo.status.maxHP;
         maxMP = playerInfo.status.maxMP;
         hp = playerInfo.status.hp;
-        attack = playerInfo.status.attack;
-        defence = playerInfo.status.defence;
+
+        var equippedItems = playerInfo.equipment.items;
+        attack = playerInfo.status.attack + AddItemAbilityToPlayerStatus(equippedItems[5]);
+        defence = playerInfo.status.defence + AddItemAbilityToPlayerStatus(equippedItems);
+
         mp = playerInfo.status.mp;
         exp = playerInfo.status.exp;
         gold = playerInfo.status.gold;
@@ -32,6 +35,20 @@ public class PlayerAction : BaseAction
         HpBar.PlayerName.text = characterName;
         HpBar.AffectValueToBar(hp, maxHP, 0f);
         MpBar.AffectValueToBar(mp, maxMP, 0f);
+    }
+
+    int AddItemAbilityToPlayerStatus(params Item[] items)
+    {
+        var value = 0;
+        var ct = 0;
+        foreach(var item in items)
+        {
+            if(ct == 5) break;
+
+            value += (item)? item.point: 0;
+            ct++;
+        }
+        return value;
     }
 
     override public void PlayDamage(AudioSource audio)

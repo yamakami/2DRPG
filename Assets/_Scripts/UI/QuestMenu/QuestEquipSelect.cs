@@ -65,10 +65,10 @@ public class QuestEquipSelect :ScrollItem
         totalDefenceValue = playerStatus.defence + defencePoint;
 
         stringBuilder.Clear();
-        stringBuilder.AppendFormat("攻撃力: {0}\n", playerStatus.attack);
-        stringBuilder.AppendFormat("守備力: {0}\n", playerStatus.defence);
         stringBuilder.AppendFormat("総合攻撃力: {0}\n", totalAttackValue);
-        stringBuilder.AppendFormat("総合守備力: {0}", totalDefenceValue);
+        stringBuilder.AppendFormat("総合守備力: {0}\n", totalDefenceValue);
+        stringBuilder.AppendFormat("攻撃力: {0}\n", playerStatus.attack);
+        stringBuilder.AppendFormat("守備力: {0}", playerStatus.defence);
         attackStatus.text = stringBuilder.ToString();
     }
 

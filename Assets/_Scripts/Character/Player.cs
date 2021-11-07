@@ -31,7 +31,6 @@ public class Player : BaseCharacter
         if (Freeze)
             return;
 
-        move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         var talking = Input.GetKeyDown(KeyCode.Space);
 
         if (contactWith && talking)
@@ -39,10 +38,15 @@ public class Player : BaseCharacter
             StartConversation();
             return;
         }
+ 
+        move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if(move == Vector2.zero) return;
 
         MovePosition();
         SetPlayerLastMove();
     }
+
 
     void StartConversation()
     {
