@@ -6,6 +6,7 @@ public  class ScrollItem : UIBase
 {
     [SerializeField] protected ScrollRect scrollRect;
     [SerializeField] Button prefTextButton;
+    public bool forBattleUI;
  
     Tween tween;
     float duration = 0.5f;
@@ -40,7 +41,8 @@ public  class ScrollItem : UIBase
 
     public void MoveUp()
     {       
-        if( scrollRect.verticalNormalizedPosition < 1f ) tween = NormalizedPos(1f, duration);
+
+        if( scrollRect.verticalNormalizedPosition < 1f )　NormalizedPos(1f, duration);
     }
 
     public void MoveUpEnd()
@@ -50,7 +52,7 @@ public  class ScrollItem : UIBase
 
     public void MoveDown()
     {
-        if( 0 < scrollRect.verticalNormalizedPosition ) tween = NormalizedPos(0f, duration);
+        if( 0 < scrollRect.verticalNormalizedPosition )　NormalizedPos(0f, duration);
     }
 
     public void MoveDownEnd()
@@ -61,6 +63,8 @@ public  class ScrollItem : UIBase
     Tween NormalizedPos(float to, float duration)
     {
             tween = scrollRect.DOVerticalNormalizedPos(to, duration);
+            if(!forBattleUI) tween.SetUpdate( true );
+
             tween.Play();
             return tween;
     }

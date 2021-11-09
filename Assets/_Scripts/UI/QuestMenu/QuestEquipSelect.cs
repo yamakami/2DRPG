@@ -39,8 +39,8 @@ public class QuestEquipSelect :ScrollItem
 
             var trigger = button.GetComponent<EventTrigger>();
 
-            DescriptionMessageAction(trigger,  EventTriggerType.PointerEnter, item.description);
-            DescriptionMessageAction(trigger,  EventTriggerType.PointerExit);
+            DescriptionMessageAction(trigger, EventTriggerType.PointerEnter, item.description);
+            DescriptionMessageAction(trigger, EventTriggerType.PointerExit);
         }
     }
 

@@ -1282,6 +1282,7 @@ MonoBehaviour:
   scrollRect: {fileID: 4120860146043346632}
   prefTextButton: {fileID: 5713254857429055678, guid: 23c9e5798b191440b8c00c0472326e11,
     type: 3}
+  forBattleUI: 1
   itemCommand: {fileID: 11400000, guid: a9ba3718ed3c049ce999cdbb16c5a3d4, type: 2}
 --- !u!114 &4120860146043346632
 MonoBehaviour:

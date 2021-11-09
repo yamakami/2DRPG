@@ -7,7 +7,8 @@ public class QuestMenu : MonoBehaviour
     [SerializeField] Image quitConfirm;
     [SerializeField] Image menuOption;
     [SerializeField] Image statusData;
-
+    [SerializeField] Image magicsSelect;
+    [SerializeField] Image itemsSelect;
     [SerializeField] Image equipment;
 
     public void GameQuitYes()
@@ -33,6 +34,16 @@ public class QuestMenu : MonoBehaviour
     public void ShowStatusData(bool active)
     {
         statusData.gameObject.SetActive(active);
+    }
+
+    public void ShowMagicsSelect(bool active)
+    {
+        magicsSelect.gameObject.SetActive(active);
+    }
+
+    public void ShowItemsSelect(bool active)
+    {
+        itemsSelect.gameObject.SetActive(active);
     }
 
     public void ShowEquipment(bool active)

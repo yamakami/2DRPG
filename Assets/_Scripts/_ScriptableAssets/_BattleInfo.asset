@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBattle: 0
   isQuestFail: 0
-  livingMonsterList: {fileID: 11400000, guid: 8a9d26c1bcde34b83b881ce62300df09, type: 2}
+  livingMonsterList: {fileID: 0}
