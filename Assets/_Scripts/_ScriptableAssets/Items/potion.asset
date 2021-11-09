@@ -17,13 +17,13 @@ MonoBehaviour:
   isEquip: 0
   itemType: 1
   healingType: 2
-  equipPosition: 0
+  equipPosition: -1
   itemName: potion
   nameKana: "\u30DD\u30FC\u30B7\u30E7\u30F3"
   point: 5
   price: 3
   sellPrice: 1
-  player_possession_count: 0
+  player_possession_count: 81
   player_possession_limit: 0
   hasAnimationClip: 0
   audioClip: {fileID: 8300000, guid: 80a4e4cef1d3e49e8b35858161dd216c, type: 3}

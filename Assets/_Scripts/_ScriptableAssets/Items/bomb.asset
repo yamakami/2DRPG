@@ -17,7 +17,7 @@ MonoBehaviour:
   isEquip: 0
   itemType: 2
   healingType: 0
-  equipPosition: 0
+  equipPosition: -1
   itemName: bomb
   nameKana: "\u7206\u5F3E"
   point: 10

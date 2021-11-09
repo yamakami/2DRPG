@@ -58,13 +58,20 @@ public class Item : ScriptableObject
         return point;
     }
 
-    public int HealAffectValue(PlayerAction playerAction)
+    public int HealAffectValue(int hp, int maxHP, int mp, int maxMP)
     {
-        var hp = playerAction.hp;
-        var maxHP = playerAction.maxHP;
-        var total = Mathf.Clamp(hp + point, 0, maxHP);
+        var val = hp;
+        var maxVal = maxHP;
 
-        return total - hp;
+        if(healingType == Item.HEALING_TYPE.MP)
+        {
+            val = mp;
+            maxVal = maxMP;
+        }
+
+        var total = Mathf.Clamp(val + point, 0, maxVal);
+
+        return total - val;
     }
 
     public void Consume(PlayerInfo playerInfo)
