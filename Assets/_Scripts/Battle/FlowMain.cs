@@ -42,8 +42,6 @@ public class FlowMain : FlowBase
         var affectPoint = 0;
         var attackerName = "";
         var defenderName = "";
-        var affectMessage = "";
-        var affectMessageParams = new object[3];
 
         while(true)
         {            
@@ -53,8 +51,7 @@ public class FlowMain : FlowBase
 
             if (turn == TURN.PLAYER)
             {
-                var open = true;
-                battleUI.BattleSelector.ActivateBasicCommands(open);
+                battleUI.BattleSelector.ActivateBasicCommands(true);
                 await UniTask.WaitUntil(() => playerInput, cancellationToken: cancelToken);
             }
             else
@@ -74,39 +71,32 @@ public class FlowMain : FlowBase
                 switch(command.commandType)
                 {
                     case Command.COMMAND_TYPE.FIST_ATTACK:
-                        DisplayMessage(messageBox, "{0}は{1}を攻撃した！", attackerName, defenderName);
+                        DisplayMessage(messageBox, command.ActionMessage(), attackerName, defenderName);
                         await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
                         await UniTask.Delay(delaytime + 300, cancellationToken: cancelToken);
 
                         affectPoint = attacker.Attack(defender);
                         break;
-
                     case Command.COMMAND_TYPE.ITEM:
                         var item = attacker.SelectedItem;
+                        var actionMessage = item.ActionMessage();
+                        actionMessage = (actionMessage != null)? actionMessage : command.ActionMessage();
 
-                        DisplayMessage(messageBox, "{0}は{1}を使った！", attackerName, item.nameKana);
+                        DisplayMessage(messageBox, actionMessage, attackerName, item.nameKana);
                         await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
                         await UniTask.Delay(delaytime + 250, cancellationToken: cancelToken);   
 
-                        item.Consume(playerAction.PlayerInfo);
+                        if(attacker.SelectedItem.itemType == Item.ITEM_TYPE.ATTACK_ITEM) command = playerAction.PlayerInfo.battleCommands[0];
 
-                        if(attacker.SelectedItem.itemType == Item.ITEM_TYPE.ATTACK_ITEM)
-                        {
-                            command = playerAction.PlayerInfo.battleCommands[0];
-                            affectPoint = item.AffectValue();
-                        }
-                        else
-                        {
-                            affectPoint = item.HealAffectValue(playerAction.hp, playerAction.maxHP, playerAction.mp, playerAction.maxMP);
-                        }
+                        item.Consume(playerAction.PlayerInfo);
+                        affectPoint = item.AffectValue(attacker);
 
                         playerAction.PlayItemConsumption(audioSource, attacker.SelectedItem, defender as MonsterAction);
                         await UniTask.WaitUntil(() => !defender.AnimationPlaying(), cancellationToken: cancelToken);
                         await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);
                         break;
-
                     case Command.COMMAND_TYPE.ESCAPE:
-                        DisplayMessage(messageBox, "{0}は逃げだした", attackerName);
+                        DisplayMessage(messageBox, command.ActionMessage(), attackerName);
                         await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
                         audioSource.PlayOneShot(command.audioClip);
                         await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);   
@@ -119,30 +109,27 @@ public class FlowMain : FlowBase
                             return;
                         }
                         break;
-
-                    default:
+                    case Command.COMMAND_TYPE.MAGIC_ATTACK:
+                    case Command.COMMAND_TYPE.MAGIC_HEAL:
+                        var delay = delaytime;
                         if(defendersLoopCount == 0)
                         {
-                            DisplayMessage(messageBox, "{0}は{1}を唱えた！", attackerName, command.nameKana);
+                            DisplayMessage(messageBox, command.ActionMessage(), attackerName, command.nameKana);
                             await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
                             await UniTask.Delay(delaytime + 250, cancellationToken: cancelToken);   
 
                             attacker.mp -= command.magicCommand.consumptionMp;
                             defender.PlayEnemyAttack(audioSource, command);
     
-
                             if(typeof(PlayerAction) == attacker.GetType()) playerAction.MpBar.AffectValueToBar(attacker.mp, attacker.maxMP);
 
                             await UniTask.WaitUntil(() => !defender.AnimationPlaying(), cancellationToken: cancelToken);
-                            await UniTask.Delay(delaytime + 150, cancellationToken: cancelToken);
+                            delay = delaytime + 150;
                         }
 
-                        if(attacker.SelectedCommand.commandType == Command.COMMAND_TYPE.MAGIC_ATTACK)
-                            affectPoint = command.magicCommand.MagicAttack();
-                        else
-                            affectPoint = attacker.SelectedCommand.magicCommand.Heal(defender.hp, defender.maxHP);
+                        affectPoint = command.magicCommand.AffectedValue(command.commandType, defender);
 
-                        await UniTask.Delay(delaytime, cancellationToken: cancelToken);
+                        await UniTask.Delay(delay, cancellationToken: cancelToken);
                         break;
                 }
 
@@ -150,58 +137,47 @@ public class FlowMain : FlowBase
 
                 switch(command.commandType)
                 {
-                    case Command.COMMAND_TYPE.MAGIC_HEAL:
-                        defender.hp += affectPoint;
-                        affectMessage = "{0}はHPが{1}回復した！";
-                        affectMessageParams[0] = defenderName;
-                        affectMessageParams[1] = affectPoint;
-                        defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
-                        break;
- 
-                     case Command.COMMAND_TYPE.ITEM:
-                        affectMessage = "{0}は{1}が{2}回復した！";
-                        affectMessageParams[0] = defenderName;
-                        if(attacker.SelectedItem.healingType == Item.HEALING_TYPE.HP)
-                        {
-                            defender.hp += affectPoint;
-                            affectMessageParams[1] = "HP";
-                            defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
-                        }
-                        else
-                        {
-                            defender.mp += affectPoint;
-                            affectMessageParams[1] = "MP";
-                            playerAction.MpBar.AffectValueToBar(defender.mp, defender.maxMP);
-                        }
-                        affectMessageParams[2] = affectPoint;
-                        break;
-
-                    case Command.COMMAND_TYPE.ESCAPE:
-                        affectMessage = "しかし、まわりこまれてしまった！";
-                        break;
-
-                    default:
+                    case Command.COMMAND_TYPE.FIST_ATTACK:
+                    case Command.COMMAND_TYPE.MAGIC_ATTACK:
                         if(0 < affectPoint)
                         {
                             defender.hp -= affectPoint;
                             defender.PlayDamage(audioSource);
                             await UniTask.WaitUntil(() => !attacker.TweenPlaying, cancellationToken: cancelToken);
 
-                            affectMessage = "{0}は{1}HPのダメージを受けた！！！";
-                            affectMessageParams[0] = defenderName;
-                            affectMessageParams[1] = affectPoint;
                             defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
+                            DisplayMessage(messageBox, Command.DamagedMessage(), defenderName, affectPoint);
                         }
                         else
                         {
                             defender.AttackNoDamage(audioSource);
-                            affectMessage = "{0}はダメージを受けてない！！！！";
-                            affectMessageParams[0] = defenderName;
+                            DisplayMessage(messageBox, Command.NoDamagedMessage(), defenderName);
                         }
+                        break;
+                    case Command.COMMAND_TYPE.MAGIC_HEAL:
+                        defender.hp += affectPoint;
+                        defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
+                        DisplayMessage(messageBox, MagicCommand.HealMessage(), defenderName, affectPoint);
+
+                        break;
+                     case Command.COMMAND_TYPE.ITEM:
+                        if(attacker.SelectedItem.healingType == Item.HEALING_TYPE.HP)
+                        {
+                            defender.hp += affectPoint;
+                            defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
+                        }
+                        else
+                        {
+                            defender.mp += affectPoint;
+                            playerAction.MpBar.AffectValueToBar(defender.mp, defender.maxMP);
+                        }
+                        DisplayMessage(messageBox, Item.HealMessage(), defenderName, attacker.SelectedItem.healingType, affectPoint);
+                        break;
+                    case Command.COMMAND_TYPE.ESCAPE:
+                        DisplayMessage(messageBox, Command.FailedEscapeMessage());
                         break;
                 }
 
-                DisplayMessage(messageBox, affectMessage , affectMessageParams);
                 await UniTask.WaitUntil(() => messageBox.Available(), cancellationToken: cancelToken);
                 await UniTask.Delay(delaytime + 300, cancellationToken: cancelToken);
 

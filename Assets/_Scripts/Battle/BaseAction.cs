@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseAction : MonoBehaviour
+public abstract class BaseAction : MonoBehaviour, ICharacterStatable
 {
     public string characterName;
     [SerializeField] Command selectedCommand;
@@ -29,8 +29,13 @@ public abstract class BaseAction : MonoBehaviour
     public bool TweenPlaying { get => tweenPlaying; set => tweenPlaying = value; }
     public LifeBar HpBar { get => hpBar; set => hpBar = value; }
 
-    public abstract void PlayDamage(AudioSource audio);
+    public string Name { get => characterName; set => characterName = value; }
+    public int MaxHP { get => maxHP; }
+    public int MaxMP { get => maxMP; }
+    public int Hp { get => hp; set => hp = value; }
+    public int Mp { get => mp; set => mp = value; }
 
+    public abstract void PlayDamage(AudioSource audio);
 
     virtual public void PlayEnemyAttack(AudioSource audio, Command command)
     {

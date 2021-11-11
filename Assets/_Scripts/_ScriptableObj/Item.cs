@@ -53,20 +53,22 @@ public class Item : ScriptableObject
     [TextArea(2, 5)]
     public string resultMessage;
 
-    public int AffectValue()
+    public int AffectValue(ICharacterStatable user)
     {
-        return point;
+        if(itemType == ITEM_TYPE.ATTACK_ITEM) return point;
+
+        return HealAffectValue( user);
     }
 
-    public int HealAffectValue(int hp, int maxHP, int mp, int maxMP)
+    int HealAffectValue(ICharacterStatable user)
     {
-        var val = hp;
-        var maxVal = maxHP;
+        var val = user.Hp;
+        var maxVal = user.MaxHP;
 
         if(healingType == Item.HEALING_TYPE.MP)
         {
-            val = mp;
-            maxVal = maxMP;
+            val = user.Mp;
+            maxVal = user.MaxMP;
         }
 
         var total = Mathf.Clamp(val + point, 0, maxVal);
@@ -81,4 +83,19 @@ public class Item : ScriptableObject
         if(player_possession_count < 1)
             playerInfo.items.Remove(this);
     }
+
+    public string ActionMessage()
+    {
+        var message = "";
+        switch(itemName)
+        {
+            default:
+                message = "{0}は{1}を使った！";
+                break;
+        }
+
+        return message;
+    }
+
+    public static string HealMessage() { return "{0}は{1}が{2}回復した！"; }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "New PlayerInfo", menuName = "PlayerInfo")]
-public class PlayerInfo : ScriptableObject
+public class PlayerInfo : ScriptableObject, ICharacterStatable
 {
     public MasterData masterData;
     public string playerName;
@@ -23,6 +23,12 @@ public class PlayerInfo : ScriptableObject
     public Status status;
 
     public Equipment equipment;
+
+    public string Name { get => playerName; set => playerName = value; }
+    public int MaxHP { get => status.maxHP; }
+    public int MaxMP { get => status.maxMP; }
+    public int Hp { get => status.hp; set => status.hp = value; }
+    public int Mp { get => status.mp; set => status.mp = value; }
 
     [System.Serializable]
     public class Status

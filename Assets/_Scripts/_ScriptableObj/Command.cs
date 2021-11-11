@@ -22,6 +22,35 @@ public class Command : ScriptableObject
     [TextArea(2, 5)]
     public string description;
     public MagicCommand magicCommand = default;
+
+    public string ActionMessage()
+    {
+        var message = "";
+        switch(commandType)
+        {
+            case COMMAND_TYPE.FIST_ATTACK:
+                message = "{0}は{1}を攻撃した！";
+                break;
+
+            case COMMAND_TYPE.ITEM:
+                message = "{0}は{1}を使った！";
+                break;
+            case COMMAND_TYPE.ESCAPE:
+                message = "{0}は逃げだした";
+                break;
+            case COMMAND_TYPE.MAGIC_ATTACK:
+            case COMMAND_TYPE.MAGIC_DEFENCE:
+            case COMMAND_TYPE.MAGIC_HEAL:
+                message = "{0}は{1}を唱えた！";
+                break;
+        }
+
+        return message;
+    }
+
+    public static string DamagedMessage() { return "{0}は{1}HPのダメージを受けた！！！"; }
+    public static string NoDamagedMessage() { return "{0}はダメージを受けてない！！！！"; }
+    public static string FailedEscapeMessage() { return "{しかし、まわりこまれてしまった！"; }
 }
 
 [System.Serializable]
@@ -37,16 +66,24 @@ public class MagicCommand
     public int consumptionMp;
 
     [SerializeField] int[] attackHealPoint;
-    public int MagicAttack()
+
+    public int AffectedValue(Command.COMMAND_TYPE commandType, ICharacterStatable target)
+    {
+        if(commandType == Command.COMMAND_TYPE.MAGIC_ATTACK) return AttackDamageValue();
+        return HealValue(target.Hp, target.MaxHP);
+    }
+
+    int AttackDamageValue()
     {
         return Random.Range(attackHealPoint[0], attackHealPoint[1] + 1);
     }
  
-    public int Heal(int hp, int maxHP)
+    int HealValue(int hp, int maxHP)
     {
-        var healValue = MagicAttack();
+        var healValue = AttackDamageValue();
         var total = Mathf.Clamp(hp + healValue, 0, maxHP);
 
         return total - hp;
     }
+    public static string HealMessage() { return "{0}はHPが{1}回復した！"; }
 }

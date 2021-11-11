@@ -16,15 +16,18 @@ MonoBehaviour:
   playerName: "\u3055\u308B"
   currentScene: FirstLand
   currentQuestLocationIndex: 0
-  currentMonsterAreaIndex: 0
-  playerLastPosition: {x: 5.2333136, y: -1.4800011}
-  playerLastFacing: {x: 0, y: -1}
+  currentMonsterAreaIndex: 1
+  playerLastPosition: {x: 1.0111483, y: -2.6606448}
+  playerLastFacing: {x: 1, y: 0}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
   - {fileID: 11400000, guid: c67c2811769d0486c9806abaf62af8e6, type: 2}
   magicCommands:
   - {fileID: 11400000, guid: 1896f9e1b47664cf3ac2168744ab0e9b, type: 2}
   - {fileID: 11400000, guid: 30d9c341ef6f643279a8e4e7e4466f13, type: 2}
+  - {fileID: 11400000, guid: 3218df6324483473e84b129f2db6b9ab, type: 2}
+  - {fileID: 11400000, guid: 9cf7bff69c1bf4d358047dde4baf3ef3, type: 2}
+  - {fileID: 11400000, guid: c02ff0c2da6c04b10b50f2e2cb4e65bb, type: 2}
   items:
   - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}
   - {fileID: 11400000, guid: f800a5106e922412b9e838d373acb298, type: 2}
@@ -32,18 +35,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70589b6cefb0842dab7d5656472eb388, type: 2}
   - {fileID: 11400000, guid: 64c560d9f6d8247c782aff0a224fd742, type: 2}
   - {fileID: 11400000, guid: 216113d9fe7a84afab10ae45805da5c7, type: 2}
+  - {fileID: 11400000, guid: bd10e261be40249cb8af2d1c66553de4, type: 2}
   savedLocationScene: FirstLand
   savedLocationIndex: 0
   status:
-    lv: 6
+    lv: 7
     maxHP: 50
-    maxMP: 37
-    hp: 28
-    mp: 28
+    maxMP: 49
+    hp: 50
+    mp: 45
     attack: 27
-    defence: 49
-    exp: 333
-    gold: 263
+    defence: 52
+    exp: 539
+    gold: 526
   equipment:
     items:
     - {fileID: 11400000, guid: bc6e8adfeaa6b4cb7b1bd0ceaa67b859, type: 2}
