@@ -97,5 +97,16 @@ public class Item : ScriptableObject
         return message;
     }
 
-    public static string HealMessage() { return "{0}は{1}が{2}回復した！"; }
+    public string AffectMessage(bool result = true)
+    {
+        var message = "";
+        switch(itemName)
+        {
+            default:
+                message =  (result)? "{0}は{1}が{2}回復した！": "何もおこらなかった";
+                break;
+        }
+
+        return message;
+    }
 }

@@ -34,8 +34,6 @@ public class QuestItemSelect :ScrollItem
         }
     }
 
-
-
     void DescriptionMessageAction(EventTrigger trigger, EventTriggerType triggerType, string str=null)
     {
         description.text = str;

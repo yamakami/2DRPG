@@ -48,7 +48,24 @@ public class Command : ScriptableObject
         return message;
     }
 
-    public static string DamagedMessage() { return "{0}は{1}HPのダメージを受けた！！！"; }
+    public string AffectMessage()
+    {
+        var message = "";
+        switch(commandType)
+        {
+            case Command.COMMAND_TYPE.FIST_ATTACK:
+            case Command.COMMAND_TYPE.MAGIC_ATTACK:
+                message = "{0}は{1}HPのダメージを受けた！！！";;
+                break;
+
+            case Command.COMMAND_TYPE.MAGIC_HEAL:
+                message = "{0}はHPが{1}回復した！";
+                break;
+        }
+
+        return message;        
+    }
+ 
     public static string NoDamagedMessage() { return "{0}はダメージを受けてない！！！！"; }
     public static string FailedEscapeMessage() { return "{しかし、まわりこまれてしまった！"; }
 }
@@ -85,5 +102,4 @@ public class MagicCommand
 
         return total - hp;
     }
-    public static string HealMessage() { return "{0}はHPが{1}回復した！"; }
 }

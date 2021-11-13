@@ -27,7 +27,7 @@ public class LifeBar : MonoBehaviour
                                          canvasCurrentPosition.y  + sp.bounds.size.y / 2);
     }
 
-    public void AffectValueToBar(float currentValue, float maxValue, float duration = 0.7f)
+    public void AffectValueToBar(float currentValue, float maxValue, float duration = 2f)
     {
         var lifeValueRatio = currentValue / maxValue;
         var newDelta = new Vector2(backGroundSizeDelta.x * lifeValueRatio, backGroundSizeDelta.y);

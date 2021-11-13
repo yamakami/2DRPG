@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Linq;
+using System.Threading;
 
 public class FlowMain : FlowBase
 {
@@ -146,7 +147,7 @@ public class FlowMain : FlowBase
                             await UniTask.WaitUntil(() => !attacker.TweenPlaying, cancellationToken: cancelToken);
 
                             defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
-                            DisplayMessage(messageBox, Command.DamagedMessage(), defenderName, affectPoint);
+                            DisplayMessage(messageBox, command.AffectMessage(), defenderName, affectPoint);
                         }
                         else
                         {
@@ -157,7 +158,7 @@ public class FlowMain : FlowBase
                     case Command.COMMAND_TYPE.MAGIC_HEAL:
                         defender.hp += affectPoint;
                         defender.HpBar.AffectValueToBar(defender.hp, defender.maxHP);
-                        DisplayMessage(messageBox, MagicCommand.HealMessage(), defenderName, affectPoint);
+                        DisplayMessage(messageBox, command.AffectMessage(), defenderName, affectPoint);
 
                         break;
                      case Command.COMMAND_TYPE.ITEM:
@@ -171,7 +172,7 @@ public class FlowMain : FlowBase
                             defender.mp += affectPoint;
                             playerAction.MpBar.AffectValueToBar(defender.mp, defender.maxMP);
                         }
-                        DisplayMessage(messageBox, Item.HealMessage(), defenderName, attacker.SelectedItem.healingType, affectPoint);
+                        DisplayMessage(messageBox, attacker.SelectedItem.AffectMessage(), defenderName, attacker.SelectedItem.healingType, affectPoint);
                         break;
                     case Command.COMMAND_TYPE.ESCAPE:
                         DisplayMessage(messageBox, Command.FailedEscapeMessage());
