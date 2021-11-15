@@ -30,6 +30,7 @@ public class MessageText : UIBase
 
     void TalkSoundPlay()
     {
+        if (!talkSound.isActiveAndEnabled) return; 
         if (talkSound) talkSound.Play();
     }
 
@@ -37,6 +38,11 @@ public class MessageText : UIBase
     {
         available = true;
         if (talkSound) talkSound.Stop();
+    }
+
+    public void AudioMute(bool mute)
+    {
+        talkSound.enabled = !mute;
     }
 }
 

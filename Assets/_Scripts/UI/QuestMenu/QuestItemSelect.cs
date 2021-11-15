@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Text;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -9,17 +8,11 @@ public class QuestItemSelect :ScrollItem
     [SerializeField] Text description;
     [SerializeField] ConversationData emptyConversationData;
 
-    StringBuilder stringBuilder;
-
-    void Awake()
-    {
-        stringBuilder = new StringBuilder();
-    }
-
     void OnEnable()
     {
         var playerInfo = questUI.QuestManager.PlayerInfo();
         var scrollContent = scrollRect.content;
+        var stringBuilder = questUI.MessageBox.StringBuilder;
 
         foreach(var item in playerInfo.items)
         {            
@@ -52,12 +45,9 @@ public class QuestItemSelect :ScrollItem
     {
         var messageBox = questUI.MessageBox;
         var questMenu = questUI.QuestMenu;
+ 
+        messageBox.EnableAsActionMessage();
 
-        emptyConversationData.conversationLines[0].text = "";
-        emptyConversationData.conversationLines[1].text = "";
-
-        messageBox.SkipEnable = true;
-        messageBox.Activate();
         UseItem(questUI.QuestManager.PlayerInfo(), item, messageBox);
         questUI.QuestManager.Player.StopPlayer();
 
@@ -67,6 +57,7 @@ public class QuestItemSelect :ScrollItem
 
     void UseItem(PlayerInfo playerInfo, Item item, MessageBox messageBox)
     {
+        var stringBuilder = messageBox.StringBuilder;
         stringBuilder.Clear();
 
         switch(item.itemName)

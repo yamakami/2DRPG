@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using System.Text;
 
 public class MessageBox : UIBase
 {
@@ -14,18 +15,30 @@ public class MessageBox : UIBase
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>();
 
+    StringBuilder stringBuilder = new StringBuilder();
+
     bool skipEnable;
+    bool soundMute;
 
     public QuestManager QuestManager { set => questManager = value; }
-    public bool SkipEnable { get => skipEnable; set => skipEnable = value; }
+    public StringBuilder StringBuilder { get => stringBuilder; }
 
     void OnEnable()
     {
+        if(soundMute) messageText.AudioMute(true);
+
         if(questManager.BattleInfo().isQuestFail) return;
         if(skipEnable) { skipEnable = false; return; } 
 
         conversationData = questManager.Player.ContactWith.ConversationData;
         PrepareConversation(conversationData);
+    }
+
+    public void EnableAsActionMessage()
+    {
+        skipEnable = true;
+        soundMute = true;
+        Activate();
     }
 
     public void PrepareConversation(ConversationData _conversationData)
@@ -84,5 +97,11 @@ public class MessageBox : UIBase
     {
         Deactivate();
         questManager.Player.EnableMove();
+    }
+
+    void OnDisable()
+    {
+        soundMute = false;
+        messageText.AudioMute(false);
     }
 }
