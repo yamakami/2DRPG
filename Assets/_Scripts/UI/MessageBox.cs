@@ -26,9 +26,8 @@ public class MessageBox : UIBase
     void OnEnable()
     {
         if(soundMute) messageText.AudioMute(true);
-
         if(questManager.BattleInfo().isQuestFail) return;
-        if(skipEnable) { skipEnable = false; return; } 
+        if(skipEnable) return;
 
         conversationData = questManager.Player.ContactWith.ConversationData;
         PrepareConversation(conversationData);
@@ -102,6 +101,7 @@ public class MessageBox : UIBase
     void OnDisable()
     {
         soundMute = false;
+        skipEnable = false;
         messageText.AudioMute(false);
     }
 }

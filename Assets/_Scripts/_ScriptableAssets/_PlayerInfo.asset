@@ -15,10 +15,10 @@ MonoBehaviour:
   masterData: {fileID: 11400000, guid: 3fe57364fe6c44dfd87826c055872854, type: 2}
   playerName: "\u3055\u308B"
   currentScene: FirstLand
-  currentQuestLocationIndex: 0
-  currentMonsterAreaIndex: 1
-  playerLastPosition: {x: 2.2711415, y: -1.2800004}
-  playerLastFacing: {x: 1, y: 0}
+  currentQuestLocationIndex: 1
+  currentMonsterAreaIndex: 0
+  playerLastPosition: {x: 11.279991, y: -5.340002}
+  playerLastFacing: {x: 0, y: -1}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
   - {fileID: 11400000, guid: c67c2811769d0486c9806abaf62af8e6, type: 2}
@@ -40,10 +40,10 @@ MonoBehaviour:
   savedLocationIndex: 0
   status:
     lv: 8
-    maxHP: 52
+    maxHP: 60
     maxMP: 52
-    hp: 52
-    mp: 10
+    hp: 45
+    mp: 52
     attack: 28
     defence: 52
     exp: 754
