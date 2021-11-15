@@ -33,10 +33,10 @@ public class QuestMenuStatus : MonoBehaviour
 
     void SetStatusText(QuestManager questManager, PlayerInfo playerInfo)
     {
-        hP.text = FormatString("HP {0}", playerInfo.status.hp);
-        mP.text = FormatString("MP {0}", playerInfo.status.mp);
         maxHP.text = FormatString("最大HP {0}", playerInfo.status.maxHP);
+        hP.text = FormatString("HP {0}", playerInfo.status.hp);
         maxMP.text = FormatString("最大MP {0}", playerInfo.status.maxMP);
+        mP.text = FormatString("MP {0}", playerInfo.status.mp);
         attack.text = FormatString("攻撃力 {0}", playerInfo.status.attack);
         defence.text = FormatString("守備力 {0}", playerInfo.status.defence);
         exp.text = FormatString("経験値 {0}", playerInfo.status.exp);

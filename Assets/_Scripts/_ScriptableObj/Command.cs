@@ -95,7 +95,7 @@ public class MagicCommand
         return Random.Range(attackHealPoint[0], attackHealPoint[1] + 1);
     }
  
-    int HealValue(int hp, int maxHP)
+    public int HealValue(int hp, int maxHP)
     {
         var healValue = AttackDamageValue();
         var total = Mathf.Clamp(hp + healValue, 0, maxHP);

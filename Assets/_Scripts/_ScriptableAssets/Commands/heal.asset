@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1961ed4b7a3b846ef8cd9c595c72fca7, type: 3}
   m_Name: heal
   m_EditorClassIdentifier: 
-  useForQuest: 0
+  useForQuest: 1
   useForBattle: 1
   commandType: 3
   commandName: heal
   nameKana: "\u30D2\u30FC\u30EB"
   audioClip: {fileID: 8300000, guid: 80a4e4cef1d3e49e8b35858161dd216c, type: 3}
-  actionMessage: "{0}\u306F{1}\u306B\u30D2\u30FC\u30EB\u3092\u5531\u3048\u305F"
-  resultMessage: 
-  description: "\u56DE\u5FA9\u7CFB\u306E\u6700\u4E0B\u7D1A\u546A\u6587"
+  description: "HP\u3092\u56DE\u5FA9\u3059\u308B\u6700\u4E0B\u7D1A\u546A\u6587"
   magicCommand:
     magicTarget: 0
     consumptionMp: 4

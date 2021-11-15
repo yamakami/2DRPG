@@ -17,8 +17,8 @@ MonoBehaviour:
   currentScene: FirstLand
   currentQuestLocationIndex: 1
   currentMonsterAreaIndex: 0
-  playerLastPosition: {x: 11.279991, y: -5.340002}
-  playerLastFacing: {x: 0, y: -1}
+  playerLastPosition: {x: 11.139992, y: 1.5199999}
+  playerLastFacing: {x: 1, y: 0}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
   - {fileID: 11400000, guid: c67c2811769d0486c9806abaf62af8e6, type: 2}
@@ -42,8 +42,8 @@ MonoBehaviour:
     lv: 8
     maxHP: 60
     maxMP: 52
-    hp: 45
-    mp: 52
+    hp: 60
+    mp: 30
     attack: 28
     defence: 52
     exp: 754
