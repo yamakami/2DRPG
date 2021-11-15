@@ -7,6 +7,7 @@ public class QuestItemSelect :ScrollItem
 {
     [SerializeField] QuestUI questUI;
     [SerializeField] Text description;
+    [SerializeField] ConversationData emptyConversationData;
 
     StringBuilder stringBuilder;
 
@@ -25,11 +26,14 @@ public class QuestItemSelect :ScrollItem
             if(!item.useForQuest) continue;
 
             var button = CreateButtonUnderPanel(scrollContent.transform, item.nameKana);
-            button.onClick.AddListener(() => ClickButtonAction(playerInfo, item));
+            button.onClick.AddListener(() => ClickButtonAction(questUI, item));
 
             var trigger = button.GetComponent<EventTrigger>();
 
-            DescriptionMessageAction(trigger, EventTriggerType.PointerEnter, item.description);
+            stringBuilder.Clear();
+            stringBuilder.AppendLine(item.description);
+            stringBuilder.AppendFormat("残り: {0}", item.player_possession_count);
+            DescriptionMessageAction(trigger, EventTriggerType.PointerEnter, stringBuilder.ToString());
             DescriptionMessageAction(trigger, EventTriggerType.PointerExit);
         }
     }
@@ -44,8 +48,45 @@ public class QuestItemSelect :ScrollItem
         trigger.triggers.Add(entry);
     }
 
-    void ClickButtonAction(PlayerInfo playerInfo, Item item)
+    void ClickButtonAction(QuestUI questUI, Item item)
     {
-        // not yet implement
+        var messageBox = questUI.MessageBox;
+        var questMenu = questUI.QuestMenu;
+
+        emptyConversationData.conversationLines[0].text = "";
+        emptyConversationData.conversationLines[1].text = "";
+
+        messageBox.SkipEnable = true;
+        messageBox.Activate();
+        UseItem(questUI.QuestManager.PlayerInfo(), item, messageBox);
+        questUI.QuestManager.Player.StopPlayer();
+
+        questMenu.ShowItemsSelect(false);
+        questMenu.ActivateCoverImage(false);
+    }
+
+    void UseItem(PlayerInfo playerInfo, Item item, MessageBox messageBox)
+    {
+        stringBuilder.Clear();
+
+        switch(item.itemName)
+        {
+            default:
+                item.Consume(playerInfo);
+                var affectPoint = item.AffectValue(playerInfo);
+
+                if(item.healingType == Item.HEALING_TYPE.HP) playerInfo.Hp += affectPoint; 
+                if(item.healingType == Item.HEALING_TYPE.MP) playerInfo.Mp += affectPoint; 
+
+                emptyConversationData.conversationLines[0].text =
+                    stringBuilder.AppendFormat(item.ActionMessage(), playerInfo.playerName, item.nameKana).ToString();
+
+                stringBuilder.Clear();
+                emptyConversationData.conversationLines[1].text =
+                    stringBuilder.AppendFormat(item.AffectMessage(), playerInfo.playerName, item.healingType, affectPoint).ToString();
+
+                messageBox.PrepareConversation(emptyConversationData);
+                break;
+        }
     }
 }

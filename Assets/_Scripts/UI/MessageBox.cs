@@ -14,11 +14,15 @@ public class MessageBox : UIBase
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>();
 
+    bool skipEnable;
+
     public QuestManager QuestManager { set => questManager = value; }
+    public bool SkipEnable { get => skipEnable; set => skipEnable = value; }
 
     void OnEnable()
     {
         if(questManager.BattleInfo().isQuestFail) return;
+        if(skipEnable) { skipEnable = false; return; } 
 
         conversationData = questManager.Player.ContactWith.ConversationData;
         PrepareConversation(conversationData);

@@ -17,7 +17,7 @@ MonoBehaviour:
   currentScene: FirstLand
   currentQuestLocationIndex: 0
   currentMonsterAreaIndex: 1
-  playerLastPosition: {x: 1.0111483, y: -2.6606448}
+  playerLastPosition: {x: 2.2711415, y: -1.2800004}
   playerLastFacing: {x: 1, y: 0}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
@@ -39,15 +39,15 @@ MonoBehaviour:
   savedLocationScene: FirstLand
   savedLocationIndex: 0
   status:
-    lv: 7
-    maxHP: 50
-    maxMP: 49
-    hp: 50
-    mp: 45
-    attack: 27
+    lv: 8
+    maxHP: 52
+    maxMP: 52
+    hp: 52
+    mp: 10
+    attack: 28
     defence: 52
-    exp: 539
-    gold: 526
+    exp: 754
+    gold: 383
   equipment:
     items:
     - {fileID: 11400000, guid: bc6e8adfeaa6b4cb7b1bd0ceaa67b859, type: 2}

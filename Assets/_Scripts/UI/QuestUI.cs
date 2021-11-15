@@ -5,12 +5,14 @@ public class QuestUI : MonoBehaviour
     [SerializeField] LocationManager locationManager;
     [SerializeField] Fader fader;
     [SerializeField] MessageBox messageBox;
+    [SerializeField] QuestMenu questMenu;
     QuestManager questManager;
 
     public QuestManager QuestManager { get => questManager; set => questManager = value; }
     public LocationManager LocationManager { get => locationManager; }
     public MessageBox MessageBox { get => messageBox; }
     public Fader Fader { get => fader; }
+    public QuestMenu QuestMenu { get => questMenu; }
 
     void Start()
     {
