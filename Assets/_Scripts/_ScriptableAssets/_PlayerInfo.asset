@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: _PlayerInfo
   m_EditorClassIdentifier: 
   masterData: {fileID: 11400000, guid: 3fe57364fe6c44dfd87826c055872854, type: 2}
+  requiredEvent: {fileID: 11400000, guid: fe579bcce124142fc936ae7aef5b41cf, type: 2}
   playerName: "\u3055\u308B"
   currentScene: FirstLand
   currentQuestLocationIndex: 1
   currentMonsterAreaIndex: 0
-  playerLastPosition: {x: 11.139992, y: 1.5199999}
+  playerLastPosition: {x: 20.239952, y: -2.9729111}
   playerLastFacing: {x: 1, y: 0}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
@@ -55,4 +56,4 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 11400000, guid: 70589b6cefb0842dab7d5656472eb388, type: 2}
-    - {fileID: 11400000, guid: f800a5106e922412b9e838d373acb298, type: 2}
+    - {fileID: 11400000, guid: dfcf3138ac79c4bfbac813e31801bc23, type: 2}

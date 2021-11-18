@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "New LevelUpTable", menuName = "LevelUpTable")]
 public class LevelUpTable : ScriptableObject
@@ -6,6 +7,7 @@ public class LevelUpTable : ScriptableObject
     public bool reCalculate;
     public PlayerInfo playerInfo;
     public MagicLevel[] magiclevels;
+    public int firstLevelUpAmount = 18;
     public Level[] levels;
 
     [System.Serializable]
@@ -34,6 +36,9 @@ public class LevelUpTable : ScriptableObject
         if (!reCalculate)
             return;
 
+        if(levels.Length < magiclevels.Last().levelRangeEnd)
+            throw new System.Exception("levels length is not enough. It should be more than MagicLevel.levelRangeEnd");
+
         for (var i = 0; i < levels.Length; i++)
         {
             levels[i].levelIndex = i + 1;
@@ -45,7 +50,11 @@ public class LevelUpTable : ScriptableObject
             System.Array.Resize(ref levels[i].magicCommands, 0);
 
             if (i == 0)
+            {
+                levels[0].nextLevelUpAmount = firstLevelUpAmount;
                 continue;
+            }
+
 
             var ex = levels[i - 1].nextLevelUpAmount;
             var cur = levels[i - 1].minimumExp;
