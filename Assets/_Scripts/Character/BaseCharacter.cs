@@ -16,7 +16,7 @@ public class BaseCharacter : MonoBehaviour
 
     public bool Freeze { get => freeze; set => freeze = value; }
 
-    void Update()
+    protected virtual void Update()
     {
         var moveMagnitude = move.sqrMagnitude;
         anim.SetFloat("move_speed", moveMagnitude);

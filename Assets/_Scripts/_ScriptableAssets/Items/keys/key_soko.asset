@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ddc13ad507584c29b29ef5462173800, type: 3}
+  m_Name: key_soko
+  m_EditorClassIdentifier: 
+  useForQuest: 1
+  useForBattle: 0
+  isEquip: 0
+  itemType: 0
+  healingType: 0
+  equipPosition: -1
+  itemName: key_soko
+  nameKana: "\u5009\u5EAB\u306E\u9375"
+  point: 5
+  price: 3
+  sellPrice: 1
+  player_possession_count: 1
+  player_possession_limit: 100
+  hasAnimationClip: 0
+  audioClip: {fileID: 0}
+  description: 
+  resultMessage: 

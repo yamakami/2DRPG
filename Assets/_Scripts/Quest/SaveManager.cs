@@ -43,9 +43,9 @@ public class SaveManager : CustomEventListener
 
         playerInfo.magicCommands.Clear();
         playerInfo.items.Clear();
-        playerInfo.requiredEvent.Dictionary.Clear();
+        playerInfo.sceneEvents.Dictionary.Clear();
         
-        playerInfo.requiredEvent.Dictionary = playDataFormat.requiredEvent;
+        playerInfo.sceneEvents.Dictionary = playDataFormat.sceneEvents;
         playerInfo.masterData.levelUpTable.levels = playDataFormat.levels;
 
         RestoreFromItemMaster(playDataFormat, playerInfo, masterData);
@@ -85,7 +85,7 @@ public class SaveManager : CustomEventListener
 
 
         var levelUpTable = playerInfo.masterData.levelUpTable;
-        var requiredEvent = playerInfo.requiredEvent;
+        var sceneEvents = playerInfo.sceneEvents;
 
         playDataFormat.playerName = playerInfo.playerName;
         playDataFormat.levelUpRecalculate = levelUpTable.reCalculate;
@@ -99,12 +99,12 @@ public class SaveManager : CustomEventListener
         playDataFormat.playerLastPosition = playerInfo.playerLastPosition;
         playDataFormat.playerLastFacing = playerInfo.playerLastFacing;
 
-        playDataFormat.status    = playerInfo.status;
+        playDataFormat.status = playerInfo.status;
         playDataFormat.equipments = SetEquipment(playerInfo);
 
         playDataFormat.magicCommands = SetCommandData(playDataFormat, playerInfo.magicCommands);
         playDataFormat.items = SetItemData(playerInfo.items);
-        playDataFormat.requiredEvent = requiredEvent.Dictionary;
+        playDataFormat.sceneEvents = sceneEvents.Dictionary;
         playDataFormat.levels = levelUpTable.levels;
 
         var file = Application.dataPath + saveDataFile;
@@ -181,7 +181,7 @@ public class SaveManager : CustomEventListener
         public ItemFormat[] items;
         public PlayerInfo.Status status;
         public string[] equipments;
-        public StringStringBoolDictionary requiredEvent;
+        public StringStringStringBoolDictionary sceneEvents;
         public LevelUpTable.Level[] levels;
     }
 

@@ -159,7 +159,7 @@ public class FlowResult : FlowBase
             if (r.item != null)
             {
                 messageBox.StringBuilder.AppendFormat("{0}は{1}を持っていた。\n", r.monsterName, r.item.nameKana);
-                AddItemToPlayerInfo(r, playerInfo);
+                r.item.Add(playerInfo);
             }
         }
 
@@ -168,26 +168,6 @@ public class FlowResult : FlowBase
 
         messageBox.StringBuilder.AppendFormat("{0}は経験値{1}EXと{2}ゴールドを得た。", player.characterName, exp, gold);
         messageBox.DisplayMessage();
-    }
-
-    void AddItemToPlayerInfo(BattleReward reward, PlayerInfo playerInfo)
-    {
-        if (reward.item == null) return;
-
-        var item = playerInfo.items.Find(i => i.itemName == reward.item.itemName);
-
-        if (item != null)
-        {
-            var limit = item.player_possession_limit;
-            var ct = item.player_possession_count;
-            if (limit == 0 || ct < limit)
-                item.player_possession_count++;
-        }
-        else
-        {
-            reward.item.player_possession_count++;
-            playerInfo.items.Add(reward.item);
-        }
     }
 
     AudioSource PlayAudio(AudioClip clip, BattleManager battleManager)

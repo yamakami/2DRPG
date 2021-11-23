@@ -5,6 +5,7 @@ using UnityEditor;
 
 // [CustomPropertyDrawer(typeof(StringStringDictionary))]
 
+[CustomPropertyDrawer(typeof(StringStringStringBoolDictionary))]
 [CustomPropertyDrawer(typeof(StringStringBoolDictionary))]
 [CustomPropertyDrawer(typeof(StringBoolDictionary))]
 

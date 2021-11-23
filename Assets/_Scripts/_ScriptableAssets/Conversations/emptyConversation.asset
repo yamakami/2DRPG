@@ -14,11 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dynamicText: 
   conversationLines:
-  - text: "\u3055\u308B\u306F\u30DD\u30FC\u30B7\u30E7\u30F3\u3092\u4F7F\u3063\u305F\uFF01"
-    conversationData: {fileID: 0}
-    eventTrigger: {fileID: 0}
-    conversationEnd: 0
-  - text: "\u3055\u308B\u306FMP\u304C5\u56DE\u5FA9\u3057\u305F\uFF01"
+  - text: "\u85AC\u8349\u3092\u898B\u3064\u3051\u305F\uFF01"
     conversationData: {fileID: 0}
     eventTrigger: {fileID: 0}
     conversationEnd: 0

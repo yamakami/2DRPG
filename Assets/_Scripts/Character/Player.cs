@@ -1,22 +1,15 @@
 using UnityEngine;
-using UnityEditor;
+
 public class Player : BaseCharacter
 {
     QuestManager questManager;
     [SerializeField] NPC contactWith;
 
-
-    public void Test()
-    {
-    #if UNITY_EDITOR
-      EditorApplication.isPlaying = false;
-    #elif UNITY_STANDALONE
-      Application.Quit();
-    #endif
-    }
+    ContactItem contactItem;
 
     public QuestManager QuestManager { get => questManager; set => questManager = value; }
     public NPC ContactWith { get => contactWith; }
+    public ContactItem ContactItem { get => contactItem; set => contactItem = value; }
 
     void Awake()
     {
@@ -28,25 +21,28 @@ public class Player : BaseCharacter
 
     void FixedUpdate()
     {
-        if (Freeze)
-            return;
-
-        var talking = Input.GetKeyDown(KeyCode.Space);
-
-        if (contactWith && talking)
-        {
-            StartConversation();
-            return;
-        }
- 
-        move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        if(move == Vector2.zero) return;
+        if (Freeze) return;
 
         MovePosition();
-        SetPlayerLastMove();
     }
 
+    protected　override void Update()
+    {
+        if (Freeze) return;
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (contactItem) contactItem.FoundItem(); 
+            if (contactWith) StartConversation();
+        }
+        else
+        {
+            move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
+
+        SetPlayerLastMove();
+        base.Update();
+    }
 
     void StartConversation()
     {

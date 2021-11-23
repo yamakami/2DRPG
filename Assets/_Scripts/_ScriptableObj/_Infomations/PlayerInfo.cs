@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInfo : ScriptableObject, ICharacterStatable
 {
     public MasterData masterData;
-    public StringStringBoolDict requiredEvent;
+    public StringStringStringBoolDict sceneEvents;
     public string playerName;
     public string currentScene;
     public int currentQuestLocationIndex;

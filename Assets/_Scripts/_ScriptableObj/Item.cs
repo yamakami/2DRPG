@@ -6,7 +6,6 @@ public class Item : ScriptableObject
 {
     public bool useForQuest;
     public bool useForBattle;
-
     public enum ITEM_TYPE
     {
         KEY,
@@ -76,6 +75,22 @@ public class Item : ScriptableObject
         return total - val;
     }
 
+    public void Add(PlayerInfo playerInfo)
+    {
+        var playerItem = playerInfo.items.Find(i => i.itemName == itemName);
+
+        if (playerItem != null)
+        {
+            if (player_possession_count < player_possession_limit)
+                player_possession_count++;
+        }
+        else
+        {
+            player_possession_count++;
+            playerInfo.items.Add(this);
+        }
+    }
+
     public void Consume(PlayerInfo playerInfo)
     {
         player_possession_count--;
@@ -109,4 +124,6 @@ public class Item : ScriptableObject
 
         return message;
     }
+    public string ItemFindMessage() { return $"{nameKana}を見つけた！"; }
+    public string PossessionOverMessage() { return $"{nameKana}を{player_possession_limit}個以上もてません"; }
 }
