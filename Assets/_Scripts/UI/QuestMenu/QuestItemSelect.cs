@@ -48,26 +48,39 @@ public class QuestItemSelect :ScrollItem
  
         messageBox.EnableAsActionMessage();
 
-        UseItem(questUI.QuestManager.PlayerInfo(), item, messageBox);
+        UseItem(questUI, item, messageBox);
         questUI.QuestManager.Player.StopPlayer();
 
         questMenu.ShowItemsSelect(false);
         questMenu.ActivateCoverImage(false);
     }
 
-    void UseItem(PlayerInfo playerInfo, Item item, MessageBox messageBox)
+    void UseItem(QuestUI questUI, Item item, MessageBox messageBox)
     {
+        var questManager = questUI.QuestManager;
+        var playerInfo = questUI.QuestManager.PlayerInfo();
+        var player = questUI.QuestManager.Player;
         var stringBuilder = messageBox.StringBuilder;
         stringBuilder.Clear();
 
-        switch(item.itemName)
+        switch(item.itemType)
         {
+            case Item.ITEM_TYPE.KEY:
+                emptyConversationData.conversationLines[0].text =
+                    stringBuilder.AppendFormat(item.ActionMessage(), playerInfo.playerName, item.nameKana).ToString();
+
+                stringBuilder.Clear();
+                var openMessage = (player.ContactDoor)? player.ContactDoor.DoorOpen(item): ContactDoor.NothingHappenMessage();
+                emptyConversationData.conversationLines[1].text = stringBuilder.Append(openMessage).ToString();
+                break;
             default:
                 item.Consume(playerInfo);
                 var affectPoint = item.AffectValue(playerInfo);
 
                 if(item.healingType == Item.HEALING_TYPE.HP) playerInfo.Hp += affectPoint; 
                 if(item.healingType == Item.HEALING_TYPE.MP) playerInfo.Mp += affectPoint; 
+
+                questManager.QuestAudioSource.PlayOneShot(item.audioClip);
 
                 emptyConversationData.conversationLines[0].text =
                     stringBuilder.AppendFormat(item.ActionMessage(), playerInfo.playerName, item.nameKana).ToString();
@@ -76,8 +89,8 @@ public class QuestItemSelect :ScrollItem
                 emptyConversationData.conversationLines[1].text =
                     stringBuilder.AppendFormat(item.AffectMessage(), playerInfo.playerName, item.healingType, affectPoint).ToString();
 
-                messageBox.PrepareConversation(emptyConversationData);
                 break;
         }
+        messageBox.PrepareConversation(emptyConversationData);
     }
 }

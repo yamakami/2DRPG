@@ -6,10 +6,12 @@ public class Player : BaseCharacter
     [SerializeField] NPC contactWith;
 
     ContactItem contactItem;
+    ContactDoor contactDoor;
 
     public QuestManager QuestManager { get => questManager; set => questManager = value; }
     public NPC ContactWith { get => contactWith; }
     public ContactItem ContactItem { get => contactItem; set => contactItem = value; }
+    public ContactDoor ContactDoor { get => contactDoor; set => contactDoor = value; }
 
     void Awake()
     {
@@ -32,7 +34,7 @@ public class Player : BaseCharacter
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if (contactItem) contactItem.FoundItem(); 
+            if (contactItem) contactItem.SearchItem(); 
             if (contactWith) StartConversation();
         }
         else

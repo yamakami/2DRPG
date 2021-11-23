@@ -20,7 +20,7 @@ public class ContactItem : MonoBehaviour
         if(other.transform.CompareTag("Player")) player.ContactItem = null;
     }
 
-    public void FoundItem()
+    public void SearchItem()
     {
         var questUI = player.QuestManager.QuestUI;
         var messageBox = questUI.MessageBox;
@@ -34,21 +34,19 @@ public class ContactItem : MonoBehaviour
 
         var currentScene = playerInfo.currentScene;
         var locationName = parentLocation.name;
-        var sceneEventsDict = playerInfo.sceneEvents.CreateParentKeys(playerInfo.currentScene, parentLocation.name);
-
-        if(playerInfo.sceneEvents.KeysExist(playerInfo.currentScene, parentLocation.name, this.name))
+        if(playerInfo.sceneEvents.KeysExist(currentScene, locationName, this.name))
         {
             ShowMessage(messageBox, "何もなかった、、、");
             return;
         }
 
+        var sceneEventsDict = playerInfo.sceneEvents.CreateParentKeys(currentScene, locationName);
         if(item.player_possession_count < item.player_possession_limit)
         {
             sceneEventsDict[currentScene][locationName].Add(this.name, true);
  
             ShowMessage(messageBox, item.ItemFindMessage());
             item.Add(playerInfo);
-            item = null;
             return;
         }
 
