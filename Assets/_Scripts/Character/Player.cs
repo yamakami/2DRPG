@@ -23,7 +23,16 @@ public class Player : BaseCharacter
 
     void FixedUpdate()
     {
-        if (Freeze) return;
+        if (Time.timeScale < 1 || Freeze) return;
+        MovePosition();
+    }
+
+    protected　override void Update()
+    {
+        base.Update();
+
+        if (Time.timeScale < 1 || Freeze) return;
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             if (contactItem) contactItem.SearchItem();
@@ -34,15 +43,7 @@ public class Player : BaseCharacter
             move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
 
-        MovePosition();
-    }
-
-    protected　override void Update()
-    {
-        if (Freeze) return;
-
         SetPlayerLastMove();
-        base.Update();
     }
 
     void StartConversation()

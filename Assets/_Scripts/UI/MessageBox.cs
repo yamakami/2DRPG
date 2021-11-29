@@ -28,6 +28,8 @@ public class MessageBox : UIBase
 
     void OnEnable()
     {
+        questManager.QuestUI.QuestMenu.Show(false);
+
         if(soundMute) messageText.AudioMute(true);
         if(questManager.BattleInfo().isQuestFail) return;
         if(skipEnable) return;
@@ -108,6 +110,7 @@ public class MessageBox : UIBase
         soundMute = false;
         skipEnable = false;
         messageText.AudioMute(false);
+        questManager.QuestUI.QuestMenu.Show(true);
     }
     public int ConversationCount()
     {

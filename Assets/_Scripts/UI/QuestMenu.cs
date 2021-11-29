@@ -26,6 +26,11 @@ public class QuestMenu : MonoBehaviour
         quitConfirm.gameObject.SetActive(active);
     }
 
+    public void Show(bool active)
+    {
+        gameObject.SetActive(active);
+    }
+
     public void ShowMenuOption(bool active)
     {
         menuOption.gameObject.SetActive(active);
