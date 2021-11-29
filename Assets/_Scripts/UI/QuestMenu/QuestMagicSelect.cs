@@ -14,7 +14,6 @@ public class QuestMagicSelect :ScrollItem
         var scrollContent = scrollRect.content;
         var stringBuilder = questUI.MessageBox.StringBuilder;
 
-
         foreach(var magic in playerInfo.magicCommands)
         {            
             if(!magic.useForQuest) continue;

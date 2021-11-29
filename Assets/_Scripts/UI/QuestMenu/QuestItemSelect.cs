@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class QuestItemSelect :ScrollItem
+public class QuestItemSelect :ScrollItem, IMessageCallbackable
 {
     [SerializeField] QuestUI questUI;
     [SerializeField] Text description;
     [SerializeField] ConversationData emptyConversationData;
+
+    Item selectedItem;
 
     void OnEnable()
     {
@@ -48,6 +50,8 @@ public class QuestItemSelect :ScrollItem
  
         messageBox.EnableAsActionMessage();
 
+        selectedItem = item;
+
         UseItem(questUI, item, messageBox);
         questUI.QuestManager.Player.StopPlayer();
 
@@ -70,8 +74,8 @@ public class QuestItemSelect :ScrollItem
                     stringBuilder.AppendFormat(item.ActionMessage(), playerInfo.playerName, item.nameKana).ToString();
 
                 stringBuilder.Clear();
-                var openMessage = (player.ContactDoor)? player.ContactDoor.DoorOpen(item): ContactDoor.NothingHappenMessage();
-                emptyConversationData.conversationLines[1].text = stringBuilder.Append(openMessage).ToString();
+                var openMessage = (player.ContactDoor)? player.ContactDoor.DoorOpen(item, messageBox): ContactDoor.NothingHappenMessage();
+                emptyConversationData.conversationLines[1].text = openMessage;
                 break;
             default:
                 item.Consume(playerInfo);
@@ -80,7 +84,7 @@ public class QuestItemSelect :ScrollItem
                 if(item.healingType == Item.HEALING_TYPE.HP) playerInfo.Hp += affectPoint; 
                 if(item.healingType == Item.HEALING_TYPE.MP) playerInfo.Mp += affectPoint; 
 
-                questManager.QuestAudioSource.PlayOneShot(item.audioClip);
+                messageBox.Callbackable = this;
 
                 emptyConversationData.conversationLines[0].text =
                     stringBuilder.AppendFormat(item.ActionMessage(), playerInfo.playerName, item.nameKana).ToString();
@@ -92,5 +96,12 @@ public class QuestItemSelect :ScrollItem
                 break;
         }
         messageBox.PrepareConversation(emptyConversationData);
+    }
+
+    public void MessageCallbackAction()
+    {
+        var messageBox = questUI.MessageBox;
+        questUI.QuestManager.QuestAudioSource.PlayOneShot(selectedItem.audioClip);
+        messageBox.Callbackable = null;
     }
 }

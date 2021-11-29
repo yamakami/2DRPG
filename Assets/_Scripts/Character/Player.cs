@@ -24,6 +24,15 @@ public class Player : BaseCharacter
     void FixedUpdate()
     {
         if (Freeze) return;
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (contactItem) contactItem.SearchItem();
+            if (contactWith) StartConversation();
+        }
+        else
+        {
+            move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
 
         MovePosition();
     }
@@ -31,16 +40,6 @@ public class Player : BaseCharacter
     protected　override void Update()
     {
         if (Freeze) return;
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            if (contactItem) contactItem.SearchItem(); 
-            if (contactWith) StartConversation();
-        }
-        else
-        {
-            move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        }
 
         SetPlayerLastMove();
         base.Update();

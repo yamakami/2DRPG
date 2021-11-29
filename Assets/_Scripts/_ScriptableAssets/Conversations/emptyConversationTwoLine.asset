@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf58d7f7dcfad400caf0a6230f21457b, type: 3}
   m_Name: emptyConversationTwoLine
   m_EditorClassIdentifier: 
-  dynamicText: 
   conversationLines:
-  - text: "\u3055\u308B\u306F\u30DD\u30FC\u30B7\u30E7\u30F3\u3092\u4F7F\u3063\u305F\uFF01"
+  - text: "\u3055\u308B\u306F\u85AC\u8349\u3092\u4F7F\u3063\u305F\uFF01"
     conversationData: {fileID: 0}
     eventTrigger: {fileID: 0}
     conversationEnd: 0
-  - text: "\u3055\u308B\u306FMP\u304C5\u56DE\u5FA9\u3057\u305F\uFF01"
+  - text: "\u3055\u308B\u306FHP\u304C0\u56DE\u5FA9\u3057\u305F\uFF01"
     conversationData: {fileID: 0}
     eventTrigger: {fileID: 0}
     conversationEnd: 0

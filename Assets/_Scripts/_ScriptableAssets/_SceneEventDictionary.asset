@@ -21,5 +21,4 @@ MonoBehaviour:
       m_values:
       - m_keys:
         - Key01
-        - Key02
-        m_values: 0101
+        m_values: 01

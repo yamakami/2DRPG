@@ -17,11 +17,14 @@ public class MessageBox : UIBase
 
     StringBuilder stringBuilder = new StringBuilder();
 
+    IMessageCallbackable callbackable;
+
     bool skipEnable;
     bool soundMute;
 
     public QuestManager QuestManager { set => questManager = value; }
     public StringBuilder StringBuilder { get => stringBuilder; }
+    public IMessageCallbackable Callbackable { set => callbackable = value; }
 
     void OnEnable()
     {
@@ -65,7 +68,7 @@ public class MessageBox : UIBase
     {
         await UniTask.WaitUntil(() => messageText.Available, cancellationToken: token);
 
-        if (conversations.Count == 0 && 0 < conversationData.subConverSationLines.Length)
+        if (ConversationCount() == 0 && 0 < conversationData.subConverSationLines.Length)
         {
             selectMenu.OpenSelectMenu(this, conversationData.subConverSationLines);
             return;
@@ -75,7 +78,7 @@ public class MessageBox : UIBase
 
     public void NextMessage()
     {
-        if (conversations.Count == 0)
+        if (ConversationCount() == 0)
         {
             var conversationLines = conversationData.conversationLines;
             var arrayLast = conversationLines.Length -1;
@@ -88,6 +91,8 @@ public class MessageBox : UIBase
             BoxClose();
             return;
         }
+
+        callbackable?.MessageCallbackAction();
 
         ForwardConversation(conversations.Dequeue());
     }
@@ -103,5 +108,9 @@ public class MessageBox : UIBase
         soundMute = false;
         skipEnable = false;
         messageText.AudioMute(false);
+    }
+    public int ConversationCount()
+    {
+        return conversations.Count;
     }
 }

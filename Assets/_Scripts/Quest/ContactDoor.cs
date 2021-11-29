@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ContactDoor : MonoBehaviour
+public class ContactDoor : MonoBehaviour, IMessageCallbackable
 {
     [SerializeField] GameObject parentLocation;
     [SerializeField] Item item;
@@ -25,7 +23,7 @@ public class ContactDoor : MonoBehaviour
         if(other.transform.CompareTag("Player")) questManager.Player.ContactDoor = null;
     }
 
-    public string DoorOpen(Item selectItem)
+    public string DoorOpen(Item selectItem, MessageBox messageBox)
     {
         var player  = questManager.Player;
 
@@ -42,15 +40,18 @@ public class ContactDoor : MonoBehaviour
 
         var sceneEventsDict = playerInfo.sceneEvents.CreateParentKeys(currentScene, locationName);
         sceneEventsDict[currentScene][locationName].Add(this.name, true);
-        Invoke("DeleteDoor", 2.5f);
+
+        messageBox.Callbackable = this;
 
         return selectItem.resultMessage;
     }
 
-    void DeleteDoor()
+    public void MessageCallbackAction()
     {
+        var messageBox = questManager.QuestUI.MessageBox;
         gameObject.SetActive(false);
         questManager.QuestAudioSource.PlayOneShot(item.audioClip);
+        messageBox.Callbackable = null;
     }
 
     public static string NothingHappenMessage() { return "何もおこらない、、、"; }
