@@ -21,4 +21,5 @@ MonoBehaviour:
       m_values:
       - m_keys:
         - Key01
-        m_values: 01
+        - Door01
+        m_values: 0101
