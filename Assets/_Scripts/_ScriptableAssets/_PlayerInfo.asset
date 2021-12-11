@@ -16,9 +16,9 @@ MonoBehaviour:
   sceneEvents: {fileID: 11400000, guid: fbbeb536d3f1d4553b19a5cc87eb83bd, type: 2}
   playerName: "\u3055\u308B"
   currentScene: FirstLand
-  currentQuestLocationIndex: 1
+  currentQuestLocationIndex: 2
   currentMonsterAreaIndex: 0
-  playerLastPosition: {x: 10.740002, y: -0.39064506}
+  playerLastPosition: {x: -2.490001, y: 13.674}
   playerLastFacing: {x: 0, y: -1}
   battleCommands:
   - {fileID: 11400000, guid: 13be3e38b31ea43f19272eac9a98f0f0, type: 2}
