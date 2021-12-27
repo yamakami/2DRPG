@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf58d7f7dcfad400caf0a6230f21457b, type: 3}
   m_Name: emptyConversation
   m_EditorClassIdentifier: 
-  dynamicText: 
   conversationLines:
   - text: "\u85AC\u8349\u3092\u898B\u3064\u3051\u305F\uFF01"
     conversationData: {fileID: 0}

@@ -7,7 +7,6 @@ using System.Threading;
 public class FlowMain : FlowBase
 {
     [SerializeField] FlowResult flowResult;
-
     BaseAction attacker;
     List<BaseAction> defenders = new List<BaseAction>(3);
     List<BaseAction> attackOrder = new List<BaseAction>(3);

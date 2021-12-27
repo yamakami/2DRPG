@@ -28,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2363270123737227499}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.56, y: -1.51, z: 14.632561}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 3.5
   rb2d: {fileID: 2363270123737227503}
   anim: {fileID: 2363270123737227501}
-  defaultQusetLocation: MainField
+  contactWith: {fileID: 0}
 --- !u!95 &2363270123737227501
 Animator:
   serializedVersion: 3
@@ -157,16 +157,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.054615587, y: -0.44}
+  m_Offset: {x: 0.010370731, y: -0.27024126}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4538448, y: 1.17}
+  m_Size: {x: 0.51263475, y: 0.48790836}
   m_EdgeRadius: 0

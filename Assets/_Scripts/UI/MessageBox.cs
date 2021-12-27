@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using System.Text;
 
 public class MessageBox : UIBase
-{
+{    
     [SerializeField] MessageText messageText;
     [SerializeField] Button nextButton;
     [SerializeField] MessageSelect selectMenu;

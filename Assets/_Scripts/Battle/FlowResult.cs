@@ -30,7 +30,7 @@ public class FlowResult : FlowBase
 
         var volume = 0;
         var to = 5;
-        audio.DOFade(volume, to).Play();
+        await audio.DOFade(volume, to).Play();
         await UniTask.Delay(delaytime + 5500, cancellationToken: cancelToken);
 
         battleManager.BattleInfo.isQuestFail = true;
