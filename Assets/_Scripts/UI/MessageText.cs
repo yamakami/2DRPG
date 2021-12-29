@@ -1,48 +1,57 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class MessageText : UIBase
-{ 
-    [SerializeField] Text textArea;
+public class MessageText : MonoBehaviour
+{
     [SerializeField] float textSpeed = 0.04f;
-    [SerializeField] float delaytime = 0.5f;
+    [SerializeField] Text textArea;
+    [SerializeField] Button textForwardButton;
+    [SerializeField] AudioSource audioSource;
 
-    [SerializeField] AudioSource talkSound = default;
+    static float _textSpeed;
+    static Text _textArea;
+    static string _message;
+    static AudioSource _audioSource;
 
-    bool available = true;
+    public Button TextForwardButton { get => textForwardButton; }
 
-    public bool Available { get => available; }
-
-    public void TweenText(string message, float delay=0f)
+    void  Start()
     {
-        available = false;
-        textArea.text = "";
-        var delaytime = (delay == 0f)? this.delaytime : delay;
-
-        textArea.DOText(message, message.Length * textSpeed)
-                 .SetDelay(delaytime)
-                 .OnStart(() => TalkSoundPlay())
-                 .OnComplete(() => TalkSoundStop())
-                 .Play();
+        _textSpeed = textSpeed;
+        _textArea  = textArea;
+        _audioSource = audioSource;
     }
 
-    void TalkSoundPlay()
+    public Tween TweenText(string message)
     {
-        if (!talkSound.isActiveAndEnabled) return; 
-        if (talkSound) talkSound.Play();
+        _message = message;
+        _textArea.text = "";
+
+        var sequence = DOTween.Sequence();
+        sequence.SetDelay(0.2f)
+                .AppendCallback(() => TweenMessage())
+                .AppendInterval(1f);
+
+        return sequence;
     }
 
-    void TalkSoundStop()
+    static Tween TweenMessage()
     {
-        available = true;
-        if (talkSound) talkSound.Stop();
+        return _textArea.DOText(_message, _message.Length * _textSpeed)                        
+                        .OnStart(() => PlayTalkSound(true))
+                        .OnComplete(() => PlayTalkSound(false))
+                        .Play();
     }
 
-    public void AudioMute(bool mute)
+    static void PlayTalkSound(bool value)
     {
-        talkSound.enabled = !mute;
+        if(!_audioSource) return;
+
+        if(value)
+        
+            _audioSource.Play();
+        else
+            _audioSource.Stop();
     }
 }
-

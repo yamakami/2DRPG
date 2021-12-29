@@ -10,10 +10,9 @@ public class BaseCharacter : MonoBehaviour
     [SerializeField] protected Rigidbody2D rb2d = null;
     [SerializeField] protected Animator anim = null;
 
-    private bool freeze;
+    bool freeze;
     protected Vector2 move;
     protected Vector2 lastMove;
-
     public bool Freeze { get => freeze; set => freeze = value; }
 
     protected virtual void Update()

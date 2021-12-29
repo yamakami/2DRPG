@@ -1,24 +1,14 @@
 using UnityEngine;
 
-public class Player : BaseCharacter
+public class Player : BaseCharacter, IStatus
 {
-    QuestManager questManager;
-    [SerializeField] NPC contactWith;
+    [SerializeField] PlayerInfo playerInfo;
 
-    ContactItem contactItem;
-    ContactDoor contactDoor;
-
-    public QuestManager QuestManager { get => questManager; set => questManager = value; }
-    public NPC ContactWith { get => contactWith; }
-    public ContactItem ContactItem { get => contactItem; set => contactItem = value; }
-    public ContactDoor ContactDoor { get => contactDoor; set => contactDoor = value; }
+    public PlayerInfo PlayerInfo { get => playerInfo; }
 
     void Awake()
     {
         lastMove = Vector2.down;
-        var gameInfo = questManager.GameInfo();
-        if(gameInfo.playerFreeze) Freeze = true;
-        if(gameInfo.levelUpTable.reCalculate) gameInfo.levelUpTable.Calculate();
     }
 
     void FixedUpdate()
@@ -27,72 +17,40 @@ public class Player : BaseCharacter
         MovePosition();
     }
 
-    protected　override void Update()
-    {
+    protected override void Update()
+    { 
         base.Update();
 
         if (Time.timeScale < 1 || Freeze) return;
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if (contactItem) contactItem.SearchItem();
-            if (contactWith) StartConversation();
+            // if (contactItem) contactItem.SearchItem();
+            // if (contactWith) StartConversation();
+            if (ContactObserver.NpcContact != null)
+                StartConversation(ContactObserver.NpcContact.GetInterfaceParent());
         }
         else
         {
             move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
-
-        SetPlayerLastMove();
     }
 
-    void StartConversation()
+     void StartConversation(NpcContact contact)
     {
-        contactWith.FacingTo(contactWith.ConversationFacingDirection(transform));
-        lastMove = ConversationFacingDirection(contactWith.transform);
+        var npc = contact.Npc;
+
+        npc.FacingTo(npc.ConversationFacingDirection(transform));
+        lastMove = ConversationFacingDirection(npc.transform);
 
         StopPlayer();
-        questManager.QuestUI.PlayerSatartConversation();
+        QuestManager.GetQuestManager().QuestUI.MessageBox.Active(true);
     }
 
-    public void StopPlayer()
+     public void StopPlayer()
     {
         move = Vector2.zero;
         Freeze = true;
-    }
-
-    public void TouchingToNpc(NPC npc = null)
-    {
-        contactWith = npc;
-    }
-
-    public void ResetPosition(Vector2 facingTo, Vector2 position)
-    {
-        move = Vector2.zero;
-        transform.position = position;
-        lastMove = facingTo;
-    }
-
-    public bool IsPlayerMoving()
-    {
-        if (move == Vector2.zero)
-            return false;
-
-        return true;
-    }
-    
-    public void EnableMove()
-    {
-        questManager.GameInfo().playerFreeze = false;
-        Freeze = false;
-    }
-
-    void SetPlayerLastMove()
-    {
-        var playerInfo = questManager.PlayerInfo();
-
-        playerInfo.playerLastPosition = transform.position;
-        playerInfo.playerLastFacing = lastMove;
     }
 }
 

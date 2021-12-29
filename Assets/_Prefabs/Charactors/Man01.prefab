@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7583004779735525293}
   - component: {fileID: 7583004779735525294}
   - component: {fileID: 7583004779735525288}
-  - component: {fileID: 7583004779735525286}
+  - component: {fileID: 7037058676664566971}
   - component: {fileID: 7583004779735525289}
   - component: {fileID: 7583004779735525291}
   - component: {fileID: 7583004779735525290}
@@ -105,12 +105,11 @@ MonoBehaviour:
   speed: 1
   rb2d: {fileID: 7583004779735525291}
   anim: {fileID: 7583004779735525289}
-  conversationData: {fileID: 11400000, guid: db2a7518fe11d4cf196ca7ef28302d9e, type: 2}
+  npcContact: {fileID: 7037058676664566971}
   yMaxStep: 4
   xMaxStep: 4
   randomInterval: 3
-  contact: {fileID: 7583004779735525286}
---- !u!114 &7583004779735525286
+--- !u!114 &7037058676664566971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,10 +118,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7583004779735525295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 075a9d90b4d7043aeaa70c7c712d8935, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e91367c077984edb979be297c16e724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   npc: {fileID: 7583004779735525288}
   npcRd2: {fileID: 7583004779735525291}
 --- !u!95 &7583004779735525289

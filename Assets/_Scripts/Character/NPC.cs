@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class NPC : BaseCharacter
 {
-    [SerializeField] ConversationData conversationData;
+    [SerializeField] NpcContact npcContact;
     [SerializeField] int yMaxStep = 0;
     [SerializeField] int xMaxStep = 0;
     [SerializeField] float randomInterval = 3f;
-    [SerializeField] Contact contact;
 
     float currentTime;
     int xCurrentStep;
@@ -23,8 +22,6 @@ public class NPC : BaseCharacter
     const int MOVE_DOWN = 2;
     const int MOVE_LEFT = 3;
     const int MOVE_RIGHT = 4;
-
-    public ConversationData ConversationData { get => conversationData; }
 
     void Start()
     {
@@ -106,7 +103,7 @@ public class NPC : BaseCharacter
             return;
         }
 
-        if (contact.OtherNpcTouching)
+        if (npcContact.OtherNpcTouching)
         {
             move *= -1;
         }
