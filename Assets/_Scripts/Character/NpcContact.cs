@@ -11,11 +11,6 @@ public class NpcContact : MonoBehaviour, IContactObject<NpcContact>
     public bool OtherNpcTouching { get => otherNpcTouching; }
     public NPC Npc { get => npc; }
 
-    public NpcContact GetInterfaceParent()
-    {
-        return this;
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -42,5 +37,10 @@ public class NpcContact : MonoBehaviour, IContactObject<NpcContact>
         }
 
         if (collision.CompareTag("NPC")) otherNpcTouching = false;
+    }
+
+    public NpcContact GetInterfaceParent()
+    {
+        return this;
     }
 }

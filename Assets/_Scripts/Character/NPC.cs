@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class NPC : BaseCharacter
 {
+    [SerializeField] NpcData npcData;
     [SerializeField] NpcContact npcContact;
-    [SerializeField] int yMaxStep = 0;
-    [SerializeField] int xMaxStep = 0;
-    [SerializeField] float randomInterval = 3f;
-
+    int yMaxStep = 0;
+    int xMaxStep = 0;
+    float randomInterval = 3f;
     float currentTime;
     int xCurrentStep;
     int yCurrentStep;
@@ -26,6 +26,9 @@ public class NPC : BaseCharacter
     void Start()
     {
         lastMove = Vector2.down;
+        xMaxStep = npcData.xMaxStep;
+        yMaxStep = npcData.yMaxStep;
+        randomInterval = npcData.randomInterval;
     }
 
     void OnBecameVisible()
@@ -120,5 +123,10 @@ public class NPC : BaseCharacter
     {
         move = Vector2.zero;
         Freeze = true;
+    }
+
+    public ConversationData ConversationData()
+    {
+        return npcData.conversationData;
     }
 }

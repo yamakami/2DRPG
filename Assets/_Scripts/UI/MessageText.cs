@@ -4,54 +4,60 @@ using DG.Tweening;
 
 public class MessageText : MonoBehaviour
 {
+    [SerializeField] float preWait = 0.2f;
+    [SerializeField] float aftWait = 1f;
     [SerializeField] float textSpeed = 0.04f;
     [SerializeField] Text textArea;
     [SerializeField] Button textForwardButton;
-    [SerializeField] AudioSource audioSource;
+    Sequence sequence;
 
-    static float _textSpeed;
-    static Text _textArea;
-    static string _message;
-    static AudioSource _audioSource;
+    static float stTextSpeed;
+    static Text stTextArea;
+    static string stMessage;
+    static AudioSource stAudio;
 
     public Button TextForwardButton { get => textForwardButton; }
 
     void  Start()
     {
-        _textSpeed = textSpeed;
-        _textArea  = textArea;
-        _audioSource = audioSource;
+        sequence = DOTween.Sequence();
+        stTextSpeed = textSpeed;
+        stTextArea  = textArea;
     }
 
-    public Tween TweenText(string message)
+    public Tween TweenText(string message, AudioSource audio = null)
     {
-        _message = message;
-        _textArea.text = "";
+        stMessage = message;
+        stTextArea.text = "";
+        stAudio = audio;
 
-        var sequence = DOTween.Sequence();
-        sequence.SetDelay(0.2f)
+        sequence.SetDelay(preWait)
                 .AppendCallback(() => TweenMessage())
-                .AppendInterval(1f);
+                .AppendInterval(aftWait)
+                .SetAutoKill(false)
+                .SetLink(gameObject);
+
+        sequence.Rewind();
 
         return sequence;
     }
 
     static Tween TweenMessage()
     {
-        return _textArea.DOText(_message, _message.Length * _textSpeed)                        
-                        .OnStart(() => PlayTalkSound(true))
-                        .OnComplete(() => PlayTalkSound(false))
-                        .Play();
+        return stTextArea.DOText(stMessage, stMessage.Length * stTextSpeed)                        
+                         .OnStart(() => PlayAudio(true))
+                         .OnComplete(() => PlayAudio(false))
+                         .Play();
     }
 
-    static void PlayTalkSound(bool value)
+    static void PlayAudio(bool value)
     {
-        if(!_audioSource) return;
+        if(!stAudio) return;
 
         if(value)
         
-            _audioSource.Play();
+            stAudio.Play();
         else
-            _audioSource.Stop();
+            stAudio.Stop();
     }
 }

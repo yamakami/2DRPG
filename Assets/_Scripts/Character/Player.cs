@@ -44,13 +44,17 @@ public class Player : BaseCharacter, IStatus
         lastMove = ConversationFacingDirection(npc.transform);
 
         StopPlayer();
-        QuestManager.GetQuestManager().QuestUI.MessageBox.Active(true);
+        QuestManager.GetQuestManager().QuestUI.Conversation.StartConversation(npc.ConversationData());
     }
 
      public void StopPlayer()
     {
         move = Vector2.zero;
         Freeze = true;
+    }
+     public void EnableMove()
+    {
+        Freeze = false;
     }
 }
 
