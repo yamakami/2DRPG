@@ -65,19 +65,22 @@ public class Conversation : MonoBehaviour
     void ForwardConversation(ConversationData.Conversation conversation)
     {
         TextForwardButton(false);
+
         var tweenText =  messageText.TweenText(conversation.text, audioSource);
+
         PlayTweenText(tweenText, this.GetCancellationTokenOnDestroy()).Forget();
     }
 
     async UniTaskVoid PlayTweenText(Tween tweenText, CancellationToken token)
     {
-        await tweenText.Play().ToUniTask(cancellationToken: token);
+        await tweenText.Play();
+
         TextForwardButton(true);
     }
 
     void TextForwardButton(bool value)
     {
-        forwardButton.SetActive(true);
+        forwardButton.SetActive(value);
     }
 
     public void EndConversation()

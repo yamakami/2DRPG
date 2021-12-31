@@ -46,7 +46,17 @@ public class NPC : BaseCharacter
         if (Freeze)
             return;
 
-        currentTime += Time.fixedDeltaTime;
+        MovePosition();
+    }
+
+    protected override void Update()
+    { 
+        base.Update();
+
+        if (Freeze)
+            return;
+
+        currentTime += Time.deltaTime;
 
         var moveType = Random.Range(0, randomRange + 1);
         var yRandomSteps = Random.Range(1, yMaxStep + 1);
@@ -110,8 +120,6 @@ public class NPC : BaseCharacter
         {
             move *= -1;
         }
-
-        MovePosition();
     }
 
     public void FacingTo(Vector2 direction)

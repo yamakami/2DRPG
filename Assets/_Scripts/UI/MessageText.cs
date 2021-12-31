@@ -17,10 +17,10 @@ public class MessageText : MonoBehaviour
     static AudioSource stAudio;
 
     public Button TextForwardButton { get => textForwardButton; }
+    public Sequence Sequence { get => sequence; }
 
     void  Start()
     {
-        sequence = DOTween.Sequence();
         stTextSpeed = textSpeed;
         stTextArea  = textArea;
     }
@@ -28,16 +28,14 @@ public class MessageText : MonoBehaviour
     public Tween TweenText(string message, AudioSource audio = null)
     {
         stMessage = message;
-        stTextArea.text = "";
         stAudio = audio;
+        stTextArea.text = "";
 
+        sequence = DOTween.Sequence();
         sequence.SetDelay(preWait)
                 .AppendCallback(() => TweenMessage())
                 .AppendInterval(aftWait)
-                .SetAutoKill(false)
                 .SetLink(gameObject);
-
-        sequence.Rewind();
 
         return sequence;
     }
