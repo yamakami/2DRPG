@@ -4,7 +4,7 @@ using UnityEngine;
 public class ConversationData : ScriptableObject
 {
     public Conversation[] conversationLines;
-    public Conversation[] subConverSationLines;
+    public Conversation[] options;
 
     [System.Serializable]
     public class Conversation

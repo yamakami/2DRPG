@@ -4,56 +4,29 @@ using DG.Tweening;
 
 public class MessageText : MonoBehaviour
 {
-    [SerializeField] float preWait = 0.2f;
-    [SerializeField] float aftWait = 1f;
     [SerializeField] float textSpeed = 0.04f;
     [SerializeField] Text textArea;
-    [SerializeField] Button textForwardButton;
-    Sequence sequence;
 
-    static float stTextSpeed;
-    static Text stTextArea;
-    static string stMessage;
     static AudioSource stAudio;
-
-    public Button TextForwardButton { get => textForwardButton; }
-    public Sequence Sequence { get => sequence; }
-
-    void  Start()
-    {
-        stTextSpeed = textSpeed;
-        stTextArea  = textArea;
-    }
 
     public Tween TweenText(string message, AudioSource audio = null)
     {
-        stMessage = message;
         stAudio = audio;
-        stTextArea.text = "";
 
-        sequence = DOTween.Sequence();
-        sequence.SetDelay(preWait)
-                .AppendCallback(() => TweenMessage())
-                .AppendInterval(aftWait)
-                .SetLink(gameObject);
+        textArea.text = "";
+        var tween = textArea.DOText(message, message.Length * textSpeed);
 
-        return sequence;
-    }
+        if(stAudio != null)
+            tween.OnStart(() => PlayAudio(true)).OnComplete(() => PlayAudio(false));
 
-    static Tween TweenMessage()
-    {
-        return stTextArea.DOText(stMessage, stMessage.Length * stTextSpeed)                        
-                         .OnStart(() => PlayAudio(true))
-                         .OnComplete(() => PlayAudio(false))
-                         .Play();
+        return tween;
     }
 
     static void PlayAudio(bool value)
     {
-        if(!stAudio) return;
+        if(stAudio == null) return;
 
         if(value)
-        
             stAudio.Play();
         else
             stAudio.Stop();

@@ -17,8 +17,9 @@ MonoBehaviour:
     nextConversationData: {fileID: 0}
   - text: "\u304D\u3055\u307E\u306F\u3088\u305D\u8005\u3060\u306A\uFF1F"
     nextConversationData: {fileID: 0}
-  subConverSationLines:
-  - text: "\u306F\u3044\u3001\u30E2\u30ED\u3044\u306A\u304B\u6751\u304B\u3089\u304D\u307E\u3057\u305F"
+  options:
+  - text: "\u306F\u3044\u3001\u30E2\u30ED\u7530\u820E\u6751\u304B\u3089\u3084\u3063\u3066\u304D\u307E\u3057\u305F\u3002"
     nextConversationData: {fileID: 0}
-  - text: "\u3044\u3044\u3048\u3001\u308F\u305F\u3057\u3082\u30AF\u30BD\u3044\u306A\u304B\u6751\u306E\u4F4F\u4EBA\u3067\u3059\u304C\u3001\u3001\u3001"
-    nextConversationData: {fileID: 0}
+  - text: "\u3044\u3044\u3048\u3001\u3042\u306A\u305F\u306E\u5BB6\u306B\u4F4F\u3093\u3067\u3044\u307E\u3059\u3088\u3002"
+    nextConversationData: {fileID: 11400000, guid: 4bf6a7640f3c341a78c1e7c0e2721eb4,
+      type: 2}

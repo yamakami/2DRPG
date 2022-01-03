@@ -8,32 +8,32 @@ public class Conversation : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
     [SerializeField] MessageText messageText;
+    [SerializeField] GameObject nextButton;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] ConversationSelect conversationSelect;
+
     QuestManager questManager;
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(5);
-    public ConversationData ConversationData { get => conversationData; }
+     CancellationToken cancellationToken;
 
-    GameObject forwardButton;
+    public ConversationData ConversationData { get => conversationData; set => conversationData = value; }
 
     void Start()
     {
-        this.GetCancellationTokenOnDestroy();
+        cancellationToken = new CancellationTokenSource().Token;
         questManager = QuestManager.GetQuestManager();
-        forwardButton = messageText.TextForwardButton.gameObject;
     }
 
-    public void StartConversation(ConversationData conversationData = null)
+    public void StartConversation(ConversationData _conversationData)
     {
         canvas.enabled = true;
-        this.conversationData = conversationData;
-
-        if(conversationData) PrepareConversation(); 
+        PrepareConversation(_conversationData); 
     }
 
     public void ClickNext()
     {
-        if (conversations.Count == 0)
+        if (ConversationCount() == 0)
         {
             // var conversationLines = conversationData.conversationLines;
             // var arrayLast = conversationLines.Length -1;
@@ -50,8 +50,9 @@ public class Conversation : MonoBehaviour
         ForwardConversation(conversations.Dequeue());
     }
 
-    void PrepareConversation()
+    public void PrepareConversation(ConversationData _conversationData)
     {
+        this.conversationData = _conversationData;
         conversations.Clear();
 
         foreach (var conversation in conversationData.conversationLines)
@@ -64,28 +65,42 @@ public class Conversation : MonoBehaviour
 
     void ForwardConversation(ConversationData.Conversation conversation)
     {
-        TextForwardButton(false);
-
-        var tweenText =  messageText.TweenText(conversation.text, audioSource);
-
-        PlayTweenText(tweenText, this.GetCancellationTokenOnDestroy()).Forget();
+        var tween = messageText.TweenText(conversation.text, audioSource);
+        PlaySequence(tween).Forget();
     }
 
-    async UniTaskVoid PlayTweenText(Tween tweenText, CancellationToken token)
+    async UniTask PlaySequence(Tween tweenMessage)
     {
-        await tweenText.Play();
+        nextButton.SetActive(false);
 
-        TextForwardButton(true);
-    }
+        await UniTask.Delay(350, cancellationToken: cancellationToken);
 
-    void TextForwardButton(bool value)
-    {
-        forwardButton.SetActive(value);
+        await tweenMessage.Play();
+
+        await UniTask.Delay(500, cancellationToken: cancellationToken);
+
+        if (ConversationCount() == 0 && 0 < conversationData.options.Length)
+        {
+            conversationSelect.Open(conversationData.options);
+            return;
+        }
+
+        nextButton.SetActive(true);
     }
 
     public void EndConversation()
     {
-        canvas.enabled = false;
+        Close();
         questManager.Player.EnableMove();
+    }
+
+    public void Close()
+    {
+        canvas.enabled = false;
+    }
+
+    public int ConversationCount()
+    {
+        return conversations.Count;
     }
 }
