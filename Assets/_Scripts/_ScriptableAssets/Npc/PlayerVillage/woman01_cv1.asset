@@ -20,3 +20,5 @@ MonoBehaviour:
     nextConversationData: {fileID: 0}
   - text: "\u6687\u3067\u3044\u3044\u3067\u3059\u306D\u3002"
     nextConversationData: {fileID: 0}
+  - text: "\u304F\u305D\u304C\uFF01\uFF01\uFF01\uFF01"
+    nextConversationData: {fileID: 0}

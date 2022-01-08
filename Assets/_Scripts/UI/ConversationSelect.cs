@@ -3,9 +3,10 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 public class ConversationSelect : MonoBehaviour
 {
-    [SerializeField] int optionMax;
     [SerializeField] Canvas canvas;
-    [SerializeField] Button prefSelectButton;
+    [SerializeField] int initialBoxHeight = 55;
+    [SerializeField] RectTransform rectTransform;
+    [SerializeField] ConversationSelectButton[] optionButtons;
     QuestManager questManager;
     Conversation conversation;
     List<Button> selectButtons;
@@ -14,37 +15,27 @@ public class ConversationSelect : MonoBehaviour
     {
         questManager = QuestManager.GetQuestManager();
         conversation = questManager.QuestUI.Conversation;
-
-        selectButtons = new List<Button>(optionMax);
-
-        Button button;
-        for(var i = 0; i < optionMax; i++)
-        {
-            button = Instantiate(prefSelectButton);
-
-            button.transform.SetParent(this.transform);
-            button.gameObject.SetActive(false);
-            selectButtons.Add(button);
-        }
     }
 
     void ReCreateButton(ConversationData.Conversation[] options)
     {
-        Button button;
-        for(var i = 0; i < optionMax; i++)
+        var  boxSize = rectTransform.sizeDelta;
+        boxSize.y = initialBoxHeight;
+        for(var i = 0; i < optionButtons.Length; i++)
         {
-            button = selectButtons[i];
-            button.onClick.RemoveAllListeners();
+            var button = optionButtons[i];
+            button.Button.onClick.RemoveAllListeners();
             button.gameObject.SetActive(false);
 
             if(options.Length <= i) continue;
 
             var option = options[i];
-            var textfield = button.GetComponentInChildren<Text>();
-            textfield.text = option.text;
+            button.Text.text = option.text;
             button.gameObject.SetActive(true);
-            button.onClick.AddListener(() => ClickAction(option));
+            button.Button.onClick.AddListener(() => ClickAction(option));
+            boxSize.y += 45;
         }
+        rectTransform.sizeDelta = boxSize;
     }
 
     void ClickAction(ConversationData.Conversation option)
