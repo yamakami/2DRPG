@@ -15,20 +15,61 @@ public class Conversation : MonoBehaviour
     QuestManager questManager;
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(5);
-     CancellationToken cancellationToken;
+    int delayTime = 350;
 
     public ConversationData ConversationData { get => conversationData; set => conversationData = value; }
+    public MessageText MessageText { get => messageText; }
+    public GameObject NextButton { get => nextButton; }
+    public int DelayTime { get => delayTime; }
 
     void Start()
     {
-        cancellationToken = new CancellationTokenSource().Token;
         questManager = QuestManager.GetQuestManager();
     }
 
     public void StartConversation(ConversationData _conversationData)
     {
-        canvas.enabled = true;
+        Open(true);
         PrepareConversation(_conversationData); 
+    }
+
+    public void PrepareConversation(ConversationData _conversationData)
+    {
+        this.conversationData = _conversationData;
+        conversations.Clear();
+
+        foreach (var conversation in conversationData.conversationLines)
+        {
+            conversations.Enqueue(conversation);
+        }
+
+        ForwardConversation(conversations.Dequeue());
+    }
+
+    async void ForwardConversation(ConversationData.Conversation conversation)
+    {
+        var tween = messageText.TweenText(conversation.text, audioSource);
+        await PlayMessage(tween, QuestManager.CancellationTokenSource.Token);
+    }
+
+    async UniTask PlayMessage(Tween tweenMessage, CancellationToken cancellationToken)
+    {
+        nextButton.SetActive(false);
+
+        await UniTask.Delay(delayTime, cancellationToken: cancellationToken);
+
+        await tweenMessage.Play().ToUniTask(cancellationToken: cancellationToken);
+
+        await UniTask.Delay(delayTime, cancellationToken: cancellationToken);
+
+        if (ConversationCount() == 0 && 0 < conversationData.options.Length)
+        {
+            conversationSelect.SelectOptions = conversationData.options;
+            conversationSelect.Open();
+            return;
+        }
+
+        nextButton.SetActive(true);
     }
 
     public void ClickNext()
@@ -50,53 +91,16 @@ public class Conversation : MonoBehaviour
         ForwardConversation(conversations.Dequeue());
     }
 
-    public void PrepareConversation(ConversationData _conversationData)
-    {
-        this.conversationData = _conversationData;
-        conversations.Clear();
-
-        foreach (var conversation in conversationData.conversationLines)
-        {
-            conversations.Enqueue(conversation);
-        }
-
-        ForwardConversation(conversations.Dequeue());
-    }
-
-    void ForwardConversation(ConversationData.Conversation conversation)
-    {
-        var tween = messageText.TweenText(conversation.text, audioSource);
-        PlaySequence(tween).Forget();
-    }
-
-    async UniTask PlaySequence(Tween tweenMessage)
-    {
-        nextButton.SetActive(false);
-
-        await UniTask.Delay(350, cancellationToken: cancellationToken);
-
-        await tweenMessage.Play();
-
-        await UniTask.Delay(500, cancellationToken: cancellationToken);
-
-        if (ConversationCount() == 0 && 0 < conversationData.options.Length)
-        {
-            conversationSelect.Open(conversationData.options);
-            return;
-        }
-
-        nextButton.SetActive(true);
-    }
-
     public void EndConversation()
     {
-        Close();
+        Open(false);
         questManager.Player.EnableMove();
     }
 
-    public void Close()
+    public void Open(bool val)
     {
-        canvas.enabled = false;
+        canvas.enabled = val;
+        questManager.QuestUI.ControlPanelOn(!val);
     }
 
     public int ConversationCount()

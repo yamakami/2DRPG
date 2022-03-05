@@ -12,4 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16570c70b3150475a9e26fd3a8e2c158, type: 3}
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
-  playerName: 
+  playerName: "\u30E4\u30C3\u30DB\u30FC\u592A\u90CE"
+  status:
+    lv: 0
+    maxHP: 70
+    maxMP: 55
+    hp: 70
+    mp: 47
+    attack: 0
+    defence: 0
+    exp: 0
+    gold: 0
+  equip:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: c4914a23a0bf840c9966268f08a7c321, type: 2}
+  - {fileID: 11400000, guid: 3b00539c16c394862933a3163a616e09, type: 2}
+  - {fileID: 11400000, guid: 4eb3d8e835a0741bd82927a327035b65, type: 2}
+  magics:
+  - {fileID: 11400000, guid: 0357d26452c904d37ac36e7375f40ee0, type: 2}
+  - {fileID: 11400000, guid: 0b7c9a189b4bf4ee88445f9037c9468d, type: 2}
+  - {fileID: 11400000, guid: 2ed679c096d2a410a8aa3a697cb026bd, type: 2}
+  - {fileID: 11400000, guid: defe5384b986f4fc9b698a84c9ad2220, type: 2}
+  - {fileID: 11400000, guid: daf928c011f02410389c02c08a87c874, type: 2}

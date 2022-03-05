@@ -9,11 +9,16 @@ public class MessageText : MonoBehaviour
 
     static AudioSource stAudio;
 
+    public void ClearText()
+    {
+        textArea.text = "";
+    }
+
     public Tween TweenText(string message, AudioSource audio = null)
     {
         stAudio = audio;
 
-        textArea.text = "";
+        ClearText();
         var tween = textArea.DOText(message, message.Length * textSpeed);
 
         if(stAudio != null)

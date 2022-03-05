@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : BaseCharacter, IStatus
+public class Player : BaseCharacter
 {
     [SerializeField] PlayerInfo playerInfo;
 

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e261a45bbb8467491de883561d6b0c, type: 3}
+  m_Name: do_no_ken
+  m_EditorClassIdentifier: 
+  useForQuest: 1
+  useForBattle: 0
+  item_type: 3
+  itemName: do_no_ken
+  nameKana: "\u9285\u306E\u5263"
+  price: 25
+  sellPrice: 18
+  value: 13
+  player_possession_count: 0
+  player_possession_limit: 20
+  description: "\u9285\u88FD\u306E\u5263\n\u653B\u6483\u529B\u304C13\u4E0A\u304C\u308B"
+  equip_position: 5

@@ -1,15 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
+
 public class ConversationSelect : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
-    [SerializeField] int initialBoxHeight = 55;
     [SerializeField] RectTransform rectTransform;
-    [SerializeField] ConversationSelectButton[] optionButtons;
+    [SerializeField] SelectButton[] optionButtons;
+    [SerializeField] int initialBoxHeight = 55;
     QuestManager questManager;
     Conversation conversation;
-    List<Button> selectButtons;
+    int rowHight = 45;
+    ConversationData.Conversation[] selectOptions;
+
+    public ConversationData.Conversation[] SelectOptions { set => selectOptions = value; }
 
     void Start()
     {
@@ -17,7 +19,7 @@ public class ConversationSelect : MonoBehaviour
         conversation = questManager.QuestUI.Conversation;
     }
 
-    void ReCreateButton(ConversationData.Conversation[] options)
+    void CreateButton()
     {
         var  boxSize = rectTransform.sizeDelta;
         boxSize.y = initialBoxHeight;
@@ -27,43 +29,37 @@ public class ConversationSelect : MonoBehaviour
             button.Button.onClick.RemoveAllListeners();
             button.gameObject.SetActive(false);
 
-            if(options.Length <= i) continue;
+            if(selectOptions.Length <= i) continue;
 
-            var option = options[i];
-            button.Text.text = option.text;
+            var selectOption = selectOptions[i];
+            button.Text.text = selectOption.text;
             button.gameObject.SetActive(true);
-            button.Button.onClick.AddListener(() => ClickAction(option));
-            boxSize.y += 45;
+            button.Button.onClick.AddListener(() => ClickAction(selectOption));
+            boxSize.y += rowHight;
         }
         rectTransform.sizeDelta = boxSize;
     }
 
-    void ClickAction(ConversationData.Conversation option)
+    void ClickAction(ConversationData.Conversation selectOption)
     {
-        Close();
+        Visible(false);
 
-        if(option?.nextConversationData)
+        if(selectOption?.nextConversationData)
         {
-            conversation.PrepareConversation(option.nextConversationData);
+            conversation.PrepareConversation(selectOption.nextConversationData);
             return;
         }
         conversation.EndConversation();
     }
 
-    public void Open(ConversationData.Conversation[] options)
+    public void Open()
     {
+        CreateButton();
         Visible(true);
-        ReCreateButton(options);
-    }
-
-    public void Close()
-    {
-        Visible(false);
     }
 
     void Visible(bool value)
     {
         canvas.enabled = value;
-        gameObject.SetActive(value);
     }
 }

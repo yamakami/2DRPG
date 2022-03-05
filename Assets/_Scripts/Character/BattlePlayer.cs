@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BattlePlayer : MonoBehaviour, IStatus
+public class BattlePlayer : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

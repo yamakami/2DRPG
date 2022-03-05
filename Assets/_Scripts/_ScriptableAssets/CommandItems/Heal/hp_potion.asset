@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2ee6ee0efba842da90c2df1c0fb54f4, type: 3}
-  m_Name: _Item
+  m_Name: hp_potion
   m_EditorClassIdentifier: 
-  useForQuest: 0
-  useForBattle: 0
-  itemName: 
-  nameKana: 
-  price: 0
-  sellPrice: 0
+  useForQuest: 1
+  useForBattle: 1
+  item_type: 1
+  itemName: hp_potion
+  nameKana: "\u56DE\u5FA9\u85AC"
+  sound: {fileID: 8300000, guid: 80a4e4cef1d3e49e8b35858161dd216c, type: 3}
+  price: 10
+  sellPrice: 4
+  value: 15
   player_possession_count: 0
-  player_possession_limit: 0
-  description: 
-  hello: 
+  player_possession_limit: 20
+  description: "HP\u304C15\u56DE\u5FA9\u3059\u308B"
+  healingType: 0
