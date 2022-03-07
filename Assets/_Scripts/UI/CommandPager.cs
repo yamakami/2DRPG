@@ -15,9 +15,9 @@ public abstract class CommandPager : MonoBehaviour
         return (pageNum - 1) * pageButtonNum;
     }
 
-    protected int GetTotalPageNum(int totalCount)
+    protected void SetTotalPageNum(int totalCount)
     {
-        return Mathf.CeilToInt( totalCount / (float) pageButtonNum);
+        lastPage = Mathf.CeilToInt( totalCount / (float) pageButtonNum);
     }
 
     protected void PageNumDisplay()
@@ -32,18 +32,18 @@ public abstract class CommandPager : MonoBehaviour
         CreateButton();
     }
 
+    public void PageBack()
+    {
+        if(pageNum == 1) return;
+        pageNum--;
+        CreateButton();
+    }
+
     public void PageNext()
     {
         if(lastPage == pageNum) return;
 
         pageNum++;
-        CreateButton();
-    }
-
-    public void PageBack()
-    {
-        if(pageNum == 1) return;
-        pageNum--;
         CreateButton();
     }
 

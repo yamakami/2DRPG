@@ -34,11 +34,13 @@ public class NPC : BaseCharacter
     void OnBecameVisible()
     {
         enabled = true;
+        anim.enabled = true;
     }
 
     void OnBecameInvisible()
     {
         enabled = false;
+        anim.enabled = false;
     }
 
     void FixedUpdate()

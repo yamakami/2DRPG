@@ -30,7 +30,7 @@ public class CommandSelect : CommandPager
     {
         descriptionText.text = "";
         var startIndex = GetStartIndex();
-        lastPage = GetTotalPageNum(commandList.Count);
+        SetTotalPageNum(commandList.Count);
         return startIndex;
     }
 

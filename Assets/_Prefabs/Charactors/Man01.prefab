@@ -97,7 +97,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7583004779735525295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 540bac7cf0199422588a7e2e1c2ea60c, type: 3}
   m_Name: 
@@ -105,10 +105,8 @@ MonoBehaviour:
   speed: 1
   rb2d: {fileID: 7583004779735525291}
   anim: {fileID: 7583004779735525289}
+  npcData: {fileID: 0}
   npcContact: {fileID: 7037058676664566971}
-  yMaxStep: 4
-  xMaxStep: 4
-  randomInterval: 3
 --- !u!114 &7037058676664566971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +129,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7583004779735525295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 22100000, guid: 15290d167db6c44f08039c27240b5637, type: 2}
   m_CullingMode: 0
