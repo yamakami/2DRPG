@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class MagicSelect : CommandSelect
 {
-
-    protected override List<ICommand> GetCommandList()
+    protected override  ICommand[] GetCommandList()
     {
-        return playerInfo.magics.ConvertAll(c => c as ICommand);
+        return playerInfo.magics.ConvertAll(c => c as ICommand).ToArray();
     }
 
     bool IsAvailable(ICommand command)
@@ -27,7 +26,7 @@ public class MagicSelect : CommandSelect
         {
             var button = InitializeButton(i);
 
-            if(commandList.Count <= startIndex) continue;
+            if(commandList.Length <= startIndex) continue;
 
             var command = ActivateButton(startIndex, button);
 
@@ -41,7 +40,7 @@ public class MagicSelect : CommandSelect
             }
 
             button.Button.onClick.AddListener(() => ClickAction(command));
-            AddEvents(command, button);
+            AddDescriptionEvents(command, button);
         }
     }
 }

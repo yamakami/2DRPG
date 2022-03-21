@@ -25,8 +25,6 @@ public class Player : BaseCharacter
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            // if (contactItem) contactItem.SearchItem();
-            // if (contactWith) StartConversation();
             if (ContactObserver.NpcContact != null)
                 StartConversation(ContactObserver.NpcContact.GetInterfaceParent());
         }

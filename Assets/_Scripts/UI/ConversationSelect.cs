@@ -49,6 +49,14 @@ public class ConversationSelect : MonoBehaviour
             conversation.PrepareConversation(selectOption.nextConversationData);
             return;
         }
+
+        if(selectOption?.questEventTrigger)
+        {
+            selectOption.questEventTrigger.Invoke();
+            conversation.EndConversation(); // delete後で
+            return;
+        }
+
         conversation.EndConversation();
     }
 

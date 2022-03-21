@@ -34,6 +34,7 @@ public class CommandUtils : MonoBehaviour
     {
         var messageText = conversationBox.MessageText;
         var delayTime = conversationBox.DelayTime;
+        conversationBox.ConversationData = null;
 
         var message = GetStringBuilder().AppendFormat(command.ActionMessage(), userStatus.CharacterName).ToString();
         await CommandUtils.PlayTwennMessage(token,  messageText, delayTime + 500, message);

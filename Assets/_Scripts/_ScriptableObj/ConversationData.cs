@@ -12,5 +12,6 @@ public class ConversationData : ScriptableObject
         [TextArea(2, 5)]
         public string text;
         public ConversationData nextConversationData;
+        public QuestEventTrigger questEventTrigger;
     }
 }

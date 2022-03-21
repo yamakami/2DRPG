@@ -11,7 +11,7 @@ public class PlayerInfo : ScriptableObject, IStatus
 {
     public string playerName;
     public Status status;
-
+    public int itemsMax = 40;
     public CommandItem[] equip = new CommandItem[6];
     public List<CommandItem> items = new List<CommandItem>(40);
     public List<CommandMagic> magics = new List<CommandMagic>(40);

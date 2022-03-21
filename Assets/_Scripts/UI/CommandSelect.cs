@@ -1,36 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
 
 public class CommandSelect : CommandPager
 {
     [SerializeField] string titleString;
-    [SerializeField] Canvas canvas;
+    [SerializeField] protected Canvas canvas;
     [SerializeField] Text titleText;
-    [SerializeField] Text descriptionText;
-    [SerializeField] SelectButton[] optionButtons;
+    [SerializeField] protected Text descriptionText;
+    [SerializeField] protected SelectButton[] optionButtons;
     protected QuestManager questManager;
     protected PlayerInfo playerInfo;
-    protected List<ICommand> commandList = new List<ICommand>(40);
+    protected ICommand[] commandList;
 
     void Start()
     {
         questManager = QuestManager.GetQuestManager();
         playerInfo = questManager.Player.PlayerInfo;
         pageButtonNum = optionButtons.Length;
+        commandList = new ICommand[playerInfo.itemsMax];
     }
 
-    protected virtual List<ICommand> GetCommandList()
+    protected virtual ICommand[] GetCommandList()
     {
-        return playerInfo.items.ConvertAll(c => c as ICommand);
+        return playerInfo.items.ConvertAll(c => c as ICommand).ToArray();
     }
 
     protected int PageSetting()
     {
         descriptionText.text = "";
         var startIndex = GetStartIndex();
-        SetTotalPageNum(commandList.Count);
+        SetTotalPageNum(commandList.Length);
         return startIndex;
     }
 
@@ -40,9 +40,17 @@ public class CommandSelect : CommandPager
         button.Button.onClick.RemoveAllListeners();
         button.gameObject.SetActive(false);
         button.Button.interactable = true;
-        button.EventTrigger.enabled = true;
+
+        if(1 < button.EventTrigger.triggers.Count)
+           RemoveHoverEvent(button);
+
         button.Text.color = new Color32(255, 255, 255, 255);
         return button;
+    }
+
+    protected virtual void RemoveHoverEvent(SelectButton button)
+    {
+        button.EventTrigger.triggers.RemoveRange(1,2);
     }
 
     protected ICommand ActivateButton(int index, SelectButton button)
@@ -53,7 +61,7 @@ public class CommandSelect : CommandPager
         return command;
     }
 
-    protected void AddEvents(ICommand command, SelectButton button)
+    protected virtual void AddDescriptionEvents(ICommand command, SelectButton button)
     {
         var trigger = button.EventTrigger;
 
@@ -61,7 +69,7 @@ public class CommandSelect : CommandPager
         DescriptionMessageAction(trigger, EventTriggerType.PointerExit);
     }
 
-    void DescriptionMessageAction(EventTrigger trigger, EventTriggerType triggerType, string str=null)
+    protected void DescriptionMessageAction(EventTrigger trigger, EventTriggerType triggerType, string str=null)
     {
         var entry = new EventTrigger.Entry();
         entry.eventID = triggerType;
@@ -78,14 +86,14 @@ public class CommandSelect : CommandPager
         {
             var button = InitializeButton(i);
 
-            if(commandList.Count <= startIndex) continue;
+            if(commandList.Length <= startIndex) continue;
 
             var command = ActivateButton(startIndex, button);
 
             startIndex++;
 
             button.Button.onClick.AddListener(() => ClickAction(command));
-            AddEvents(command, button);
+            AddDescriptionEvents(command, button);
         }
     }
 
@@ -105,7 +113,7 @@ public class CommandSelect : CommandPager
         conversationBox.NextButton.SetActive(true);
     }
 
-    public void Open()
+    public virtual void Open()
     {
         titleText.text = titleString;
         pageNum = 1;

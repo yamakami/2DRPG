@@ -74,21 +74,23 @@ public class Conversation : MonoBehaviour
 
     public void ClickNext()
     {
-        if (ConversationCount() == 0)
+        if (conversationData && ConversationCount() == 0)
         {
-            // var conversationLines = conversationData.conversationLines;
-            // var arrayLast = conversationLines.Length -1;
-            // if(conversationLines[arrayLast].eventTrigger)
-            // {
-            //     conversationLines[arrayLast].eventTrigger.Invoke();
-            //     return;
-            // }
+            var conversationLines = conversationData.conversationLines;
+            var arrayLast = conversationLines.Length -1;
+            if(conversationLines[arrayLast]?.questEventTrigger)
+            {
+                conversationLines[arrayLast].questEventTrigger.Invoke();
+                return;
+            }
 
             EndConversation();
             return;
         }
-
-        ForwardConversation(conversations.Dequeue());
+        if(0 < conversations.Count)
+            ForwardConversation(conversations.Dequeue());
+        else
+            EndConversation();
     }
 
     public void EndConversation()
