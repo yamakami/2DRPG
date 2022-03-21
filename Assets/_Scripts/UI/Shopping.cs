@@ -6,71 +6,49 @@ public class Shopping : CommandSelect
 {
     [SerializeField] Text currentGoldText;
     [SerializeField] Text itemNameText;
-    [SerializeField] Text priceText;
     [SerializeField] Text totalPriceText;
     [SerializeField] Button buySelectedButton;
     [SerializeField] Button sellSelectedButton;
     [SerializeField] Dropdown amount;
-    [SerializeField] ShopTotalAmount shopTotalAmount;
-    [SerializeField] string goldShortMessage = "お金が足りないみたいです!";
-    [SerializeField] string posessionMaxMessage = "{0}はこれ以上持てません!";
-
+    [SerializeField] ConversationData conversationData;
+    [SerializeField] QuestEventTrigger shopSellEventTrigger;
+    [SerializeField] QuestEventTrigger shopBuyEventTrigger;
+    [SerializeField] AudioClip shopSound;
     CommandItem selectedItem;
     int selectedPrice;
     bool isBuy;
 
-    public void StartShoppingPlayerBuy(ICommand[] icommands)
+    IShopMessage shopMessage;
+
+    void ResetConversationData()
     {
+        var conversation = conversationData.conversationLines[0];
+        conversation.text = "";
+        conversation.questEventTrigger = null;
+        questManager.QuestUI.Conversation.Open(false);
+    }
+
+    public void StartShoppingPlayerBuy(ICommand[] icommands, IShopMessage shopMessage)
+    {
+        ResetConversationData();
         isBuy = true;
         commandList = icommands;
         buySelectedButton.gameObject.SetActive(true);
         sellSelectedButton.gameObject.SetActive(false);
+        this.shopMessage = shopMessage;
         Open();
     }
 
-    public void StartShoppingPlayerSell()
+    public void StartShoppingPlayerSell(IShopMessage shopMessage)
     {
+        ResetConversationData();
         isBuy = false;
         buySelectedButton.gameObject.SetActive(false);
         sellSelectedButton.gameObject.SetActive(true);
-        // this.commandItems = playerInfo.items.FindAll( i => i.useForQuest ).ToArray();
-        // CreateButton();
-    }
+        this.shopMessage = shopMessage;
+        commandList = playerInfo.items.ToArray();
 
-   protected override void AddDescriptionEvents(ICommand command, SelectButton button)
-    {
-        var trigger = button.EventTrigger;
-
-        DescriptionMessageAction(trigger, EventTriggerType.PointerEnter, command);
-    }
-
-    void DescriptionMessageAction(EventTrigger trigger, EventTriggerType triggerType, ICommand icomand)
-    {
-        var entry = new EventTrigger.Entry();
-        entry.eventID = triggerType;
-        entry.callback.AddListener((data) => RegisterHoverAction(icomand));
-        trigger.triggers.Add(entry);
-    }
-
-    void RegisterHoverAction(ICommand icomand)
-    {
-        descriptionText.text = icomand?.GetDescription();
-        selectedItem = icomand as CommandItem; 
-        selectedPrice = (isBuy)? selectedItem.price: selectedItem.sellPrice;
-
-        itemNameText.text = selectedItem.GetNameKana();
-        priceText.text = selectedPrice.ToString();
-        totalPriceText.text = (selectedPrice * int.Parse(amount.options[amount.value].text)).ToString();
-    }
-
-    public void OnAmountSelectChaged()
-    {
-        totalPriceText.text = (selectedPrice * int.Parse(amount.options[amount.value].text)).ToString();        
-    }
-
-    protected override void RemoveHoverEvent(SelectButton button)
-    {
-        button.EventTrigger.triggers.RemoveAt(1);
+        Open();
     }
 
     protected override void CreateButton()
@@ -88,18 +66,28 @@ public class Shopping : CommandSelect
 
             startIndex++;
 
-            AddDescriptionEvents(command, button);
+            button.Button.onClick.AddListener(() => ClickAction(command));
         }
+    }
+
+    protected override void ClickAction(ICommand icomand)
+    {
+        selectedItem = icomand as CommandItem; 
+        descriptionText.text = icomand?.GetDescription();
+        itemNameText.text = selectedItem.GetNameKana();
+ 
+        selectedPrice = (isBuy)? selectedItem.price: selectedItem.sellPrice;
+        totalPriceText.text = CaluculateTotalText(selectedPrice, amount.options[amount.value].text).ToString();
     }
 
     public override void Open()
     {
         pageNum = 1;
         selectedItem = null;
+        selectedPrice = 0;
         itemNameText.text = "";
-        priceText.text = "0";
-        totalPriceText.text = "0";
         amount.value = 0;
+        totalPriceText.text = "0";
         currentGoldText.text = playerInfo.status.gold.ToString();
         CreateButton();
         Visible(true);
@@ -109,22 +97,63 @@ public class Shopping : CommandSelect
     {
         if(!selectedItem) return;
 
-        canvas.enabled = false;
-        var selectedAmount =  int.Parse(amount.options[amount.value].text);
-        var totalPrice = selectedItem.price * selectedAmount;
+        var errorMessage = shopMessage.ItemNotEnoughMessage;
+        var totalPrice = CaluculateTotalText(selectedItem.price, amount.options[amount.value].text);
 
         if(totalPrice <= playerInfo.status.gold)
         {
-            // if(selectedItem.player_possession_count <= selectedItem.player_possession_limit)
-                shopTotalAmount.Visible(questManager, playerInfo, selectedItem, selectedAmount, totalPrice);
-            // else
-
+            if(selectedItem.player_possession_count <= selectedItem.player_possession_limit)
+            {
+                Buy(totalPrice);
+                Open();
+                return;
+            }
+            else
+            {
+                var stringBuilder = CommandUtils.GetStringBuilder();
+                errorMessage = stringBuilder.AppendFormat(shopMessage.PosessionMaxMessage, selectedItem.GetNameKana()).ToString();
+            }
         }
+        canvas.enabled = false;
+        SetConversation(errorMessage, shopSellEventTrigger);
     }
 
-    public void SellAmountSelected()
+    void Buy(int totalPrice)
     {
-        var selectedAmount =  int.Parse(amount.options[amount.value].text);
-        var totalPrice = selectedItem.sellPrice * selectedAmount;
+        selectedItem.player_possession_count++;
+
+        var playerItems = playerInfo.items;
+        if(!playerItems.Find( i => i == selectedItem)) playerItems.Add(selectedItem);
+
+        playerInfo.status.gold -= totalPrice;
+        questManager.QuestUI.SeAudioSource.PlayOneShot(shopSound);
+    }
+
+    // public void SellAmountSelected()
+    // {
+    //     var totalPrice = CaluculateTotalText(selectedItem.sellPrice, amount.options[amount.value].text);
+    // }
+
+    public void OnAmountSelectChaged()
+    {
+        totalPriceText.text = CaluculateTotalText(selectedPrice, amount.options[amount.value].text).ToString();
+    }
+
+    public void CloseMessage()
+    {
+        SetConversation(shopMessage.CloseMessage);
+    }
+
+    void SetConversation(string message, QuestEventTrigger eventTrigger = null)
+    {
+        var conversationBox = questManager.QuestUI.Conversation;
+        conversationData.conversationLines[0].text = message;
+        conversationData.conversationLines[0].questEventTrigger = eventTrigger;
+        conversationBox.StartConversation(conversationData);
+    }
+
+    int CaluculateTotalText(int price, string amountText)
+    {
+        return (price * int.Parse(amountText));
     }
 }

@@ -6,7 +6,7 @@ public class MagicSelect : CommandSelect
 {
     protected override  ICommand[] GetCommandList()
     {
-        return playerInfo.magics.ConvertAll(c => c as ICommand).ToArray();
+        return playerInfo.magics.ToArray();
     }
 
     bool IsAvailable(ICommand command)

@@ -23,7 +23,7 @@ public class CommandSelect : CommandPager
 
     protected virtual ICommand[] GetCommandList()
     {
-        return playerInfo.items.ConvertAll(c => c as ICommand).ToArray();
+        return playerInfo.items.ToArray();
     }
 
     protected int PageSetting()
