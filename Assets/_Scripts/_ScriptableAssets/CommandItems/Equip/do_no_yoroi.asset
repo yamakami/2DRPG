@@ -17,10 +17,11 @@ MonoBehaviour:
   item_type: 3
   itemName: do_no_yoroi
   nameKana: "\u9285\u306E\u93A7"
+  sound: {fileID: 0}
   price: 28
   sellPrice: 18
   value: 20
-  player_possession_count: 0
+  player_possession_count: 1
   player_possession_limit: 20
   description: "\u9285\u88FD\u306E\u93A7\n\u9632\u5FA1\u529B\u304C20\u4E0A\u304C\u308B"
   equip_position: 1

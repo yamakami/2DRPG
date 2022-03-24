@@ -3,9 +3,9 @@ using UnityEngine;
 public class ShopSell : QuestEventListener, IShopMessage
 {
     [SerializeField] CommandItem[] commandItems;
-    [SerializeField] string itemNotEnoughMessage = "お金が足りないみたいです";
+    [SerializeField] string itemNotEnoughMessage = "お金が不足しているみたいです";
     [SerializeField] string posessionMaxMessage = "{0}はこれ以上持てません";
-    [SerializeField] string closeMessage = "またきてくれよな";
+    [SerializeField] string closeMessage = "また買いに来てくださいね";
 
     ICommand[] icommands;
     Shopping shoppingUI;

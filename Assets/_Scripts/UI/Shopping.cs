@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class Shopping : CommandSelect
 {
-    [SerializeField] Text currentGoldText;
+
     [SerializeField] Text itemNameText;
+    [SerializeField] Text ownItemNumText;
+    [SerializeField] Text currentGoldText;
     [SerializeField] Text totalPriceText;
     [SerializeField] Button buySelectedButton;
     [SerializeField] Button sellSelectedButton;
@@ -30,24 +32,26 @@ public class Shopping : CommandSelect
 
     public void StartShoppingPlayerBuy(ICommand[] icommands, IShopMessage shopMessage)
     {
-        ResetConversationData();
         isBuy = true;
-        commandList = icommands;
         buySelectedButton.gameObject.SetActive(true);
         sellSelectedButton.gameObject.SetActive(false);
-        this.shopMessage = shopMessage;
-        Open();
-    }
+        commandList = icommands;
+        CommonStartShopping(shopMessage);
+     }
 
     public void StartShoppingPlayerSell(IShopMessage shopMessage)
     {
-        ResetConversationData();
         isBuy = false;
         buySelectedButton.gameObject.SetActive(false);
         sellSelectedButton.gameObject.SetActive(true);
-        this.shopMessage = shopMessage;
         commandList = playerInfo.items.ToArray();
+        CommonStartShopping(shopMessage);
+    }
 
+    void CommonStartShopping(IShopMessage shopMessage)
+    {
+        ResetConversationData();
+        this.shopMessage = shopMessage;
         Open();
     }
 
@@ -75,7 +79,7 @@ public class Shopping : CommandSelect
         selectedItem = icomand as CommandItem; 
         descriptionText.text = icomand?.GetDescription();
         itemNameText.text = selectedItem.GetNameKana();
- 
+        ownItemNumText.text = selectedItem.player_possession_count.ToString();
         selectedPrice = (isBuy)? selectedItem.price: selectedItem.sellPrice;
         totalPriceText.text = CaluculateTotalText(selectedPrice, amount.options[amount.value].text).ToString();
     }
@@ -88,12 +92,13 @@ public class Shopping : CommandSelect
         itemNameText.text = "";
         amount.value = 0;
         totalPriceText.text = "0";
+        ownItemNumText.text = "0";
         currentGoldText.text = playerInfo.status.gold.ToString();
         CreateButton();
         Visible(true);
     }
 
-    public void BuyAmountSelected()
+    public void OkToBuy()
     {
         if(!selectedItem) return;
 
@@ -129,10 +134,35 @@ public class Shopping : CommandSelect
         questManager.QuestUI.SeAudioSource.PlayOneShot(shopSound);
     }
 
-    // public void SellAmountSelected()
-    // {
-    //     var totalPrice = CaluculateTotalText(selectedItem.sellPrice, amount.options[amount.value].text);
-    // }
+    public void OkToSell()
+    {
+        if(!selectedItem) return;
+
+        int selectAmount = int.Parse(amount.options[amount.value].text);
+
+        if(selectedItem.player_possession_count <  selectAmount)
+        {
+            canvas.enabled = false;
+            SetConversation(shopMessage.ItemNotEnoughMessage, shopBuyEventTrigger);
+            return;
+        }
+        Sell(selectedItem, selectAmount);
+        Open();
+    }
+
+    void Sell(CommandItem item, int amount)
+    {
+        playerInfo.status.gold += item.sellPrice * amount;
+        item.player_possession_count -= amount;
+
+        if(item.player_possession_count < 1)
+        {
+            playerInfo.items.Remove(item);
+            commandList = playerInfo.items.ToArray();
+        }
+
+        questManager.QuestUI.SeAudioSource.PlayOneShot(shopSound);
+    }
 
     public void OnAmountSelectChaged()
     {

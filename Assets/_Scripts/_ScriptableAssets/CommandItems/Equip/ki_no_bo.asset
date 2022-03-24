@@ -17,6 +17,7 @@ MonoBehaviour:
   item_type: 3
   itemName: kinobo
   nameKana: "\u6728\u306E\u68D2"
+  sound: {fileID: 0}
   price: 4
   sellPrice: 1
   value: 8

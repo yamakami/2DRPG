@@ -17,6 +17,7 @@ MonoBehaviour:
   item_type: 3
   itemName: kawa_no_tate
   nameKana: "\u9285\u306E\u76FE"
+  sound: {fileID: 0}
   price: 28
   sellPrice: 20
   value: 15

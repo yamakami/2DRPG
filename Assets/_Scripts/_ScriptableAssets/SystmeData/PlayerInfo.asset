@@ -22,7 +22,7 @@ MonoBehaviour:
     attack: 0
     defence: 0
     exp: 0
-    gold: 63
+    gold: 31
   itemsMax: 40
   equip:
   - {fileID: 0}
@@ -35,7 +35,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c4914a23a0bf840c9966268f08a7c321, type: 2}
   - {fileID: 11400000, guid: 3b00539c16c394862933a3163a616e09, type: 2}
   - {fileID: 11400000, guid: 4eb3d8e835a0741bd82927a327035b65, type: 2}
-  - {fileID: 11400000, guid: 9cd49857e691a4be68ad1d11a7a6fc6f, type: 2}
+  - {fileID: 11400000, guid: 1269181756bef4876806f1e3228a223c, type: 2}
+  - {fileID: 11400000, guid: fec33fccc684e4108ab5d94304667cc9, type: 2}
+  - {fileID: 11400000, guid: 905d9414cc563416aada19b37acc841d, type: 2}
   magics:
   - {fileID: 11400000, guid: 0357d26452c904d37ac36e7375f40ee0, type: 2}
   - {fileID: 11400000, guid: 0b7c9a189b4bf4ee88445f9037c9468d, type: 2}

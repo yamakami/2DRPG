@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class ShopBuy : QuestEventListener, IShopMessage
 {
-    [SerializeField] string itemNotEnoughMessage = "足りないみたいです";
-    [SerializeField] string posessionMaxMessage = "{0}はこれ以上持てません";
-    [SerializeField] string closeMessage = "またきてくれよな";
+    [SerializeField] string itemNotEnoughMessage = "数が足りないみたいです";
+    [SerializeField] string posessionMaxMessage = "";
+    [SerializeField] string closeMessage = "また売りにきてくださいね";
+
+
+    Shopping shoppingUI;
 
     public string ItemNotEnoughMessage => itemNotEnoughMessage;
 
@@ -12,9 +15,13 @@ public class ShopBuy : QuestEventListener, IShopMessage
 
     public string CloseMessage => closeMessage;
 
+    void Start()
+    {
+        shoppingUI = QuestManager.GetQuestManager().QuestUI.Shopping;
+    }
+
     public override void OnEventRaised()
     {
-
-Debug.Log("------------shop buy");
+        shoppingUI.StartShoppingPlayerSell(this);
     }
 }
