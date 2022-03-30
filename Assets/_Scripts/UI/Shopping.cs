@@ -10,6 +10,8 @@ public class Shopping : CommandSelect
     [SerializeField] Text totalPriceText;
     [SerializeField] Button buySelectedButton;
     [SerializeField] Button sellSelectedButton;
+    [SerializeField] GameObject backButton;
+
     [SerializeField] Dropdown amount;
     [SerializeField] ConversationData conversationData;
     [SerializeField] AudioClip shopSound;
@@ -181,6 +183,11 @@ public class Shopping : CommandSelect
     public void CloseMessage()
     {
         SetConversation(currentClerk.CloseMessage);
+    }
+
+    public void ActivateMenuBackButton(bool active)
+    {
+        backButton.SetActive(active);
     }
 
     void SetConversation(string message, QuestEventTrigger eventTrigger = null)

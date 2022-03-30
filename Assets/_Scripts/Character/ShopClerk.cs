@@ -37,9 +37,11 @@ public class ShopClerk : QuestEventListener
         if (shopType == SHOP_TYPE.SELL_AND_BUY)
         {
             shoppingUI.ShopMenuCanvas.enabled = true;
+            shoppingUI.ActivateMenuBackButton(true);
             return;
         }
 
+        shoppingUI.ActivateMenuBackButton(false);
         if (shopType == SHOP_TYPE.SELL_ONLY)
         {
             shoppingUI.StartSellShop();
