@@ -5,6 +5,8 @@ public abstract class QuestEventListener : MonoBehaviour
 {
     [SerializeField] QuestEventTrigger eventTrigger;
 
+    public QuestEventTrigger EventTrigger { get => eventTrigger; }
+
     void OnEnable()
     {
         eventTrigger.AddEvent(this);

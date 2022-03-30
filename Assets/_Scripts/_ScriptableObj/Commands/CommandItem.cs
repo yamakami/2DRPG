@@ -47,7 +47,9 @@ public class CommandItem : ScriptableObject, ICommand
 
     public string GetDescription()
     {
-        return description;
+        var sb = CommandUtils.GetStringBuilder();
+        sb.Append($"{description}\n");
+        return sb.AppendFormat("所有限度: {0}", player_possession_limit).ToString();
     }
 
     public int AvailableAmount()

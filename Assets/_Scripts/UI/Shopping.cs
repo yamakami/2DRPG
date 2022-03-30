@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Shopping : CommandSelect
 {
-
+    [SerializeField] Canvas shopMenuCanvas;
     [SerializeField] Text itemNameText;
     [SerializeField] Text ownItemNumText;
     [SerializeField] Text currentGoldText;
@@ -13,45 +12,53 @@ public class Shopping : CommandSelect
     [SerializeField] Button sellSelectedButton;
     [SerializeField] Dropdown amount;
     [SerializeField] ConversationData conversationData;
-    [SerializeField] QuestEventTrigger shopSellEventTrigger;
-    [SerializeField] QuestEventTrigger shopBuyEventTrigger;
     [SerializeField] AudioClip shopSound;
     CommandItem selectedItem;
     int selectedPrice;
-    bool isBuy;
+    bool isSell;
+    ShopClerk currentClerk;
 
-    IShopMessage shopMessage;
+    public Canvas ShopMenuCanvas { get => shopMenuCanvas; }
+    public ShopClerk CurrentClerk { get => currentClerk; set => currentClerk = value; }
+
+
+    public void EndConversation()
+    {
+        questManager.QuestUI.Conversation.EndConversation();
+    }
 
     void ResetConversationData()
     {
         var conversation = conversationData.conversationLines[0];
         conversation.text = "";
         conversation.questEventTrigger = null;
-        questManager.QuestUI.Conversation.Open(false);
+
+        var questUI = questManager.QuestUI;
+        questUI.Conversation.Open(false);
+        questUI.ControlPanelOn(false);
     }
 
-    public void StartShoppingPlayerBuy(ICommand[] icommands, IShopMessage shopMessage)
+    public void StartSellShop()
     {
-        isBuy = true;
+        isSell = true;
         buySelectedButton.gameObject.SetActive(true);
         sellSelectedButton.gameObject.SetActive(false);
-        commandList = icommands;
-        CommonStartShopping(shopMessage);
+        commandList = currentClerk.CommandItems;
+        CommonStartShop();
      }
 
-    public void StartShoppingPlayerSell(IShopMessage shopMessage)
+    public void StartBuyShop()
     {
-        isBuy = false;
+        isSell = false;
         buySelectedButton.gameObject.SetActive(false);
         sellSelectedButton.gameObject.SetActive(true);
         commandList = playerInfo.items.ToArray();
-        CommonStartShopping(shopMessage);
+        CommonStartShop();
     }
 
-    void CommonStartShopping(IShopMessage shopMessage)
+    void CommonStartShop()
     {
         ResetConversationData();
-        this.shopMessage = shopMessage;
         Open();
     }
 
@@ -80,7 +87,7 @@ public class Shopping : CommandSelect
         descriptionText.text = icomand?.GetDescription();
         itemNameText.text = selectedItem.GetNameKana();
         ownItemNumText.text = selectedItem.player_possession_count.ToString();
-        selectedPrice = (isBuy)? selectedItem.price: selectedItem.sellPrice;
+        selectedPrice = (isSell)? selectedItem.price: selectedItem.sellPrice;
         totalPriceText.text = CaluculateTotalText(selectedPrice, amount.options[amount.value].text).ToString();
     }
 
@@ -98,34 +105,36 @@ public class Shopping : CommandSelect
         Visible(true);
     }
 
-    public void OkToBuy()
+    public void CheckToSell()
     {
         if(!selectedItem) return;
 
-        var errorMessage = shopMessage.ItemNotEnoughMessage;
-        var totalPrice = CaluculateTotalText(selectedItem.price, amount.options[amount.value].text);
+        var errorMessage = currentClerk.MoneyNotEnoughMessage;
+        var amountText =  amount.options[amount.value].text;
+        var totalPrice = CaluculateTotalText(selectedItem.price, amountText);
 
         if(totalPrice <= playerInfo.status.gold)
         {
-            if(selectedItem.player_possession_count <= selectedItem.player_possession_limit)
+            var selectedAmount = int.Parse(amountText);
+            if(selectedItem.player_possession_count +  selectedAmount <= selectedItem.player_possession_limit)
             {
-                Buy(totalPrice);
+                Sell(totalPrice, selectedAmount);
                 Open();
                 return;
             }
             else
             {
                 var stringBuilder = CommandUtils.GetStringBuilder();
-                errorMessage = stringBuilder.AppendFormat(shopMessage.PosessionMaxMessage, selectedItem.GetNameKana()).ToString();
+                errorMessage = stringBuilder.AppendFormat(currentClerk.PosessionMaxMessage, selectedItem.GetNameKana()).ToString();
             }
         }
         canvas.enabled = false;
-        SetConversation(errorMessage, shopSellEventTrigger);
+        SetConversation(errorMessage, currentClerk.EventTrigger);
     }
 
-    void Buy(int totalPrice)
+    void Sell(int totalPrice, int amount)
     {
-        selectedItem.player_possession_count++;
+        selectedItem.player_possession_count += amount;
 
         var playerItems = playerInfo.items;
         if(!playerItems.Find( i => i == selectedItem)) playerItems.Add(selectedItem);
@@ -134,7 +143,7 @@ public class Shopping : CommandSelect
         questManager.QuestUI.SeAudioSource.PlayOneShot(shopSound);
     }
 
-    public void OkToSell()
+    public void CheckToBuy()
     {
         if(!selectedItem) return;
 
@@ -143,14 +152,14 @@ public class Shopping : CommandSelect
         if(selectedItem.player_possession_count <  selectAmount)
         {
             canvas.enabled = false;
-            SetConversation(shopMessage.ItemNotEnoughMessage, shopBuyEventTrigger);
+            SetConversation(currentClerk.ItemNotEnoughMessage, currentClerk.EventTrigger);
             return;
         }
-        Sell(selectedItem, selectAmount);
+        Buy(selectedItem, selectAmount);
         Open();
     }
 
-    void Sell(CommandItem item, int amount)
+    void Buy(CommandItem item, int amount)
     {
         playerInfo.status.gold += item.sellPrice * amount;
         item.player_possession_count -= amount;
@@ -171,7 +180,7 @@ public class Shopping : CommandSelect
 
     public void CloseMessage()
     {
-        SetConversation(shopMessage.CloseMessage);
+        SetConversation(currentClerk.CloseMessage);
     }
 
     void SetConversation(string message, QuestEventTrigger eventTrigger = null)

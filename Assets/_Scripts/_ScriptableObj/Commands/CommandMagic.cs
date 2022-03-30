@@ -57,7 +57,9 @@ public class CommandMagic : ScriptableObject, ICommand
 
     public string GetDescription()
     {
-        return description;
+        var sb = CommandUtils.GetStringBuilder();
+        sb.Append($"{description}\n");
+        return sb.AppendFormat("消費MP: {0}", consumptionMp).ToString();
     }
 
     public AudioClip GetAudioClip()

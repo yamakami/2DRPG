@@ -81,6 +81,7 @@ public class Conversation : MonoBehaviour
             if(conversationLines[arrayLast]?.questEventTrigger)
             {
                 conversationLines[arrayLast].questEventTrigger.Invoke();
+                nextButton.SetActive(false);
                 return;
             }
 
