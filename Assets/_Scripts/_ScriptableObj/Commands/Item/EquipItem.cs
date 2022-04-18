@@ -7,15 +7,22 @@ public class EquipItem : CommandItem
      public enum EQUIP_POSITION
     {
         NONE = -1,
-        HEAD = 0,
-        BODY = 1,
-        HAND = 2,
-        LEG = 3,
-        SHIELD = 4,
-        ARM = 5,
+        ARMS = 0,
+        SHIELD = 1, 
+        HEAD = 2,
+        BODY = 3,
+        HAND = 4,
+        LEG = 5,
     }
  
     public EQUIP_POSITION equip_position;
+
+    public string GetEquipDescription()
+    {
+
+        return "はろーーーーーーー";
+    }
+
 
     // public override string ActionMessage()
     // {

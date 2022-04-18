@@ -24,4 +24,4 @@ MonoBehaviour:
   player_possession_count: 0
   player_possession_limit: 20
   description: "\u305F\u307E\u306B\u843D\u3061\u3066\u3044\u308B\u6728\u306E\u68D2\n\u653B\u6483\u529B\u304C8\u4E0A\u304C\u308B"
-  equip_position: 5
+  equip_position: 0

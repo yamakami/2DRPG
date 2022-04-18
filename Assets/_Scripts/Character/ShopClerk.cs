@@ -43,12 +43,8 @@ public class ShopClerk : QuestEventListener
 
         shoppingUI.ActivateMenuBackButton(false);
         if (shopType == SHOP_TYPE.SELL_ONLY)
-        {
             shoppingUI.StartSellShop();
-        }
         else
-        {
             shoppingUI.StartBuyShop();
-        }
     }
 }

@@ -17,10 +17,11 @@ MonoBehaviour:
   item_type: 3
   itemName: kawa_no_boots
   nameKana: "\u9769\u306E\u30D6\u30FC\u30C4"
+  sound: {fileID: 0}
   price: 8
   sellPrice: 4
   value: 4
   player_possession_count: 0
   player_possession_limit: 20
   description: "\u9769\u88FD\u306E\u30D6\u30FC\u30C4\n\u9632\u5FA1\u529B\u304C4\u4E0A\u304C\u308B"
-  equip_position: 3
+  equip_position: 5

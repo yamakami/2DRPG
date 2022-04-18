@@ -21,7 +21,7 @@ MonoBehaviour:
   price: 5
   sellPrice: 2
   value: 5
-  player_possession_count: 85
+  player_possession_count: 0
   player_possession_limit: 20
   description: "HP\u304C5\u56DE\u5FA9\u3059\u308B"
   healingType: 0

@@ -17,10 +17,11 @@ MonoBehaviour:
   item_type: 3
   itemName: kawa_no_boshi
   nameKana: "\u9769\u306E\u5E3D\u5B50"
+  sound: {fileID: 0}
   price: 8
   sellPrice: 2
   value: 4
   player_possession_count: 0
   player_possession_limit: 20
   description: "\u9769\u88FD\u306E\u5E3D\u5B50\n\u9632\u5FA1\u529B\u304C4\u4E0A\u304C\u308B"
-  equip_position: 0
+  equip_position: 2

@@ -17,10 +17,11 @@ MonoBehaviour:
   item_type: 3
   itemName: kawa_no_fuku
   nameKana: "\u9769\u306E\u670D"
+  sound: {fileID: 0}
   price: 12
   sellPrice: 4
   value: 6
   player_possession_count: 0
   player_possession_limit: 20
   description: "\u9769\u88FD\u306E\u670D\n\u9632\u5FA1\u529B\u304C6\u4E0A\u304C\u308B"
-  equip_position: 1
+  equip_position: 3

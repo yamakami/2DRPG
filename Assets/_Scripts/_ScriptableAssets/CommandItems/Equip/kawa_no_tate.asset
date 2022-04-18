@@ -16,11 +16,12 @@ MonoBehaviour:
   useForBattle: 0
   item_type: 3
   itemName: kawa_no_tate
-  nameKana: "\u9769\u306E\u670D"
+  nameKana: "\u9769\u306E\u76FE"
+  sound: {fileID: 0}
   price: 18
   sellPrice: 10
   value: 10
-  player_possession_count: 0
+  player_possession_count: 1
   player_possession_limit: 20
   description: "\u9769\u88FD\u306E\u76FE\n\u9632\u5FA1\u529B\u304C10\u4E0A\u304C\u308B"
-  equip_position: 4
+  equip_position: 1

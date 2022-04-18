@@ -24,11 +24,6 @@ public class Shopping : CommandSelect
     public ShopClerk CurrentClerk { get => currentClerk; set => currentClerk = value; }
 
 
-    public void EndConversation()
-    {
-        questManager.QuestUI.Conversation.EndConversation();
-    }
-
     void ResetConversationData()
     {
         var conversation = conversationData.conversationLines[0];
@@ -86,7 +81,7 @@ public class Shopping : CommandSelect
     protected override void ClickAction(ICommand icomand)
     {
         selectedItem = icomand as CommandItem; 
-        descriptionText.text = icomand?.GetDescription();
+        descriptionText.text = icomand.GetDescription();
         itemNameText.text = selectedItem.GetNameKana();
         ownItemNumText.text = selectedItem.player_possession_count.ToString();
         selectedPrice = (isSell)? selectedItem.price: selectedItem.sellPrice;
