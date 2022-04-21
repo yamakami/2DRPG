@@ -17,19 +17,19 @@ MonoBehaviour:
     lv: 0
     maxHP: 70
     maxMP: 55
-    hp: 8
-    mp: 55
-    attack: 0
-    defence: 0
+    hp: -8
+    mp: 41
+    attack: 8
+    defence: 10
     exp: 0
     gold: 999833
   itemsMax: 40
   equiped:
-  - {fileID: 11400000, guid: 9cd49857e691a4be68ad1d11a7a6fc6f, type: 2}
+  - {fileID: 11400000, guid: fec33fccc684e4108ab5d94304667cc9, type: 2}
   - {fileID: 11400000, guid: 905d9414cc563416aada19b37acc841d, type: 2}
   - {fileID: 11400000, guid: 4fc456daf7c3f4722a9ed8b50f8210b3, type: 2}
   - {fileID: 11400000, guid: fdff0374bcc6848258d9f40b8d309e93, type: 2}
-  - {fileID: 11400000, guid: 8f5b7509f4aad450681357ff34f2a4e0, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: f5b56d65c1110439bb19108b6d01fe53, type: 2}
   items:
   - {fileID: 11400000, guid: fec33fccc684e4108ab5d94304667cc9, type: 2}

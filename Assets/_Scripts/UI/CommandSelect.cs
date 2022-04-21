@@ -13,7 +13,7 @@ public class CommandSelect : CommandPager
     protected PlayerInfo playerInfo;
     protected ICommand[] commandList;
 
-    void Start()
+    protected virtual void Start()
     {
         questManager = QuestManager.GetQuestManager();
         playerInfo = questManager.Player.PlayerInfo;
@@ -61,19 +61,19 @@ public class CommandSelect : CommandPager
         return command;
     }
 
-    protected virtual void AddDescriptionEvents(ICommand command, SelectButton button)
+    protected void AddDescriptionEvents(ICommand command, SelectButton button)
     {
         var trigger = button.EventTrigger;
 
-        DescriptionMessageAction(trigger, EventTriggerType.PointerEnter, command.GetDescription());
+        DescriptionMessageAction(trigger, EventTriggerType.PointerEnter, command);
         DescriptionMessageAction(trigger, EventTriggerType.PointerExit);
     }
 
-    protected void DescriptionMessageAction(EventTrigger trigger, EventTriggerType triggerType, string str=null)
+    protected virtual void DescriptionMessageAction(EventTrigger trigger, EventTriggerType triggerType, ICommand command=null)
     {
         var entry = new EventTrigger.Entry();
         entry.eventID = triggerType;
-        entry.callback.AddListener((data) => { descriptionText.text = str; });
+        entry.callback.AddListener((data) => { descriptionText.text = command?.GetDescription(); });
         trigger.triggers.Add(entry);
     }
 
