@@ -1,12 +1,11 @@
 
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MagicSelect : CommandSelect
 {
     protected override  ICommand[] GetCommandList()
     {
-        return playerInfo.magics.ToArray();
+        return playerInfo.magics.FindAll(i => i.useForQuest).ToArray();
     }
 
     bool IsAvailable(ICommand command)
@@ -33,9 +32,7 @@ public class MagicSelect : CommandSelect
             startIndex++;
 
             if(!IsAvailable(command)){
-                button.Button.interactable = false;
-                button.EventTrigger.enabled = false;
-                button.Text.color = new Color32(135, 135, 135, 255);
+                button.DisableButton();
                 continue;
             }
 

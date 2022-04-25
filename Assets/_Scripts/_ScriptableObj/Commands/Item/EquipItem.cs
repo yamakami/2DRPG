@@ -16,26 +16,17 @@ public class EquipItem : CommandItem
     }
  
     public EQUIP_POSITION equip_position;
+    public bool equiped;
 
-    public string GetEquipDescription()
+    public override string ActionMessage()
     {
-
-        return "はろーーーーーーー";
+        return $"{{0}}は#{this.GetNameKana()}を使った";
     }
 
+    public override string AffectMessage(bool result = true)
+    {
+        return "何も起こらなかった";
+    }
 
-    // public override string ActionMessage()
-    // {
-    //     return $"{0}は#{this.GetNameKana()}を使った";
-    // }
-
-    // public override string AffectMessage(bool result = true)
-    // {
-    //     // var prefix = (healingType == HEALING_TYPE.HP)?  HEALING_TYPE.HP : HEALING_TYPE.MP;
-
-    //     // var message = messageNothingHappen;
-    //     // if(result) message = $"{0}は#{prefix}が{1}回復した";
-
-    //     return "";
-    // }
+    public override void Consume(IStatus userStatus, IStatus targetStatus = null)　{}
 }

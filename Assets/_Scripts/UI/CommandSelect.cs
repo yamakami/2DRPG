@@ -23,7 +23,7 @@ public class CommandSelect : CommandPager
 
     protected virtual ICommand[] GetCommandList()
     {
-        return playerInfo.items.ToArray();
+        return playerInfo.items.FindAll(i => i.useForQuest).ToArray();
     }
 
     protected int PageSetting()
@@ -37,14 +37,12 @@ public class CommandSelect : CommandPager
     protected SelectButton InitializeButton(int index)
     {
         var button = optionButtons[index];
+
+        if(1 < button.EventTrigger.triggers.Count) RemoveHoverEvent(button);
         button.Button.onClick.RemoveAllListeners();
+        button.EnableButton();
         button.gameObject.SetActive(false);
-        button.Button.interactable = true;
 
-        if(1 < button.EventTrigger.triggers.Count)
-           RemoveHoverEvent(button);
-
-        button.Text.color = new Color32(255, 255, 255, 255);
         return button;
     }
 

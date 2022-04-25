@@ -13,15 +13,19 @@ public class ShopClerk : QuestEventListener
  
     [SerializeField] string moneyNotEnoughMessage = "お金が不足しているみたいです";
     [SerializeField] string itemNotEnoughMessage = "数が足りないみたいです";
+    [SerializeField] string needUnEquipMessage = "装備を解除する必要があります";
+
     [SerializeField] string posessionMaxMessage = "{0}はこれ以上持てません";
     [SerializeField] string closeMessage = "また来てくださいね";
  
     public SHOP_TYPE ShopType { get => shopType; }
     public string MoneyNotEnoughMessage { get => moneyNotEnoughMessage; }
     public string ItemNotEnoughMessage { get => itemNotEnoughMessage; }
+    public string NeedUnEquipMessage { get => needUnEquipMessage; }
     public string PosessionMaxMessage { get => posessionMaxMessage; }
     public string CloseMessage { get => closeMessage; }
     public CommandItem[] CommandItems { get => commandItems; }
+
 
     Shopping shoppingUI;
 

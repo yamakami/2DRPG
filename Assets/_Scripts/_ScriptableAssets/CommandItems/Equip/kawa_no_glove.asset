@@ -21,7 +21,8 @@ MonoBehaviour:
   price: 6
   sellPrice: 2
   value: 4
-  player_possession_count: 1
+  player_possession_count: 0
   player_possession_limit: 20
   description: "\u9769\u88FD\u306E\u30B0\u30ED\u30FC\u30D6\n\u9632\u5FA1\u529B\u304C4\u4E0A\u304C\u308B"
   equip_position: 4
+  equiped: 0

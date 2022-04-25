@@ -9,7 +9,6 @@ public class EquipControl : MonoBehaviour
     [SerializeField] Text defenceNumPreview;
     [SerializeField] Text[] equipedTexts;
 
-
     PlayerInfo playerInfo;
 
     public PlayerInfo PlayerInfo { set => playerInfo = value; }
@@ -33,6 +32,7 @@ public class EquipControl : MonoBehaviour
     {
         var equip_position = (int)item.equip_position;
         playerInfo.equiped[equip_position] = item;
+        item.equiped = true;
         SetEquipText(equipedTexts[equip_position], item.GetNameKana());
 
         attackNumText.text = AttackNum();
@@ -46,6 +46,9 @@ public class EquipControl : MonoBehaviour
 
     public void TakeOffItem(int equipedItemNum)
     {
+
+        var equipedItem =  playerInfo.equiped[equipedItemNum] as EquipItem;
+        equipedItem.equiped = false;
         SetEquipText(equipedTexts[equipedItemNum], null);
         playerInfo.equiped[equipedItemNum] = null;
 

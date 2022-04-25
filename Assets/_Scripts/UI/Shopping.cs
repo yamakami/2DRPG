@@ -5,7 +5,6 @@ public class Shopping : CommandSelect
 {
     [SerializeField] Canvas shopMenuCanvas;
     [SerializeField] Text itemNameText;
-    [SerializeField] Text ownItemNumText;
     [SerializeField] Text currentGoldText;
     [SerializeField] Text totalPriceText;
     [SerializeField] Button buySelectedButton;
@@ -83,7 +82,6 @@ public class Shopping : CommandSelect
         selectedItem = icomand as CommandItem; 
         descriptionText.text = icomand.GetDescription();
         itemNameText.text = selectedItem.GetNameKana();
-        ownItemNumText.text = selectedItem.player_possession_count.ToString();
         selectedPrice = (isSell)? selectedItem.price: selectedItem.sellPrice;
         totalPriceText.text = CaluculateTotalText(selectedPrice, amount.options[amount.value].text).ToString();
     }
@@ -96,7 +94,6 @@ public class Shopping : CommandSelect
         itemNameText.text = "";
         amount.value = 0;
         totalPriceText.text = "0";
-        ownItemNumText.text = "0";
         currentGoldText.text = playerInfo.status.gold.ToString();
         CreateButton();
         Visible(true);
@@ -144,12 +141,21 @@ public class Shopping : CommandSelect
     {
         if(!selectedItem) return;
 
+        var stringBuilder = CommandUtils.GetStringBuilder();
         int selectAmount = int.Parse(amount.options[amount.value].text);
 
         if(selectedItem.player_possession_count <  selectAmount)
         {
             canvas.enabled = false;
             SetConversation(currentClerk.ItemNotEnoughMessage, currentClerk.EventTrigger);
+            return;
+        }
+
+        var equipItem = selectedItem as EquipItem;
+        if(equipItem.equiped && equipItem.player_possession_count - selectAmount <= 0)
+        {
+            canvas.enabled = false;
+            SetConversation(currentClerk.NeedUnEquipMessage, currentClerk.EventTrigger);
             return;
         }
         Buy(selectedItem, selectAmount);

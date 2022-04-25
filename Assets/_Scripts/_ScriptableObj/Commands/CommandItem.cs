@@ -48,7 +48,8 @@ public class CommandItem : ScriptableObject, ICommand
     public string GetDescription()
     {
         var sb = CommandUtils.GetStringBuilder();
-        sb.Append($"{description}\n");
+        sb.Append($"{description}\n\n");
+        sb.AppendFormat("所有数: {0}\n", player_possession_count).ToString();
         return sb.AppendFormat("所有限度: {0}", player_possession_limit).ToString();
     }
 
@@ -72,7 +73,7 @@ public class CommandItem : ScriptableObject, ICommand
             playerInfo.items.Remove(this);
     }
 
-    public string ActionMessage()
+    public virtual string ActionMessage()
     {
         return $"{{0}}は{GetNameKana().ToString()}を使った";
     }
