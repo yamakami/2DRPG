@@ -26,7 +26,7 @@ MonoBehaviour:
   itemsMax: 40
   equiped:
   - {fileID: 0}
-  - {fileID: 11400000, guid: 905d9414cc563416aada19b37acc841d, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
