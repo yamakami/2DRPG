@@ -96,6 +96,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -105,8 +106,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -700,6 +701,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      hatake_2: 4040413096612755563
+      hatake_4: -8213644098865165323
+      hatake_11: -3447928713414415749
+      hatake_15: 491538547756927252
+      hatake_18: -7975369199780694530
+      hatake_22: 749272932997544218
+      hatake_5: 1220881893577009962
+      hatake_17: 1605463869400753598
+      hatake_19: -5305900361240045681
+      hatake_16: -728661760984138703
+      hatake_6: -7278479539011076750
+      hatake_0: 4646604297830504012
+      hatake_21: -6704601492043570189
+      hatake_13: -9622284635993960
+      hatake_8: 2284214390742927140
+      hatake_10: 5968376213742152513
+      hatake_7: -2675940261855426536
+      hatake_3: -6009292516433427937
+      hatake_9: -877053888962257234
+      hatake_14: -9066753148820082736
+      hatake_20: -34734188551706865
+      hatake_1: -4555108470653596657
+      hatake_12: 1232332746634854975
+      hatake_23: -5656969725141230007
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

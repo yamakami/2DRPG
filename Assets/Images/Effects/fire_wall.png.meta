@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -304,6 +305,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      pipo-btleffect030_5: -3551246883903852961
+      pipo-btleffect030_1: 1513967461448231005
+      pipo-btleffect030_6: -1365115737260215471
+      pipo-btleffect030_3: 7660125594023537814
+      pipo-btleffect030_4: -5619797256353516151
+      pipo-btleffect030_2: 7212064903703228782
+      pipo-btleffect030_0: -3450291315532980028
+      pipo-btleffect030_7: -2930768079495987683
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

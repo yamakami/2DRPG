@@ -216,6 +216,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -225,8 +226,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -1660,6 +1661,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      kanban_51: 8647913913740490104
+      kanban_48: -4566019128662793619
+      kanban_57: 3925888408501462096
+      kanban_1: -3522943200360786370
+      kanban_9: 872195914073485931
+      kanban_41: -3231213999686115374
+      kanban_54: 1686954026410636993
+      kanban_18: 1159522872759206676
+      kanban_35: -1042418799328234802
+      kanban_37: -1262136234520154749
+      kanban_11: -8476460126581753049
+      kanban_21: 4722685475535740266
+      kanban_34: -3668038540496914297
+      kanban_53: -1340750902095031010
+      kanban_3: -1086525819713813743
+      kanban_58: -8142597730468129590
+      kanban_19: 1889092688057841795
+      kanban_16: -6027192683487709788
+      kanban_15: 2376509439421471508
+      kanban_4: -4066503110444414321
+      kanban_30: 9054159554572060619
+      kanban_20: 3171846245169290974
+      kanban_24: 7870299079470749377
+      kanban_10: 1652407236859866669
+      kanban_60: -8760450773051728109
+      kanban_49: 7315242262674921582
+      kanban_40: -2527533656081154962
+      kanban_36: -463167764760229792
+      kanban_47: -1646826398361339576
+      kanban_29: 6451043519613794394
+      kanban_59: 7679734860740045795
+      kanban_6: 6592941145373909912
+      kanban_8: 1532921793609911535
+      kanban_46: -3596722734221978
+      kanban_12: 3821279301552796207
+      kanban_2: -7295446454998881526
+      kanban_39: 5980909539686560514
+      kanban_55: -4386499594128689493
+      kanban_61: 6267779326921352387
+      kanban_44: -3315924385327976014
+      kanban_28: 5219983695127787416
+      kanban_33: 1903098513981107093
+      kanban_31: -5893583609141616208
+      kanban_14: -4266886740867993150
+      kanban_23: 548562392335485597
+      kanban_5: -8505273578048924657
+      kanban_26: 2249010339804126815
+      kanban_0: 4438747078856832778
+      kanban_38: -881484475291312644
+      kanban_62: 7104814010359032071
+      kanban_52: -1498072969493512313
+      kanban_50: 7314405859226517011
+      kanban_25: -2649075814167878683
+      kanban_27: -6604439793544374294
+      kanban_32: 2919411117982572870
+      kanban_13: -5703497250990766071
+      kanban_56: -1847745492157174964
+      kanban_42: 7935139652073204580
+      kanban_45: -3591386714452997435
+      kanban_63: 3359499914913673713
+      kanban_17: -4091275508815135565
+      kanban_43: -9074428894281953635
+      kanban_22: -8871894792308049050
+      kanban_7: 6749505535600131338
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

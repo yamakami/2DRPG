@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -400,6 +401,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      regular_man_02_0: -3441358108617471026
+      regular_man_02_9: 5489796885389524298
+      regular_man_02_2: -8065712897461318252
+      regular_man_02_1: 2144325528685084671
+      regular_man_02_11: -4694898209520332640
+      regular_man_02_4: 3167347183222566609
+      regular_man_02_3: 6111753737399170823
+      regular_man_02_6: 7548604720168191897
+      regular_man_02_7: 3042421161987883399
+      regular_man_02_10: -9146825137889958098
+      regular_man_02_8: -3937482501899604738
+      regular_man_02_5: 4431172813141145373
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

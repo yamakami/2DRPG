@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -81,8 +82,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -508,6 +509,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      shop_kanban_12: -1394332402833563014
+      shop_kanban_1: 1351764232270687803
+      shop_kanban_6: -4291132507280402412
+      shop_kanban_13: 5525328604452101111
+      shop_kanban_7: -5387573866866747982
+      shop_kanban_11: 8576029676268265005
+      shop_kanban_3: -6802410045268188592
+      shop_kanban_10: -6742747405266827160
+      shop_kanban_4: 2671265859641581943
+      shop_kanban_5: 4237075845679569749
+      shop_kanban_0: -7330034657588563184
+      shop_kanban_9: -7492294535255358270
+      shop_kanban_2: -138695020674146188
+      shop_kanban_15: -8505598294612811756
+      shop_kanban_8: -126390654542702017
+      shop_kanban_14: -366428903460358098
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
