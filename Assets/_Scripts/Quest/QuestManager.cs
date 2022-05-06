@@ -8,6 +8,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] BattleInfo battleInfo;
     [SerializeField] Player player;
     [SerializeField] QuestUI questUI;
+    [SerializeField] LocationManager locationManager;
 
     public Player Player { get => player; }
     public QuestUI QuestUI { get => questUI; }
@@ -16,10 +17,11 @@ public class QuestManager : MonoBehaviour
     static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     public static QuestManager GetQuestManager() { return questManager; }
     public static CancellationTokenSource CancellationTokenSource { get => cancellationTokenSource; }
-
+    public LocationManager LocationManager { get => locationManager; }
 
     void Awake()
     {
+
         questManager = this;
     }
 

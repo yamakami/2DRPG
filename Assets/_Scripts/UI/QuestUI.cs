@@ -6,6 +6,7 @@ public class QuestUI : MonoBehaviour
     [SerializeField] AudioSource seAudioSource;
     [SerializeField] Canvas disableCover;
     [SerializeField] Canvas controlPanel;
+    [SerializeField] Fade fade;
     [SerializeField] Conversation conversation;
     [SerializeField] Shopping shopping;
 
@@ -14,6 +15,7 @@ public class QuestUI : MonoBehaviour
     public AudioSource SeAudioSource { get => seAudioSource; }
     public Conversation Conversation { get => conversation; }
     public Shopping Shopping { get => shopping; }
+    public Fade Fade { get => fade; }
 
     public void MenuOn(bool value)
     {

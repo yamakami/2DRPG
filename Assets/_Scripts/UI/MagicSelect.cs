@@ -1,6 +1,3 @@
-
-using UnityEngine;
-
 public class MagicSelect : CommandSelect
 {
     protected override  ICommand[] GetCommandList()
