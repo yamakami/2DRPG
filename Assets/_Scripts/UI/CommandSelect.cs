@@ -16,7 +16,7 @@ public class CommandSelect : CommandPager
     protected virtual void Start()
     {
         questManager = QuestManager.GetQuestManager();
-        playerInfo = questManager.Player.PlayerInfo;
+        playerInfo =  GameManager.GetPlayerInfo();
         pageButtonNum = optionButtons.Length;
         commandList = new ICommand[playerInfo.itemsMax];
     }

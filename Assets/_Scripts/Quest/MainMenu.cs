@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public void Activate()
     {
-        var  playerInfo = QuestManager.GetQuestManager().Player.PlayerInfo;
+        var  playerInfo = GameManager.GetPlayerInfo();
         canvas.enabled = true;
 
         ActivateMagicSelect(playerInfo); 

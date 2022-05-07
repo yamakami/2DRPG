@@ -6,7 +6,6 @@ using UnityEngine;
 public class BaseCharacter : MonoBehaviour
 {
     [SerializeField] protected float speed = 0;
-
     [SerializeField] protected Rigidbody2D rb2d = null;
     [SerializeField] protected Animator anim = null;
 

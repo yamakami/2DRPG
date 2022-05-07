@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static PlayerInfo playerInfo;
+    [SerializeField] PlayerInfo playerInfo;
 
-    public static PlayerInfo PlayerInfo { get => playerInfo; set => playerInfo = value; }
+    static GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = this;
+    }
+
+    public static PlayerInfo GetPlayerInfo()
+    {
+        return gameManager.playerInfo;
+    }
 }

@@ -21,7 +21,7 @@ public class QuestStatus : MonoBehaviour
 
     void Status()
     {
-        var status =  QuestManager.GetQuestManager().Player.PlayerInfo.status;
+        var status =  GameManager.GetPlayerInfo().status;
 
         lv.text = status.lv.ToString();
         maxHp.text = status.maxHP.ToString();

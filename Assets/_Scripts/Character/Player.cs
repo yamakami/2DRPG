@@ -4,11 +4,14 @@ public class Player : BaseCharacter
 {
     [SerializeField] PlayerInfo playerInfo;
 
-    public PlayerInfo PlayerInfo { get => playerInfo; }
+    QuestManager questManager;
+
+    public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }
 
     void Awake()
     {
         lastMove = Vector2.down;
+        questManager =  QuestManager.GetQuestManager();
     }
 
     void FixedUpdate()
@@ -42,7 +45,7 @@ public class Player : BaseCharacter
         lastMove = ConversationFacingDirection(npc.transform);
 
         StopPlayer();
-        QuestManager.GetQuestManager().QuestUI.Conversation.StartConversation(npc.ConversationData());
+        questManager.QuestUI.Conversation.StartConversation(npc.ConversationData());
     }
 
      public void StopPlayer()
