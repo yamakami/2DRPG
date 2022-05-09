@@ -8,11 +8,14 @@ public class QuestManager : MonoBehaviour
 
     public Player Player { get => player; }
     public QuestUI QuestUI { get => questUI; }
+    ActiveActors actors;
 
     static QuestManager questManager;
     static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     public static QuestManager GetQuestManager() { return questManager; }
     public static CancellationTokenSource CancellationTokenSource { get => cancellationTokenSource; }
+    public ActiveActors Actors { set => actors = value; }
+
 
     void Awake()
     {
@@ -22,5 +25,21 @@ public class QuestManager : MonoBehaviour
     void OnDisable()
     {
         cancellationTokenSource.Cancel();
+    }
+
+    void FixedUpdate()
+    {
+        foreach(var character in actors.Characters)
+        {
+            character.CharaFixedUpdate();
+        }
+    }
+
+    void Update()
+    {
+         foreach(var character in actors.Characters)
+        {
+            character.CharaUpdate();
+        }       
     }
 }

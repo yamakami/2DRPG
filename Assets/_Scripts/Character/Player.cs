@@ -8,21 +8,21 @@ public class Player : BaseCharacter
 
     public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }
 
-    void Awake()
+    void Start()
     {
         lastMove = Vector2.down;
         questManager =  QuestManager.GetQuestManager();
     }
 
-    void FixedUpdate()
+    public override void CharaFixedUpdate()
     {
         if (Time.timeScale < 1 || Freeze) return;
         MovePosition();
     }
 
-    protected override void Update()
+    public override void  CharaUpdate()
     { 
-        base.Update();
+        base.CharaUpdate();
 
         if (Time.timeScale < 1 || Freeze) return;
 

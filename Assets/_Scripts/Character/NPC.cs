@@ -43,7 +43,7 @@ public class NPC : BaseCharacter
         anim.enabled = false;
     }
 
-    void FixedUpdate()
+    public override void CharaFixedUpdate()
     {
         if (Freeze)
             return;
@@ -51,9 +51,9 @@ public class NPC : BaseCharacter
         MovePosition();
     }
 
-    protected override void Update()
+    public override void CharaUpdate()
     { 
-        base.Update();
+        base.CharaUpdate();
 
         if (Freeze)
             return;

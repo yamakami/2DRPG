@@ -14,7 +14,7 @@ public class BaseCharacter : MonoBehaviour
     protected Vector2 lastMove;
     public bool Freeze { get => freeze; set => freeze = value; }
 
-    protected virtual void Update()
+    public virtual void CharaUpdate()
     {
         var moveMagnitude = move.sqrMagnitude;
         anim.SetFloat("move_speed", moveMagnitude);
@@ -31,6 +31,8 @@ public class BaseCharacter : MonoBehaviour
             lastMove = new Vector2(move.x, move.y);
         }
     }
+
+    public virtual void CharaFixedUpdate() {}
 
     protected void MovePosition()
     {
