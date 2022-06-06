@@ -53,7 +53,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_CCBC1FE2: 0
-    - _Alpha: 1
+    - _Alpha: 0
     - _Duration: 0
     - _Float: 0.07
     - _QueueControl: 1
