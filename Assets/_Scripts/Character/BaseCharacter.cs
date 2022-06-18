@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 
-public class BaseCharacter : MonoBehaviour
+public class BaseCharacter : MonoBehaviour, Updatable
 {
     [SerializeField] protected float speed = 0;
     [SerializeField] protected Rigidbody2D rb2d = null;
@@ -13,6 +13,16 @@ public class BaseCharacter : MonoBehaviour
     protected Vector2 move;
     protected Vector2 lastMove;
     public bool Freeze { get => freeze; set => freeze = value; }
+
+    public void SubstituteUpdate()
+    {
+        CharaUpdate();
+    }
+
+    public void SubstituteFixedUpdate()
+    {
+        CharaFixedUpdate();
+    }
 
     public virtual void CharaUpdate()
     {
@@ -61,4 +71,3 @@ public class BaseCharacter : MonoBehaviour
         return Vector2.right;
     }
 }
-

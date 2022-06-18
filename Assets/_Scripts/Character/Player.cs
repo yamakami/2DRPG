@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class Player : BaseCharacter
 {
-    [SerializeField] PlayerInfo playerInfo;
+    // [SerializeField] PlayerInfo playerInfo;
 
-    QuestManager questManager;
+    // QuestManager questManager;
 
-    public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }
+    // public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }
+
 
     void Start()
     {
         lastMove = Vector2.down;
-        questManager =  QuestManager.GetQuestManager();
+        // questManager =  QuestManager.GetQuestManager();
     }
 
     public override void CharaFixedUpdate()
@@ -28,8 +29,8 @@ public class Player : BaseCharacter
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if (ContactObserver.NpcContact != null)
-                StartConversation(ContactObserver.NpcContact.GetInterfaceParent());
+            // if (ContactObserver.NpcContact != null)
+            //     StartConversation(ContactObserver.NpcContact.GetInterfaceParent());
         }
         else
         {
@@ -37,16 +38,16 @@ public class Player : BaseCharacter
         }
     }
 
-     void StartConversation(NpcContact contact)
-    {
-        var npc = contact.Npc;
+    // void StartConversation(NpcContact contact)
+    // {
+    //     var npc = contact.Npc;
 
-        npc.FacingTo(npc.ConversationFacingDirection(transform));
-        lastMove = ConversationFacingDirection(npc.transform);
+    //     npc.FacingTo(npc.ConversationFacingDirection(transform));
+    //     lastMove = ConversationFacingDirection(npc.transform);
 
-        StopPlayer();
-        questManager.QuestUI.Conversation.StartConversation(npc.ConversationData());
-    }
+    //     StopPlayer();
+    //     // questManager.QuestUI.Conversation.StartConversation(npc.ConversationData());
+    // }
 
      public void StopPlayer()
     {

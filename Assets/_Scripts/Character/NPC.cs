@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class NPC : BaseCharacter
 {
-    [SerializeField] NpcData npcData;
-    [SerializeField] NpcContact npcContact;
+    // [SerializeField] NpcData npcData;
+    // [SerializeField] NpcContact npcContact;
     int yMaxStep = 0;
     int xMaxStep = 0;
     float randomInterval = 3f;
@@ -17,6 +17,7 @@ public class NPC : BaseCharacter
     int pixelUnit = 16;
 
     int randomRange = 4;
+    bool inCamera;
 
     const int MOVE_UP = 1;
     const int MOVE_DOWN = 2;
@@ -26,25 +27,31 @@ public class NPC : BaseCharacter
     void Start()
     {
         lastMove = Vector2.down;
-        xMaxStep = npcData.xMaxStep;
-        yMaxStep = npcData.yMaxStep;
-        randomInterval = npcData.randomInterval;
+        // xMaxStep = npcData.xMaxStep;
+        // yMaxStep = npcData.yMaxStep;
+        xMaxStep = 4;
+        yMaxStep = 4;
+        randomInterval = 3f;
     }
 
     void OnBecameVisible()
     {
+        inCamera = true;
         enabled = true;
         anim.enabled = true;
     }
 
     void OnBecameInvisible()
     {
+        inCamera = false;
         enabled = false;
         anim.enabled = false;
     }
 
     public override void CharaFixedUpdate()
     {
+        if (!inCamera) return;
+
         if (Freeze)
             return;
 
@@ -53,6 +60,8 @@ public class NPC : BaseCharacter
 
     public override void CharaUpdate()
     { 
+        if (!inCamera) return;
+
         base.CharaUpdate();
 
         if (Freeze)
@@ -118,10 +127,10 @@ public class NPC : BaseCharacter
             return;
         }
 
-        if (npcContact.OtherNpcTouching)
-        {
-            move *= -1;
-        }
+        // if (npcContact.OtherNpcTouching)
+        // {
+        //     move *= -1;
+        // }
     }
 
     public void FacingTo(Vector2 direction)
@@ -135,8 +144,8 @@ public class NPC : BaseCharacter
         Freeze = true;
     }
 
-    public ConversationData ConversationData()
-    {
-        return npcData.conversationData;
-    }
+    // public ConversationData ConversationData()
+    // {
+    //     return npcData.conversationData;
+    // }
 }
