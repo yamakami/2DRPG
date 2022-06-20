@@ -8,9 +8,13 @@ public class Player : BaseCharacter
 
     // public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }
 
+    
+    static Player _player;
+
 
     void Start()
     {
+        _player = this;
         lastMove = Vector2.down;
         // questManager =  QuestManager.GetQuestManager();
     }
@@ -57,6 +61,11 @@ public class Player : BaseCharacter
      public void EnableMove()
     {
         Freeze = false;
+    }
+
+    static public Player GetPlayer()
+    {
+        return _player;
     }
 }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class NPC : BaseCharacter
 {
     // [SerializeField] NpcData npcData;
-    // [SerializeField] NpcContact npcContact;
+    [SerializeField] NpcContact npcContact;
     int yMaxStep = 0;
     int xMaxStep = 0;
     float randomInterval = 3f;
@@ -127,15 +127,20 @@ public class NPC : BaseCharacter
             return;
         }
 
-        // if (npcContact.OtherNpcTouching)
-        // {
-        //     move *= -1;
-        // }
+        if (npcContact.OtherNpcTouching)
+        {
+            move *= -1;
+        }
     }
 
     public void FacingTo(Vector2 direction)
     {
          lastMove = direction;
+    }
+
+    public void StartMove()
+    {
+        Freeze = false;
     }
 
     public void Stop()

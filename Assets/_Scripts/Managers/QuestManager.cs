@@ -9,23 +9,24 @@ public class QuestManager : MonoBehaviour
 
     void Update()
     {
-        // player.SubstituteUpdate();
-
-        for (var i = 0; i < currentLocation.ActorNpcs.Length; i++)
-        {
-            var npc = currentLocation.ActorNpcs[i];
-            npc.SubstituteUpdate();
-        }
+        player.SubstituteUpdate();
+        MoveCharacter("update");
     }
 
     void FixedUpdate()
     {
-        // player.SubstituteFixedUpdate();
+        player.SubstituteFixedUpdate();
+        MoveCharacter("fixed");
+    }
 
+    void MoveCharacter(string type)
+    {
         for (var i = 0; i < currentLocation.ActorNpcs.Length; i++)
         {
             var npc = currentLocation.ActorNpcs[i];
-            npc.SubstituteFixedUpdate();
+
+            if(type == "update") npc.SubstituteUpdate();
+            if(type == "fixed") npc.SubstituteFixedUpdate();
         }
     }
 }

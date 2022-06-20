@@ -57109,6 +57109,7 @@ CompositeCollider2D:
       - {x: 24.996883, y: 17.996855}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
 --- !u!50 &274519078
 Rigidbody2D:
   serializedVersion: 4
@@ -57146,6 +57147,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!483693784 &274519080
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -63589,6 +63591,7 @@ CompositeCollider2D:
       - {x: 11.180819, y: -8.996856}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
+  m_UseDelaunayMesh: 0
 --- !u!50 &298188283
 Rigidbody2D:
   serializedVersion: 4
@@ -63626,6 +63629,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!483693784 &298188285
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -69410,6 +69414,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 986715205}
     m_Modifications:
     - target: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
@@ -69603,6 +69608,7 @@ PrefabInstance:
       value: -82670152
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61, type: 3}
 --- !u!1 &459416711
 GameObject:
@@ -71355,6 +71361,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 140174722}
     m_Modifications:
     - target: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
@@ -71433,6 +71440,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61, type: 3}
 --- !u!4 &541845470 stripped
 Transform:
@@ -71445,6 +71453,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 2093790624}
     m_Modifications:
     - target: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
@@ -71653,6 +71662,7 @@ PrefabInstance:
       value: 126500008
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61, type: 3}
 --- !u!4 &560613107 stripped
 Transform:
@@ -71998,6 +72008,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1553598948}
     m_Modifications:
     - target: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
@@ -72206,6 +72217,7 @@ PrefabInstance:
       value: -57000000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61, type: 3}
 --- !u!4 &664113505 stripped
 Transform:
@@ -77840,6 +77852,7 @@ PolygonCollider2D:
       - {x: -14.060516, y: -14.44047}
       - {x: 12.640068, y: -14.537749}
       - {x: 12.533182, y: 12.722763}
+  m_UseDelaunayMesh: 0
 --- !u!850595691 &940118765
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -77847,7 +77860,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 4
+  serializedVersion: 5
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
@@ -77881,13 +77894,13 @@ LightingSettings:
   m_PVRCulling: 1
   m_PVRSampling: 1
   m_PVRDirectSampleCount: 32
-  m_PVRSampleCount: 500
-  m_PVREnvironmentSampleCount: 500
+  m_PVRSampleCount: 512
+  m_PVREnvironmentSampleCount: 512
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
   m_PVRMinBounces: 1
-  m_PVREnvironmentMIS: 0
+  m_PVREnvironmentImportanceSampling: 0
   m_PVRFilteringMode: 2
   m_PVRDenoiserTypeDirect: 0
   m_PVRDenoiserTypeIndirect: 0
@@ -77902,6 +77915,7 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
+  m_NumRaysToShootPerTexel: -1
 --- !u!1 &961036349
 GameObject:
   m_ObjectHideFlags: 0
@@ -86146,6 +86160,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1661334484}
     m_Modifications:
     - target: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
@@ -86339,6 +86354,7 @@ PrefabInstance:
       value: -145850000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61, type: 3}
 --- !u!4 &1118812713 stripped
 Transform:
@@ -115844,6 +115860,7 @@ CompositeCollider2D:
       - {x: 0, y: 21.996826}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
 --- !u!50 &1330476412
 Rigidbody2D:
   serializedVersion: 4
@@ -115881,6 +115898,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!483693784 &1330476414
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -116831,6 +116849,7 @@ PolygonCollider2D:
       - {x: -13.954523, y: -10.077239}
       - {x: 10.503828, y: -10.259154}
       - {x: 10.443317, y: 7.505521}
+  m_UseDelaunayMesh: 0
 --- !u!4 &1382939839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
@@ -120778,6 +120797,7 @@ CompositeCollider2D:
       - {x: -1.8144491, y: 0.0597484}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
 --- !u!19719996 &1402942574
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -120794,6 +120814,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!50 &1402942575
 Rigidbody2D:
   serializedVersion: 4
@@ -125462,6 +125483,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 994671181}
     m_Modifications:
     - target: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
@@ -125553,6 +125575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Lens.GateFit
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7123934312029208991, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
+        type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 8215622652094131734, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
         type: 3}
@@ -125655,6 +125682,7 @@ PrefabInstance:
       value: -109985392
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61, type: 3}
 --- !u!1 &1517202858
 GameObject:
@@ -127580,6 +127608,7 @@ CompositeCollider2D:
       - {x: 6, y: 1.883648}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
+  m_UseDelaunayMesh: 0
 --- !u!50 &1701173044
 Rigidbody2D:
   serializedVersion: 4
@@ -127617,6 +127646,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!483693784 &1701173046
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -129995,6 +130025,7 @@ CompositeCollider2D:
       - {x: 5.185548, y: -7.940261}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
 --- !u!50 &1704198201
 Rigidbody2D:
   serializedVersion: 4
@@ -130032,6 +130063,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!483693784 &1704198203
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -131629,7 +131661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questManager: {fileID: 725836218}
   actorNpcs:
-  - {fileID: 2363270123591224144}
   - {fileID: 7583004779596885346}
 --- !u!1 &1885820470
 GameObject:
@@ -134889,6 +134920,7 @@ CompositeCollider2D:
       - {x: -6, y: -7.781378}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
 --- !u!50 &2064508138
 Rigidbody2D:
   serializedVersion: 4
@@ -134926,6 +134958,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!483693784 &2064508140
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -142453,6 +142486,7 @@ CompositeCollider2D:
       - {x: 19.87736, y: -1.9402516}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
+  m_UseDelaunayMesh: 0
 --- !u!50 &2104983072
 Rigidbody2D:
   serializedVersion: 4
@@ -142490,6 +142524,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!483693784 &2104983074
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -144322,6 +144357,7 @@ MonoBehaviour:
   speed: 1
   rb2d: {fileID: 7583004779596885345}
   anim: {fileID: 7583004779596885347}
+  npcContact: {fileID: 7583004779596885352}
 --- !u!95 &7583004779596885347
 Animator:
   serializedVersion: 4
@@ -144406,6 +144442,7 @@ GameObject:
   - component: {fileID: 7583004779596885351}
   - component: {fileID: 7583004779596885348}
   - component: {fileID: 7583004779596885346}
+  - component: {fileID: 7583004779596885352}
   - component: {fileID: 7583004779596885347}
   - component: {fileID: 7583004779596885345}
   - component: {fileID: 7583004779596885344}
@@ -144458,6 +144495,19 @@ Transform:
   m_Father: {fileID: 725836216}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7583004779596885352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7583004779596885349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf91ee3f8351e4f4ab197dc557588250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 7583004779596885346}
 --- !u!114 &7583004780428747072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144473,6 +144523,7 @@ MonoBehaviour:
   speed: 1
   rb2d: {fileID: 7583004780428747075}
   anim: {fileID: 7583004780428747073}
+  npcContact: {fileID: 0}
 --- !u!95 &7583004780428747073
 Animator:
   serializedVersion: 4

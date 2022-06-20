@@ -6,13 +6,14 @@ using UnityEngine;
 public class BaseCharacter : MonoBehaviour, Updatable
 {
     [SerializeField] protected float speed = 0;
-    [SerializeField] protected Rigidbody2D rb2d = null;
+    [SerializeField] private Rigidbody2D rb2d = null;
     [SerializeField] protected Animator anim = null;
 
     bool freeze;
     protected Vector2 move;
     protected Vector2 lastMove;
     public bool Freeze { get => freeze; set => freeze = value; }
+    public Rigidbody2D Rb2d { get => rb2d; }
 
     public void SubstituteUpdate()
     {
@@ -46,7 +47,7 @@ public class BaseCharacter : MonoBehaviour, Updatable
 
     protected void MovePosition()
     {
-        rb2d.MovePosition(rb2d.position + move.normalized * speed * Time.fixedDeltaTime);
+        Rb2d.MovePosition(Rb2d.position + move.normalized * speed * Time.fixedDeltaTime);
     }
 
     public Vector2 ConversationFacingDirection(Transform target)
