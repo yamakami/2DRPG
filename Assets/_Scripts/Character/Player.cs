@@ -6,11 +6,8 @@ public class Player : BaseCharacter
 
     // QuestManager questManager;
 
-    // public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }
-
-    
+    // public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }    
     static Player _player;
-
 
     void Start()
     {
