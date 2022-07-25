@@ -13,5 +13,11 @@ public class ConversationData : ScriptableObject
         public string text;
         public ConversationData nextConversationData;
         // public QuestEventTrigger questEventTrigger;
-    }    
+    }
+
+    public bool optionExists()
+    {
+        if(options.Length < 1) return false;
+        return true;
+    }
 }

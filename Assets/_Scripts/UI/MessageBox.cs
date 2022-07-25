@@ -11,7 +11,6 @@ public class MessageBox : MonoBehaviour
     Label messageText;
     Button messageNexButton;
     CancellationTokenSource tokenSource;
-
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(10);
 
@@ -24,10 +23,23 @@ public class MessageBox : MonoBehaviour
         messageNexButton.clicked += ClickNext;
     }
 
-
     async void ClickNext ()
     {
-        await ForwardConversation(conversations.Dequeue());
+        if(0 < conversations.Count)
+        {
+            try
+            {
+                await ForwardConversation(conversations.Dequeue());
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
+        }
+        else
+        {
+            BoxClose();
+        }
     }
 
     void PrepareConversation(ConversationData _conversationData)
@@ -43,14 +55,21 @@ public class MessageBox : MonoBehaviour
 
     async UniTask ForwardConversation(ConversationData.Conversation conversation)
     {
-        if(0 < conversations.Count)
-        {
-            await DisplayText(conversation.text); 
-        }
-        else
-        {
-            BoxClose();
-        }
+            ShowNextButton(false);
+            await DisplayText(conversation.text);
+
+            if(SelectOpen()) return;
+
+            ShowNextButton(true);
+    }
+
+    bool SelectOpen()
+    {
+        if(0 < conversations.Count || !conversationData.optionExists()) return false;
+
+        Debug.Log("select opent");
+
+        return true;
     }
 
     public async UniTask Conversation(ConversationData conversationData)
@@ -69,8 +88,6 @@ public class MessageBox : MonoBehaviour
         {
             return;
         }
-
-        ShowNextButton(true);
     }
 
     async UniTask DisplayText(string messageLine)
@@ -103,6 +120,7 @@ public class MessageBox : MonoBehaviour
     {
         BoxOpen(false);
         TaskCancel();
+        Player.GetPlayer().EnableMove();
     }
 
     void TaskCancel()
