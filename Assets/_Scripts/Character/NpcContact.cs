@@ -15,32 +15,27 @@ public class NpcContact : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-             var player = Player.GetPlayer();
+            var player = Player.GetPlayer();
+
+            if(player.TallkingWithNpc != null) return;
 
             npc.Stop();
             npc.Rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            // ContactObserver.NpcContact = this;
+            player.TallkingWithNpc = npc;
             npc.FacingTo(npc.ConversationFacingDirection(player.transform));
         }
-
-        if (collision.CompareTag("NPC")) otherNpcTouching = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
        if (collision.CompareTag("Player"))
         {
+            var player = Player.GetPlayer();
+
             npc.StartMove();
             npc.Rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-            // ContactObserver.NpcContact = null;
+            player.TallkingWithNpc = null;
         }
-
-        if (collision.CompareTag("NPC")) otherNpcTouching = false;
-    }
-
-    public NpcContact GetInterfaceParent()
-    {
-        return this;
     }
 }

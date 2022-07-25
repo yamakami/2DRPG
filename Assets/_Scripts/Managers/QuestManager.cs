@@ -3,9 +3,16 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] Player player;
+    [SerializeField] UIQuest uIQuest;
     QuestLocation currentLocation;
 
     public QuestLocation CurrentLocation { set => currentLocation = value; }
+    public UIQuest UIQuest { get => uIQuest; }
+
+    void Awake()
+    {
+        uIQuest.UiInitialize();
+    }
 
     void Update()
     {

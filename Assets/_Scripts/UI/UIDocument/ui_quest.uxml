@@ -1,15 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/_Scripts/UI/CSS/ui_base.uss?fileID=7433441132597879392&amp;guid=7319282975f0d47989b7055148fb17c7&amp;type=3#ui_base" />
     <ui:VisualElement name="message-screen" picking-mode="Ignore" style="width: 100%; height: 100%; align-items: center; justify-content: flex-end; margin-bottom: 20px;">
-        <ui:VisualElement name="message-box" class="base_frame" style="width: 40%; height: 30%; align-items: center; justify-content: center; padding-bottom: 10px;">
+        <ui:VisualElement name="message-box" class="base_frame" style="width: 40%; height: 30%; align-items: center; justify-content: center; padding-bottom: 10px; display: none;">
             <ui:Label tabindex="-1" text="あ&#10;い&#10;う&#10;え&#10;お&#10;か&#10;き&#10;く&#10;け" display-tooltip-when-elided="true" name="message-text" class="message_text" style="flex-grow: 1; width: 100%; height: auto;" />
-            <ui:Button tabindex="-1" text="▼" display-tooltip-when-elided="true" name="next-button" class="next_button" style="margin-top: 3px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+            <ui:Button tabindex="-1" text="▼" display-tooltip-when-elided="true" name="next-button" class="next_button" style="margin-top: 3px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: none;" />
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="select-screen" picking-mode="Ignore" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 0;">
-        <ui:VisualElement name="select-box" class="base_frame" style="align-items: stretch;">
-            <ui:Label tabindex="-1" text="やほーやほーやほーやほー" display-tooltip-when-elided="true" class="text_button" />
-            <ui:Label tabindex="-1" text="やほーやほー" display-tooltip-when-elided="true" class="text_button" />
+        <ui:VisualElement name="select-box" class="base_frame" style="align-items: stretch; display: none;">
+            <ui:Label tabindex="-1" text="やほーやほーやほーやほー" display-tooltip-when-elided="true" class="text_button" style="display: none;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

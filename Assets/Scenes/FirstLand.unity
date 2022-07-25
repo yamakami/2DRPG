@@ -13172,6 +13172,8 @@ GameObject:
   m_Component:
   - component: {fileID: 70417842}
   - component: {fileID: 70417841}
+  - component: {fileID: 70417843}
+  - component: {fileID: 70417844}
   m_Layer: 5
   m_Name: UIQuest
   m_TagString: Untagged
@@ -13211,6 +13213,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70417843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70417840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b994d2b28a7ee4c0fa7f1abd238a367a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 70417841}
+  messageBox: {fileID: 70417844}
+--- !u!114 &70417844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70417840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35471751bcbc140839bc646c0b0542e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &140174721
 GameObject:
   m_ObjectHideFlags: 0
@@ -72371,6 +72399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2363270123591224144}
+  uIQuest: {fileID: 70417843}
 --- !u!1 &738454127
 GameObject:
   m_ObjectHideFlags: 0
@@ -144277,6 +144306,7 @@ MonoBehaviour:
   speed: 3.5
   rb2d: {fileID: 2363270123591224138}
   anim: {fileID: 2363270123591224136}
+  questManager: {fileID: 725836218}
 --- !u!61 &7583004779596885344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144339,6 +144369,7 @@ MonoBehaviour:
   speed: 1
   rb2d: {fileID: 7583004779596885345}
   anim: {fileID: 7583004779596885347}
+  npcData: {fileID: 11400000, guid: d86fdc69ec75140859176560de39927b, type: 2}
   npcContact: {fileID: 7583004779596885352}
 --- !u!95 &7583004779596885347
 Animator:
@@ -144505,6 +144536,7 @@ MonoBehaviour:
   speed: 1
   rb2d: {fileID: 7583004780428747075}
   anim: {fileID: 7583004780428747073}
+  npcData: {fileID: 0}
   npcContact: {fileID: 0}
 --- !u!95 &7583004780428747073
 Animator:

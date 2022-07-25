@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Player : BaseCharacter
 {
+    [SerializeField] QuestManager questManager;
     // [SerializeField] PlayerInfo playerInfo;
 
-    // QuestManager questManager;
-
     // public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }    
+    NPC tallkingWithNpc;
+
     static Player _player;
+
+    public NPC TallkingWithNpc { get => tallkingWithNpc; set => tallkingWithNpc = value; }
 
     void Start()
     {
@@ -30,8 +33,8 @@ public class Player : BaseCharacter
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            // if (ContactObserver.NpcContact != null)
-            //     StartConversation(ContactObserver.NpcContact.GetInterfaceParent());
+            if (tallkingWithNpc != null)
+                StartConversation(tallkingWithNpc);
         }
         else
         {
@@ -39,16 +42,16 @@ public class Player : BaseCharacter
         }
     }
 
-    // void StartConversation(NpcContact contact)
-    // {
-    //     var npc = contact.Npc;
+    void StartConversation(NPC npc)
+    {
+        npc.FacingTo(npc.ConversationFacingDirection(transform));
+        lastMove = ConversationFacingDirection(npc.transform);
 
-    //     npc.FacingTo(npc.ConversationFacingDirection(transform));
-    //     lastMove = ConversationFacingDirection(npc.transform);
+        StopPlayer();
+        questManager.UIQuest.StartConversation();
+         // questManager.QuestUI.Conversation.StartConversation(npc.ConversationData());
 
-    //     StopPlayer();
-    //     // questManager.QuestUI.Conversation.StartConversation(npc.ConversationData());
-    // }
+    }
 
      public void StopPlayer()
     {
