@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 public class MessageBox : MonoBehaviour
 {
@@ -11,32 +12,58 @@ public class MessageBox : MonoBehaviour
     Button messageNexButton;
     CancellationTokenSource tokenSource;
 
+    ConversationData conversationData;
+    Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(10);
+
     public void Init(VisualElement ve)
     {
         box = ve.Q<VisualElement>("message-box");
         messageText = ve.Q<Label>("message-text");
         messageNexButton = ve.Q<Button>("next-button");
 
-        messageNexButton.clicked += Test;
-    }
-
-    void Test ()
-    {
-        Debug.Log("hello");
+        messageNexButton.clicked += ClickNext;
     }
 
 
-    public async void BoxOpen(bool open)
+    async void ClickNext ()
     {
-        box.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
+        await ForwardConversation(conversations.Dequeue());
+    }
 
-        var t = "こんにちはあああああ!\nしくよろ四苦八苦!!!!!!!\nまたあしたここで会いましょう";
+    void PrepareConversation(ConversationData _conversationData)
+    {
+        conversationData = _conversationData;
+        conversations.Clear();
+
+        foreach (var conversation in conversationData.conversations)
+        {
+            conversations.Enqueue(conversation);
+        }
+    }
+
+    async UniTask ForwardConversation(ConversationData.Conversation conversation)
+    {
+        if(0 < conversations.Count)
+        {
+            await DisplayText(conversation.text); 
+        }
+        else
+        {
+            BoxClose();
+        }
+    }
+
+    public async UniTask Conversation(ConversationData conversationData)
+    {
         tokenSource = new CancellationTokenSource();
+
+        PrepareConversation(conversationData);
+
+        BoxOpen(true);
 
         try
         {
-            await ClearText(tokenSource.Token);
-            await DisplayText(t, tokenSource.Token);
+            await ForwardConversation(conversations.Dequeue());
         }
         catch (OperationCanceledException)
         {
@@ -44,11 +71,15 @@ public class MessageBox : MonoBehaviour
         }
 
         ShowNextButton(true);
-        TaskCancel();
     }
 
-    async UniTask DisplayText(string messageLine, CancellationToken token = default)
+    async UniTask DisplayText(string messageLine)
     {
+        var token = tokenSource.Token;
+        messageText.text = "";
+
+        await UniTask.Delay(500, cancellationToken: token);
+
         var length = messageLine.Length;
         for(var i = 0; i <= length; i++)
         {
@@ -63,10 +94,15 @@ public class MessageBox : MonoBehaviour
         messageNexButton.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    async UniTask ClearText(CancellationToken token = default)
+    void BoxOpen(bool open)
     {
-        messageText.text = "";
-        await UniTask.Delay(500, cancellationToken: token);
+        box.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
+    void BoxClose()
+    {
+        BoxOpen(false);
+        TaskCancel();
     }
 
     void TaskCancel()

@@ -48,7 +48,7 @@ public class Player : BaseCharacter
         lastMove = ConversationFacingDirection(npc.transform);
 
         StopPlayer();
-        questManager.UIQuest.StartConversation();
+        questManager.UIQuest.StartConversation(npc.NpcData.ConversationData);
          // questManager.QuestUI.Conversation.StartConversation(npc.ConversationData());
 
     }

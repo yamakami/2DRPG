@@ -9,7 +9,6 @@ public class NpcContact : MonoBehaviour
     bool otherNpcTouching;
 
     public bool OtherNpcTouching { get => otherNpcTouching; }
-    public NPC Npc { get => npc; }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

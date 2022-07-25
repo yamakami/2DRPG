@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cysharp.Threading.Tasks;
 
 public class UIQuest : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class UIQuest : MonoBehaviour
         messageBox.Init(quest.rootVisualElement);
     }
 
-    public void StartConversation()
+    public void StartConversation(ConversationData conversationData)
     {
-        messageBox.BoxOpen(true);
+        messageBox.Conversation(conversationData).Forget();
     }
 }

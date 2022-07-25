@@ -9,6 +9,8 @@ public class NPC : BaseCharacter
     [SerializeField] NpcData npcData;
     [SerializeField] NpcContact npcContact;
 
+    public NpcData NpcData { get => npcData; }
+
     void Start()
     {
         if(!npcData) throw new ArgumentNullException ("npc data is emty!");
