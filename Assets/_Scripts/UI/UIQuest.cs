@@ -12,7 +12,8 @@ public class UIQuest : MonoBehaviour
     public void UiInitialize()
     {
         player = Player.GetPlayer();
-        messageBox.Init(quest.rootVisualElement);
+        var rootElement = quest.rootVisualElement;
+        messageBox.Init(rootElement);
     }
 
     public void StartConversation(ConversationData conversationData)

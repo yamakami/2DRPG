@@ -13174,6 +13174,7 @@ GameObject:
   - component: {fileID: 70417841}
   - component: {fileID: 70417843}
   - component: {fileID: 70417844}
+  - component: {fileID: 70417845}
   m_Layer: 5
   m_Name: UIQuest
   m_TagString: Untagged
@@ -13237,6 +13238,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35471751bcbc140839bc646c0b0542e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageSelect: {fileID: 70417845}
+--- !u!114 &70417845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70417840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51620cfa03a443e29d21f9a4e60f8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &140174721

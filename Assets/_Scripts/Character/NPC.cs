@@ -133,9 +133,4 @@ public class NPC : BaseCharacter
         move = Vector2.zero;
         Freeze = true;
     }
-
-    // public ConversationData ConversationData()
-    // {
-    //     return npcData.conversationData;
-    // }
 }

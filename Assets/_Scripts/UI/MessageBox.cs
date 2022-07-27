@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class MessageBox : MonoBehaviour
 {
+    [SerializeField] MessageSelect messageSelect;
     VisualElement box;
     Label messageText;
     Button messageNexButton;
@@ -14,16 +15,18 @@ public class MessageBox : MonoBehaviour
     ConversationData conversationData;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(10);
 
-    public void Init(VisualElement ve)
+    public void Init(VisualElement rootEl)
     {
-        box = ve.Q<VisualElement>("message-box");
-        messageText = ve.Q<Label>("message-text");
-        messageNexButton = ve.Q<Button>("next-button");
+        box = rootEl.Q<VisualElement>("message-box");
+        messageText = rootEl.Q<Label>("message-text");
+        messageNexButton = rootEl.Q<Button>("next-button");
 
         messageNexButton.clicked += ClickNext;
+
+        messageSelect.Init(rootEl);
     }
 
-    async void ClickNext ()
+    public async void ClickNext ()
     {
         if(0 < conversations.Count)
         {
@@ -42,7 +45,7 @@ public class MessageBox : MonoBehaviour
         }
     }
 
-    void PrepareConversation(ConversationData _conversationData)
+    public void PrepareConversation(ConversationData _conversationData)
     {
         conversationData = _conversationData;
         conversations.Clear();
@@ -67,7 +70,7 @@ public class MessageBox : MonoBehaviour
     {
         if(0 < conversations.Count || !conversationData.optionExists()) return false;
 
-        Debug.Log("select opent");
+        messageSelect.Open(this, conversationData);
 
         return true;
     }
@@ -116,7 +119,7 @@ public class MessageBox : MonoBehaviour
         box.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    void BoxClose()
+    public void BoxClose()
     {
         BoxOpen(false);
         TaskCancel();
