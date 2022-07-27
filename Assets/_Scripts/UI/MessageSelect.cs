@@ -41,6 +41,7 @@ public class MessageSelect : MonoBehaviour
             {
                 selectButtons[i].text = options[i].text;
                 selectButtons[i].RegisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton, options[i]);
+
                 ShowButton(selectButtons[i]);
             }
         }
