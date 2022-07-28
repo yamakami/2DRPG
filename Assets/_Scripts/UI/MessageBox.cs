@@ -8,15 +8,25 @@ using System.Collections.Generic;
 public class MessageBox : MonoBehaviour
 {
     [SerializeField] MessageSelect messageSelect;
+    [SerializeField] AudioClip talkSound;
+
+    AudioClip[] buttonAudios;
+
     VisualElement box;
     Label messageText;
     Button messageNexButton;
+
     CancellationTokenSource tokenSource;
     ConversationData conversationData;
+
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(10);
 
-    public void Init(VisualElement rootEl)
+    public void Init(UIQuest uiQuest)
     {
+        buttonAudios = uiQuest.ButtonSounds;
+
+        var rootEl = uiQuest.RootUiElement;
+
         box = rootEl.Q<VisualElement>("message-box");
         messageText = rootEl.Q<Label>("message-text");
         messageNexButton = rootEl.Q<Button>("next-button");

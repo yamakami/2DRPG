@@ -26,3 +26,5 @@ MonoBehaviour:
   - text: "\u3044\u3044\u3048"
     nextConversationData: {fileID: 11400000, guid: d21a4461305cb451294eeabb22bd0709,
       type: 2}
+  - text: "\u308F\u304B\u308A\u307E\u305B\u3093\u3001\u3001\u3001\u3001"
+    nextConversationData: {fileID: 0}
