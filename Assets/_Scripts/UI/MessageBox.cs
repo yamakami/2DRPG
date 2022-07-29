@@ -10,6 +10,8 @@ public class MessageBox : MonoBehaviour
     [SerializeField] MessageSelect messageSelect;
     [SerializeField] AudioClip talkSound;
 
+    UIQuest uiquest;
+
     AudioClip[] buttonAudios;
 
     VisualElement box;
@@ -23,7 +25,7 @@ public class MessageBox : MonoBehaviour
 
     public void Init(UIQuest uiQuest)
     {
-        buttonAudios = uiQuest.ButtonSounds;
+        this.uiquest = uiQuest;
 
         var rootEl = uiQuest.RootUiElement;
 
@@ -32,12 +34,15 @@ public class MessageBox : MonoBehaviour
         messageNexButton = rootEl.Q<Button>("next-button");
 
         messageNexButton.clicked += ClickNext;
+        messageNexButton.RegisterCallback<MouseEnterEvent>( ev => PlayButtonHoverSound() );
 
         messageSelect.Init(rootEl);
     }
 
     public async void ClickNext ()
     {
+         PlayButtonClickSound();
+
         if(0 < conversations.Count)
         {
             try
@@ -110,12 +115,17 @@ public class MessageBox : MonoBehaviour
 
         await UniTask.Delay(500, cancellationToken: token);
 
+        uiquest.PlayConversationSound(talkSound: talkSound);
+
         var length = messageLine.Length;
         for(var i = 0; i <= length; i++)
         {
             messageText.text = messageLine.Substring(0, i);
             await UniTask.Delay(30, cancellationToken: token);
         }
+
+        uiquest.PlayConversationSound(false);
+
         await UniTask.Delay(500, cancellationToken: token);
     }
 
@@ -134,6 +144,15 @@ public class MessageBox : MonoBehaviour
         BoxOpen(false);
         TaskCancel();
         Player.GetPlayer().EnableMove();
+    }
+
+    public void PlayButtonHoverSound()
+    {
+        uiquest.PlayButtonHoverSound();
+    }
+    public void PlayButtonClickSound()
+    {
+        uiquest.PlayButtonClickSound();
     }
 
     void TaskCancel()

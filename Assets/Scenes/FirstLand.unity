@@ -13244,7 +13244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageSelect: {fileID: 70417845}
-  talkSound: {fileID: 8300000, guid: dc82494dd04764a23847242c2ff11f65, type: 3}
+  talkSound: {fileID: 8300000, guid: 325e05f1bce564863aac60fa81959077, type: 3}
 --- !u!114 &70417845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13268,7 +13268,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

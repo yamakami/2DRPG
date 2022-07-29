@@ -13,7 +13,6 @@ public class UIQuest : MonoBehaviour
     VisualElement rootUiElement;
     AudioClip[] buttonSounds;
 
-    public AudioClip[] ButtonSounds { get => buttonSounds; }
     public VisualElement RootUiElement { get => rootUiElement; }
 
     public void UiInitialize()
@@ -28,5 +27,27 @@ public class UIQuest : MonoBehaviour
     public void StartConversation(ConversationData conversationData)
     {
         messageBox.Conversation(conversationData).Forget();
+    }
+
+    public void PlayConversationSound(bool play = true, AudioClip talkSound = null)
+    {
+        subAudioSource.loop = play;
+        if (play)
+        {
+            subAudioSource.clip = talkSound;
+            subAudioSource.Play();
+        }
+        else
+            subAudioSource.clip = null;
+    }
+
+    public void PlayButtonHoverSound()
+    {
+        subAudioSource.PlayOneShot(buttonSounds[0]);
+    }
+
+    public void PlayButtonClickSound()
+    {
+        subAudioSource.PlayOneShot(buttonSounds[1]);
     }
 }

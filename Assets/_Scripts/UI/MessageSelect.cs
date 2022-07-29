@@ -42,6 +42,7 @@ public class MessageSelect : MonoBehaviour
 
                 selectButtons[i].text = options[i].text;
                 selectButtons[i].RegisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton, options[i]);
+                selectButtons[i].RegisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHoverSound() );
 
                 ShowButton(selectButtons[i]);
             }
@@ -50,6 +51,8 @@ public class MessageSelect : MonoBehaviour
 
     void ClickSelectButton(ClickEvent ev, ConversationData.Conversation conversation)
     {
+        messageBox.PlayButtonClickSound();
+
         Close();
 
         if(conversation?.nextConversationData)
@@ -77,6 +80,9 @@ public class MessageSelect : MonoBehaviour
     void UnregisterCallback()
     {
         for(var i=0; i < selectButtons.Length; i++)
-            selectButtons[i].UnregisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton);        
+        {
+            selectButtons[i].UnregisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton);
+            selectButtons[i].UnregisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHoverSound() );
+        }
     }
 }
