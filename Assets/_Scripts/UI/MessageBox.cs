@@ -29,7 +29,7 @@ public class MessageBox : MonoBehaviour
 
         var rootEl = uiQuest.RootUiElement;
 
-        box = rootEl.Q<VisualElement>("message-box");
+        box = rootEl.Q<VisualElement>("message-screen");
         messageText = rootEl.Q<Label>("message-text");
         messageNexButton = rootEl.Q<Button>("next-button");
 

@@ -9,7 +9,7 @@ public class MessageSelect : MonoBehaviour
 
     public void Init(VisualElement rootEl)
     {
-        box = rootEl.Q<VisualElement>("select-box");
+        box = rootEl.Q<VisualElement>("select-screen");
         box.Query<Button>().ForEach(bt => {
             selectButtons[bt.tabIndex] = bt;
         });
