@@ -13173,8 +13173,6 @@ GameObject:
   - component: {fileID: 70417842}
   - component: {fileID: 70417841}
   - component: {fileID: 70417843}
-  - component: {fileID: 70417844}
-  - component: {fileID: 70417845}
   - component: {fileID: 70417846}
   m_Layer: 5
   m_Name: UIQuest
@@ -13211,7 +13209,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1381376950}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13230,33 +13229,7 @@ MonoBehaviour:
   gameManager: {fileID: 96555368}
   subAudioSource: {fileID: 70417846}
   quest: {fileID: 70417841}
-  messageBox: {fileID: 70417844}
---- !u!114 &70417844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70417840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35471751bcbc140839bc646c0b0542e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageSelect: {fileID: 70417845}
-  talkSound: {fileID: 8300000, guid: 325e05f1bce564863aac60fa81959077, type: 3}
---- !u!114 &70417845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70417840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d51620cfa03a443e29d21f9a4e60f8f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  messageBox: {fileID: 1381376952}
 --- !u!82 &70417846
 AudioSource:
   m_ObjectHideFlags: 0
@@ -117106,6 +117079,65 @@ PolygonCollider2D:
       - {x: 10.503828, y: -10.259154}
       - {x: 10.443317, y: 7.505521}
   m_UseDelaunayMesh: 0
+--- !u!1 &1381376949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381376950}
+  - component: {fileID: 1381376952}
+  - component: {fileID: 1381376951}
+  m_Layer: 5
+  m_Name: Message
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1381376950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381376949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 70417842}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1381376951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381376949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51620cfa03a443e29d21f9a4e60f8f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1381376952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381376949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35471751bcbc140839bc646c0b0542e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageSelect: {fileID: 1381376951}
+  talkSound: {fileID: 8300000, guid: 325e05f1bce564863aac60fa81959077, type: 3}
 --- !u!4 &1382939839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2659405228746311260, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
