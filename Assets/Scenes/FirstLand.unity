@@ -13211,6 +13211,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1381376950}
+  - {fileID: 1810521290}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13226,6 +13227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b994d2b28a7ee4c0fa7f1abd238a367a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  q: {fileID: 11400000, guid: 1067d955f544f4882bf113ac9d150118, type: 2}
+  m: {fileID: 11400000, guid: a024ad88387f84f0f816faac2f88c27e, type: 2}
   gameManager: {fileID: 96555368}
   subAudioSource: {fileID: 70417846}
   quest: {fileID: 70417841}
@@ -57321,6 +57324,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 274519075}
 --- !u!50 &274519078
 Rigidbody2D:
   serializedVersion: 4
@@ -63803,6 +63807,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 298188280}
 --- !u!50 &298188283
 Rigidbody2D:
   serializedVersion: 4
@@ -116090,6 +116095,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 1330476409}
 --- !u!50 &1330476412
 Rigidbody2D:
   serializedVersion: 4
@@ -121086,6 +121092,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 1402942571}
 --- !u!19719996 &1402942574
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -125757,7 +125764,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -125867,7 +125874,7 @@ PrefabInstance:
     - target: {fileID: 7123934312029208991, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7777778
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8215622652094131734, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
         type: 3}
@@ -127897,6 +127904,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 1701173041}
 --- !u!50 &1701173044
 Rigidbody2D:
   serializedVersion: 4
@@ -130314,6 +130322,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 1704198198}
 --- !u!50 &1704198201
 Rigidbody2D:
   serializedVersion: 4
@@ -131950,6 +131959,37 @@ MonoBehaviour:
   questManager: {fileID: 725836218}
   actorNpcs:
   - {fileID: 7583004779596885346}
+--- !u!1 &1810521289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810521290}
+  m_Layer: 5
+  m_Name: Shopping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1810521290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810521289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 70417842}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1885820470
 GameObject:
   m_ObjectHideFlags: 0
@@ -135209,6 +135249,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 2064508135}
 --- !u!50 &2064508138
 Rigidbody2D:
   serializedVersion: 4
@@ -142775,6 +142816,7 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
   m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 2104983069}
 --- !u!50 &2104983072
 Rigidbody2D:
   serializedVersion: 4

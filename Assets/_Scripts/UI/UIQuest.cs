@@ -15,6 +15,11 @@ public class UIQuest : MonoBehaviour
 
     public VisualElement RootUiElement { get => rootUiElement; }
 
+    void Start()
+    {
+
+    }
+
     public void UiInitialize()
     {
         buttonSounds = gameManager.ButtonSounds;

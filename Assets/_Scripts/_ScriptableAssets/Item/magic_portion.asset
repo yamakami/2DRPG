@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bdf3eeafa2140989d092af9a711859, type: 3}
+  m_Name: magic_portion
+  m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 03885dd282f97451bb9615c92075c48c, type: 3}
+  commandName: magick_portion
+  nameKana: "\u30DE\u30B8\u30C3\u30AF\u30DD\u30FC\u30B7\u30E7\u30F3"
+  description: "MP\u304C10\u56DE\u5FA9\u3059\u308B"
+  itemType: 0

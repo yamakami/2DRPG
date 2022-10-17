@@ -22,7 +22,7 @@
                     <ui:Label tabindex="-1" text="所持金: 000000000000000G" display-tooltip-when-elided="true" name="player-gold" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
                     <ui:Label tabindex="-1" text="価格: 000000000000000G" display-tooltip-when-elided="true" name="item-price" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
                     <ui:Label tabindex="-1" text="ウホウホの実" display-tooltip-when-elided="true" name="item-name" class="message_text" style="height: 35px; -unity-font-style: bold;" />
-                    <ui:Label tabindex="-1" text="つねにうほうほしている。&#10;まぁ、どうでもよい能力。&#10;あほだ！&#10;めしだ！&#10;" display-tooltip-when-elided="true" name="itme-detail" class="message_text" style="flex-grow: 1; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgba(255, 255, 255, 255); border-right-color: rgba(255, 255, 255, 255); border-top-color: rgba(255, 255, 255, 255); border-bottom-color: rgba(255, 255, 255, 255); border-top-left-radius: 1px; border-bottom-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
+                    <ui:Label tabindex="-1" text="つねにうほうほしている。&#10;まぁ、どうでもよい能力。&#10;あほだ！&#10;めしだ！&#10;" display-tooltip-when-elided="true" name="itme-detail" class="message_text" style="flex-grow: 1; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-left-radius: 1px; border-bottom-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-top: 10px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="item-select" style="height: 446px; width: 342px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <ui:Label tabindex="-1" text="10/10" display-tooltip-when-elided="true" name="pager-position" class="message_text" style="-unity-text-align: upper-right;" />
@@ -41,8 +41,8 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="control" style="align-items: center; flex-direction: row; justify-content: space-around; width: 30%;">
-                <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
-                <ui:Button tabindex="-1" text="とじる" display-tooltip-when-elided="true" name="close-button" class="text_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+                <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button_no_box" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+                <ui:Button tabindex="-1" text="とじる" display-tooltip-when-elided="true" name="close-button" class="text_button_no_box" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
