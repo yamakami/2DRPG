@@ -1,27 +1,22 @@
 using UnityEngine;
 
 public class Player : BaseCharacter
-{
-    [SerializeField] QuestManager questManager;
-    // [SerializeField] PlayerInfo playerInfo;
+{ 
+    QuestManager questManager;
+    NPC talkToNpc;
 
-    // public PlayerInfo PlayerInfo { get => GameManager.GetPlayerInfo(); }    
-    NPC tallkingWithNpc;
-
-    static Player _player;
-
-    public NPC TallkingWithNpc { get => tallkingWithNpc; set => tallkingWithNpc = value; }
+    public PlayerData PlayerData { get => SystemManager.DataManager().PlayerData; }
+    public NPC TalkToNpc { get => talkToNpc; set => talkToNpc = value; }
 
     void Start()
     {
-        _player = this;
+        questManager = QuestManager.GetQuestManager();
         lastMove = Vector2.down;
-        // questManager =  QuestManager.GetQuestManager();
     }
 
     public override void CharaFixedUpdate()
     {
-        if (Time.timeScale < 1 || Freeze) return;
+        if (Freeze) return;
         MovePosition();
     }
 
@@ -33,8 +28,8 @@ public class Player : BaseCharacter
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if (tallkingWithNpc != null)
-                StartConversation(tallkingWithNpc);
+            if (talkToNpc != null)
+                StartConversation(talkToNpc);
         }
         else
         {
@@ -47,13 +42,11 @@ public class Player : BaseCharacter
         npc.FacingTo(npc.ConversationFacingDirection(transform));
         lastMove = ConversationFacingDirection(npc.transform);
 
-        StopPlayer();
-        questManager.UIQuest.StartConversation(npc.NpcData.ConversationData);
-         // questManager.QuestUI.Conversation.StartConversation(npc.ConversationData());
-
+        StopMove();
+        questManager.QuestUI.Conversation.StartConversation();
     }
 
-     public void StopPlayer()
+     public void StopMove()
     {
         move = Vector2.zero;
         Freeze = true;
@@ -61,11 +54,6 @@ public class Player : BaseCharacter
      public void EnableMove()
     {
         Freeze = false;
-    }
-
-    static public Player GetPlayer()
-    {
-        return _player;
     }
 }
 

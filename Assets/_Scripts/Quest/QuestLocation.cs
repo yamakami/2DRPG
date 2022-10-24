@@ -1,14 +1,11 @@
- using UnityEngine;
+using UnityEngine;
 
 public class QuestLocation : MonoBehaviour
 {
-    [SerializeField] QuestManager questManager;
-    [SerializeField] BaseCharacter[] actorNpcs;
-
-    public BaseCharacter[] ActorNpcs { get => actorNpcs; }
+    [SerializeField] NPC[] actors;
 
     void OnEnable()
     {
-        questManager.CurrentLocation = this;
+        QuestManager.NpcActors = actors;
     }
 }

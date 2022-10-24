@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 
-public class BaseCharacter : MonoBehaviour, Updatable
+public class BaseCharacter : MonoBehaviour
 {
     [SerializeField] protected float speed = 0;
     [SerializeField] private Rigidbody2D rb2d = null;

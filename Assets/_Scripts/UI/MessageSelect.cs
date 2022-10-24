@@ -1,32 +1,20 @@
-using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine;
 
 public class MessageSelect : MonoBehaviour
 {
-    VisualElement box;
+    VisualElement selectBox;
     Button[] selectButtons = new Button[4];
     MessageBox messageBox;
-
-    public void Init(VisualElement rootEl)
-    {
-        box = rootEl.Q<VisualElement>("select-screen");
-        box.Query<Button>().ForEach(bt => {
-            selectButtons[bt.tabIndex] = bt;
-        });
-    }
-
-    public void Open(MessageBox _messageBox, ConversationData conversationData)
+ 
+    public void SetUp(VisualElement _rootUI, MessageBox _messageBox)
     {
         messageBox = _messageBox;
-        BoxOpen();
-        SetSelectMessage(conversationData);
-    }
+        selectBox = _rootUI.Q<VisualElement>("select-screen");
 
-    void Close()
-    {
-        UnregisterCallback();
-        BoxOpen(false);
-
+        selectBox.Query<Button>().ForEach(bt => {
+            selectButtons[bt.tabIndex] = bt;
+        });
     }
 
     void SetSelectMessage(ConversationData conversationData)
@@ -42,39 +30,58 @@ public class MessageSelect : MonoBehaviour
 
                 selectButtons[i].text = options[i].text;
                 selectButtons[i].RegisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton, options[i]);
-                selectButtons[i].RegisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHoverSound() );
+                selectButtons[i].RegisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHover() );
 
-                ShowButton(selectButtons[i]);
+                ShowButton(selectButtons[i], true);
             }
         }
     }
 
+    void ShowButton(Button button, bool show)
+    {
+        button.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
     void ClickSelectButton(ClickEvent ev, ConversationData.Conversation conversation)
     {
-        messageBox.PlayButtonClickSound();
+        messageBox.PlayButtonClick();
 
-        Close();
+        BoxClose();
+
+        if(conversation?.eventTrigger)
+        {
+            conversation.eventTrigger.Invoke();
+            messageBox.Open(false);
+            return;
+        }
 
         if(conversation?.nextConversationData)
             BackToMainMessage(conversation);
         else
-            messageBox.BoxClose();
+            messageBox.Open(false);
     }
 
     void BackToMainMessage(ConversationData.Conversation conversation)
     {
-        messageBox.PrepareConversation(conversation.nextConversationData);
-        messageBox.ClickNext();
+        messageBox.InterfaceParent.PrepareMessage(conversation.nextConversationData);
+        messageBox.InterfaceParent.ClickNext();
     }
 
-    void BoxOpen(bool open = true)
+    public void Open(ConversationData conversationData)
     {
-        box.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
+        BoxOpen(true);
+        SetSelectMessage(conversationData);
     }
 
-    void ShowButton(Button button, bool show = true)
+    void BoxOpen(bool open)
     {
-        button.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
+        selectBox.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
+    void BoxClose()
+    {
+        UnregisterCallback();
+        BoxOpen(false);
     }
 
     void UnregisterCallback()
@@ -82,7 +89,7 @@ public class MessageSelect : MonoBehaviour
         for(var i=0; i < selectButtons.Length; i++)
         {
             selectButtons[i].UnregisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton);
-            selectButtons[i].UnregisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHoverSound() );
+            selectButtons[i].UnregisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHover() );
         }
     }
 }

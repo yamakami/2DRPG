@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NpcData", menuName = "NpcData", order = 1)]
+[CreateAssetMenu(fileName = "＿NpcData", menuName = "NpcData")]
 public class NpcData : ScriptableObject
 {
     [SerializeField] string npcName; 
@@ -8,6 +8,7 @@ public class NpcData : ScriptableObject
     [SerializeField] int xMaxStep = 0;
     [SerializeField] float randomInterval = 3f;
     [SerializeField] ConversationData conversationData;
+    [SerializeField] Item[] shopItems;
 
     bool inCamera;
     float currentTime;

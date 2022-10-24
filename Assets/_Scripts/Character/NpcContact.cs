@@ -12,14 +12,14 @@ public class NpcContact : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            var player = Player.GetPlayer();
+            var player = QuestManager.GetQuestManager().Player;
 
-            if(player.TallkingWithNpc != null) return;
+            if(player.TalkToNpc != null) return;
 
             npc.Stop();
             npc.Rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            player.TallkingWithNpc = npc;
+            player.TalkToNpc = npc;
             npc.FacingTo(npc.ConversationFacingDirection(player.transform));
         }
     }
@@ -28,11 +28,11 @@ public class NpcContact : MonoBehaviour
     {
        if (collision.CompareTag("Player"))
         {
-            var player = Player.GetPlayer();
+            var player = QuestManager.GetQuestManager().Player;
 
             npc.StartMove();
             npc.Rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-            player.TallkingWithNpc = null;
+            player.TalkToNpc = null;
         }
     }
 }

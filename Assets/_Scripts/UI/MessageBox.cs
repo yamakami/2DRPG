@@ -2,170 +2,73 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
 
 public class MessageBox : MonoBehaviour
 {
     [SerializeField] MessageSelect messageSelect;
-    [SerializeField] AudioClip talkSound;
+    IMessageBox interfaceParent;
+    SoundManager soundManager;
+    VisualElement messageBox;
+    Label textArea;
+    Button conversationNextButton;
+    Button messageNextButton;
 
-    UIQuest uiquest;
+    public Button ConversationNextButton { get => conversationNextButton; }
+    public Button MessageNextButton { get => messageNextButton; }
+    public IMessageBox InterfaceParent { get => interfaceParent; set => interfaceParent = value; }
 
-    AudioClip[] buttonAudios;
-
-    VisualElement box;
-    Label messageText;
-    Button messageNexButton;
-
-    CancellationTokenSource tokenSource;
-    ConversationData conversationData;
-
-    Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(10);
-
-    public void Init(UIQuest uiQuest)
+    public void SetUp(VisualElement _rootUI)
     {
-        this.uiquest = uiQuest;
+        soundManager = SystemManager.SoundManager();
 
-        var rootEl = uiQuest.RootUiElement;
+        messageBox = _rootUI.Q<VisualElement>("message-screen");
+        textArea   = _rootUI.Q<Label>("message-text");
+        conversationNextButton = _rootUI.Q<Button>("conversation-next-button");
+        messageNextButton      = _rootUI.Q<Button>("message-next-button");
 
-        box = rootEl.Q<VisualElement>("message-screen");
-        messageText = rootEl.Q<Label>("message-text");
-        messageNexButton = rootEl.Q<Button>("next-button");
-
-        messageNexButton.clicked += ClickNext;
-        messageNexButton.RegisterCallback<MouseEnterEvent>( ev => PlayButtonHoverSound() );
-
-        messageSelect.Init(rootEl);
+        messageSelect.SetUp(_rootUI, this);
     }
 
-    public async void ClickNext ()
+    public async UniTask DisplayText(CancellationToken token, string message, AudioClip sound = null)
     {
-         PlayButtonClickSound();
-
-        if(0 < conversations.Count)
-        {
-            try
-            {
-                await ForwardConversation(conversations.Dequeue());
-            }
-            catch (OperationCanceledException)
-            {
-                return;
-            }
-        }
-        else
-        {
-            BoxClose();
-        }
-    }
-
-    public void PrepareConversation(ConversationData _conversationData)
-    {
-        conversationData = _conversationData;
-        conversations.Clear();
-
-        foreach (var conversation in conversationData.conversations)
-        {
-            conversations.Enqueue(conversation);
-        }
-    }
-
-    async UniTask ForwardConversation(ConversationData.Conversation conversation)
-    {
-            ShowNextButton(false);
-            await DisplayText(conversation.text);
-
-            if(SelectOpen()) return;
-
-            ShowNextButton(true);
-    }
-
-    bool SelectOpen()
-    {
-        if(0 < conversations.Count || !conversationData.optionExists()) return false;
-
-        messageSelect.Open(this, conversationData);
-
-        return true;
-    }
-
-    public async UniTask Conversation(ConversationData conversationData)
-    {
-        tokenSource = new CancellationTokenSource();
-
-        PrepareConversation(conversationData);
-
-        BoxOpen(true);
-
-        try
-        {
-            await ForwardConversation(conversations.Dequeue());
-        }
-        catch (OperationCanceledException)
-        {
-            return;
-        }
-    }
-
-    async UniTask DisplayText(string messageLine)
-    {
-        var token = tokenSource.Token;
-        messageText.text = "";
+        textArea.text = "";
 
         await UniTask.Delay(500, cancellationToken: token);
 
-        uiquest.PlayConversationSound(talkSound: talkSound);
+        soundManager.PlaySubAudio(sound);
 
-        var length = messageLine.Length;
-        for(var i = 0; i <= length; i++)
+        for(var i = 0; i <= message.Length; i++)
         {
-            messageText.text = messageLine.Substring(0, i);
+            textArea.text = message.Substring(0, i);
             await UniTask.Delay(30, cancellationToken: token);
         }
-
-        uiquest.PlayConversationSound(false);
+        soundManager.StopSubAudio();
 
         await UniTask.Delay(500, cancellationToken: token);
     }
 
-    void ShowNextButton(bool show)
+    public void Open(bool open)
     {
-        messageNexButton.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
+        messageBox.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    void BoxOpen(bool open)
+    public void NextConversationButton(bool show)
     {
-        box.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
+        conversationNextButton.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    public void BoxClose()
+    public void OpenSelectBox(ConversationData conversationData)
     {
-        BoxOpen(false);
-        TaskCancel();
-        Player.GetPlayer().EnableMove();
+        messageSelect.Open(conversationData);
     }
 
-    public void PlayButtonHoverSound()
+    public void PlayButtonClick()
     {
-        uiquest.PlayButtonHoverSound();
-    }
-    public void PlayButtonClickSound()
-    {
-        uiquest.PlayButtonClickSound();
+        soundManager.PlayButtonClick();
     }
 
-    void TaskCancel()
+    public void PlayButtonHover()
     {
-        if(tokenSource == null) return; 
-
-        tokenSource?.Cancel();
-        tokenSource?.Dispose();
-        tokenSource = null;
-    }
-
-    void OnDisable()
-    {
-        TaskCancel();
+        soundManager.PlayButtonHover();        
     }
 }

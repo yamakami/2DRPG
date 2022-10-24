@@ -3,37 +3,66 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] Player player;
-    [SerializeField] UIQuest uIQuest;
-    QuestLocation currentLocation;
+    [SerializeField] QuestUI questUI;
 
-    public QuestLocation CurrentLocation { set => currentLocation = value; }
-    public UIQuest UIQuest { get => uIQuest; }
+    public Player Player { get => player; }
+    public QuestUI QuestUI { get => questUI; }
 
-    void Awake()
+    static NPC[] _npcActors;
+    static QuestManager _questManager;
+
+    public static NPC[] NpcActors { set => _npcActors = value; }
+
+    public static QuestManager GetQuestManager()
     {
-        uIQuest.UiInitialize();
+        return _questManager;
+    }
+
+    void Start()
+    {
+        _questManager = this;
+        questUI.SetUP();
     }
 
     void Update()
     {
-        player.SubstituteUpdate();
-        MoveCharacter("update");
+        player.CharaUpdate();
+        MoveNpc();        
     }
 
     void FixedUpdate()
     {
-        player.SubstituteFixedUpdate();
-        MoveCharacter("fixed");
+        player.CharaFixedUpdate();
+        MoveNpc(true);
     }
 
-    void MoveCharacter(string type)
+    void MoveNpc(bool fixedUpdate = false)
     {
-        for (var i = 0; i < currentLocation.ActorNpcs.Length; i++)
-        {
-            var npc = currentLocation.ActorNpcs[i];
+        var npcActors = QuestManager._npcActors;
 
-            if(type == "update") npc.SubstituteUpdate();
-            if(type == "fixed") npc.SubstituteFixedUpdate();
+        if(npcActors == null) return;
+
+        foreach(var npc in npcActors)
+        {
+            if(fixedUpdate)
+                npc.CharaFixedUpdate();
+            else
+                npc.CharaUpdate();
         }
+    }
+
+    public void StopPlayer()
+    {
+        player.StopMove();
+    }
+
+     public void PlayerEnableMove()
+    {
+        player.EnableMove();
+    }
+
+    public void PlayerStartConversation()
+    {
+        QuestUI.Conversation.StartConversation();
     }
 }

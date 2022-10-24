@@ -16,4 +16,10 @@ MonoBehaviour:
   yMaxStep: 4
   xMaxStep: 4
   randomInterval: 3
-  conversationData: {fileID: 11400000, guid: 67ee469560ab345eca5574be2fd83298, type: 2}
+  conversationData: {fileID: 11400000, guid: 8b2965a1f998e4c0dbbc604551a9ab8f, type: 2}
+  shopItems:
+  - {fileID: 11400000, guid: 7b3b7ac8a9f1c4c149f1fc59470a1912, type: 2}
+  - {fileID: 11400000, guid: 96cfcd66cf468488a9d7b13c61ff676d, type: 2}
+  - {fileID: 11400000, guid: d74a4a6b5317e44c19466801c75eadd6, type: 2}
+  - {fileID: 11400000, guid: 5a5e90c476d6541159abfeb569dfdf72, type: 2}
+  - {fileID: 11400000, guid: 3410a738c4fba417bb4c0938989363f5, type: 2}
