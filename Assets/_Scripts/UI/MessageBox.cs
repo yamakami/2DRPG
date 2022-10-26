@@ -29,8 +29,10 @@ public class MessageBox : MonoBehaviour
         messageSelect.SetUp(_rootUI, this);
     }
 
-    public async UniTask DisplayText(CancellationToken token, string message, AudioClip sound = null)
+    public async UniTask DisplayText(string message, AudioClip sound = null)
     {
+        var token = SystemManager.UnitaskToken();
+
         textArea.text = "";
 
         await UniTask.Delay(500, cancellationToken: token);

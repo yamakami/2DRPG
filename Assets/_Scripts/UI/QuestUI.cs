@@ -17,6 +17,7 @@ public class QuestUI : MonoBehaviour
     {
         var rootUI = uiDocument.rootVisualElement;
 
-        MessageBox.SetUp(rootUI);
+        messageBox.SetUp(rootUI);
+        shop.SetUp(rootUI);
     }
 }

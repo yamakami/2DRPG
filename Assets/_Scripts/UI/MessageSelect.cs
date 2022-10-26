@@ -1,5 +1,6 @@
 using UnityEngine.UIElements;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class MessageSelect : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class MessageSelect : MonoBehaviour
         button.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
     }
 
-    void ClickSelectButton(ClickEvent ev, ConversationData.Conversation conversation)
+    async void ClickSelectButton(ClickEvent ev, ConversationData.Conversation conversation)
     {
         messageBox.PlayButtonClick();
 
@@ -50,8 +51,10 @@ public class MessageSelect : MonoBehaviour
 
         if(conversation?.eventTrigger)
         {
-            conversation.eventTrigger.Invoke();
             messageBox.Open(false);
+
+            await UniTask.Delay(500, cancellationToken: SystemManager.UnitaskToken());
+            conversation.eventTrigger.Invoke();
             return;
         }
 

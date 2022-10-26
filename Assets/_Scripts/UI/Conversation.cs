@@ -1,16 +1,13 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System;
 
 public class Conversation : MonoBehaviour, IMessageBox
 {
     [SerializeField] AudioClip talkSound;
     QuestManager questManager;
     MessageBox messageBox;
-    CancellationTokenSource tokenSource;
     ConversationData conversationData;
     ConversationData.Conversation lastConversation;
     Queue<ConversationData.Conversation> conversations = new Queue<ConversationData.Conversation>(10);
@@ -25,8 +22,6 @@ public class Conversation : MonoBehaviour, IMessageBox
         if(questManager == null) questManager = QuestManager.GetQuestManager();
         if(messageBox   == null) SetButtonEvent();
 
-        tokenSource = new CancellationTokenSource();
-
         var player = questManager.Player;
         var npcData = player.TalkToNpc.NpcData;
 
@@ -35,8 +30,7 @@ public class Conversation : MonoBehaviour, IMessageBox
         PrepareMessage(npcData.ConversationData);
         OpenMessageBox();
 
-        try { await ForwardConversation(conversations.Dequeue()); }
-        catch (OperationCanceledException) { return; }
+        await ForwardConversation(conversations.Dequeue());
     }
 
     void SetButtonEvent()
@@ -55,15 +49,14 @@ public class Conversation : MonoBehaviour, IMessageBox
 
         if(0 < conversations.Count)
         {
-            try { await ForwardConversation(conversations.Dequeue()); }
-            catch (OperationCanceledException) { return; }
+            await ForwardConversation(conversations.Dequeue());
         }
         else
         {
             if(lastConversation?.eventTrigger)
             {
-                lastConversation.eventTrigger.Invoke();
                 messageBox.Open(false);
+                lastConversation.eventTrigger.Invoke();
                 return;
              }
 
@@ -87,7 +80,7 @@ public class Conversation : MonoBehaviour, IMessageBox
             lastConversation = conversation;
             messageBox.NextConversationButton(false);
 
-            await messageBox.DisplayText(tokenSource.Token, conversation.text, talkSound);
+            await messageBox.DisplayText(conversation.text, talkSound);
 
             if(SelectOpen()) return;
 
@@ -111,20 +104,6 @@ public class Conversation : MonoBehaviour, IMessageBox
     void CloseMessageBox()
     {
         messageBox.Open(false);
-        TaskCancel();
         questManager.PlayerEnableMove();
-    }
-
-    void TaskCancel()
-    {
-        if(tokenSource == null) return; 
-
-        tokenSource?.Cancel();
-        tokenSource?.Dispose();
-        tokenSource = null;
-    }
-    void OnDisable()
-    {
-        TaskCancel();
     }
 }
