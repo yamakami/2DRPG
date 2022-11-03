@@ -28,13 +28,7 @@ public  class SoundManager: MonoBehaviour
         subAudio.clip = null;
     }
 
-    public void PlayButtonClick()
-    {
-        subAudio.PlayOneShot(buttonClick);
-    }
+    public void PlayButtonClick() => subAudio.PlayOneShot(buttonClick);
 
-    public void PlayButtonHover()
-    {
-        subAudio.PlayOneShot(buttonHover);
-    }
+    public void PlayButtonHover() => subAudio.PlayOneShot(buttonHover);
 }

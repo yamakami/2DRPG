@@ -1,71 +1,72 @@
 using UnityEngine.UIElements;
 using UnityEngine;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
 
-
-public class Shop : MonoBehaviour, ICustomEventListener
+public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 {
     [SerializeField] CustomEventTrigger shopTrigger;
+    [SerializeField] ShopTypeSelect shopTypeSelect;
+
     NpcData npcData;
+    ISelectButton iSelectButton;
 
-    VisualElement shoptypeSelect;
-    Button buyButton;
-    Button sellButton;
+    VisualElement shopScreen;
+    Button[] selectButtons = new Button[6];
 
-    VisualElement shoppingPanel;
     public NpcData NpcData { get => npcData; set => npcData = value; }
+    internal ISelectButton ISelectButton { get => iSelectButton; }
+    Button[] ISelectButton.SelectButtons { get => selectButtons; set => selectButtons = value; }
 
-
-    void OnEnable()
+    public void SetUP(VisualElement rootUI)
     {
-        shopTrigger.AddEvent(this);
+        iSelectButton = gameObject.GetComponent("ISelectButton") as ISelectButton;
+
+        shopScreen = rootUI.Q<VisualElement>("shop-screen");
+        var itemSelectBox = shopScreen.Q<VisualElement>("item-select");
+        iSelectButton.InitialButtons(itemSelectBox, "item-select-button");
+
+        shopTypeSelect.SetUP(rootUI);
     }
 
-    void OnDisable()
+    void ICustomEventListener.OnEventRaised() => ShopStart();
+
+    void ShopStart() => shopTypeSelect.Open(true);
+
+    void ShopScreenOpen(bool open) => shopScreen.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
+
+    public void Open()
     {
-        shopTrigger.RemoveEvent(this);
+        iSelectButton.BindButtonEvent();
+        ShopScreenOpen(true);
     }
 
-    public void OnEventRaised()
+    void ISelectButton.BindButtonEvent()
     {
-        ShopStart();
-    }
+        var items = npcData.ShopItems;
 
-
-    public void SetUp(VisualElement _rootUI)
-    {
-        shoptypeSelect = _rootUI.Q<VisualElement>("shop-type-screen");
-        shoppingPanel  = _rootUI.Q<VisualElement>("shop-screen");
-
-        buyButton = shoptypeSelect.Q<Button>("buy-button");
-        sellButton = shoptypeSelect.Q<Button>("sell-button");
-
+        if(shopTypeSelect.ShoptType == ShopTypeSelect.Type.Sell)
+            items =  QuestManager.GetQuestManager().Player.PlayerData.Items.ToArray();
     
-        buyButton.clicked += PlayerBuyShopping;
-        sellButton.clicked += PlayerSelllShopping;
+        for(var i=0; i < selectButtons.Length; i++)
+        {
+            iSelectButton.ShowButton(i, false);
+
+            if(i < items.Length)
+            {
+                selectButtons[i].text = items[i].nameKana;
+                iSelectButton.ClickAndHover(i);
+                iSelectButton.ShowButton(i, true);
+            }
+        }
+    }
+
+    void ISelectButton.ClickAction(ClickEvent ev, int index){
+        var item = npcData.ShopItems[index];
+        iSelectButton.ClickSound();
+
 
     }
 
-    void PlayerBuyShopping()
-    {
+    void OnEnable() => shopTrigger.AddEvent(this);
 
-    }
-
-    void PlayerSelllShopping()
-    {
-
-    }
-
-    void ShopStart()
-    {
-        ShoptypeSelectOpen(true);
-    }
-
-    void ShoptypeSelectOpen(bool open)
-    {
-        shoptypeSelect.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
-    }
-
+    void OnDisable() => shopTrigger.RemoveEvent(this);
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Threading;
 using Cysharp.Threading.Tasks;
+
 
 public class MessageBox : MonoBehaviour
 {
@@ -17,16 +17,16 @@ public class MessageBox : MonoBehaviour
     public Button MessageNextButton { get => messageNextButton; }
     public IMessageBox InterfaceParent { get => interfaceParent; set => interfaceParent = value; }
 
-    public void SetUp(VisualElement _rootUI)
+    public void SetUP(VisualElement rootUI)
     {
-        soundManager = SystemManager.SoundManager();
+        soundManager = SystemManager.SoundManager;
 
-        messageBox = _rootUI.Q<VisualElement>("message-screen");
-        textArea   = _rootUI.Q<Label>("message-text");
-        conversationNextButton = _rootUI.Q<Button>("conversation-next-button");
-        messageNextButton      = _rootUI.Q<Button>("message-next-button");
+        messageBox = rootUI.Q<VisualElement>("message-screen");
+        textArea   = rootUI.Q<Label>("message-text");
+        conversationNextButton = rootUI.Q<Button>("conversation-next-button");
+        messageNextButton      = rootUI.Q<Button>("message-next-button");
 
-        messageSelect.SetUp(_rootUI, this);
+        messageSelect.SetUP(rootUI);
     }
 
     public async UniTask DisplayText(string message, AudioClip sound = null)
@@ -49,28 +49,9 @@ public class MessageBox : MonoBehaviour
         await UniTask.Delay(500, cancellationToken: token);
     }
 
-    public void Open(bool open)
-    {
-        messageBox.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
-    }
-
-    public void NextConversationButton(bool show)
-    {
-        conversationNextButton.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
-    }
-
-    public void OpenSelectBox(ConversationData conversationData)
-    {
-        messageSelect.Open(conversationData);
-    }
-
-    public void PlayButtonClick()
-    {
-        soundManager.PlayButtonClick();
-    }
-
-    public void PlayButtonHover()
-    {
-        soundManager.PlayButtonHover();        
-    }
+    public void Open(bool open) => messageBox.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
+    public void NextConversationButton(bool show) => conversationNextButton.style.display = (show) ? DisplayStyle.Flex : DisplayStyle.None;
+    public void OpenSelectBox(ConversationData conversationData) => messageSelect.Open(conversationData);
+    public void PlayButtonClick() => soundManager.PlayButtonClick();
+    public void PlayButtonHover() => soundManager.PlayButtonHover();
 }

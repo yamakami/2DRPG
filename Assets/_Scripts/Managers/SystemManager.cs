@@ -20,20 +20,11 @@ public class SystemManager : MonoBehaviour
         _unitaskToken = tokenSource.Token;
     }
 
-    public static SoundManager SoundManager()
-    {
-        return _soundManager;
-    }
+    public static SoundManager SoundManager => _soundManager;
 
-    public static DataManager DataManager()
-    {
-        return _dataManager;
-    }
+    public static DataManager DataManager() => _dataManager;
 
-    public static CancellationToken UnitaskToken()
-    {
-        return _unitaskToken;
-    }
+    public static CancellationToken UnitaskToken() => _unitaskToken;
 
     void TaskCancel()
     {
@@ -44,8 +35,5 @@ public class SystemManager : MonoBehaviour
         tokenSource = null;
     }
 
-    void OnDisable()
-    {
-        TaskCancel();
-    }
+    void OnDisable() => TaskCancel();
 }

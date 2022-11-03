@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new ConversationData", menuName = "Conversation", order = 0)]
 public class ConversationData : ScriptableObject
 {
-   public Conversation[] conversations;
+    public Conversation[] conversations;
     public Conversation[] options;
 
     [System.Serializable]

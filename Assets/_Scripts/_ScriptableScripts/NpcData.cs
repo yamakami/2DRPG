@@ -39,4 +39,5 @@ public class NpcData : ScriptableObject
     public int MoveDistance { get => moveDistance; set => moveDistance = value; }
     public int PixelUnit { get => pixelUnit; }
     public int RandomRange { get => randomRange; }
+    public Item[] ShopItems { get => shopItems; }
 }

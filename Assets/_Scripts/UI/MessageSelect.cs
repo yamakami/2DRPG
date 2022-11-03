@@ -2,49 +2,49 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-public class MessageSelect : MonoBehaviour
+public class MessageSelect : MonoBehaviour, ISelectButton
 {
     VisualElement selectBox;
     Button[] selectButtons = new Button[4];
     MessageBox messageBox;
- 
-    public void SetUp(VisualElement _rootUI, MessageBox _messageBox)
-    {
-        messageBox = _messageBox;
-        selectBox = _rootUI.Q<VisualElement>("select-screen");
+    ConversationData conversationData;
+    ISelectButton iSelectButton;
 
-        selectBox.Query<Button>().ForEach(bt => {
-            selectButtons[bt.tabIndex] = bt;
-        });
+    Button[] ISelectButton.SelectButtons { get => selectButtons; set => selectButtons = value; }
+
+    public void SetUP(VisualElement rootUI)
+    {
+        messageBox = QuestManager.GetQuestManager().QuestUI.MessageBox;
+
+        iSelectButton = gameObject.GetComponent("ISelectButton") as ISelectButton;
+
+        selectBox = rootUI.Q<VisualElement>("select-screen");
+        iSelectButton.InitialButtons(selectBox, "select-button");
     }
 
-    void SetSelectMessage(ConversationData conversationData)
+    void ISelectButton.ShowButton(int index, bool show) => iSelectButton.SelectButtons[index].style.display = (show) ? DisplayStyle.Flex : DisplayStyle.None;
+
+    void ISelectButton.BindButtonEvent()
     {
         var options = conversationData.options;
 
         for(var i=0; i < selectButtons.Length; i++)
         {
-            ShowButton(selectButtons[i], false);
+            iSelectButton.ShowButton(i, false);
 
             if(i < options.Length)
             {
-
                 selectButtons[i].text = options[i].text;
-                selectButtons[i].RegisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton, options[i]);
-                selectButtons[i].RegisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHover() );
-
-                ShowButton(selectButtons[i], true);
+                iSelectButton.ClickAndHover(i);
+                iSelectButton.ShowButton(i, true);
             }
         }
     }
 
-    void ShowButton(Button button, bool show)
+    async void ISelectButton.ClickAction(ClickEvent ev, int index)
     {
-        button.style.display = (show)? DisplayStyle.Flex : DisplayStyle.None;
-    }
+        var conversation = conversationData.options[index];
 
-    async void ClickSelectButton(ClickEvent ev, ConversationData.Conversation conversation)
-    {
         messageBox.PlayButtonClick();
 
         BoxClose();
@@ -70,29 +70,19 @@ public class MessageSelect : MonoBehaviour
         messageBox.InterfaceParent.ClickNext();
     }
 
-    public void Open(ConversationData conversationData)
+    public void Open(ConversationData _conversationData)
     {
+        conversationData = _conversationData;
+
         BoxOpen(true);
-        SetSelectMessage(conversationData);
+        iSelectButton.BindButtonEvent();
     }
 
-    void BoxOpen(bool open)
-    {
-        selectBox.style.display = (open)? DisplayStyle.Flex : DisplayStyle.None;
-    }
+    void BoxOpen(bool open) => selectBox.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
 
     void BoxClose()
     {
-        UnregisterCallback();
+        iSelectButton.UnregisterCallback();
         BoxOpen(false);
-    }
-
-    void UnregisterCallback()
-    {
-        for(var i=0; i < selectButtons.Length; i++)
-        {
-            selectButtons[i].UnregisterCallback<ClickEvent, ConversationData.Conversation>(ClickSelectButton);
-            selectButtons[i].UnregisterCallback<MouseEnterEvent>( ev => messageBox.PlayButtonHover() );
-        }
     }
 }

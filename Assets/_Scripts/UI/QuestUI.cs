@@ -8,7 +8,6 @@ public class QuestUI : MonoBehaviour
     [SerializeField]  MessageBox messageBox;
     [SerializeField]  Shop shop;
 
-    public UIDocument UiDocument { get => uiDocument; }
     public Conversation Conversation { get => conversation; }
     public MessageBox MessageBox { get => messageBox; }
     public Shop Shop { get => shop; }
@@ -17,7 +16,7 @@ public class QuestUI : MonoBehaviour
     {
         var rootUI = uiDocument.rootVisualElement;
 
-        messageBox.SetUp(rootUI);
-        shop.SetUp(rootUI);
+        messageBox.SetUP(rootUI);
+        shop.SetUP(rootUI);
     }
 }

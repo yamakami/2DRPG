@@ -7,6 +7,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] string playerName;
     [SerializeField] List<Item> items = new List<Item>(200);
 
+    public List<Item> Items { get => items; set => items = value; }
+
     public void AddItem(string _name)
     { 
         var item = SystemManager.DataManager().GetItemByName( _name);
