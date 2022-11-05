@@ -1,7 +1,6 @@
 using UnityEngine.UIElements;
-using UnityEngine;
 
-interface ISelectButton
+public interface ISelectButton
 {
     Button[] SelectButtons { get; set; }
     void ShowButton(int index, bool show) => SelectButtons[index].style.visibility = (show) ? Visibility.Visible : Visibility.Hidden;
@@ -10,17 +9,20 @@ interface ISelectButton
         var index = 0;
         parentElement.Query<Button>().Name(elementName).ForEach( bt => {
             SelectButtons[index] = bt;
+            SelectButtons[index].RegisterCallback<ClickEvent>( ev => ClickSound() );
+            SelectButtons[index].RegisterCallback<MouseEnterEvent>( ev => HoverSound() );
             index++;
         });
     }
 
     void BindButtonEvent();
 
-    void ClickAndHover(int index)
+    void ClickAndHover(int[] indexes)
     {
-        SelectButtons[index].RegisterCallback<ClickEvent, int>(ClickAction, index);
-        SelectButtons[index].RegisterCallback<ClickEvent>( ev => ClickSound() );
-        SelectButtons[index].RegisterCallback<MouseEnterEvent>( ev => HoverSound() );
+        var buttonIndex = indexes[0];
+        var itemIndex   = indexes[1];
+        SelectButtons[buttonIndex].UnregisterCallback<ClickEvent, int>(ClickAction);
+        SelectButtons[buttonIndex].RegisterCallback<ClickEvent, int>(ClickAction, itemIndex);
     }
 
     void ClickAction(ClickEvent ev, int index);
@@ -30,7 +32,7 @@ interface ISelectButton
         for(var i=0; i < SelectButtons.Length; i++)
         {
             SelectButtons[i].UnregisterCallback<ClickEvent, int>(ClickAction);
-            SelectButtons[i].RegisterCallback<ClickEvent>( ev => ClickSound() );
+            SelectButtons[i].UnregisterCallback<ClickEvent>( ev => ClickSound() );
             SelectButtons[i].UnregisterCallback<MouseEnterEvent>( ev => HoverSound() );
         }
     }

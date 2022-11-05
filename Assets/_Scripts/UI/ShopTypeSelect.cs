@@ -15,7 +15,7 @@ public class ShopTypeSelect : MonoBehaviour
 
     Type shoptType;
 
-    public Type ShoptType { get => shoptType; }
+    public Type ShopType { get => shoptType; }
 
     public void SetUP(VisualElement rootUI)
     {

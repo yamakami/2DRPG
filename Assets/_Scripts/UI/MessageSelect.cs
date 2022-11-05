@@ -35,7 +35,7 @@ public class MessageSelect : MonoBehaviour, ISelectButton
             if(i < options.Length)
             {
                 selectButtons[i].text = options[i].text;
-                iSelectButton.ClickAndHover(i);
+                iSelectButton.ClickAndHover(new int[]{i, i});
                 iSelectButton.ShowButton(i, true);
             }
         }

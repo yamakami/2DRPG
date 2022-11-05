@@ -5,14 +5,17 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 {
     [SerializeField] CustomEventTrigger shopTrigger;
     [SerializeField] ShopTypeSelect shopTypeSelect;
-
     NpcData npcData;
-    ISelectButton iSelectButton;
-
     VisualElement shopScreen;
-    Button[] selectButtons = new Button[6];
-
     public NpcData NpcData { get => npcData; set => npcData = value; }
+
+    Button backButton;
+    Button closeButton;
+    Pagenation pagenation;
+
+    // ISelectButton
+    Button[] selectButtons = new Button[6];
+    ISelectButton iSelectButton;
     internal ISelectButton ISelectButton { get => iSelectButton; }
     Button[] ISelectButton.SelectButtons { get => selectButtons; set => selectButtons = value; }
 
@@ -25,6 +28,10 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         iSelectButton.InitialButtons(itemSelectBox, "item-select-button");
 
         shopTypeSelect.SetUP(rootUI);
+
+        pagenation = new Pagenation(selectButtons.Length, rootUI, iSelectButton);
+
+        BindControllButtons(rootUI);
     }
 
     void ICustomEventListener.OnEventRaised() => ShopStart();
@@ -42,29 +49,61 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     void ISelectButton.BindButtonEvent()
     {
         var items = npcData.ShopItems;
-
-        if(shopTypeSelect.ShoptType == ShopTypeSelect.Type.Sell)
+        if(shopTypeSelect.ShopType == ShopTypeSelect.Type.Sell)
             items =  QuestManager.GetQuestManager().Player.PlayerData.Items.ToArray();
     
-        for(var i=0; i < selectButtons.Length; i++)
-        {
-            iSelectButton.ShowButton(i, false);
+        pagenation.SetMaxPageNumber(items.Length);
 
-            if(i < items.Length)
-            {
-                selectButtons[i].text = items[i].nameKana;
-                iSelectButton.ClickAndHover(i);
-                iSelectButton.ShowButton(i, true);
-            }
+        var itemIndex =  pagenation.ItemIndex;
+
+        for(var buttonIndex =0; buttonIndex < selectButtons.Length; buttonIndex++)
+        {
+            iSelectButton.ShowButton(buttonIndex, false);
+
+            if(items.Length <= itemIndex) continue;
+
+            selectButtons[buttonIndex].text = items[itemIndex].nameKana;
+            iSelectButton.ClickAndHover(new int[]{buttonIndex, itemIndex});
+            iSelectButton.ShowButton(buttonIndex, true);
+
+            itemIndex++;
         }
     }
 
-    void ISelectButton.ClickAction(ClickEvent ev, int index){
-        var item = npcData.ShopItems[index];
-        iSelectButton.ClickSound();
-
+    void ISelectButton.ClickAction(ClickEvent ev, int itemIndex){
+        var item = npcData.ShopItems[itemIndex];
 
     }
+
+    void BindControllButtons(VisualElement rootUI)
+    {
+        backButton = rootUI.Q<Button>("back-button");
+        closeButton = rootUI.Q<Button>("close-button");
+
+        backButton.clicked += ClicikBackButton;
+        backButton.RegisterCallback<MouseEnterEvent>( ev => iSelectButton.HoverSound() );
+
+        closeButton.clicked += ClickCloseButton;
+        closeButton.RegisterCallback<MouseEnterEvent>( ev => iSelectButton.HoverSound() );
+    }
+
+    void ClicikBackButton()
+    {
+        iSelectButton.ClickSound();
+        ShopScreenOpen(false);
+        shopTypeSelect.Open(true);
+    }
+
+    void ClickCloseButton()
+    {
+        iSelectButton.ClickSound();
+        ShopScreenOpen(false);
+
+        var player = QuestManager.GetQuestManager().Player;
+        player.EnableMove();
+        player.TalkToNpc.StartMove();
+    }
+
 
     void OnEnable() => shopTrigger.AddEvent(this);
 
