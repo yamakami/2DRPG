@@ -99,11 +99,8 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         iSelectButton.ClickSound();
         ShopScreenOpen(false);
 
-        var player = QuestManager.GetQuestManager().Player;
-        player.EnableMove();
-        player.TalkToNpc.StartMove();
+        QuestManager.GetQuestManager().PlayerEnableMove();
     }
-
 
     void OnEnable() => shopTrigger.AddEvent(this);
 
