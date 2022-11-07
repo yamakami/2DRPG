@@ -53,6 +53,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
             items =  QuestManager.GetQuestManager().Player.PlayerData.Items.ToArray();
     
         pagenation.SetMaxPageNumber(items.Length);
+        pagenation.DisplayPagerBlockAndPositionText();
 
         var itemIndex =  pagenation.ItemIndex;
 
@@ -91,6 +92,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     {
         iSelectButton.ClickSound();
         ShopScreenOpen(false);
+        pagenation.Reset();
         shopTypeSelect.Open(true);
     }
 
@@ -98,7 +100,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     {
         iSelectButton.ClickSound();
         ShopScreenOpen(false);
-
+        pagenation.Reset();
         QuestManager.GetQuestManager().PlayerEnableMove();
     }
 

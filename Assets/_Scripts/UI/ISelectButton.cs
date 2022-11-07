@@ -1,4 +1,5 @@
 using UnityEngine.UIElements;
+using UnityEngine;
 
 public interface ISelectButton
 {
@@ -22,10 +23,15 @@ public interface ISelectButton
         var buttonIndex = indexes[0];
         var itemIndex   = indexes[1];
         SelectButtons[buttonIndex].UnregisterCallback<ClickEvent, int>(ClickAction);
+        SelectButtons[buttonIndex].UnregisterCallback<ClickEvent, int>(ClickAction);
+
         SelectButtons[buttonIndex].RegisterCallback<ClickEvent, int>(ClickAction, itemIndex);
+        SelectButtons[buttonIndex].RegisterCallback<MouseEnterEvent, int>(HoverkAction, itemIndex);
+
     }
 
     void ClickAction(ClickEvent ev, int index);
+    void HoverkAction(MouseEnterEvent ev, int index) { return; }
 
     void UnregisterCallback()
     {
@@ -36,7 +42,7 @@ public interface ISelectButton
             SelectButtons[i].UnregisterCallback<MouseEnterEvent>( ev => HoverSound() );
         }
     }
-
+ 
     void ClickSound() => SystemManager.SoundManager.PlayButtonClick();
     void HoverSound() => SystemManager.SoundManager.PlayButtonHover();
 }
