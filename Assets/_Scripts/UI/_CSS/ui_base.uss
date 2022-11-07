@@ -1,0 +1,76 @@
+.screen-absolute {
+}
+
+.base_frame {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(0, 0, 0);
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.message_text {
+    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+}
+
+.next_button {
+    font-size: 22px;
+    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(144, 144, 144);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.next_button:hover {
+    font-size: 22px;
+    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.text_button {
+    font-size: 22px;
+    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.text_button:hover {
+    font-size: 22px;
+    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: rgb(144, 144, 144);
+}
+
+.text_button_no_box {
+    font-size: 22px;
+    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(144, 144, 144);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.text_button_no_box:hover {
+    font-size: 22px;
+    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+}

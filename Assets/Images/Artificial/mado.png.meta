@@ -215,6 +215,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -224,8 +226,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -237,7 +239,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 15.9
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -246,9 +248,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -1656,6 +1661,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      mado_18: 5620946400590186902
+      mado_43: -7729788737939380492
+      mado_42: 3084377660226963724
+      mado_21: -5147668864304276038
+      mado_23: -4899919678775309429
+      mado_47: -2695364363066520041
+      mado_28: 4058853870276516165
+      mado_11: -6041306948791412973
+      mado_49: -8828695973922829041
+      mado_40: 6493894730436381973
+      mado_55: 9160546309103087020
+      mado_52: 4006994624208173405
+      mado_16: 6793874282044545524
+      mado_56: -3378794064337997292
+      mado_26: -1774980311326231401
+      mado_44: 1312181995526924151
+      mado_58: 6350708725556467693
+      mado_25: 1932288806793473384
+      mado_10: -4425415842243174108
+      mado_63: -873687248823531990
+      mado_3: -3872633781060304868
+      mado_53: 2864677172054780602
+      mado_34: 5244973394474540684
+      mado_30: -2952846108127870334
+      mado_48: -4179433872731267402
+      mado_9: 4560667514805754743
+      mado_0: -6028685347183596115
+      mado_17: 991691623875819484
+      mado_35: -3757056758822129437
+      mado_60: 5268070098017099681
+      mado_62: -5551468804322607787
+      mado_13: -2290453808093708364
+      mado_12: -6386929466563630973
+      mado_27: 7298887166715612806
+      mado_1: 924041535069503917
+      mado_20: 4517409191888607894
+      mado_46: 3727555240135987144
+      mado_39: -5314304487825438502
+      mado_59: -1147213904999965307
+      mado_36: -9156825367507319722
+      mado_41: 3813015870691243875
+      mado_6: -2096511763827653494
+      mado_15: 2627484768946732175
+      mado_2: -1394583360032102180
+      mado_37: -19106130077900710
+      mado_8: -5999130764231260088
+      mado_31: -1495739320153905848
+      mado_54: 8360564410948649667
+      mado_50: 6082280993048902060
+      mado_5: -2919959261525757024
+      mado_61: -857391705566802441
+      mado_24: 2105036374660207566
+      mado_19: -8001269707826384150
+      mado_7: -3629717951867007911
+      mado_45: 6760127963358555407
+      mado_22: -61329578155713082
+      mado_38: -2398776438380131875
+      mado_14: -2681414593509110395
+      mado_29: -6209001134596694577
+      mado_32: -3997942792947838159
+      mado_51: -4876624816282390744
+      mado_57: 1640248419126354756
+      mado_4: 2443217302984074927
+      mado_33: 8074191745289617793
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

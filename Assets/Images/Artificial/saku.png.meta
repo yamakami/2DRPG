@@ -167,6 +167,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -176,8 +178,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -189,7 +191,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 15.9
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -198,9 +200,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -1272,6 +1277,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      saku_37: -193963127225557892
+      saku_47: -4295423496025768803
+      saku_13: -4798265606506375384
+      saku_23: 1560667553518497159
+      saku_43: -3171894844048486244
+      saku_46: -4642080588717998667
+      saku_14: 6347441764282753991
+      saku_26: -881328356733256167
+      saku_24: 3039451709496303420
+      saku_2: -8495496186270160680
+      saku_22: 7399249890258499145
+      saku_38: -7096532901696561951
+      saku_15: -1520998935066645022
+      saku_3: 200289448490788157
+      saku_33: -5031051191825518741
+      saku_42: -7851785258809466691
+      saku_8: -1190125341688375002
+      saku_34: -3894356473628520072
+      saku_41: 6550244916316976467
+      saku_32: -8659373680046569247
+      saku_7: -1975780016610926841
+      saku_5: -6232888456666918778
+      saku_40: -1137658374908060079
+      saku_30: 2945333855062444868
+      saku_28: 5317556111225678667
+      saku_0: -8690883790077187851
+      saku_4: 1253506696062791009
+      saku_20: -6873766094027914262
+      saku_45: 8964687883875119526
+      saku_36: 1846315627515958575
+      saku_17: -2399464834457114619
+      saku_16: 2839002904613841569
+      saku_6: 735130369744330416
+      saku_12: -8117369728751640548
+      saku_1: -4905322834390427754
+      saku_44: -1198246151168285091
+      saku_35: 5324775567624861209
+      saku_21: -5232446847817461596
+      saku_9: 6025373710207287505
+      saku_18: 2848982004814419830
+      saku_27: 6946426457079757002
+      saku_31: 6920537354565799348
+      saku_39: 3942105664146019870
+      saku_29: -1698294157530309538
+      saku_19: -1944334965000067299
+      saku_10: -7896041017255496322
+      saku_25: 8960302603867971815
+      saku_11: 7620302840516619231
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

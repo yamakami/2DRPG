@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0db9390d36b4bb28358fb3e720d4a5, type: 3}
+  m_Name: yakuso
+  m_EditorClassIdentifier: 
+  commandType: 0
+  nameKana: "\u3084\u304F\u305D\u3046"
+  sound: {fileID: 8300000, guid: b23171d89f77b4d2e9f3bfe21c8cdd05, type: 3}
+  price: 5
+  sellPrice: 2
+  value: 10
+  player_possession_limit: 5
+  player_possession_count: 0
+  description: "HP\u304C10\u56DE\u5FA9\u3059\u308B"

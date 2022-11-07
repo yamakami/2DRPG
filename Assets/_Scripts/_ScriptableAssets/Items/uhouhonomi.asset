@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0db9390d36b4bb28358fb3e720d4a5, type: 3}
+  m_Name: uhouhonomi
+  m_EditorClassIdentifier: 
+  commandType: 0
+  itemType: 1
+  nameKana: "\u30A6\u30DB\u30A6\u30DB\u306E\u5B9F"
+  sound: {fileID: 0}
+  price: 12
+  sellPrice: 8
+  value: 15
+  player_possession_limit: 10
+  player_possession_count: 0
+  description: "\u6226\u3044\u3067\u6575\u306B\u6295\u3052\u308B\u3053\u3068\u304C\u3067\u304D\u308B"

@@ -1,0 +1,530 @@
+fileFormatVersion: 2
+guid: 1abde43ad9bda4d809c6f2301870d618
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5863607183036800193
+    second: prist_0
+  - first:
+      213: -4896754865155132539
+    second: prist_1
+  - first:
+      213: -2137361367993845162
+    second: prist_2
+  - first:
+      213: 1065924436961287137
+    second: prist_3
+  - first:
+      213: 7449717938428809729
+    second: prist_4
+  - first:
+      213: 7412165625463730736
+    second: prist_5
+  - first:
+      213: 6653311163907857112
+    second: prist_6
+  - first:
+      213: 7090821664164478224
+    second: prist_7
+  - first:
+      213: -6570916391428927480
+    second: prist_8
+  - first:
+      213: -6796322673539104231
+    second: prist_9
+  - first:
+      213: 1408615035221786258
+    second: prist_10
+  - first:
+      213: -3427895304565929851
+    second: prist_11
+  - first:
+      213: 2356020297143688109
+    second: prist_12
+  - first:
+      213: 8187170394166053837
+    second: prist_13
+  - first:
+      213: 3493235135202910999
+    second: prist_14
+  - first:
+      213: 8012625711413548531
+    second: prist_15
+  - first:
+      213: 7471878681382735051
+    second: prist_16
+  - first:
+      213: 2757813047615123614
+    second: prist_17
+  - first:
+      213: 3861544599903248143
+    second: prist_18
+  - first:
+      213: -3601408970914590008
+    second: prist_19
+  - first:
+      213: -7529359105139203084
+    second: prist_20
+  - first:
+      213: -5149814301861241310
+    second: prist_21
+  - first:
+      213: 3951783109593584072
+    second: prist_22
+  - first:
+      213: 7363677189944174129
+    second: prist_23
+  - first:
+      213: -4157111602230723377
+    second: prist_24
+  - first:
+      213: -4429591369475412406
+    second: prist_25
+  - first:
+      213: 7595818340307770524
+    second: prist_26
+  - first:
+      213: -7811923109848320838
+    second: prist_27
+  - first:
+      213: 145649085739610623
+    second: prist_28
+  - first:
+      213: 7652921330899714386
+    second: prist_29
+  - first:
+      213: 1293649065693762773
+    second: prist_30
+  - first:
+      213: -7327770988168318707
+    second: prist_31
+  - first:
+      213: 9108896915356902696
+    second: prist_32
+  - first:
+      213: -2062324638558662681
+    second: prist_33
+  - first:
+      213: -5101667943402294485
+    second: prist_34
+  - first:
+      213: 5802440969695309064
+    second: prist_35
+  - first:
+      213: -3884350483912569375
+    second: prist_36
+  - first:
+      213: -3244941797722280278
+    second: prist_37
+  - first:
+      213: 5086481871947707432
+    second: prist_38
+  - first:
+      213: -2120848961992345905
+    second: prist_39
+  - first:
+      213: -5195891048339613505
+    second: prist_40
+  - first:
+      213: 4627365265925040618
+    second: prist_41
+  - first:
+      213: 6638030283992346589
+    second: prist_42
+  - first:
+      213: -7458404404091316785
+    second: prist_43
+  - first:
+      213: 8769833946219638646
+    second: prist_44
+  - first:
+      213: 3672429099013601435
+    second: prist_45
+  - first:
+      213: -1761444958721628276
+    second: prist_46
+  - first:
+      213: 9057893625717910705
+    second: prist_47
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: prist_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc565f8aa7bf5150800000000000000
+      internalID: 5863607183036800193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583334ee46b3b0cb0800000000000000
+      internalID: -4896754865155132539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a7518f8219652e0800000000000000
+      internalID: -2137361367993845162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb5c7eb0aceace00800000000000000
+      internalID: 1065924436961287137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10297e4aef6b26760800000000000000
+      internalID: 7449717938428809729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03270227d5d4dd660800000000000000
+      internalID: 7412165625463730736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da5ed8b04f455c50800000000000000
+      internalID: 6653311163907857112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01dfa2a1cb8a76260800000000000000
+      internalID: 7090821664164478224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80056103b5a6fc4a0800000000000000
+      internalID: -6570916391428927480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912c4c0798c9ea1a0800000000000000
+      internalID: -6796322673539104231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29e3baf49e76c8310800000000000000
+      internalID: 1408615035221786258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prist_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5884e1cd16bad60d0800000000000000
+      internalID: -3427895304565929851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 612dd53604c804f88a7cd315c5b9a0a2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      prist_4: 7449717938428809729
+      prist_5: 7412165625463730736
+      prist_2: -2137361367993845162
+      prist_11: -3427895304565929851
+      prist_9: -6796322673539104231
+      prist_3: 1065924436961287137
+      prist_10: 1408615035221786258
+      prist_1: -4896754865155132539
+      prist_6: 6653311163907857112
+      prist_8: -6570916391428927480
+      prist_7: 7090821664164478224
+      prist_0: 5863607183036800193
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
