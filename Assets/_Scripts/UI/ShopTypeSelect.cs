@@ -34,6 +34,7 @@ public class ShopTypeSelect : MonoBehaviour
         sellButton.RegisterCallback<MouseEnterEvent>(ev => shop.ISelectButton.HoverSound());
     }
 
+
     public void Open(bool open) => shoptypeSelect.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
 
     void ClickBuy()
