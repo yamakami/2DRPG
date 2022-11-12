@@ -16,7 +16,6 @@ public class Pagenation
     Button pageNext;
     Button pageLast;
 
-
     ISelectButton iselectButton;
 
     public int ItemIndex { get => (currentPage - 1) * rowsPerPage; set => itemIndex = value; }
@@ -26,14 +25,16 @@ public class Pagenation
         rowsPerPage   = _rowsPerPage;
         iselectButton = _iselectButton;
 
-        pagerPosition = rootElement.Q<Label>("pager-position");
+        var shopScreen = rootElement.Q<VisualElement>("shop-screen");
 
-        pagerBlock = rootElement.Q<VisualElement>("pager");
+        pagerPosition = shopScreen.Q<Label>("pager-position");
 
-        pageFirst = rootElement.Q<Button>("page-first");
-        pagePrev  = rootElement.Q<Button>("page-prev");
-        pageNext  = rootElement.Q<Button>("page-next");
-        pageLast  = rootElement.Q<Button>("page-last");
+        pagerBlock = shopScreen.Q<VisualElement>("pager");
+
+        pageFirst = shopScreen.Q<Button>("page-first");
+        pagePrev  = shopScreen.Q<Button>("page-prev");
+        pageNext  = shopScreen.Q<Button>("page-next");
+        pageLast  = shopScreen.Q<Button>("page-last");
 
         pageFirst.clicked += PageFirst;
         pageFirst.RegisterCallback<MouseEnterEvent>( ev => iselectButton.HoverSound());

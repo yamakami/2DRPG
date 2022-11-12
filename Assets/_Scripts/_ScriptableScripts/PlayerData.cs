@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public class PlayerData : ScriptableObject
 {
     [SerializeField] string playerName;
+    [SerializeField] int gold;
     [SerializeField] List<Item> items = new List<Item>(200);
 
+    public string PlayerName { get => playerName; }
+    public int Gold { get => gold; set => gold = value; }
     public List<Item> Items { get => items; set => items = value; }
 
     public void AddItem(string _name)

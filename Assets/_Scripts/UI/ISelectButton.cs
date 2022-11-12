@@ -23,21 +23,21 @@ public interface ISelectButton
         var buttonIndex = indexes[0];
         var itemIndex   = indexes[1];
         SelectButtons[buttonIndex].UnregisterCallback<ClickEvent, int>(ClickAction);
-        SelectButtons[buttonIndex].UnregisterCallback<ClickEvent, int>(ClickAction);
+        SelectButtons[buttonIndex].UnregisterCallback<MouseEnterEvent, int>(HoverAction);
 
         SelectButtons[buttonIndex].RegisterCallback<ClickEvent, int>(ClickAction, itemIndex);
-        SelectButtons[buttonIndex].RegisterCallback<MouseEnterEvent, int>(HoverkAction, itemIndex);
-
+        SelectButtons[buttonIndex].RegisterCallback<MouseEnterEvent, int>(HoverAction, itemIndex);
     }
 
     void ClickAction(ClickEvent ev, int index);
-    void HoverkAction(MouseEnterEvent ev, int index) { return; }
+    void HoverAction(MouseEnterEvent ev, int index) { return; }
 
     void UnregisterCallback()
     {
         for(var i=0; i < SelectButtons.Length; i++)
         {
             SelectButtons[i].UnregisterCallback<ClickEvent, int>(ClickAction);
+            SelectButtons[i].UnregisterCallback<MouseEnterEvent, int>(HoverAction);
             SelectButtons[i].UnregisterCallback<ClickEvent>( ev => ClickSound() );
             SelectButtons[i].UnregisterCallback<MouseEnterEvent>( ev => HoverSound() );
         }

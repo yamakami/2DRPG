@@ -6,7 +6,7 @@ public class SystemManager : MonoBehaviour
     [SerializeField] DataManager dataManager;
     [SerializeField] SoundManager soundManager;
 
-     CancellationTokenSource tokenSource;
+    CancellationTokenSource tokenSource;
 
     static DataManager _dataManager;
     static SoundManager _soundManager;

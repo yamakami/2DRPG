@@ -21,4 +21,4 @@ MonoBehaviour:
   value: 15
   player_possession_limit: 10
   player_possession_count: 0
-  description: "\u6226\u3044\u3067\u6575\u306B\u6295\u3052\u308B\u3053\u3068\u304C\u3067\u304D\u308B"
+  description: "\u6226\u3044\u3067\u6575\u306B\u6295\u3052\u308B\u3053\u3068\u304C\u3067\u304D\u305E\uFF01"

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerName: "\u3084\u3063\u307B\u30FC"
+  gold: 123
   items:
   - {fileID: 11400000, guid: 5a5e90c476d6541159abfeb569dfdf72, type: 2}
   - {fileID: 11400000, guid: 96cfcd66cf468488a9d7b13c61ff676d, type: 2}

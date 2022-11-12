@@ -5,11 +5,11 @@ using Cysharp.Threading.Tasks;
 public class MessageSelect : MonoBehaviour, ISelectButton
 {
     VisualElement selectBox;
+    Item[] items;
     Button[] selectButtons = new Button[4];
     MessageBox messageBox;
     ConversationData conversationData;
     ISelectButton iSelectButton;
-
     Button[] ISelectButton.SelectButtons { get => selectButtons; set => selectButtons = value; }
 
     public void SetUP(VisualElement rootUI)
