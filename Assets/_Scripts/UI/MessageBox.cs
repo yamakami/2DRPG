@@ -17,16 +17,18 @@ public class MessageBox : MonoBehaviour
     public Button MessageNextButton { get => messageNextButton; }
     public IMessageBox InterfaceParent { get => interfaceParent; set => interfaceParent = value; }
 
-    public void SetUP(VisualElement rootUI)
+    public void SetUP()
     {
+        var rootUI = QuestManager.GetQuestManager().QuestUI.UiDocument.rootVisualElement;
         soundManager = SystemManager.SoundManager;
 
         messageBox = rootUI.Q<VisualElement>("message-screen");
         textArea   = rootUI.Q<Label>("message-text");
         conversationNextButton = rootUI.Q<Button>("conversation-next-button");
         messageNextButton      = rootUI.Q<Button>("message-next-button");
+        enabled = true;
 
-        messageSelect.SetUP(rootUI);
+        messageSelect.SetUP();
     }
 
     public async UniTask DisplayText(string message, AudioClip sound = null)
@@ -50,6 +52,7 @@ public class MessageBox : MonoBehaviour
     }
 
     public void Open(bool open) => messageBox.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
+
     public void NextConversationButton(bool show) => conversationNextButton.style.display = (show) ? DisplayStyle.Flex : DisplayStyle.None;
     public void OpenSelectBox(ConversationData conversationData) => messageSelect.Open(conversationData);
     public void PlayButtonClick() => soundManager.PlayButtonClick();

@@ -36,6 +36,7 @@ public class Conversation : MonoBehaviour, IMessageBox
     void SetButtonEvent()
     {
         messageBox = questManager.QuestUI.MessageBox;
+        messageBox.SetUP();
 
         var nextButton = messageBox.ConversationNextButton;
         nextButton.clicked += ClickNext;

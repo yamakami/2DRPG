@@ -33,8 +33,10 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     public Item[] Items { get => items; set => items = value; }
     Button[] ISelectButton.SelectButtons { get => selectButtons; set => selectButtons = value; }
 
-    public void SetUP(VisualElement rootUI)
+    void SetUP()
     {
+        var rootUI = QuestManager.GetQuestManager().QuestUI.UiDocument.rootVisualElement;
+
         iSelectButton = gameObject.GetComponent("ISelectButton") as ISelectButton;
 
         shopScreen = rootUI.Q<VisualElement>("shop-screen");
@@ -49,8 +51,6 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         var itemSelectBox = shopScreen.Q<VisualElement>("item-select");
         iSelectButton.InitialButtons(itemSelectBox, "item-select-button");
 
-        shopTypeSelect.SetUP(rootUI);
-
         pagenation = new Pagenation(selectButtons.Length, rootUI, iSelectButton);
 
         BindControllButtons(rootUI);
@@ -59,7 +59,12 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 
     void ICustomEventListener.OnEventRaised() => ShopStart();
 
-    void ShopStart() => shopTypeSelect.Open(true);
+    void ShopStart()
+    {
+        if(iSelectButton == null) SetUP();
+        shopTypeSelect.Open(true);
+    }
+
 
     void ShopScreenOpen(bool open) => shopScreen.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
 
@@ -171,7 +176,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         QuestManager.GetQuestManager().PlayerEnableMove();
     }
 
-    void OnEnable() => shopTrigger.AddEvent(this);
+    void Start() => shopTrigger.AddEvent(this);
 
     void OnDisable() => shopTrigger.RemoveEvent(this);
 }

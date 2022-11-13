@@ -12,8 +12,9 @@ public class MessageSelect : MonoBehaviour, ISelectButton
     ISelectButton iSelectButton;
     Button[] ISelectButton.SelectButtons { get => selectButtons; set => selectButtons = value; }
 
-    public void SetUP(VisualElement rootUI)
+    public void SetUP()
     {
+        var rootUI = QuestManager.GetQuestManager().QuestUI.UiDocument.rootVisualElement;
         messageBox = QuestManager.GetQuestManager().QuestUI.MessageBox;
 
         iSelectButton = gameObject.GetComponent("ISelectButton") as ISelectButton;
@@ -72,6 +73,8 @@ public class MessageSelect : MonoBehaviour, ISelectButton
 
     public void Open(ConversationData _conversationData)
     {
+        if(messageBox == null) SetUP();
+
         conversationData = _conversationData;
 
         BoxOpen(true);

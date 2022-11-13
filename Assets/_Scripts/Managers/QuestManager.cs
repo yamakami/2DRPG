@@ -21,7 +21,6 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         _questManager = this;
-        questUI.SetUP();
     }
 
     void Update()

@@ -17,8 +17,10 @@ public class ShopTypeSelect : MonoBehaviour
 
     public Type ShopType { get => shoptType; }
 
-    public void SetUP(VisualElement rootUI)
+    void SetUP()
     {
+        var rootUI = QuestManager.GetQuestManager().QuestUI.UiDocument.rootVisualElement;
+
         shop = QuestManager.GetQuestManager().QuestUI.Shop;
 
         shoptypeSelect = rootUI.Q<VisualElement>("shop-type-screen");
@@ -34,8 +36,11 @@ public class ShopTypeSelect : MonoBehaviour
         sellButton.RegisterCallback<MouseEnterEvent>(ev => shop.ISelectButton.HoverSound());
     }
 
-
-    public void Open(bool open) => shoptypeSelect.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
+    public void Open(bool open)
+    {
+        if(shoptypeSelect == null) SetUP();
+        shoptypeSelect.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
+    }
 
     void ClickBuy()
     {
