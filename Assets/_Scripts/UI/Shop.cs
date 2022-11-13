@@ -1,5 +1,6 @@
 using UnityEngine.UIElements;
 using UnityEngine;
+using System;
 
 public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 {
@@ -18,6 +19,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     Label playerGold;
     Label itemPrice;
     Label itemName;
+    DropdownField itemAmount;
     Label itemDetail;
     Button backButton;
     Button closeButton;
@@ -42,6 +44,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         itemPrice = shopScreen.Q<Label>("item-price");
         itemName  = shopScreen.Q<Label>("item-name");
         itemDetail = shopScreen.Q<Label>("item-detail");
+        itemAmount = shopScreen.Q<DropdownField>("item-amount");
 
         var itemSelectBox = shopScreen.Q<VisualElement>("item-select");
         iSelectButton.InitialButtons(itemSelectBox, "item-select-button");
@@ -51,6 +54,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         pagenation = new Pagenation(selectButtons.Length, rootUI, iSelectButton);
 
         BindControllButtons(rootUI);
+        itemAmount.RegisterValueChangedCallback((evt) => ItemAmountChangeValue());
     }
 
     void ICustomEventListener.OnEventRaised() => ShopStart();
@@ -80,6 +84,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         menuTitle.text  = string.Format(menuText, typeText);
         playerGold.text = string.Format(playerGoldText, gold);
         itemPrice.text = string.Format(itemPriceText, "0");
+        itemPrice.viewDataKey = "0";
         itemName.text  = string.Format(itemNameText, "");
         itemDetail.text = "";
     }
@@ -88,6 +93,8 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     {
         SetMenuInfo();
         SetItems();
+
+        itemAmount.index = 0;
 
         pagenation.SetMaxPageNumber(items.Length);
         pagenation.DisplayPagerBlockAndPositionText();
@@ -121,7 +128,19 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         itemName.text = string.Format(itemNameText, item.nameKana);
 
         var price = item.price.ToString();
-        itemPrice.text = string.Format(itemPriceText, price);
+        itemPrice.viewDataKey = price;
+        itemPrice.text = string.Format(itemPriceText, PriceTimesAmount());
+    }
+
+    void ItemAmountChangeValue()
+    {
+        itemPrice.text = string.Format(itemPriceText, PriceTimesAmount());
+    }
+
+    string PriceTimesAmount()
+    {
+        var price =  Int32.Parse(itemPrice.viewDataKey) * Int32.Parse(itemAmount.value);
+        return  string.Format(itemPriceText, price);
     }
 
     void BindControllButtons(VisualElement rootUI)
