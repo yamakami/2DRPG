@@ -127,6 +127,7 @@ public class ShopDeal : MonoBehaviour
             {
                 Close();
                 shop.Close();
+                return;
             }
 
             SuccessClose();
