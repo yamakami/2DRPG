@@ -12,19 +12,26 @@ public class PlayerData : ScriptableObject
     public int Gold { get => gold; set => gold = value; }
     public List<Item> Items { get => items; set => items = value; }
 
-    public void AddItem(string _name)
+    public void AddItem(string _name, int amount)
     { 
         var item = SystemManager.DataManager().GetItemByName( _name);
 
-        if(!items.Contains(item)) items.Add(item);
-        item.AddCommand();
+        for(var i = 0; i < amount; i++)
+        {
+            if(!items.Contains(item)) items.Add(item);
+            item.AddCommand();
+        }
+
     }
 
-    public void removeItem(string _name)
+    public void removeItem(string _name, int amount)
     { 
        var item = SystemManager.DataManager().GetItemByName( _name);
 
-        item.RemoveCommand();
-        if(item.player_possession_count < 1) items.Remove(item);
+        for(var i = 0; i < amount; i++)
+        {
+            item.RemoveCommand();
+            if(item.player_possession_count < 1) items.Remove(item);
+        }
     }
 }

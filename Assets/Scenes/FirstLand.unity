@@ -74666,8 +74666,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635777586}
-  - component: {fileID: 635777587}
   - component: {fileID: 635777588}
+  - component: {fileID: 635777587}
+  - component: {fileID: 635777589}
+  - component: {fileID: 635777590}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -74704,6 +74706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopTrigger: {fileID: 11400000, guid: bb70682b25c3047bbbc79201168449c6, type: 2}
   shopTypeSelect: {fileID: 635777588}
+  shopDeal: {fileID: 635777589}
 --- !u!114 &635777588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74714,6 +74717,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 414bb137aa0574f1e870230cb97ad099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &635777589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635777585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95030040a6fc444aeabc67ffd70db7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopErrorMessage: {fileID: 635777590}
+  shopSuccessSound: {fileID: 8300000, guid: c952acb07df774fa7b8a9533a9f3dbe9, type: 3}
+--- !u!114 &635777590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635777585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025e34022c79f4548ba8cd054802d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &649114251

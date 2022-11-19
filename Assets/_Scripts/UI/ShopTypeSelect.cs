@@ -6,6 +6,7 @@ public class ShopTypeSelect : MonoBehaviour
     VisualElement shoptypeSelect;
     Button buyButton;
     Button sellButton;
+    Button quitButton;
     Shop shop;
 
     public enum Type {
@@ -20,20 +21,23 @@ public class ShopTypeSelect : MonoBehaviour
     void SetUP()
     {
         var rootUI = QuestManager.GetQuestManager().QuestUI.UiDocument.rootVisualElement;
-
         shop = QuestManager.GetQuestManager().QuestUI.Shop;
 
         shoptypeSelect = rootUI.Q<VisualElement>("shop-type-screen");
         buyButton  = shoptypeSelect.Q<Button>("buy-button");
         sellButton = shoptypeSelect.Q<Button>("sell-button");
+        quitButton = shoptypeSelect.Q<Button>("quit-button");
 
-        buyButton.clicked += ClickBuy;
-        buyButton.RegisterCallback<ClickEvent>(ev => shop.ISelectButton.ClickSound());
-        buyButton.RegisterCallback<MouseEnterEvent>(ev => shop.ISelectButton.HoverSound());
+        SetButtonSound(ClickBuy, buyButton);
+        SetButtonSound(ClickSell, sellButton);
+        SetButtonSound(ClickQuit, quitButton);
+    }
 
-        sellButton.clicked += ClickSell;
-        sellButton.RegisterCallback<ClickEvent>(ev => shop.ISelectButton.ClickSound());
-        sellButton.RegisterCallback<MouseEnterEvent>(ev => shop.ISelectButton.HoverSound());
+    void SetButtonSound(System.Action click, Button bt)
+    {
+        bt.clicked += click;
+        bt.RegisterCallback<ClickEvent>(ev => shop.ISelectButton.ClickSound());
+        bt.RegisterCallback<MouseEnterEvent>(ev => shop.ISelectButton.HoverSound());
     }
 
     public void Open(bool open)
@@ -54,9 +58,15 @@ public class ShopTypeSelect : MonoBehaviour
         ShopOpen();
     }
 
-    void ShopOpen()
+    void ClickQuit()
     {
         Open(false);
+        shop.ClickCloseButton();
+    }
+
+    void ShopOpen()
+    {
+        // Open(false);
         shop.Open();
     }
 }

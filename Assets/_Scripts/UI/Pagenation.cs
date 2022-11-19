@@ -60,6 +60,7 @@ public class Pagenation
         ButtonEnabled(new Button[]{pageNext, pageLast}, true);
     }
 
+
     public void DisplayPagerBlockAndPositionText()
     {
         pagerPosition.text = $"{currentPage}/{lastPageNumber}";
@@ -73,7 +74,7 @@ public class Pagenation
     void ButtonEnabled(Button[] buttons, bool enable)
     {
         foreach(var bt in buttons)
-            bt.pickingMode = (enable)? PickingMode.Position: PickingMode.Ignore ;
+            bt.SetEnabled( (enable)? true : false );
     }
 
     void PageFirst()

@@ -1,11 +1,11 @@
 using UnityEngine.UIElements;
 using UnityEngine;
-using System;
 
 public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 {
     [SerializeField] CustomEventTrigger shopTrigger;
     [SerializeField] ShopTypeSelect shopTypeSelect;
+     [SerializeField] ShopDeal shopDeal;
     NpcData npcData;
     VisualElement shopScreen;
     public NpcData NpcData { get => npcData; set => npcData = value; }
@@ -14,12 +14,13 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     string playerGoldText = "所持金；{0}G";
     string itemPriceText  = "価格；{0}G";
     string itemNameText   = "名前；{0}";
-
+    string possessionText   = "所有数；{0}/{1}個";
     Label menuTitle;
+
     Label playerGold;
     Label itemPrice;
     Label itemName;
-    DropdownField itemAmount;
+    Label possession;
     Label itemDetail;
     Button backButton;
     Button closeButton;
@@ -45,8 +46,8 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         playerGold = shopScreen.Q<Label>("player-gold");
         itemPrice = shopScreen.Q<Label>("item-price");
         itemName  = shopScreen.Q<Label>("item-name");
+        possession = shopScreen.Q<Label>("possession");
         itemDetail = shopScreen.Q<Label>("item-detail");
-        itemAmount = shopScreen.Q<DropdownField>("item-amount");
 
         var itemSelectBox = shopScreen.Q<VisualElement>("item-select");
         iSelectButton.InitialButtons(itemSelectBox, "item-select-button");
@@ -54,7 +55,6 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         pagenation = new Pagenation(selectButtons.Length, rootUI, iSelectButton);
 
         BindControllButtons(rootUI);
-        itemAmount.RegisterValueChangedCallback((evt) => ItemAmountChangeValue());
     }
 
     void ICustomEventListener.OnEventRaised() => ShopStart();
@@ -65,20 +65,41 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         shopTypeSelect.Open(true);
     }
 
-
     void ShopScreenOpen(bool open) => shopScreen.style.display = (open) ? DisplayStyle.Flex : DisplayStyle.None;
 
     public void Open()
     {
+        if(SellShopPlayerNoItem()) return; 
+
+        pagenation.Reset();
         iSelectButton.BindButtonEvent();
         ShopScreenOpen(true);
+    }
+
+    public void Close()
+    {
+        ShopScreenOpen(false);
+    }
+
+    bool SellShopPlayerNoItem()
+    {
+        if(shopTypeSelect.ShopType == ShopTypeSelect.Type.Buy) return false;
+
+        var itemCount = QuestManager.GetQuestManager().Player.PlayerData.Items.Count;
+        if(itemCount < 1)
+        {
+            shopDeal.ShopErrorMessage.Open("売れるアイテムがありません");
+            return true;
+        }
+
+        return false;
     }
 
     void SetItems()
     {
         items = npcData.ShopItems;
         if(shopTypeSelect.ShopType == ShopTypeSelect.Type.Sell)
-            items =  QuestManager.GetQuestManager().Player.PlayerData.Items.ToArray();
+            items = QuestManager.GetQuestManager().Player.PlayerData.Items.ToArray();
     }
 
     void SetMenuInfo()
@@ -89,8 +110,9 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         menuTitle.text  = string.Format(menuText, typeText);
         playerGold.text = string.Format(playerGoldText, gold);
         itemPrice.text = string.Format(itemPriceText, "0");
-        itemPrice.viewDataKey = "0";
         itemName.text  = string.Format(itemNameText, "");
+
+        possession.text  = string.Format(possessionText, 0, 0);
         itemDetail.text = "";
     }
 
@@ -98,8 +120,6 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     {
         SetMenuInfo();
         SetItems();
-
-        itemAmount.index = 0;
 
         pagenation.SetMaxPageNumber(items.Length);
         pagenation.DisplayPagerBlockAndPositionText();
@@ -120,32 +140,30 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         }
     }
 
-    void ISelectButton.ClickAction(ClickEvent ev, int itemIndex){
-        var item = npcData.ShopItems[itemIndex];
-
+    void ISelectButton.ClickAction(ClickEvent ev, int itemIndex)
+    {
+        shopDeal.SelectedItem = GetItem(itemIndex);
+        shopDeal.Open(this);
     }
 
     void ISelectButton.HoverAction(MouseEnterEvent ev, int itemIndex)
     {
-        var item = items[itemIndex];
-
+        var item = GetItem(itemIndex);
         itemDetail.text = item.description;
         itemName.text = string.Format(itemNameText, item.nameKana);
+        possession.text  = string.Format(possessionText, item.player_possession_count, item.player_possession_limit);
 
-        var price = item.price.ToString();
-        itemPrice.viewDataKey = price;
-        itemPrice.text = string.Format(itemPriceText, PriceTimesAmount());
+        var price = (shopTypeSelect.ShopType == ShopTypeSelect.Type.Buy) ? item.price.ToString():  item.sellPrice.ToString();
+        itemPrice.text = string.Format(itemPriceText, price);
     }
 
-    void ItemAmountChangeValue()
+    Item GetItem(int index)
     {
-        itemPrice.text = string.Format(itemPriceText, PriceTimesAmount());
-    }
+        var items = npcData.ShopItems;
+        if(shopTypeSelect.ShopType == ShopTypeSelect.Type.Sell)
+            items =  QuestManager.GetQuestManager().Player.PlayerData.Items.ToArray();
 
-    string PriceTimesAmount()
-    {
-        var price =  Int32.Parse(itemPrice.viewDataKey) * Int32.Parse(itemAmount.value);
-        return  string.Format(itemPriceText, price);
+        return items[index];
     }
 
     void BindControllButtons(VisualElement rootUI)
@@ -153,28 +171,32 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
         backButton = rootUI.Q<Button>("back-button");
         closeButton = rootUI.Q<Button>("close-button");
 
-        backButton.clicked += ClicikBackButton;
-        backButton.RegisterCallback<MouseEnterEvent>( ev => iSelectButton.HoverSound() );
+        SetControlButtonEvent(ClicikBackButton, backButton);
+        SetControlButtonEvent(ClickCloseButton, closeButton);
+    }
 
-        closeButton.clicked += ClickCloseButton;
-        closeButton.RegisterCallback<MouseEnterEvent>( ev => iSelectButton.HoverSound() );
+    void SetControlButtonEvent(System.Action click, Button bt)
+    {
+        bt.clicked += click;
+        bt.RegisterCallback<MouseEnterEvent>( ev => iSelectButton.HoverSound() );
     }
 
     void ClicikBackButton()
     {
         iSelectButton.ClickSound();
         ShopScreenOpen(false);
-        pagenation.Reset();
         shopTypeSelect.Open(true);
     }
 
-    void ClickCloseButton()
+    public void ClickCloseButton()
     {
         iSelectButton.ClickSound();
+        shopTypeSelect.Open(false);
         ShopScreenOpen(false);
-        pagenation.Reset();
         QuestManager.GetQuestManager().PlayerEnableMove();
     }
+
+    public ShopTypeSelect.Type ShopType() => shopTypeSelect.ShopType;
 
     void Start() => shopTrigger.AddEvent(this);
 
