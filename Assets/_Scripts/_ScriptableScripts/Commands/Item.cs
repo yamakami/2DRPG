@@ -10,28 +10,38 @@ public class Item : ScriptableObject, ICommand
         Attacking,
     }
 
-    public Itemtype itemType;
-    public string nameKana;
-    public AudioClip sound;
-    public int price = 0;
-    public int sellPrice = 0;
-    public int value = 0;
-    public int player_possession_limit = 0;
-    public int player_possession_count = 0;
+    [SerializeField] Itemtype itemType;
+    [SerializeField] string nameKana;
+    [SerializeField] AudioClip sound;
+    [SerializeField] int price = 0;
+    [SerializeField] int sellPrice = 0;
+    [SerializeField] int value = 0;
+    [SerializeField] int player_possession_limit = 0;
+    [SerializeField] int player_possession_count = 0;
+
     [TextArea(2, 5)]
-    public string description;
+    [SerializeField] string description;
 
     public string CommadName => name;
     public CommandType.type CommandType => commandType;
 
+    public string NameKana { get => nameKana; }
+    public AudioClip Sound { get => sound; }
+    public int Price { get => price; }
+    public int SellPrice { get => sellPrice; }
+    public int Value { get => value; }
+    public int Player_possession_limit { get => player_possession_limit; set => player_possession_limit = value; }
+    public int Player_possession_count { get => player_possession_count; set => player_possession_count = value; }
+    public string Description { get => description; }
+
     public void AddCommand()
     {
-        player_possession_count++;
+        Player_possession_count++;
     }
 
     public void RemoveCommand()
     {
-        if(0 < player_possession_count) player_possession_count--;
+        if(0 < Player_possession_count) Player_possession_count--;
     }
 
     // public void Excute(){}

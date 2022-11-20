@@ -31,7 +31,7 @@ public class PlayerData : ScriptableObject
         for(var i = 0; i < amount; i++)
         {
             item.RemoveCommand();
-            if(item.player_possession_count < 1) items.Remove(item);
+            if(item.Player_possession_count < 1) items.Remove(item);
         }
     }
 }

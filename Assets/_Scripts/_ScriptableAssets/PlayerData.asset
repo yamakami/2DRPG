@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerName: "\u3084\u3063\u307B\u30FC"
-  gold: 92
+  gold: 70
   items: []

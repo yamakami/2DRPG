@@ -12,11 +12,11 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 
     string menuText = "道具屋({0})";
     string playerGoldText = "所持金；{0}G";
-    string itemPriceText  = "価格；{0}G";
-    string itemNameText   = "名前；{0}";
-    string possessionText   = "所有数；{0}/{1}個";
-    Label menuTitle;
+    string itemPriceText = "価格；{0}G";
+    string itemNameText = "名前；{0}";
+    string possessionText = "所有数；{0}/{1}個";
 
+    Label menuTitle;
     Label playerGold;
     Label itemPrice;
     Label itemName;
@@ -132,7 +132,7 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 
             if(items.Length <= itemIndex) continue;
 
-            selectButtons[buttonIndex].text = items[itemIndex].nameKana;
+            selectButtons[buttonIndex].text = items[itemIndex].NameKana;
             iSelectButton.ClickAndHover(new int[]{buttonIndex, itemIndex});
             iSelectButton.ShowButton(buttonIndex, true);
 
@@ -149,11 +149,11 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
     void ISelectButton.HoverAction(MouseEnterEvent ev, int itemIndex)
     {
         var item = GetItem(itemIndex);
-        itemDetail.text = item.description;
-        itemName.text = string.Format(itemNameText, item.nameKana);
-        possession.text  = string.Format(possessionText, item.player_possession_count, item.player_possession_limit);
+        itemDetail.text = item.Description;
+        itemName.text = string.Format(itemNameText, item.NameKana);
+        possession.text  = string.Format(possessionText, item.Player_possession_count, item.Player_possession_limit);
 
-        var price = (shopTypeSelect.ShopType == ShopTypeSelect.Type.Buy) ? item.price.ToString():  item.sellPrice.ToString();
+        var price = (shopTypeSelect.ShopType == ShopTypeSelect.Type.Buy) ? item.Price.ToString():  item.SellPrice.ToString();
         itemPrice.text = string.Format(itemPriceText, price);
     }
 

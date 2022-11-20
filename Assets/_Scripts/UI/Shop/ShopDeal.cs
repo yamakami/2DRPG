@@ -44,7 +44,7 @@ public class ShopDeal : MonoBehaviour
 
     string PriceMultipleAmount()
     {
-        var price = (shop.ShopType() == ShopTypeSelect.Type.Buy)? selectedItem.price : selectedItem.sellPrice;
+        var price = (shop.ShopType() == ShopTypeSelect.Type.Buy)? selectedItem.Price : selectedItem.SellPrice;
 
         price =  price * Int32.Parse(itemAmount.value);
         return  $"価格:{price.ToString()}G";
@@ -53,17 +53,17 @@ public class ShopDeal : MonoBehaviour
     void initializeText()
     {
         dealTitle.text = $"商品を購入";
-        price.text = $"価格:{selectedItem.price.ToString()}G";
+        price.text = $"価格:{selectedItem.Price.ToString()}G";
         dealButton.text = "買う";
 
         if(shop.ShopType() == ShopTypeSelect.Type.Sell)
         {
             dealTitle.text = $"商品を売却";
-            price.text = $"価格:{selectedItem.sellPrice.ToString()}G";
+            price.text = $"価格:{selectedItem.SellPrice.ToString()}G";
             dealButton.text = "売る";
         }
 
-        itemName.text = $"商品:{selectedItem.nameKana}";
+        itemName.text = $"商品:{selectedItem.NameKana}";
         itemAmount.value = "1";        
     }
 
@@ -90,14 +90,14 @@ public class ShopDeal : MonoBehaviour
     {
         var playerGold = playerData.Gold;
         var amount = Int32.Parse(itemAmount.value);
-        var price = selectedItem.price * amount;
-        var possessionCount =  selectedItem.player_possession_count;
-        var possessionLimit =  selectedItem.player_possession_limit;
+        var price = selectedItem.Price * amount;
+        var possessionCount =  selectedItem.Player_possession_count;
+        var possessionLimit =  selectedItem.Player_possession_limit;
 
         if(playerGold < price)
             ShopErrorMessage.Open( "所持金がたりません");
         else if(possessionLimit < possessionCount + amount)
-            ShopErrorMessage.Open($"それ以上{selectedItem.nameKana}を所持できません");
+            ShopErrorMessage.Open($"それ以上{selectedItem.NameKana}を所持できません");
         else
         {
             playerData.Gold -= price;
@@ -113,10 +113,10 @@ public class ShopDeal : MonoBehaviour
     {
         var playerGold = playerData.Gold;
         var amount = Int32.Parse(itemAmount.value);
-        var price = selectedItem.sellPrice * amount;
+        var price = selectedItem.SellPrice * amount;
 
-        if(selectedItem.player_possession_count - amount < 0)
-            ShopErrorMessage.Open($"{selectedItem.nameKana}は足りません");
+        if(selectedItem.Player_possession_count - amount < 0)
+            ShopErrorMessage.Open($"{selectedItem.NameKana}は足りません");
         else
         {
             playerData.Gold += price;
