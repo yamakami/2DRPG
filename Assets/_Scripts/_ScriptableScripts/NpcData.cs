@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "＿NpcData", menuName = "NpcData")]
+[CreateAssetMenu(fileName = "_NpcData", menuName = "NpcData")]
 public class NpcData : ScriptableObject
 {
     [SerializeField] string npcName; 
