@@ -8,7 +8,7 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="shop-type-screen" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 0; display: none;">
-        <ui:VisualElement name="select-box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-start; height: 195px; width: 162px; flex-direction: column;">
+        <ui:VisualElement name="select-box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-start; height: 210px; width: 162px; flex-direction: column;">
             <ui:Button tabindex="0" text="買う" display-tooltip-when-elided="true" name="buy-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
             <ui:Button tabindex="1" text="売る" display-tooltip-when-elided="true" name="sell-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
             <ui:Button tabindex="1" text="やめる" display-tooltip-when-elided="true" name="quit-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
@@ -48,7 +48,7 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="shop-deal-screen" focusable="false" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 2px; display: none; -unity-font: none;">
-        <ui:VisualElement name="box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-end; height: 353px; width: 439px;">
+        <ui:VisualElement name="box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-end; height: 377px; width: 435px;">
             <ui:Label tabindex="-1" text="アイテムを購入" display-tooltip-when-elided="true" name="title" class="message_text" style="-unity-text-align: upper-center; -unity-font-style: bold;" />
             <ui:Label tabindex="-1" text="たわし" display-tooltip-when-elided="true" name="item" class="message_text" />
             <ui:Label tabindex="-1" text="1000000000000G" display-tooltip-when-elided="true" name="price" class="message_text" />
