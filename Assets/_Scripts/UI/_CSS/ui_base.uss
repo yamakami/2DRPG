@@ -45,7 +45,7 @@
 
 .next_button:disabled {
     font-size: 22px;
-    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-font: none;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
@@ -53,7 +53,7 @@
 
 .text_button {
     font-size: 22px;
-    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-font: none;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
@@ -61,7 +61,7 @@
 
 .text_button:hover {
     font-size: 22px;
-    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-font: none;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
     color: rgb(255, 255, 255);
     background-color: rgb(144, 144, 144);
@@ -69,7 +69,7 @@
 
 .text_button_no_box {
     font-size: 22px;
-    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-font: none;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
     color: rgb(144, 144, 144);
     background-color: rgba(0, 0, 0, 0);
@@ -77,7 +77,7 @@
 
 .text_button_no_box:hover {
     font-size: 22px;
-    -unity-font: url('project://database/Assets/Font/NotoSansCJKjp-hinted/NotoSansCJKjp-Regular.otf?fileID=12800000&guid=8051790b0400d46f5953ce8c675b2ad9&type=3#NotoSansCJKjp-Regular');
+    -unity-font: none;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
