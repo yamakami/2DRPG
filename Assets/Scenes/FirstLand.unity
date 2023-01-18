@@ -135221,6 +135221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799019618}
   - component: {fileID: 1799019619}
+  - component: {fileID: 1799019620}
   m_Layer: 0
   m_Name: PlayerVillage
   m_TagString: Untagged
@@ -135255,6 +135256,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad21600d5d07f4d6282bf8d49dd0e6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actors:
+  - {fileID: 7583004779596885346}
+--- !u!114 &1799019620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799019617}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c040d878dfd4944891df289bae4f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actors:

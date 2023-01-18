@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NpcData
   m_EditorClassIdentifier: 
   npcName: "\u6751\u4EBA"
-  yMaxStep: 4
+  yMaxStep: 6
   xMaxStep: 4
   randomInterval: 3
   conversationData: {fileID: 11400000, guid: 8b2965a1f998e4c0dbbc604551a9ab8f, type: 2}
