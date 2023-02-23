@@ -1,66 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/_Scripts/UI/_CSS/ui_base.uss?fileID=7433441132597879392&amp;guid=7319282975f0d47989b7055148fb17c7&amp;type=3#ui_base" />
+    <ui:VisualElement name="fade-screen" class="screen-absolute" style="width: 100%; height: 100%; background-color: rgb(0, 0, 0); display: none;" />
     <ui:VisualElement name="message-screen" style="width: 100%; height: 100%; align-items: center; justify-content: flex-end; margin-bottom: 0; display: none;">
         <ui:VisualElement name="message-box" class="base_frame" style="width: 40%; height: 30%; align-items: center; justify-content: flex-start; padding-bottom: 10px; display: flex; margin-bottom: 20px; padding-top: 8px;">
             <ui:Label tabindex="-1" text="あ&#10;い&#10;う&#10;え&#10;お&#10;か&#10;き&#10;く&#10;け" display-tooltip-when-elided="true" name="message-text" class="message_text" style="flex-grow: 1; width: 100%; height: auto; margin-top: 2px; display: flex;" />
             <ui:Button tabindex="-1" text="▼" display-tooltip-when-elided="true" name="conversation-next-button" class="next_button" style="margin-top: 3px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: none;" />
             <ui:Button tabindex="-1" text="▼" display-tooltip-when-elided="true" name="message-next-button" class="next_button" style="margin-top: 3px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: none;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="shop-type-screen" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 0; display: none;">
-        <ui:VisualElement name="select-box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-start; height: 210px; width: 162px; flex-direction: column;">
-            <ui:Button tabindex="0" text="買う" display-tooltip-when-elided="true" name="buy-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
-            <ui:Button tabindex="1" text="売る" display-tooltip-when-elided="true" name="sell-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
-            <ui:Button tabindex="1" text="やめる" display-tooltip-when-elided="true" name="quit-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="shop-screen" class="screen-absolute" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; align-items: center; justify-content: center; display: none; right: auto;">
-        <ui:VisualElement name="box" class="base_frame" style="align-items: center; height: 631px; width: 858px; justify-content: space-around; flex-direction: column;">
-            <ui:Label tabindex="-1" text="道具屋" display-tooltip-when-elided="true" name="menu-title" class="message_text" style="-unity-font-style: bold; font-size: 28px;" />
-            <ui:VisualElement name="shop-info" style="height: 482px; width: 760px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; justify-content: space-around; align-items: center; display: flex;">
-                <ui:VisualElement name="item-description" style="height: 448px; width: 388px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <ui:Label tabindex="-1" text="所持金: 000000000000000G" display-tooltip-when-elided="true" name="player-gold" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
-                    <ui:Label tabindex="-1" text="価格: 000000000000000G" display-tooltip-when-elided="true" name="item-price" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
-                    <ui:Label tabindex="-1" text="ウホウホの実" display-tooltip-when-elided="true" name="item-name" class="message_text" style="height: 35px; -unity-font-style: bold;" />
-                    <ui:Label tabindex="-1" text="保有数" display-tooltip-when-elided="true" name="possession" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
-                    <ui:Label tabindex="-1" text="戦いで敵に投げることができるぞ！&#10;" display-tooltip-when-elided="true" name="item-detail" class="message_text" style="flex-grow: 1; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-left-radius: 1px; border-bottom-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-top: 10px; margin-right: 0; margin-left: 0; -unity-font-style: normal; white-space: normal; height: 254px; width: 372px;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="item-select" style="height: 446px; width: 342px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; display: flex;">
-                    <ui:Label tabindex="-1" text="10/10" display-tooltip-when-elided="true" name="pager-position" class="message_text" style="-unity-text-align: upper-right;" />
-                    <ui:Button tabindex="0" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
-                    <ui:Button tabindex="1" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
-                    <ui:Button tabindex="2" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
-                    <ui:Button tabindex="3" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
-                    <ui:Button tabindex="4" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
-                    <ui:Button tabindex="5" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
-                    <ui:VisualElement name="pager" style="align-items: center; height: auto; width: auto; flex-grow: 1; flex-direction: row; justify-content: space-around; display: flex; visibility: visible;">
-                        <ui:Button tabindex="-1" text="◀" display-tooltip-when-elided="true" name="page-first" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-left; height: 49px; width: 30px;" />
-                        <ui:Button tabindex="-1" text="◀◀" display-tooltip-when-elided="true" name="page-prev" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-left; height: 51px; width: 52px;" />
-                        <ui:Button tabindex="-1" text="▶▶" display-tooltip-when-elided="true" name="page-next" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-right; height: 51px; width: 52px;" />
-                        <ui:Button tabindex="-1" text="▶" display-tooltip-when-elided="true" name="page-last" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-right; height: 49px; width: 30px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="control" style="align-items: center; flex-direction: row; justify-content: space-around; width: 30%;">
-                <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button_no_box" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
-                <ui:Button tabindex="-1" text="とじる" display-tooltip-when-elided="true" name="close-button" class="text_button_no_box" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="shop-deal-screen" focusable="false" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 2px; display: none; -unity-font: none;">
-        <ui:VisualElement name="box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-end; height: 400px; width: 435px; padding-top: 88px;">
-            <ui:Label tabindex="-1" text="アイテムを購入" display-tooltip-when-elided="true" name="title" class="message_text" style="-unity-text-align: upper-center; -unity-font-style: bold;" />
-            <ui:Label tabindex="-1" text="たわし" display-tooltip-when-elided="true" name="item" class="message_text" />
-            <ui:Label tabindex="-1" text="1000000000000G" display-tooltip-when-elided="true" name="price" class="message_text" />
-            <ui:DropdownField label="数量　　X" index="-1" choices="1,2,3,4,5" name="amount" class="message_text" style="margin-bottom: 21px;" />
-            <ui:Button tabindex="-1" text="購入する" display-tooltip-when-elided="true" name="deal-button" class="text_button" style="justify-content: flex-start; margin-bottom: 11px;" />
-            <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="shop-error-screen" focusable="false" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 2px; display: none; -unity-font: none;">
-        <ui:VisualElement name="box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-start; height: 203px; width: 401px;">
-            <ui:Label tabindex="-1" text="たわし" display-tooltip-when-elided="true" name="message-box" class="message_text" style="height: 91px; width: 339px; white-space: normal;" />
-            <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button" style="display: flex;" />
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="select-screen" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 0; display: none;">
@@ -71,5 +16,62 @@
             <ui:Button tabindex="3" text="Button4" display-tooltip-when-elided="true" name="select-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: none;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="fade-screen" class="screen-absolute" style="width: 100%; height: 100%; background-color: rgb(0, 0, 0); display: none;" />
+    <ui:VisualElement name="ShopUI" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="shop-type-screen" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 0; display: none;">
+            <ui:VisualElement name="select-box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-start; height: 210px; width: 162px; flex-direction: column;">
+                <ui:Button tabindex="0" text="買う" display-tooltip-when-elided="true" name="buy-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
+                <ui:Button tabindex="1" text="売る" display-tooltip-when-elided="true" name="sell-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
+                <ui:Button tabindex="1" text="やめる" display-tooltip-when-elided="true" name="quit-button" class="text_button" style="-unity-text-align: middle-left; margin-bottom: 1px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: flex;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="shop-screen" class="screen-absolute" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; align-items: center; justify-content: center; display: none; right: auto;">
+            <ui:VisualElement name="box" class="base_frame" style="align-items: center; height: 631px; width: 858px; justify-content: space-around; flex-direction: column;">
+                <ui:Label tabindex="-1" text="道具屋" display-tooltip-when-elided="true" name="menu-title" class="message_text" style="-unity-font-style: bold; font-size: 28px;" />
+                <ui:VisualElement name="shop-info" style="height: 482px; width: 760px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; justify-content: space-around; align-items: center; display: flex;">
+                    <ui:VisualElement name="item-description" style="height: 448px; width: 388px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+                        <ui:Label tabindex="-1" text="所持金: 000000000000000G" display-tooltip-when-elided="true" name="player-gold" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
+                        <ui:Label tabindex="-1" text="価格: 000000000000000G" display-tooltip-when-elided="true" name="item-price" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
+                        <ui:Label tabindex="-1" text="ウホウホの実" display-tooltip-when-elided="true" name="item-name" class="message_text" style="height: 35px; -unity-font-style: bold;" />
+                        <ui:Label tabindex="-1" text="保有数" display-tooltip-when-elided="true" name="possession" class="message_text" style="height: 35px; -unity-text-align: upper-left;" />
+                        <ui:Label tabindex="-1" text="戦いで敵に投げることができるぞ！&#10;" display-tooltip-when-elided="true" name="item-detail" class="message_text" style="flex-grow: 1; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-left-radius: 1px; border-bottom-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-top: 10px; margin-right: 0; margin-left: 0; -unity-font-style: normal; white-space: normal; height: 254px; width: 372px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="item-select" style="height: 446px; width: 342px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; display: flex;">
+                        <ui:Label tabindex="-1" text="10/10" display-tooltip-when-elided="true" name="pager-position" class="message_text" style="-unity-text-align: upper-right;" />
+                        <ui:Button tabindex="0" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
+                        <ui:Button tabindex="1" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
+                        <ui:Button tabindex="2" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
+                        <ui:Button tabindex="3" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
+                        <ui:Button tabindex="4" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
+                        <ui:Button tabindex="5" text="Button" display-tooltip-when-elided="true" name="item-select-button" class="text_button" style="-unity-text-align: middle-left; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-top: 2px; margin-bottom: 2px; visibility: visible; display: flex;" />
+                        <ui:VisualElement name="pager" style="align-items: center; height: auto; width: auto; flex-grow: 1; flex-direction: row; justify-content: space-around; display: flex; visibility: visible;">
+                            <ui:Button tabindex="-1" text="◀" display-tooltip-when-elided="true" name="page-first" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-left; height: 49px; width: 30px;" />
+                            <ui:Button tabindex="-1" text="◀◀" display-tooltip-when-elided="true" name="page-prev" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-left; height: 51px; width: 52px;" />
+                            <ui:Button tabindex="-1" text="▶▶" display-tooltip-when-elided="true" name="page-next" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-right; height: 51px; width: 52px;" />
+                            <ui:Button tabindex="-1" text="▶" display-tooltip-when-elided="true" name="page-last" class="next_button" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 5px; padding-bottom: 5px; -unity-text-align: middle-right; height: 49px; width: 30px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="control" style="align-items: center; flex-direction: row; justify-content: space-around; width: 30%;">
+                    <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button_no_box" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+                    <ui:Button tabindex="-1" text="とじる" display-tooltip-when-elided="true" name="close-button" class="text_button_no_box" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="shop-deal-screen" focusable="false" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 2px; display: none; -unity-font: none;">
+            <ui:VisualElement name="box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-end; height: 400px; width: 435px; padding-top: 88px;">
+                <ui:Label tabindex="-1" text="アイテムを購入" display-tooltip-when-elided="true" name="title" class="message_text" style="-unity-text-align: upper-center; -unity-font-style: bold;" />
+                <ui:Label tabindex="-1" text="たわし" display-tooltip-when-elided="true" name="item" class="message_text" />
+                <ui:Label tabindex="-1" text="1000000000000G" display-tooltip-when-elided="true" name="price" class="message_text" />
+                <ui:DropdownField label="数量　　X" index="-1" choices="1,2,3,4,5" name="amount" class="message_text" style="margin-bottom: 21px;" />
+                <ui:Button tabindex="-1" text="購入する" display-tooltip-when-elided="true" name="deal-button" class="text_button" style="justify-content: flex-start; margin-bottom: 11px;" />
+                <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="shop-error-screen" focusable="false" class="screen-absolute" style="width: 100%; height: 100%; align-items: center; justify-content: center; position: absolute; left: 0; top: 2px; display: none; -unity-font: none;">
+            <ui:VisualElement name="box" class="base_frame" style="align-items: stretch; display: flex; justify-content: flex-start; height: 203px; width: 401px;">
+                <ui:Label tabindex="-1" text="たわし" display-tooltip-when-elided="true" name="message-box" class="message_text" style="height: 91px; width: 339px; white-space: normal;" />
+                <ui:Button tabindex="-1" text="もどる" display-tooltip-when-elided="true" name="back-button" class="text_button" style="display: flex;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

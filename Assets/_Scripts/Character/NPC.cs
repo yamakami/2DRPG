@@ -10,6 +10,7 @@ public class NPC : BaseCharacter
     [SerializeField] NpcContact npcContact;
 
     public NpcData NpcData { get => npcData; }
+    int steps;
 
     void Start()
     {
@@ -40,7 +41,14 @@ public class NPC : BaseCharacter
         if (Freeze)
             return;
 
+        if (npcData.MoveDistance <= 0)
+        {
+            move = Vector2.zero;
+            return;
+        }
+
         MovePosition();
+        npcData.MoveDistance--;
     }
 
     public override void CharaUpdate()
@@ -76,7 +84,7 @@ public class NPC : BaseCharacter
                         return;
 
                     npcData.YCurrentStep -= yRandomSteps;
-                    npcData.MoveDistance = yRandomSteps *npcData.PixelUnit;
+                    npcData.MoveDistance = yRandomSteps * npcData.PixelUnit;
                     move = Vector2.down;
                     break;
 
@@ -85,7 +93,7 @@ public class NPC : BaseCharacter
                         return;
 
                     npcData.XCurrentStep -= xRandomSteps;
-                    npcData.MoveDistance = xRandomSteps *npcData. PixelUnit;
+                    npcData.MoveDistance = xRandomSteps * npcData.PixelUnit;
                     move = Vector2.left;
                     break;
 
@@ -103,13 +111,6 @@ public class NPC : BaseCharacter
                     return;
             }
             npcData.CurrentTime = 0f;
-        }
-
-        npcData.MoveDistance--;
-        if (npcData.MoveDistance <= 0)
-        {
-            move = Vector2.zero;
-            return;
         }
 
         if (npcContact.OtherNpcTouching)
