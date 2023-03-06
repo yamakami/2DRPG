@@ -128974,6 +128974,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
+    FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
@@ -129050,6 +129051,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vcam
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659405228746311261, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6050635213730202308, guid: 10584b40bc1ee4ea9b6a5e4bd8077f61,
         type: 3}
@@ -129271,6 +129277,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
+    FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
