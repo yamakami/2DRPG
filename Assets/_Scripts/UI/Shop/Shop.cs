@@ -5,16 +5,16 @@ public class Shop : MonoBehaviour, ICustomEventListener, ISelectButton
 {
     [SerializeField] CustomEventTrigger shopTrigger;
     [SerializeField] ShopTypeSelect shopTypeSelect;
-     [SerializeField] ShopDeal shopDeal;
+    [SerializeField] ShopDeal shopDeal;
     NpcData npcData;
     VisualElement shopScreen;
     public NpcData NpcData { get => npcData; set => npcData = value; }
 
     string menuText = "道具屋({0})";
-    string playerGoldText = "所持金；{0}G";
-    string itemPriceText = "価格；{0}G";
-    string itemNameText = "名前；{0}";
-    string possessionText = "所有数；{0}/{1}個";
+    string playerGoldText = "所持金：{0}G";
+    string itemPriceText = "価格：{0}G";
+    string itemNameText = "名前：{0}";
+    string possessionText = "所有数：{0}/{1}個";
 
     Label menuTitle;
     Label playerGold;
